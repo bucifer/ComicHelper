@@ -31,12 +31,25 @@
                                     <rect key="frame" x="337" y="147" width="126" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="D7d-fq-uW8" kind="show" id="EN2-AS-iZ9"/>
+                                    <segue destination="D7d-fq-uW8" kind="show" identifier="creation" id="EN2-AS-iZ9"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
                                 <rect key="frame" x="0.0" y="222" width="600" height="378"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="C8q-NF-1XR">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C8q-NF-1XR" id="OpY-p8-nqB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="JHw-Fy-xcB"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Wdl-CJ-mmB"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -66,6 +79,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createNewJokeButton" destination="0xH-fo-i23" id="Xkc-a1-qWR"/>
+                        <outlet property="tableView" destination="zrs-iD-EQY" id="Mmk-rh-sqk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -112,8 +126,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Grade (out of 10)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7K-pU-BTI">
-                                <rect key="frame" x="48" y="366" width="171" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Score (out of 10)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7K-pU-BTI">
+                                <rect key="frame" x="48" y="366" width="169" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -179,7 +193,18 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Joke Creation View" id="oMD-oz-0An"/>
+                    <navigationItem key="navigationItem" title="Joke Creation View" id="oMD-oz-0An">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="xuR-od-Hef">
+                            <connections>
+                                <action selector="saveAction:" destination="D7d-fq-uW8" id="xrn-od-lMV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="jokeLengthTextField" destination="IdX-pS-Wds" id="0vv-yq-bgd"/>
+                        <outlet property="jokeScoreTextField" destination="k89-rh-UfL" id="dW4-fP-elO"/>
+                        <outlet property="jokeTitleTextField" destination="sgg-es-aAN" id="9a5-QA-mhz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-7l-PX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -205,6 +230,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EtW-zb-Ba2"/>
+        <segue reference="EN2-AS-iZ9"/>
     </inferredMetricsTieBreakers>
 </document>

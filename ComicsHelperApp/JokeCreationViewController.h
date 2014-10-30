@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JokeDataManager.h"
 
 @interface JokeCreationViewController : UIViewController
+
+
+@property (strong, nonatomic) IBOutlet UITextField *jokeTitleTextField;
+@property (strong, nonatomic) IBOutlet UITextField *jokeLengthTextField;
+@property (strong, nonatomic) IBOutlet UITextField *jokeScoreTextField;
+
+@property (strong, nonatomic) JokeDataManager *jokeDataManager;
+
+- (IBAction)saveAction:(id)sender;
 
 @end

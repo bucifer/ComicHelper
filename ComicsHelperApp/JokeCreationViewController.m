@@ -7,6 +7,7 @@
 //
 
 #import "JokeCreationViewController.h"
+#import "Joke.h"
 
 @interface JokeCreationViewController ()
 
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +35,28 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+- (IBAction)saveAction:(id)sender {
+    
+    NSString *jokeTitle = self.jokeTitleTextField.text;
+    NSString *jokeLength = self.jokeLengthTextField.text;
+    NSString *jokeScore = self.jokeScoreTextField.text;
+    
+    Joke *newJoke = [[Joke alloc]init];
+    newJoke.title = jokeTitle;
+    newJoke.length = [jokeLength intValue];
+    newJoke.score = [jokeScore intValue];
+    
+    [self.jokeDataManager.jokes addObject:newJoke];
+    NSLog(@"New joke saved");
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
+
 
 @end

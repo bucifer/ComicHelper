@@ -15,6 +15,7 @@
 		AAAC119819F84FB700494372 /* ComicsHelperAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC119719F84FB700494372 /* ComicsHelperAppTests.m */; };
 		AAAC11A319F8501100494372 /* InitialCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC11A219F8501100494372 /* InitialCustomViewController.m */; };
 		AAC97DE61A02E048009BCB0C /* JokeCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC97DE51A02E048009BCB0C /* JokeCreationViewController.m */; };
+		AAC97DE91A02E9EC009BCB0C /* JokeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC97DE81A02E9EC009BCB0C /* JokeDataManager.m */; };
 		AAEA2E1219F9B219006E14E4 /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2E1119F9B219006E14E4 /* Joke.m */; };
 		AAEA2E1519F9B352006E14E4 /* JokeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2E1419F9B352006E14E4 /* JokeTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 		AAAC11A219F8501100494372 /* InitialCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitialCustomViewController.m; path = ../InitialCustomViewController.m; sourceTree = "<group>"; };
 		AAC97DE41A02E048009BCB0C /* JokeCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCreationViewController.h; sourceTree = "<group>"; };
 		AAC97DE51A02E048009BCB0C /* JokeCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCreationViewController.m; sourceTree = "<group>"; };
+		AAC97DE71A02E9EC009BCB0C /* JokeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeDataManager.h; sourceTree = "<group>"; };
+		AAC97DE81A02E9EC009BCB0C /* JokeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeDataManager.m; sourceTree = "<group>"; };
 		AAEA2E1019F9B219006E14E4 /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joke.h; sourceTree = "<group>"; };
 		AAEA2E1119F9B219006E14E4 /* Joke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Joke.m; sourceTree = "<group>"; };
 		AAEA2E1319F9B352006E14E4 /* JokeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeTableViewController.h; sourceTree = "<group>"; };
@@ -97,10 +100,12 @@
 				AAAC11A219F8501100494372 /* InitialCustomViewController.m */,
 				AAC97DE41A02E048009BCB0C /* JokeCreationViewController.h */,
 				AAC97DE51A02E048009BCB0C /* JokeCreationViewController.m */,
-				AAEA2E1319F9B352006E14E4 /* JokeTableViewController.h */,
-				AAEA2E1419F9B352006E14E4 /* JokeTableViewController.m */,
 				AAEA2E1019F9B219006E14E4 /* Joke.h */,
 				AAEA2E1119F9B219006E14E4 /* Joke.m */,
+				AAC97DE71A02E9EC009BCB0C /* JokeDataManager.h */,
+				AAC97DE81A02E9EC009BCB0C /* JokeDataManager.m */,
+				AAEA2E1319F9B352006E14E4 /* JokeTableViewController.h */,
+				AAEA2E1419F9B352006E14E4 /* JokeTableViewController.m */,
 				AAAC118819F84FB700494372 /* Images.xcassets */,
 				AAAC118A19F84FB700494372 /* LaunchScreen.xib */,
 				AAAC117B19F84FB700494372 /* Supporting Files */,
@@ -234,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC97DE91A02E9EC009BCB0C /* JokeDataManager.m in Sources */,
 				AAAC118119F84FB700494372 /* AppDelegate.m in Sources */,
 				AAAC11A319F8501100494372 /* InitialCustomViewController.m in Sources */,
 				AAEA2E1519F9B352006E14E4 /* JokeTableViewController.m in Sources */,

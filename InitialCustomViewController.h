@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface InitialCustomViewController : UIViewController
-
+#import "JokeDataManager.h"
 
 
+@interface InitialCustomViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+
+@property (strong, nonatomic) JokeDataManager *jokeDataManager;
 @property (strong, nonatomic) IBOutlet UIButton *createNewJokeButton;
-
-
 
 
 

@@ -10,8 +10,8 @@
 
 @interface Joke : NSObject
 
-@property (nonatomic, strong) NSString* jokeTitle;
-@property (nonatomic, strong) NSString* jokeGrade;
+@property (nonatomic, strong) NSString* title;
+@property int score;
 @property int length;
 
 
