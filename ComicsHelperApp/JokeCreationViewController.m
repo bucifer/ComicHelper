@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
     
 }
 
@@ -25,17 +29,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 
 - (IBAction)saveAction:(id)sender {
@@ -55,6 +48,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark Keyboard Delegate methods
+
+-(void)dismissKeyboard {
+    [self.jokeTitleTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    [self.jokeLengthTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    [self.jokeScoreTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
+}
 
 
 
