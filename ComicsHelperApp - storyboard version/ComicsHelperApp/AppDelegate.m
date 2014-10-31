@@ -25,8 +25,6 @@
     // Override point for customization after application launch.
 
     UINavigationController *nav = (UINavigationController *) self.window.rootViewController;
-
-
     JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
     myJokeDatamanager.managedObjectContext = self.managedObjectContext;
     

@@ -43,6 +43,12 @@
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Joke" inManagedObjectContext:self.jokeDataManager.managedObjectContext];
+    = [[CompanyCoreData alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+    
+    
+    
+    
     Joke *newJoke = [[Joke alloc]init];
     newJoke.title = jokeTitle;
     newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
