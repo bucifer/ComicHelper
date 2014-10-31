@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
+#import "CreateViewController.h"
+#import "SingleJokeViewController.h"
+#import "Joke.h"
 
 
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>

@@ -20,6 +20,8 @@
 		AAC97DF21A0308C5009BCB0C /* SingleJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC97DF11A0308C5009BCB0C /* SingleJokeViewController.m */; };
 		AAD632A51A03EB880065E2DC /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD632A41A03EB880065E2DC /* EditViewController.m */; };
 		AAD632A81A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */; };
+		AAD632AA1A03FDBE0065E2DC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD632A91A03FDBE0065E2DC /* CoreData.framework */; };
+		AAD632AC1A03FDEE0065E2DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */; };
 		AAEA2E1219F9B219006E14E4 /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2E1119F9B219006E14E4 /* Joke.m */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		AAD632A41A03EB880065E2DC /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		AAD632A61A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSObject___TerryConvenience.h"; sourceTree = "<group>"; };
 		AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSObject___TerryConvenience.m"; sourceTree = "<group>"; };
+		AAD632A91A03FDBE0065E2DC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AAEA2E1019F9B219006E14E4 /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joke.h; sourceTree = "<group>"; };
 		AAEA2E1119F9B219006E14E4 /* Joke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Joke.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD632AC1A03FDEE0065E2DC /* SystemConfiguration.framework in Frameworks */,
+				AAD632AA1A03FDBE0065E2DC /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +135,8 @@
 		AAAC117B19F84FB700494372 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */,
+				AAD632A91A03FDBE0065E2DC /* CoreData.framework */,
 				AAAC117C19F84FB700494372 /* Info.plist */,
 				AAAC117D19F84FB700494372 /* main.m */,
 			);

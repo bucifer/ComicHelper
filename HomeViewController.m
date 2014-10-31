@@ -7,9 +7,6 @@
 //
 
 #import "HomeViewController.h"
-#import "CreateViewController.h"
-#import "SingleJokeViewController.h"
-#import "Joke.h"
 
 @interface HomeViewController ()
 
@@ -28,7 +25,6 @@
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
 
     self.jokeDataManager = [[JokeDataManager alloc]init];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
