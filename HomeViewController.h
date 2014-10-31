@@ -10,7 +10,7 @@
 #import "JokeDataManager.h"
 
 
-@interface InitialCustomViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 

@@ -13,8 +13,13 @@
 
 
 @property (strong, nonatomic) IBOutlet UITextField *jokeTitleTextField;
-@property (strong, nonatomic) IBOutlet UITextField *jokeLengthTextField;
+
+@property (strong, nonatomic) IBOutlet UITextField *jokeLengthMinuteTextField;
+@property (strong, nonatomic) IBOutlet UITextField *jokeLengthSecondsTextField;
+
 @property (strong, nonatomic) IBOutlet UITextField *jokeScoreTextField;
+@property (strong, nonatomic) IBOutlet UIDatePicker *jokeCreationDatePicker;
+
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString* title;
 @property int score;
 @property int length;
+@property NSDate *creationDate;
 
 
 

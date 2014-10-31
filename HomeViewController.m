@@ -6,15 +6,18 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "InitialCustomViewController.h"
+#import "HomeViewController.h"
 #import "JokeCreationViewController.h"
+#import "SingleJokeViewController.h"
 #import "Joke.h"
 
-@interface InitialCustomViewController ()
+@interface HomeViewController () {
+    Joke *selectedJoke;
+}
 
 @end
 
-@implementation InitialCustomViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,9 +70,27 @@
     
     
     return cell;
+}
+
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    
+    SingleJokeViewController *sjvc = [self.storyboard instantiateViewControllerWithIdentifier:@"singleView"];
+    sjvc.joke = selectedJoke;
+    sjvc.title = selectedJoke.title;
+    
+    [self.navigationController pushViewController:sjvc animated:YES];
     
 }
+
+
+
+
+
 
 #pragma mark - Navigation
 
@@ -82,7 +103,7 @@
         JokeCreationViewController *jcvc = [segue destinationViewController];
         jcvc.jokeDataManager = self.jokeDataManager;
     }
-    
+
     
 }
 

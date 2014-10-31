@@ -9,7 +9,9 @@
 #import "JokeCreationViewController.h"
 #import "Joke.h"
 
-@interface JokeCreationViewController ()
+@interface JokeCreationViewController () {
+    NSString *temporaryStoredDate;
+}
 
 @end
 
@@ -23,6 +25,9 @@
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
+    
+    self.jokeCreationDatePicker.datePickerMode = UIDatePickerModeDate;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,13 +39,21 @@
 - (IBAction)saveAction:(id)sender {
     
     NSString *jokeTitle = self.jokeTitleTextField.text;
-    NSString *jokeLength = self.jokeLengthTextField.text;
     NSString *jokeScore = self.jokeScoreTextField.text;
+    
+    
+    NSString *jokeMinuteLength = self.jokeLengthMinuteTextField.text;
+    NSString *jokeSecondsLength = self.jokeLengthSecondsTextField.text;
+    
     
     Joke *newJoke = [[Joke alloc]init];
     newJoke.title = jokeTitle;
-    newJoke.length = [jokeLength intValue];
+    newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
     newJoke.score = [jokeScore intValue];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    newJoke.creationDate = self.jokeCreationDatePicker.date;
     
     [self.jokeDataManager.jokes addObject:newJoke];
     NSLog(@"New joke saved");
@@ -52,8 +65,9 @@
 
 -(void)dismissKeyboard {
     [self.jokeTitleTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
-    [self.jokeLengthTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    [self.jokeLengthMinuteTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
     [self.jokeScoreTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    
 }
 
 
