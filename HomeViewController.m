@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-#import "JokeCreationViewController.h"
+#import "CreateViewController.h"
 #import "SingleJokeViewController.h"
 #import "Joke.h"
 
@@ -84,7 +84,7 @@
     if ([[segue identifier] isEqualToString:@"creation"])
     {
         // Get reference to the destination view controller
-        JokeCreationViewController *jcvc = [segue destinationViewController];
+        CreateViewController *jcvc = [segue destinationViewController];
         jcvc.jokeDataManager = self.jokeDataManager;
     }
 

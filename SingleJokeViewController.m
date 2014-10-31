@@ -7,6 +7,7 @@
 //
 
 #import "SingleJokeViewController.h"
+#import "EditViewController.h"
 
 @interface SingleJokeViewController ()
 
@@ -17,12 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-        
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(popEditView)];
+    
+    
     self.jokeTitleLabel.text = self.joke.title;
-    
-    
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
-    
     
     NSString *score = [NSString stringWithFormat:@"%d", self.joke.score];
     self.jokeScoreLabel.text = [NSString stringWithFormat: @"%@ out of 10", score];
@@ -59,14 +61,22 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
+- (void) popEditView {
+    
+    EditViewController *evc = [self.storyboard instantiateViewControllerWithIdentifier:@"editViewController"];
+    [self.navigationController pushViewController:evc animated:YES];
+    
+}
+ 
+ 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

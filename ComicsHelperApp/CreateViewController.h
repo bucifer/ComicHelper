@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
 
-@interface JokeCreationViewController : UIViewController
+@interface CreateViewController : UIViewController
 
 
 @property (strong, nonatomic) IBOutlet UITextField *jokeTitleTextField;

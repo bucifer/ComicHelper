@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "JokeCreationViewController.h"
+#import "CreateViewController.h"
 #import "Joke.h"
 
-@interface JokeCreationViewController () {
+@interface CreateViewController () {
     NSString *temporaryStoredDate;
 }
 
 @end
 
-@implementation JokeCreationViewController
+@implementation CreateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
