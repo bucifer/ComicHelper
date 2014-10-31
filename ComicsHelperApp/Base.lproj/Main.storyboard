@@ -58,6 +58,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="8Ol-YK-K5R" kind="show" identifier="singleView" id="tdz-9p-OBX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

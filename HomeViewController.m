@@ -11,9 +11,7 @@
 #import "SingleJokeViewController.h"
 #import "Joke.h"
 
-@interface HomeViewController () {
-    Joke *selectedJoke;
-}
+@interface HomeViewController ()
 
 @end
 
@@ -75,20 +73,6 @@
 
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-    
-    SingleJokeViewController *sjvc = [self.storyboard instantiateViewControllerWithIdentifier:@"singleView"];
-    sjvc.joke = selectedJoke;
-    sjvc.title = selectedJoke.title;
-    
-    [self.navigationController pushViewController:sjvc animated:YES];
-    
-}
-
-
-
 
 
 
@@ -104,6 +88,16 @@
         jcvc.jokeDataManager = self.jokeDataManager;
     }
 
+    else if ([[segue identifier] isEqualToString:@"singleView"]) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        SingleJokeViewController *sjvc = [segue destinationViewController];
+        Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        
+        sjvc.joke  = selectedJoke;
+        sjvc.title = selectedJoke.title;
+    }
+    
     
 }
 
