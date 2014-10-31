@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+
 #import "JokeDataManager.h"
 #import "CreateViewController.h"
 #import "SingleJokeViewController.h"
+#import "JokePL.h"
 #import "Joke.h"
-#import <CoreData/CoreData.h>
+
 
 
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>

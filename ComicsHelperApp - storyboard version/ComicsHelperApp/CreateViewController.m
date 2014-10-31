@@ -7,6 +7,7 @@
 //
 
 #import "CreateViewController.h"
+#import "JokePL.h"
 #import "Joke.h"
 
 @interface CreateViewController () {
@@ -44,21 +45,25 @@
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Joke" inManagedObjectContext:self.jokeDataManager.managedObjectContext];
-    = [[CompanyCoreData alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+    Joke *joke = [[Joke alloc] initWithEntity:entity insertIntoManagedObjectContext:self.jokeDataManager.managedObjectContext];
+    joke.title = jokeTitle;
+    joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue])];
+    joke.score = [NSNumber numberWithInt:[jokeScore intValue]];
+    joke.creationDate = self.creationDatePicker.date;
     
     
+//    JokePL *newJoke = [[JokePL alloc]init];
+//    newJoke.title = jokeTitle;
+//    newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
+//    newJoke.score = [jokeScore intValue];
+//    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    newJoke.creationDate = self.creationDatePicker.date;
+//    
+//    [self.jokeDataManager.jokes addObject:newJoke];
     
-    
-    Joke *newJoke = [[Joke alloc]init];
-    newJoke.title = jokeTitle;
-    newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
-    newJoke.score = [jokeScore intValue];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    newJoke.creationDate = self.creationDatePicker.date;
-    
-    [self.jokeDataManager.jokes addObject:newJoke];
+    [self.jokeDataManager.jokes addObject: joke];
     NSLog(@"New joke saved");
     
     [self.navigationController popViewControllerAnimated:YES];

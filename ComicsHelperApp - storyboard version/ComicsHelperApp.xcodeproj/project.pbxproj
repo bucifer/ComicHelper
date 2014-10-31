@@ -22,7 +22,8 @@
 		AAD632A81A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */; };
 		AAD632AA1A03FDBE0065E2DC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD632A91A03FDBE0065E2DC /* CoreData.framework */; };
 		AAD632AC1A03FDEE0065E2DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */; };
-		AAEA2E1219F9B219006E14E4 /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2E1119F9B219006E14E4 /* Joke.m */; };
+		AAD632B71A042C4C0065E2DC /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD632B61A042C4C0065E2DC /* Joke.m */; };
+		AAEA2E1219F9B219006E14E4 /* JokePL.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2E1119F9B219006E14E4 /* JokePL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +63,10 @@
 		AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSObject___TerryConvenience.m"; sourceTree = "<group>"; };
 		AAD632A91A03FDBE0065E2DC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		AAEA2E1019F9B219006E14E4 /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joke.h; sourceTree = "<group>"; };
-		AAEA2E1119F9B219006E14E4 /* Joke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Joke.m; sourceTree = "<group>"; };
+		AAD632B51A042C4C0065E2DC /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joke.h; sourceTree = "<group>"; };
+		AAD632B61A042C4C0065E2DC /* Joke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Joke.m; sourceTree = "<group>"; };
+		AAEA2E1019F9B219006E14E4 /* JokePL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokePL.h; sourceTree = "<group>"; };
+		AAEA2E1119F9B219006E14E4 /* JokePL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokePL.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,11 +123,13 @@
 				AAD632A41A03EB880065E2DC /* EditViewController.m */,
 				AAD632A61A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.h */,
 				AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */,
-				AAEA2E1019F9B219006E14E4 /* Joke.h */,
-				AAEA2E1119F9B219006E14E4 /* Joke.m */,
 				AAC97DE71A02E9EC009BCB0C /* JokeDataManager.h */,
 				AAC97DE81A02E9EC009BCB0C /* JokeDataManager.m */,
 				AAC97DEA1A03031C009BCB0C /* Model.xcdatamodeld */,
+				AAEA2E1019F9B219006E14E4 /* JokePL.h */,
+				AAEA2E1119F9B219006E14E4 /* JokePL.m */,
+				AAD632B51A042C4C0065E2DC /* Joke.h */,
+				AAD632B61A042C4C0065E2DC /* Joke.m */,
 				AAAC118819F84FB700494372 /* Images.xcassets */,
 				AAAC118A19F84FB700494372 /* LaunchScreen.xib */,
 				AAAC117B19F84FB700494372 /* Supporting Files */,
@@ -267,7 +272,8 @@
 				AAC97DEC1A03031C009BCB0C /* Model.xcdatamodeld in Sources */,
 				AAD632A51A03EB880065E2DC /* EditViewController.m in Sources */,
 				AAC97DF21A0308C5009BCB0C /* SingleJokeViewController.m in Sources */,
-				AAEA2E1219F9B219006E14E4 /* Joke.m in Sources */,
+				AAD632B71A042C4C0065E2DC /* Joke.m in Sources */,
+				AAEA2E1219F9B219006E14E4 /* JokePL.m in Sources */,
 				AAC97DE61A02E048009BCB0C /* CreateViewController.m in Sources */,
 				AAAC117E19F84FB700494372 /* main.m in Sources */,
 			);

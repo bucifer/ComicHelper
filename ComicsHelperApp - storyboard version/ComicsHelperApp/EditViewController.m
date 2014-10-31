@@ -36,7 +36,7 @@
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     
-    Joke *newJoke = self.joke;
+    JokePL *newJoke = self.joke;
     newJoke.title = jokeTitle;
     newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
     newJoke.score = [jokeScore intValue];

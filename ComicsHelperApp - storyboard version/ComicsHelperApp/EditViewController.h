@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Joke.h"
+#import "JokePL.h"
 #import "JokeDataManager.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 
 @interface EditViewController : UIViewController
 
-@property (nonatomic, strong) Joke *joke;
+@property (nonatomic, strong) JokePL *joke;
 
 
 @property (strong, nonatomic) IBOutlet UITextField *titleField;

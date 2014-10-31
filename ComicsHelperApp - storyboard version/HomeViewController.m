@@ -63,7 +63,7 @@
     Joke *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     
     cell.textLabel.text = joke.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat: @"Score: %d", joke.score];
+    cell.detailTextLabel.text = [NSString stringWithFormat: @"Score: %@", joke.score];
     
     
     return cell;
@@ -90,7 +90,7 @@
     else if ([[segue identifier] isEqualToString:@"singleView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         SingleJokeViewController *sjvc = [segue destinationViewController];
-        Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         
         sjvc.joke  = selectedJoke;
         sjvc.title = selectedJoke.title;
