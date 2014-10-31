@@ -36,7 +36,7 @@
 }
 
 
-- (IBAction)saveAction:(id)sender {
+- (IBAction)createNewJokeAction:(id)sender {
     
     NSString *jokeTitle = self.titleField.text;
     NSString *jokeScore = self.scoreField.text;

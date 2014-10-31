@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Joke.h"
+#import "JokeDataManager.h"
+#import "NSObject+NSObject___TerryConvenience.h"
 
 @interface EditViewController : UIViewController
 
@@ -19,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
 @property (strong, nonatomic) IBOutlet UITextField *scoreField;
 @property (strong, nonatomic) IBOutlet UIDatePicker *creationDatePicker;
+@property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
 
 

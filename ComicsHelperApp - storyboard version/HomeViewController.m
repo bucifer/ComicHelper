@@ -83,8 +83,8 @@
     if ([[segue identifier] isEqualToString:@"creation"])
     {
         // Get reference to the destination view controller
-        CreateViewController *jcvc = [segue destinationViewController];
-        jcvc.jokeDataManager = self.jokeDataManager;
+        CreateViewController *cvc = [segue destinationViewController];
+        cvc.jokeDataManager = self.jokeDataManager;
     }
 
     else if ([[segue identifier] isEqualToString:@"singleView"]) {
@@ -94,6 +94,7 @@
         
         sjvc.joke  = selectedJoke;
         sjvc.title = selectedJoke.title;
+        sjvc.jokeDataManager = self.jokeDataManager;
     }
     
     

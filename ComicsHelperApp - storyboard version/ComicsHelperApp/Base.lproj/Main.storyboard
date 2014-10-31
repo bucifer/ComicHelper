@@ -281,7 +281,7 @@
                     <navigationItem key="navigationItem" title="Joke Creation View" id="oMD-oz-0An">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="xuR-od-Hef">
                             <connections>
-                                <action selector="saveAction:" destination="D7d-fq-uW8" id="xrn-od-lMV"/>
+                                <action selector="createNewJokeAction:" destination="D7d-fq-uW8" id="NsX-UU-x43"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

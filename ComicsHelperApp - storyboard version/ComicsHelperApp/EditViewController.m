@@ -7,7 +7,6 @@
 //
 
 #import "EditViewController.h"
-#import "NSObject+NSObject___TerryConvenience.h"
 
 @interface EditViewController ()
 
@@ -18,8 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
     
     self.titleField.text = self.joke.title;
