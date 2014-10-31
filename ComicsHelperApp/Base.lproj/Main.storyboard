@@ -286,11 +286,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="jokeCreationDatePicker" destination="7FF-Aq-7hM" id="sxa-Iv-VyY"/>
-                        <outlet property="jokeLengthMinuteTextField" destination="IdX-pS-Wds" id="Sac-UX-ELw"/>
-                        <outlet property="jokeLengthSecondsTextField" destination="6HM-c7-enc" id="JEn-Id-Ajt"/>
-                        <outlet property="jokeScoreTextField" destination="k89-rh-UfL" id="dW4-fP-elO"/>
-                        <outlet property="jokeTitleTextField" destination="sgg-es-aAN" id="9a5-QA-mhz"/>
+                        <outlet property="creationDatePicker" destination="7FF-Aq-7hM" id="RPs-bu-a6W"/>
+                        <outlet property="lengthMinField" destination="IdX-pS-Wds" id="eL4-4I-MUQ"/>
+                        <outlet property="lengthSecondsField" destination="6HM-c7-enc" id="rdp-wk-sqO"/>
+                        <outlet property="scoreField" destination="k89-rh-UfL" id="ato-AV-QNH"/>
+                        <outlet property="titleField" destination="sgg-es-aAN" id="tv7-t1-ccO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-7l-PX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,6 +516,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="creationDatePicker" destination="PPm-7c-gDC" id="XuN-Ym-wdv"/>
+                        <outlet property="lengthMinField" destination="InT-6R-Ang" id="K0g-5p-sSV"/>
+                        <outlet property="lengthSecondsField" destination="rtz-za-ekv" id="h6C-4u-lIO"/>
+                        <outlet property="scoreField" destination="kIw-xU-7Uy" id="y1x-DM-biP"/>
+                        <outlet property="titleField" destination="2Wg-Fp-uta" id="IdD-XX-Mb2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

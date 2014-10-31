@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Joke.h"
 
 @interface EditViewController : UIViewController
+
+@property (nonatomic, strong) Joke *joke;
+
+
+@property (strong, nonatomic) IBOutlet UITextField *titleField;
+@property (strong, nonatomic) IBOutlet UITextField *lengthMinField;
+@property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
+@property (strong, nonatomic) IBOutlet UITextField *scoreField;
+@property (strong, nonatomic) IBOutlet UIDatePicker *creationDatePicker;
+
+
+
+
+
 
 @end

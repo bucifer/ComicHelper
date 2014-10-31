@@ -15,6 +15,8 @@
 
 @end
 
+
+
 @implementation HomeViewController
 
 - (void)viewDidLoad {
@@ -29,8 +31,9 @@
 
 }
 
-- (void) viewDidAppear {
-    [self.tableView reloadData];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData]; // to reload selected cell
 }
 
 
@@ -89,7 +92,6 @@
     }
 
     else if ([[segue identifier] isEqualToString:@"singleView"]) {
-        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         SingleJokeViewController *sjvc = [segue destinationViewController];
         Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];

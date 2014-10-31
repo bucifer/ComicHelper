@@ -12,13 +12,11 @@
 @interface CreateViewController : UIViewController
 
 
-@property (strong, nonatomic) IBOutlet UITextField *jokeTitleTextField;
-
-@property (strong, nonatomic) IBOutlet UITextField *jokeLengthMinuteTextField;
-@property (strong, nonatomic) IBOutlet UITextField *jokeLengthSecondsTextField;
-
-@property (strong, nonatomic) IBOutlet UITextField *jokeScoreTextField;
-@property (strong, nonatomic) IBOutlet UIDatePicker *jokeCreationDatePicker;
+@property (strong, nonatomic) IBOutlet UITextField *titleField;
+@property (strong, nonatomic) IBOutlet UITextField *lengthMinField;
+@property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
+@property (strong, nonatomic) IBOutlet UITextField *scoreField;
+@property (strong, nonatomic) IBOutlet UIDatePicker *creationDatePicker;
 
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;

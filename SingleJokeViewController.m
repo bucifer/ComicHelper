@@ -19,23 +19,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(pushEditView)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(popEditView)];
-    
-    
+    [self displayMostRecentJokeForUI];
+
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self displayMostRecentJokeForUI];
+}
+
+- (void) displayMostRecentJokeForUI {
     self.jokeTitleLabel.text = self.joke.title;
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
-    
     NSString *score = [NSString stringWithFormat:@"%d", self.joke.score];
     self.jokeScoreLabel.text = [NSString stringWithFormat: @"%@ out of 10", score];
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.creationDate];
-    
-    
-    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -64,9 +69,10 @@
 
 #pragma mark - Navigation
 
-- (void) popEditView {
+- (void) pushEditView {
     
     EditViewController *evc = [self.storyboard instantiateViewControllerWithIdentifier:@"editViewController"];
+    evc.joke = self.joke;
     [self.navigationController pushViewController:evc animated:YES];
     
 }

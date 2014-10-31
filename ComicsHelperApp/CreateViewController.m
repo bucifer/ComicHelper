@@ -26,7 +26,7 @@
     [self.view addGestureRecognizer:tap];
     
     
-    self.jokeCreationDatePicker.datePickerMode = UIDatePickerModeDate;
+    self.creationDatePicker.datePickerMode = UIDatePickerModeDate;
     
 }
 
@@ -38,13 +38,10 @@
 
 - (IBAction)saveAction:(id)sender {
     
-    NSString *jokeTitle = self.jokeTitleTextField.text;
-    NSString *jokeScore = self.jokeScoreTextField.text;
-    
-    
-    NSString *jokeMinuteLength = self.jokeLengthMinuteTextField.text;
-    NSString *jokeSecondsLength = self.jokeLengthSecondsTextField.text;
-    
+    NSString *jokeTitle = self.titleField.text;
+    NSString *jokeScore = self.scoreField.text;
+    NSString *jokeMinuteLength = self.lengthMinField.text;
+    NSString *jokeSecondsLength = self.lengthSecondsField.text;
     
     Joke *newJoke = [[Joke alloc]init];
     newJoke.title = jokeTitle;
@@ -53,7 +50,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    newJoke.creationDate = self.jokeCreationDatePicker.date;
+    newJoke.creationDate = self.creationDatePicker.date;
     
     [self.jokeDataManager.jokes addObject:newJoke];
     NSLog(@"New joke saved");
@@ -64,9 +61,9 @@
 #pragma mark Keyboard Delegate methods
 
 -(void)dismissKeyboard {
-    [self.jokeTitleTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
-    [self.jokeLengthMinuteTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
-    [self.jokeScoreTextField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    [self.titleField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    [self.lengthMinField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    [self.scoreField resignFirstResponder]; //or whatever your textfield you want this to apply to
     
 }
 
