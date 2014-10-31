@@ -20,11 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSLog(@"%@", self.jokeDataManager.managedObjectContext.description);
+    
     self.createNewJokeButton.layer.cornerRadius = 5;
     self.createNewJokeButton.layer.borderWidth = 2;
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
-
-    self.jokeDataManager = [[JokeDataManager alloc]init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -11,18 +11,19 @@
 #import "CreateViewController.h"
 #import "SingleJokeViewController.h"
 #import "Joke.h"
+#import <CoreData/CoreData.h>
 
 
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
-
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-
-
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
+
+
 @property (strong, nonatomic) IBOutlet UIButton *createNewJokeButton;
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 
 

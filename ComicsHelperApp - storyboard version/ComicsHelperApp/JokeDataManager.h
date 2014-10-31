@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface JokeDataManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *jokes;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
+#import "HomeViewController.h"
+#import "JokeDataManager.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +24,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    UINavigationController *nav = (UINavigationController *) self.window.rootViewController;
+
+
+    JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
+    myJokeDatamanager.managedObjectContext = self.managedObjectContext;
     
+    HomeViewController *hvc = (HomeViewController *) nav.topViewController;
+    hvc.jokeDataManager = myJokeDatamanager;
+    
+    NSLog(@"inside the App Delegate: moc: %@", self.managedObjectContext.description);
+
     return YES;
 }
 
