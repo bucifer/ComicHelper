@@ -22,7 +22,7 @@
 
 - (void) appInitializationLogic;
 - (NSMutableArray *) convertJokeCDsIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes;
-
+- (void) saveChangesInCoreData;
 
 
 

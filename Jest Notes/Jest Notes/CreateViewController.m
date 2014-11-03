@@ -52,19 +52,8 @@
     joke.creationDate = self.creationDatePicker.date;
     
     
-//    JokePL *newJoke = [[JokePL alloc]init];
-//    newJoke.title = jokeTitle;
-//    newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
-//    newJoke.score = [jokeScore intValue];
-//    
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//    newJoke.creationDate = self.creationDatePicker.date;
-//    
-//    [self.jokeDataManager.jokes addObject:newJoke];
+    [self.jokeDataManager saveChangesInCoreData];
     
-    [self.jokeDataManager.jokes addObject: joke];
-    [self.jokeDataManager.managedObjectContext save:nil];
     NSLog(@"New joke saved");
     
     [self.navigationController popViewControllerAnimated:YES];

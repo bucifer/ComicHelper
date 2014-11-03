@@ -43,6 +43,7 @@
     
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.creationDate];
+    
 }
 
 

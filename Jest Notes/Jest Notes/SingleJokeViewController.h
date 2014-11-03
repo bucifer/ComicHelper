@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *jokeLengthLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeScoreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeDateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *jokeIDLabel;
 
 
 @end

@@ -357,6 +357,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4X-5i-CsW">
+                                <rect key="frame" x="542" y="72" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -382,6 +388,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="jokeDateLabel" destination="kLr-cV-pPW" id="H8F-IG-rhN"/>
+                        <outlet property="jokeIDLabel" destination="o4X-5i-CsW" id="mHH-zN-Vm8"/>
                         <outlet property="jokeLengthLabel" destination="PAo-bm-mE0" id="fE3-fo-EIX"/>
                         <outlet property="jokeScoreLabel" destination="IWc-8i-zT7" id="gwj-7n-pxy"/>
                         <outlet property="jokeTitleLabel" destination="57i-6i-suh" id="56N-YI-obP"/>

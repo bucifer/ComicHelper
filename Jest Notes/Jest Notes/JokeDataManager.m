@@ -78,5 +78,15 @@
     return resultArrayOfJokePLs;
 }
 
+- (void) saveChangesInCoreData {
+        NSError *err = nil;
+        BOOL successful = [self.managedObjectContext save:&err];
+        if(!successful){
+            NSLog(@"Error saving: %@", [err localizedDescription]);
+        } else {
+            NSLog(@"Data Saved without errors");
+        }
+}
+
 
 @end
