@@ -33,10 +33,14 @@
 
 - (void) displayMostRecentJokeForUI {
     self.jokeTitleLabel.text = self.joke.title;
+    
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
+    
     NSString *score = [NSString stringWithFormat:@"%d", self.joke.score];
     self.jokeScoreLabel.text = [NSString stringWithFormat: @"%@ out of 10", score];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.creationDate];
 }
@@ -46,6 +50,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 - (NSString *) turnSecondsIntegerIntoMinuteAndSecondsFormat: (int) seconds {

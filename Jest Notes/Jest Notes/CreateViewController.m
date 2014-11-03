@@ -8,7 +8,7 @@
 
 #import "CreateViewController.h"
 #import "JokePL.h"
-#import "Joke.h"
+#import "JokeCD.h"
 
 @interface CreateViewController () {
     NSString *temporaryStoredDate;
@@ -45,7 +45,7 @@
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Joke" inManagedObjectContext:self.jokeDataManager.managedObjectContext];
-    Joke *joke = [[Joke alloc] initWithEntity:entity insertIntoManagedObjectContext:self.jokeDataManager.managedObjectContext];
+    JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.jokeDataManager.managedObjectContext];
     joke.title = jokeTitle;
     joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue])];
     joke.score = [NSNumber numberWithInt:[jokeScore intValue]];

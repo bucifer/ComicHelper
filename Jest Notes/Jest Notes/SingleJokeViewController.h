@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JokePL.h"
 #import "JokeDataManager.h"
-#import "Joke.h"
+#import "JokeCD.h"
 
 
 @interface SingleJokeViewController : UIViewController

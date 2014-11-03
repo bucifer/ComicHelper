@@ -20,7 +20,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"%@", self.jokeDataManager.managedObjectContext.description);
+    NSLog(@"Home view controller moc: %@", self.jokeDataManager.managedObjectContext.description);
+    
+    //Let's do initialization logic
+    //If it's the first time you are running the app, we don't do anything
+    //If it's not the first time you are running the app, we get everything from Core Data and turn them into presentation layer jokes
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if([userDefaults boolForKey:@"notFirstLaunch"] == false)
+    {
+        NSLog(@"this is first time you are running the app - Do nothing");
+        
+        //after first launch, you set this NSDefaults key so that for consequent launches, this block never gets run
+        [userDefaults setBool:YES forKey:@"notFirstLaunch"];
+        [userDefaults synchronize];
+    }
+    else {
+        //this is NOT the first launch ... Fetch from Core Data
+        
+        
+    }
+    
     
     self.createNewJokeButton.layer.cornerRadius = 5;
     self.createNewJokeButton.layer.borderWidth = 2;
@@ -60,7 +80,7 @@
     }
     
     
-    Joke *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    JokeCD *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     
     cell.textLabel.text = joke.title;
     cell.detailTextLabel.text = [NSString stringWithFormat: @"Score: %@", joke.score];

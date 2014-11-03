@@ -17,7 +17,7 @@
 		AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */; };
 		AAD277681A07DCED002AA22B /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775B1A07DCED002AA22B /* CreateViewController.m */; };
 		AAD277691A07DCED002AA22B /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775D1A07DCED002AA22B /* EditViewController.m */; };
-		AAD2776A1A07DCED002AA22B /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775F1A07DCED002AA22B /* Joke.m */; };
+		AAD2776A1A07DCED002AA22B /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775F1A07DCED002AA22B /* JokeCD.m */; };
 		AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277611A07DCED002AA22B /* JokeDataManager.m */; };
 		AAD2776C1A07DCED002AA22B /* JokePL.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277631A07DCED002AA22B /* JokePL.m */; };
 		AAD2776D1A07DCED002AA22B /* Jest_Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */; };
@@ -55,8 +55,8 @@
 		AAD2775B1A07DCED002AA22B /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		AAD2775C1A07DCED002AA22B /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		AAD2775D1A07DCED002AA22B /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
-		AAD2775E1A07DCED002AA22B /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joke.h; sourceTree = "<group>"; };
-		AAD2775F1A07DCED002AA22B /* Joke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Joke.m; sourceTree = "<group>"; };
+		AAD2775E1A07DCED002AA22B /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = "<group>"; };
+		AAD2775F1A07DCED002AA22B /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
 		AAD277601A07DCED002AA22B /* JokeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeDataManager.h; sourceTree = "<group>"; };
 		AAD277611A07DCED002AA22B /* JokeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeDataManager.m; sourceTree = "<group>"; };
 		AAD277621A07DCED002AA22B /* JokePL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokePL.h; sourceTree = "<group>"; };
@@ -114,20 +114,20 @@
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
 				AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */,
-				AAD277521A07DCBE002AA22B /* Main.storyboard */,
 				AAD2775A1A07DCED002AA22B /* CreateViewController.h */,
 				AAD2775B1A07DCED002AA22B /* CreateViewController.m */,
 				AAD2775C1A07DCED002AA22B /* EditViewController.h */,
 				AAD2775D1A07DCED002AA22B /* EditViewController.m */,
-				AAD2775E1A07DCED002AA22B /* Joke.h */,
-				AAD2775F1A07DCED002AA22B /* Joke.m */,
-				AAD277601A07DCED002AA22B /* JokeDataManager.h */,
-				AAD277611A07DCED002AA22B /* JokeDataManager.m */,
+				AAD2775E1A07DCED002AA22B /* JokeCD.h */,
+				AAD2775F1A07DCED002AA22B /* JokeCD.m */,
 				AAD277621A07DCED002AA22B /* JokePL.h */,
 				AAD277631A07DCED002AA22B /* JokePL.m */,
-				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
+				AAD277601A07DCED002AA22B /* JokeDataManager.h */,
+				AAD277611A07DCED002AA22B /* JokeDataManager.m */,
 				AAD277661A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.h */,
 				AAD277671A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m */,
+				AAD277521A07DCBE002AA22B /* Main.storyboard */,
+				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
 				AAD277391A07DC82002AA22B /* Images.xcassets */,
 				AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */,
 				AAD277291A07DC81002AA22B /* Supporting Files */,
@@ -262,7 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */,
-				AAD2776A1A07DCED002AA22B /* Joke.m in Sources */,
+				AAD2776A1A07DCED002AA22B /* JokeCD.m in Sources */,
 				AAD277681A07DCED002AA22B /* CreateViewController.m in Sources */,
 				AAD277691A07DCED002AA22B /* EditViewController.m in Sources */,
 				AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
@@ -456,6 +456,7 @@
 				AAD2774E1A07DC82002AA22B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAD2774F1A07DC82002AA22B /* Build configuration list for PBXNativeTarget "Jest NotesTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +465,7 @@
 				AAD277511A07DC82002AA22B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

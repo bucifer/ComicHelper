@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Joke : NSManagedObject
+@interface JokeCD : NSManagedObject
 
 @property (nonatomic, retain) NSDate * creationDate;
 @property (nonatomic, retain) NSNumber * length;

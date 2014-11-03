@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "Joke.h"
+#import "JokeCD.h"
 
 
-@implementation Joke
+@implementation JokeCD
 
 @dynamic creationDate;
 @dynamic length;

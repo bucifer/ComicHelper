@@ -13,7 +13,7 @@
 #import "CreateViewController.h"
 #import "SingleJokeViewController.h"
 #import "JokePL.h"
-#import "Joke.h"
+#import "JokeCD.h"
 
 
 
