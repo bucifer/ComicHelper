@@ -27,6 +27,7 @@
     
     HomeViewController *hvc = (HomeViewController *) nav.topViewController;
     hvc.jokeDataManager = myJokeDatamanager;
+    myJokeDatamanager.hvc = hvc;
     
     NSLog(@"inside the App Delegate: moc: %@", self.managedObjectContext.description);
     
