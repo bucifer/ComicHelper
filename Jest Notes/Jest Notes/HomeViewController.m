@@ -7,6 +7,10 @@
 //
 
 #import "HomeViewController.h"
+#import "CreateViewController.h"
+#import "SingleJokeViewController.h"
+#import "JokePL.h"
+#import "JokeCD.h"
 
 @interface HomeViewController ()
 
@@ -51,21 +55,45 @@
         [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
 
         NSError *error = nil;
-        NSMutableArray *fetchedObjects = [[self.jokeDataManager.managedObjectContext executeFetchRequest:fetchRequest error:&error]mutableCopy];
+        NSArray *fetchedObjects = [self.jokeDataManager.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         if (fetchedObjects == nil) {
             NSLog(@"some horrible error in fetching CD: %@", error);
         }
         
-        self.jokeDataManager.jokes = fetchedObjects;
+        self.jokeDataManager.jokes = [self convertJokeCDsIntoJokePLs:fetchedObjects];
         [self.tableView reloadData];
-                
     }
-    
     
     self.createNewJokeButton.layer.cornerRadius = 5;
     self.createNewJokeButton.layer.borderWidth = 2;
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
 }
+
+
+
+
+#pragma mark data-related custom methods
+
+- (NSMutableArray *) convertJokeCDsIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes {
+    
+    NSMutableArray *resultArrayOfJokePLs = [[NSMutableArray alloc]init];
+    
+    for (int i=0; i < fetchedObjectsArrayOfCDJokes.count; i++) {
+        JokeCD *oneCDJoke = fetchedObjectsArrayOfCDJokes[i];
+        JokePL *newPLJoke = [[JokePL alloc]init];
+        newPLJoke.title = oneCDJoke.title;
+        newPLJoke.score = [oneCDJoke.score intValue];
+        newPLJoke.length = [oneCDJoke.length intValue];
+        newPLJoke.creationDate = oneCDJoke.creationDate;
+        [resultArrayOfJokePLs addObject:newPLJoke];
+    }
+    
+    return resultArrayOfJokePLs;
+}
+
+
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -80,6 +108,12 @@
 }
 
 
+
+
+
+
+
+#pragma mark tableview methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -99,12 +133,13 @@
         [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
+    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     
-    JokeCD *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = joke.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat: @"Score: %@", joke.score];
-    
+    cell.textLabel.text = [NSString stringWithFormat: @"%@ (%d)", joke.title, joke.score];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+    cell.detailTextLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+
     
     return cell;
 }

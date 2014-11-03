@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-
 #import "JokeDataManager.h"
-#import "CreateViewController.h"
-#import "SingleJokeViewController.h"
-#import "JokePL.h"
-#import "JokeCD.h"
+
 
 
 
