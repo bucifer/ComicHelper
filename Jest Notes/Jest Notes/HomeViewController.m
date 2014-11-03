@@ -98,9 +98,7 @@
 
     else if ([[segue identifier] isEqualToString:@"singleView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        UINavigationController *secondNavController = (UINavigationController *)[segue destinationViewController];
-        SingleJokeViewController *sjvc = (SingleJokeViewController*) secondNavController.topViewController;
-        
+        SingleJokeViewController *sjvc = [segue destinationViewController];
         JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         sjvc.joke  = selectedJoke;
         sjvc.title = selectedJoke.title;

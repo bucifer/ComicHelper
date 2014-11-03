@@ -23,6 +23,7 @@
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
 
+- (IBAction)saveButtonAction:(id)sender;
 
 
 

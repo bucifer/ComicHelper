@@ -110,6 +110,7 @@
 			children = (
 				AAD2772D1A07DC81002AA22B /* AppDelegate.h */,
 				AAD2772E1A07DC82002AA22B /* AppDelegate.m */,
+				AAD277521A07DCBE002AA22B /* Main.storyboard */,
 				AAD277541A07DCD9002AA22B /* HomeViewController.h */,
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
@@ -127,7 +128,6 @@
 				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
 				AAD277661A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.h */,
 				AAD277671A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m */,
-				AAD277521A07DCBE002AA22B /* Main.storyboard */,
 				AAD277391A07DC82002AA22B /* Images.xcassets */,
 				AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */,
 				AAD277291A07DC81002AA22B /* Supporting Files */,

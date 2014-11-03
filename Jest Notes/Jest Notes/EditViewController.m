@@ -30,8 +30,14 @@
     
 }
 
-- (void)editSaveAction {
-    
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)saveButtonAction:(id)sender {
     NSString *changedTitle = self.titleField.text;
     NSString *changedScore = self.scoreField.text;
     NSString *changedMinuteLength = self.lengthMinField.text;
@@ -48,39 +54,25 @@
     //now we need to edit the core data. If we don't, it will revert back to core data version once you quit out of app
     
     NSError *error;
-    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext objectWithID:selectedJoke.managedObjectID];    
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:&error];
     correspondingCDJoke.title = changedTitle;
     correspondingCDJoke.length = [NSNumber numberWithInt:([changedMinuteLength intValue] * 60 + [changedSecondsLength intValue])];
     correspondingCDJoke.score = [NSNumber numberWithInt:[changedScore intValue]];
     correspondingCDJoke.creationDate = self.creationDatePicker.date;
     [self.jokeDataManager saveChangesInCoreData];
     
-    NSLog(@"Joke Edited");
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
-
-
-
-
-
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
