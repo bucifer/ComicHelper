@@ -51,7 +51,12 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     selectedJoke.creationDate = self.creationDatePicker.date;
-    //now we need to edit the core data. If we don't, it will revert back to core data version once you quit out of app
+    
+    //now we need to edit the core data. If we don't, it will revert back to core data (pre-edit) version once you quit out of app
+    //to match this particular presentation layer joke with its appropriate core data joke object, we can predicate using name
+    //but that doesn't guarantee uniqueness
+    //so we use unique managedObjectID (that comes by default in any managed object)
+    //we are going to set a property with the presentation layer and save it to it as soon as it comes out of the oven converted
     
     NSError *error;
     JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:&error];

@@ -55,13 +55,13 @@
             NSLog(@"some horrible error in fetching CD: %@", error);
         }
         
-        self.jokes = [self convertJokeCDsIntoJokePLs:fetchedJokesFromCD];
+        self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
         [self.hvc.tableView reloadData];
     }
 
 }
 
-- (NSMutableArray *) convertJokeCDsIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes {
+- (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes {
     
     NSMutableArray *resultArrayOfJokePLs = [[NSMutableArray alloc]init];
     
@@ -79,13 +79,25 @@
     return resultArrayOfJokePLs;
 }
 
+- (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
+    JokePL *newPLJoke = [[JokePL alloc]init];
+    newPLJoke.title = oneCoreDataJoke.title;
+    newPLJoke.score = [oneCoreDataJoke.score intValue];
+    newPLJoke.length = [oneCoreDataJoke.length intValue];
+    newPLJoke.creationDate = oneCoreDataJoke.creationDate;
+    newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
+    
+    return newPLJoke;
+}
+
+
 - (void) saveChangesInCoreData {
         NSError *err = nil;
         BOOL successful = [self.managedObjectContext save:&err];
         if(!successful){
             NSLog(@"Error saving: %@", [err localizedDescription]);
         } else {
-            NSLog(@"Data Saved without errors");
+            NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
         }
 }
 

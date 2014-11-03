@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "JokePL.h"
+#import "JokeCD.h"
 #import "HomeViewController.h"
 
 @class HomeViewController;
@@ -21,7 +22,8 @@
 @property (nonatomic, strong) HomeViewController *hvc;
 
 - (void) appInitializationLogic;
-- (NSMutableArray *) convertJokeCDsIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes;
+- (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes;
+- (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke;
 - (void) saveChangesInCoreData;
 
 

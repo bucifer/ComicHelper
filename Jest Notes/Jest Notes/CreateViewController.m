@@ -50,12 +50,15 @@
     joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue])];
     joke.score = [NSNumber numberWithInt:[jokeScore intValue]];
     joke.creationDate = self.creationDatePicker.date;
-    
-    
     [self.jokeDataManager saveChangesInCoreData];
     
-    NSLog(@"New joke saved");
+    //For presentation layer
+    //If you don't have this logic, when you create a joke, it won't show up on tableview right afterwards ... and only show up when you relaunch and refetch from Core Data. You don't want that
     
+    [self.jokeDataManager.jokes addObject:[self.jokeDataManager convertCoreDataJokeIntoPresentationLayerJoke:joke]];
+    
+    
+    NSLog(@"New joke saved");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
