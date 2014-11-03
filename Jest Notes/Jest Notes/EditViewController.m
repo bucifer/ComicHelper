@@ -7,6 +7,8 @@
 //
 
 #import "EditViewController.h"
+#import "JokePL.h"
+#import "JokeCD.h"
 
 @interface EditViewController ()
 
@@ -17,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(editSaveAction)];
     
     self.titleField.text = self.joke.title;
     self.lengthMinField.text = [NSString stringWithFormat:@"%d", (self.joke.length / 60)];
@@ -29,22 +31,34 @@
     
 }
 
-- (void)saveAction {
+- (void)editSaveAction {
     
-    NSString *jokeTitle = self.titleField.text;
-    NSString *jokeScore = self.scoreField.text;
-    NSString *jokeMinuteLength = self.lengthMinField.text;
-    NSString *jokeSecondsLength = self.lengthSecondsField.text;
+    NSString *changedTitle = self.titleField.text;
+    NSString *changedScore = self.scoreField.text;
+    NSString *changedMinuteLength = self.lengthMinField.text;
+    NSString *changedSecondsLength = self.lengthSecondsField.text;
     
+    //editing presentation layer joke
     JokePL *selectedJoke = self.joke;
-    selectedJoke.title = jokeTitle;
-    selectedJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
-    selectedJoke.score = [jokeScore intValue];
-    
+    selectedJoke.title = changedTitle;
+    selectedJoke.length = [changedMinuteLength intValue] * 60 + [changedSecondsLength intValue];
+    selectedJoke.score = [changedScore intValue];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     selectedJoke.creationDate = self.creationDatePicker.date;
-
+    //now we need to edit the core data. If we don't, it will revert back to core data version once you quit out of app
+    
+    NSError *error;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext objectWithID:selectedJoke.managedObjectID];
+    if (correspondingCDJoke == nil) {
+        NSLog(@"cdobject: %@, error: %@", correspondingCDJoke, error);
+    }
+    correspondingCDJoke.title = changedTitle;
+    correspondingCDJoke.length = [NSNumber numberWithInt:([changedMinuteLength intValue] * 60 + [changedSecondsLength intValue])];
+    correspondingCDJoke.score = [NSNumber numberWithInt:[changedScore intValue]];
+    correspondingCDJoke.creationDate = self.creationDatePicker.date;
+    [self.jokeDataManager saveChangesInCoreData];
+    
     NSLog(@"Joke Edited");
     
     [self.navigationController popViewControllerAnimated:YES];

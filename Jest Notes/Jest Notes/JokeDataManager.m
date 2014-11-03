@@ -72,6 +72,7 @@
         newPLJoke.score = [oneCDJoke.score intValue];
         newPLJoke.length = [oneCDJoke.length intValue];
         newPLJoke.creationDate = oneCDJoke.creationDate;
+        newPLJoke.managedObjectID = [oneCDJoke objectID];
         [resultArrayOfJokePLs addObject:newPLJoke];
     }
     

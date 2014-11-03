@@ -20,9 +20,6 @@
     // Do any additional setup after loading the view.
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(pushEditView)];
-    
-    [self displayMostRecentJokeForUI];
-
 }
 
 
@@ -44,6 +41,7 @@
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.creationDate];
     
+    NSLog(@"%@", self.joke.managedObjectID);
 }
 
 

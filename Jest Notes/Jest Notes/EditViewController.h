@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JokePL.h"
 #import "JokeDataManager.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 

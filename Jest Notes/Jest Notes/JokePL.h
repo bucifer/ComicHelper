@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
 
 @interface JokePL : NSObject
 
@@ -14,7 +16,7 @@
 @property int score;
 @property int length;
 @property (nonatomic, strong) NSDate *creationDate;
-
+@property (nonatomic, strong) NSManagedObjectID *managedObjectID;
 
 
 
