@@ -24,21 +24,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"joke data manager's moc in hvc: %@", self.jokeDataManager.managedObjectContext.description);
-    
     [self.jokeDataManager appInitializationLogic];
     
-    
-        
     self.createNewJokeButton.layer.cornerRadius = 5;
     self.createNewJokeButton.layer.borderWidth = 2;
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
 }
-
-
-
-
-
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,15 +38,10 @@
 }
 
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-
 
 
 

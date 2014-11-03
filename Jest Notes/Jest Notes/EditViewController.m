@@ -36,14 +36,14 @@
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     
-    JokePL *newJoke = self.joke;
-    newJoke.title = jokeTitle;
-    newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
-    newJoke.score = [jokeScore intValue];
+    JokePL *selectedJoke = self.joke;
+    selectedJoke.title = jokeTitle;
+    selectedJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
+    selectedJoke.score = [jokeScore intValue];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    newJoke.creationDate = self.creationDatePicker.date;
+    selectedJoke.creationDate = self.creationDatePicker.date;
 
     NSLog(@"Joke Edited");
     

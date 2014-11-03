@@ -50,12 +50,12 @@
         [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
         
         NSError *error = nil;
-        NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        if (fetchedObjects == nil) {
+        NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if (fetchedJokesFromCD == nil) {
             NSLog(@"some horrible error in fetching CD: %@", error);
         }
         
-        self.jokes = [self convertJokeCDsIntoJokePLs:fetchedObjects];
+        self.jokes = [self convertJokeCDsIntoJokePLs:fetchedJokesFromCD];
         [self.hvc.tableView reloadData];
     }
 
