@@ -40,7 +40,7 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
-        //        // Specify criteria for filtering which objects to fetch
+        //        Specify criteria for filtering which objects to fetch
         //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
         //        [fetchRequest setPredicate:predicate];
         
@@ -57,6 +57,12 @@
         
         self.jokes = [self convertJokeCDsIntoJokePLs:fetchedJokesFromCD];
         [self.hvc.tableView reloadData];
+        
+        JokeCD *fromFetchJoke = fetchedJokesFromCD[0];
+        NSManagedObjectID *myID = fromFetchJoke.objectID;
+        JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext objectWithID:myID];
+        NSLog(@"cdobject: %@, error: %@", correspondingCDJoke, error);
+
     }
 
 }
