@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(editSaveAction)];
     
     self.titleField.text = self.joke.title;
     self.lengthMinField.text = [NSString stringWithFormat:@"%d", (self.joke.length / 60)];
@@ -49,14 +48,11 @@
     //now we need to edit the core data. If we don't, it will revert back to core data version once you quit out of app
     
     NSError *error;
-    
-//    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext objectWithID:selectedJoke.managedObjectID];
-//    NSLog(@"cdobject: %@, error: %@", correspondingCDJoke, error);
-//    
-//    correspondingCDJoke.title = changedTitle;
-//    correspondingCDJoke.length = [NSNumber numberWithInt:([changedMinuteLength intValue] * 60 + [changedSecondsLength intValue])];
-//    correspondingCDJoke.score = [NSNumber numberWithInt:[changedScore intValue]];
-//    correspondingCDJoke.creationDate = self.creationDatePicker.date;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext objectWithID:selectedJoke.managedObjectID];    
+    correspondingCDJoke.title = changedTitle;
+    correspondingCDJoke.length = [NSNumber numberWithInt:([changedMinuteLength intValue] * 60 + [changedSecondsLength intValue])];
+    correspondingCDJoke.score = [NSNumber numberWithInt:[changedScore intValue]];
+    correspondingCDJoke.creationDate = self.creationDatePicker.date;
     [self.jokeDataManager saveChangesInCoreData];
     
     NSLog(@"Joke Edited");

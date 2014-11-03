@@ -18,8 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(pushEditView)];
 }
 
 
@@ -40,8 +38,6 @@
     
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.creationDate];
-    
-    NSLog(@"%@", self.joke.managedObjectID);
 }
 
 
@@ -71,21 +67,19 @@
 
 
 
-#pragma mark - Navigation
-
-- (void) pushEditView {
-    
-    EditViewController *evc = [self.storyboard instantiateViewControllerWithIdentifier:@"editViewController"];
-    evc.joke = self.joke;
-    [self.navigationController pushViewController:evc animated:YES];
-    
-}
- 
+#pragma mark - Navigation 
  
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"editView"])
+    {
+        // Get reference to the destination view controller
+        EditViewController *evc = [segue destinationViewController];
+        evc.jokeDataManager = self.jokeDataManager;
+        evc.joke = self.joke;
+    }
 }
 
 
