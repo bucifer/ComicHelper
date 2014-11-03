@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AAAC117E19F84FB700494372 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC117D19F84FB700494372 /* main.m */; };
+		AAAC118119F84FB700494372 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC118019F84FB700494372 /* AppDelegate.m */; };
+		AAAC118719F84FB700494372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAAC118519F84FB700494372 /* Main.storyboard */; };
+		AAAC118919F84FB700494372 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAC118819F84FB700494372 /* Images.xcassets */; };
+		AAAC118C19F84FB700494372 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAAC118A19F84FB700494372 /* LaunchScreen.xib */; };
+		AAAC119819F84FB700494372 /* ComicsHelperAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC119719F84FB700494372 /* ComicsHelperAppTests.m */; };
+		AAAC11A319F8501100494372 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC11A219F8501100494372 /* HomeViewController.m */; };
+		AAC97DE61A02E048009BCB0C /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC97DE51A02E048009BCB0C /* CreateViewController.m */; };
+		AAC97DE91A02E9EC009BCB0C /* JokeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC97DE81A02E9EC009BCB0C /* JokeDataManager.m */; };
+		AAC97DEC1A03031C009BCB0C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAC97DEA1A03031C009BCB0C /* Model.xcdatamodeld */; };
+		AAC97DF21A0308C5009BCB0C /* SingleJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC97DF11A0308C5009BCB0C /* SingleJokeViewController.m */; };
+		AAD277101A07DC42002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD276F91A07DC42002AA22B /* AppDelegate.m */; };
+		AAD277111A07DC42002AA22B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD276FB1A07DC42002AA22B /* LaunchScreen.xib */; };
+		AAD277121A07DC42002AA22B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD276FD1A07DC42002AA22B /* Main.storyboard */; };
+		AAD277131A07DC42002AA22B /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277001A07DC42002AA22B /* CreateViewController.m */; };
+		AAD277141A07DC42002AA22B /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277021A07DC42002AA22B /* EditViewController.m */; };
+		AAD277151A07DC42002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277031A07DC42002AA22B /* Images.xcassets */; };
+		AAD277161A07DC42002AA22B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD277041A07DC42002AA22B /* Info.plist */; };
+		AAD277171A07DC42002AA22B /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277061A07DC42002AA22B /* Joke.m */; };
+		AAD277181A07DC42002AA22B /* JokeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277081A07DC42002AA22B /* JokeDataManager.m */; };
+		AAD277191A07DC42002AA22B /* JokePL.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2770A1A07DC42002AA22B /* JokePL.m */; };
+		AAD2771A1A07DC42002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2770B1A07DC42002AA22B /* main.m */; };
+		AAD2771B1A07DC42002AA22B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD2770C1A07DC42002AA22B /* Model.xcdatamodeld */; };
+		AAD2771C1A07DC42002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2770F1A07DC42002AA22B /* NSObject+NSObject___TerryConvenience.m */; };
+		AAD632A51A03EB880065E2DC /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD632A41A03EB880065E2DC /* EditViewController.m */; };
+		AAD632A81A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */; };
+		AAD632AA1A03FDBE0065E2DC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD632A91A03FDBE0065E2DC /* CoreData.framework */; };
+		AAD632AC1A03FDEE0065E2DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */; };
+		AAD632B71A042C4C0065E2DC /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD632B61A042C4C0065E2DC /* Joke.m */; };
+		AAEA2E1219F9B219006E14E4 /* JokePL.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2E1119F9B219006E14E4 /* JokePL.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AAAC119219F84FB700494372 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAAC117019F84FB700494372 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAAC117719F84FB700494372;
+			remoteInfo = ComicsHelperApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AAAC117819F84FB700494372 /* JestNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JestNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAAC117C19F84FB700494372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAAC117D19F84FB700494372 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AAAC117F19F84FB700494372 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AAAC118019F84FB700494372 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AAAC118619F84FB700494372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AAAC118819F84FB700494372 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AAAC118B19F84FB700494372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		AAAC119119F84FB700494372 /* JestNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JestNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAAC119619F84FB700494372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAAC119719F84FB700494372 /* ComicsHelperAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComicsHelperAppTests.m; sourceTree = "<group>"; };
+		AAAC11A119F8501100494372 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
+		AAAC11A219F8501100494372 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
+		AAC97DE41A02E048009BCB0C /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		AAC97DE51A02E048009BCB0C /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
+		AAC97DE71A02E9EC009BCB0C /* JokeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeDataManager.h; sourceTree = "<group>"; };
+		AAC97DE81A02E9EC009BCB0C /* JokeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeDataManager.m; sourceTree = "<group>"; };
+		AAC97DEB1A03031C009BCB0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		AAC97DF01A0308C5009BCB0C /* SingleJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleJokeViewController.h; path = ../SingleJokeViewController.h; sourceTree = "<group>"; };
+		AAC97DF11A0308C5009BCB0C /* SingleJokeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleJokeViewController.m; path = ../SingleJokeViewController.m; sourceTree = "<group>"; };
+		AAD276F81A07DC42002AA22B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = JestNotesApp/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		AAD276F91A07DC42002AA22B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = JestNotesApp/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		AAD276FC1A07DC42002AA22B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		AAD276FE1A07DC42002AA22B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		AAD276FF1A07DC42002AA22B /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateViewController.h; path = JestNotesApp/CreateViewController.h; sourceTree = SOURCE_ROOT; };
+		AAD277001A07DC42002AA22B /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateViewController.m; path = JestNotesApp/CreateViewController.m; sourceTree = SOURCE_ROOT; };
+		AAD277011A07DC42002AA22B /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = JestNotesApp/EditViewController.h; sourceTree = SOURCE_ROOT; };
+		AAD277021A07DC42002AA22B /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = JestNotesApp/EditViewController.m; sourceTree = SOURCE_ROOT; };
+		AAD277031A07DC42002AA22B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = JestNotesApp/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		AAD277041A07DC42002AA22B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = JestNotesApp/Info.plist; sourceTree = SOURCE_ROOT; };
+		AAD277051A07DC42002AA22B /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Joke.h; path = JestNotesApp/Joke.h; sourceTree = SOURCE_ROOT; };
+		AAD277061A07DC42002AA22B /* Joke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Joke.m; path = JestNotesApp/Joke.m; sourceTree = SOURCE_ROOT; };
+		AAD277071A07DC42002AA22B /* JokeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JokeDataManager.h; path = JestNotesApp/JokeDataManager.h; sourceTree = SOURCE_ROOT; };
+		AAD277081A07DC42002AA22B /* JokeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JokeDataManager.m; path = JestNotesApp/JokeDataManager.m; sourceTree = SOURCE_ROOT; };
+		AAD277091A07DC42002AA22B /* JokePL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JokePL.h; path = JestNotesApp/JokePL.h; sourceTree = SOURCE_ROOT; };
+		AAD2770A1A07DC42002AA22B /* JokePL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JokePL.m; path = JestNotesApp/JokePL.m; sourceTree = SOURCE_ROOT; };
+		AAD2770B1A07DC42002AA22B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = JestNotesApp/main.m; sourceTree = SOURCE_ROOT; };
+		AAD2770D1A07DC42002AA22B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		AAD2770E1A07DC42002AA22B /* NSObject+NSObject___TerryConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+NSObject___TerryConvenience.h"; path = "JestNotesApp/NSObject+NSObject___TerryConvenience.h"; sourceTree = SOURCE_ROOT; };
+		AAD2770F1A07DC42002AA22B /* NSObject+NSObject___TerryConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+NSObject___TerryConvenience.m"; path = "JestNotesApp/NSObject+NSObject___TerryConvenience.m"; sourceTree = SOURCE_ROOT; };
+		AAD632A31A03EB880065E2DC /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		AAD632A41A03EB880065E2DC /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		AAD632A61A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSObject___TerryConvenience.h"; sourceTree = "<group>"; };
+		AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSObject___TerryConvenience.m"; sourceTree = "<group>"; };
+		AAD632A91A03FDBE0065E2DC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AAD632B51A042C4C0065E2DC /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joke.h; sourceTree = "<group>"; };
+		AAD632B61A042C4C0065E2DC /* Joke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Joke.m; sourceTree = "<group>"; };
+		AAEA2E1019F9B219006E14E4 /* JokePL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokePL.h; sourceTree = "<group>"; };
+		AAEA2E1119F9B219006E14E4 /* JokePL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokePL.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AAAC117519F84FB700494372 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAD632AC1A03FDEE0065E2DC /* SystemConfiguration.framework in Frameworks */,
+				AAD632AA1A03FDBE0065E2DC /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAAC118E19F84FB700494372 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAAC116F19F84FB700494372 = {
+			isa = PBXGroup;
+			children = (
+				AAAC117A19F84FB700494372 /* ComicsHelperApp */,
+				AAAC119419F84FB700494372 /* ComicsHelperAppTests */,
+				AAAC117919F84FB700494372 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAAC117919F84FB700494372 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAAC117819F84FB700494372 /* JestNotes.app */,
+				AAAC119119F84FB700494372 /* JestNotesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAAC117A19F84FB700494372 /* ComicsHelperApp */ = {
+			isa = PBXGroup;
+			children = (
+				AAAC117F19F84FB700494372 /* AppDelegate.h */,
+				AAAC118019F84FB700494372 /* AppDelegate.m */,
+				AAAC118519F84FB700494372 /* Main.storyboard */,
+				AAAC11A119F8501100494372 /* HomeViewController.h */,
+				AAAC11A219F8501100494372 /* HomeViewController.m */,
+				AAC97DF01A0308C5009BCB0C /* SingleJokeViewController.h */,
+				AAC97DF11A0308C5009BCB0C /* SingleJokeViewController.m */,
+				AAC97DE41A02E048009BCB0C /* CreateViewController.h */,
+				AAC97DE51A02E048009BCB0C /* CreateViewController.m */,
+				AAD632A31A03EB880065E2DC /* EditViewController.h */,
+				AAD632A41A03EB880065E2DC /* EditViewController.m */,
+				AAD632A61A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.h */,
+				AAD632A71A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m */,
+				AAC97DE71A02E9EC009BCB0C /* JokeDataManager.h */,
+				AAC97DE81A02E9EC009BCB0C /* JokeDataManager.m */,
+				AAC97DEA1A03031C009BCB0C /* Model.xcdatamodeld */,
+				AAD276F81A07DC42002AA22B /* AppDelegate.h */,
+				AAD276F91A07DC42002AA22B /* AppDelegate.m */,
+				AAD276FA1A07DC42002AA22B /* Base.lproj */,
+				AAD276FF1A07DC42002AA22B /* CreateViewController.h */,
+				AAD277001A07DC42002AA22B /* CreateViewController.m */,
+				AAD277011A07DC42002AA22B /* EditViewController.h */,
+				AAD277021A07DC42002AA22B /* EditViewController.m */,
+				AAD277031A07DC42002AA22B /* Images.xcassets */,
+				AAD277041A07DC42002AA22B /* Info.plist */,
+				AAD277051A07DC42002AA22B /* Joke.h */,
+				AAD277061A07DC42002AA22B /* Joke.m */,
+				AAD277071A07DC42002AA22B /* JokeDataManager.h */,
+				AAD277081A07DC42002AA22B /* JokeDataManager.m */,
+				AAD277091A07DC42002AA22B /* JokePL.h */,
+				AAD2770A1A07DC42002AA22B /* JokePL.m */,
+				AAD2770B1A07DC42002AA22B /* main.m */,
+				AAD2770C1A07DC42002AA22B /* Model.xcdatamodeld */,
+				AAD2770E1A07DC42002AA22B /* NSObject+NSObject___TerryConvenience.h */,
+				AAD2770F1A07DC42002AA22B /* NSObject+NSObject___TerryConvenience.m */,
+				AAEA2E1019F9B219006E14E4 /* JokePL.h */,
+				AAEA2E1119F9B219006E14E4 /* JokePL.m */,
+				AAD632B51A042C4C0065E2DC /* Joke.h */,
+				AAD632B61A042C4C0065E2DC /* Joke.m */,
+				AAAC118819F84FB700494372 /* Images.xcassets */,
+				AAAC118A19F84FB700494372 /* LaunchScreen.xib */,
+				AAAC117B19F84FB700494372 /* Supporting Files */,
+			);
+			path = ComicsHelperApp;
+			sourceTree = "<group>";
+		};
+		AAAC117B19F84FB700494372 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AAD632AB1A03FDEE0065E2DC /* SystemConfiguration.framework */,
+				AAD632A91A03FDBE0065E2DC /* CoreData.framework */,
+				AAAC117C19F84FB700494372 /* Info.plist */,
+				AAAC117D19F84FB700494372 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AAAC119419F84FB700494372 /* ComicsHelperAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				AAAC119719F84FB700494372 /* ComicsHelperAppTests.m */,
+				AAAC119519F84FB700494372 /* Supporting Files */,
+			);
+			path = ComicsHelperAppTests;
+			sourceTree = "<group>";
+		};
+		AAAC119519F84FB700494372 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AAAC119619F84FB700494372 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AAD276FA1A07DC42002AA22B /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				AAD276FB1A07DC42002AA22B /* LaunchScreen.xib */,
+				AAD276FD1A07DC42002AA22B /* Main.storyboard */,
+			);
+			name = Base.lproj;
+			path = JestNotesApp/Base.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AAAC117719F84FB700494372 /* JestNotes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAAC119B19F84FB700494372 /* Build configuration list for PBXNativeTarget "JestNotes" */;
+			buildPhases = (
+				AAAC117419F84FB700494372 /* Sources */,
+				AAAC117519F84FB700494372 /* Frameworks */,
+				AAAC117619F84FB700494372 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JestNotes;
+			productName = ComicsHelperApp;
+			productReference = AAAC117819F84FB700494372 /* JestNotes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AAAC119019F84FB700494372 /* JestNotesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAAC119E19F84FB700494372 /* Build configuration list for PBXNativeTarget "JestNotesTests" */;
+			buildPhases = (
+				AAAC118D19F84FB700494372 /* Sources */,
+				AAAC118E19F84FB700494372 /* Frameworks */,
+				AAAC118F19F84FB700494372 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AAAC119319F84FB700494372 /* PBXTargetDependency */,
+			);
+			name = JestNotesTests;
+			productName = ComicsHelperAppTests;
+			productReference = AAAC119119F84FB700494372 /* JestNotesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAAC117019F84FB700494372 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = TerryBuOrganization;
+				TargetAttributes = {
+					AAAC117719F84FB700494372 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					AAAC119019F84FB700494372 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = AAAC117719F84FB700494372;
+					};
+				};
+			};
+			buildConfigurationList = AAAC117319F84FB700494372 /* Build configuration list for PBXProject "JestNotes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AAAC116F19F84FB700494372;
+			productRefGroup = AAAC117919F84FB700494372 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAAC117719F84FB700494372 /* JestNotes */,
+				AAAC119019F84FB700494372 /* JestNotesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AAAC117619F84FB700494372 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAD277111A07DC42002AA22B /* LaunchScreen.xib in Resources */,
+				AAD277121A07DC42002AA22B /* Main.storyboard in Resources */,
+				AAAC118719F84FB700494372 /* Main.storyboard in Resources */,
+				AAD277151A07DC42002AA22B /* Images.xcassets in Resources */,
+				AAAC118C19F84FB700494372 /* LaunchScreen.xib in Resources */,
+				AAAC118919F84FB700494372 /* Images.xcassets in Resources */,
+				AAD277161A07DC42002AA22B /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAAC118F19F84FB700494372 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAAC117419F84FB700494372 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAD2771C1A07DC42002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
+				AAD632A81A03F2E70065E2DC /* NSObject+NSObject___TerryConvenience.m in Sources */,
+				AAC97DE91A02E9EC009BCB0C /* JokeDataManager.m in Sources */,
+				AAD277131A07DC42002AA22B /* CreateViewController.m in Sources */,
+				AAAC118119F84FB700494372 /* AppDelegate.m in Sources */,
+				AAAC11A319F8501100494372 /* HomeViewController.m in Sources */,
+				AAD277171A07DC42002AA22B /* Joke.m in Sources */,
+				AAC97DEC1A03031C009BCB0C /* Model.xcdatamodeld in Sources */,
+				AAD632A51A03EB880065E2DC /* EditViewController.m in Sources */,
+				AAC97DF21A0308C5009BCB0C /* SingleJokeViewController.m in Sources */,
+				AAD277191A07DC42002AA22B /* JokePL.m in Sources */,
+				AAD632B71A042C4C0065E2DC /* Joke.m in Sources */,
+				AAD277181A07DC42002AA22B /* JokeDataManager.m in Sources */,
+				AAD277101A07DC42002AA22B /* AppDelegate.m in Sources */,
+				AAD277141A07DC42002AA22B /* EditViewController.m in Sources */,
+				AAEA2E1219F9B219006E14E4 /* JokePL.m in Sources */,
+				AAC97DE61A02E048009BCB0C /* CreateViewController.m in Sources */,
+				AAD2771A1A07DC42002AA22B /* main.m in Sources */,
+				AAD2771B1A07DC42002AA22B /* Model.xcdatamodeld in Sources */,
+				AAAC117E19F84FB700494372 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAAC118D19F84FB700494372 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAAC119819F84FB700494372 /* ComicsHelperAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AAAC119319F84FB700494372 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAAC117719F84FB700494372 /* JestNotes */;
+			targetProxy = AAAC119219F84FB700494372 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AAAC118519F84FB700494372 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAAC118619F84FB700494372 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AAAC118A19F84FB700494372 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAAC118B19F84FB700494372 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		AAD276FB1A07DC42002AA22B /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAD276FC1A07DC42002AA22B /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		AAD276FD1A07DC42002AA22B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAD276FE1A07DC42002AA22B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AAAC119919F84FB700494372 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AAAC119A19F84FB700494372 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AAAC119C19F84FB700494372 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ComicsHelperApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = JestNotes;
+			};
+			name = Debug;
+		};
+		AAAC119D19F84FB700494372 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ComicsHelperApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = JestNotes;
+			};
+			name = Release;
+		};
+		AAAC119F19F84FB700494372 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ComicsHelperAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = JestNotesTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComicsHelperApp.app/ComicsHelperApp";
+			};
+			name = Debug;
+		};
+		AAAC11A019F84FB700494372 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ComicsHelperAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = JestNotesTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComicsHelperApp.app/ComicsHelperApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AAAC117319F84FB700494372 /* Build configuration list for PBXProject "JestNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAAC119919F84FB700494372 /* Debug */,
+				AAAC119A19F84FB700494372 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAAC119B19F84FB700494372 /* Build configuration list for PBXNativeTarget "JestNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAAC119C19F84FB700494372 /* Debug */,
+				AAAC119D19F84FB700494372 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAAC119E19F84FB700494372 /* Build configuration list for PBXNativeTarget "JestNotesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAAC119F19F84FB700494372 /* Debug */,
+				AAAC11A019F84FB700494372 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AAC97DEA1A03031C009BCB0C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AAC97DEB1A03031C009BCB0C /* Model.xcdatamodel */,
+			);
+			currentVersion = AAC97DEB1A03031C009BCB0C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		AAD2770C1A07DC42002AA22B /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AAD2770D1A07DC42002AA22B /* Model.xcdatamodel */,
+			);
+			currentVersion = AAD2770D1A07DC42002AA22B /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = ../JestNotesApp/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AAAC117019F84FB700494372 /* Project object */;
+}
