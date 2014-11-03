@@ -44,7 +44,7 @@
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Joke" inManagedObjectContext:self.jokeDataManager.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.jokeDataManager.managedObjectContext];
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.jokeDataManager.managedObjectContext];
     joke.title = jokeTitle;
     joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue])];
@@ -64,6 +64,7 @@
 //    [self.jokeDataManager.jokes addObject:newJoke];
     
     [self.jokeDataManager.jokes addObject: joke];
+    [self.jokeDataManager.managedObjectContext save:nil];
     NSLog(@"New joke saved");
     
     [self.navigationController popViewControllerAnimated:YES];

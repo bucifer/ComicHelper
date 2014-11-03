@@ -20,12 +20,8 @@
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
-
-
 @property (strong, nonatomic) IBOutlet UIButton *createNewJokeButton;
-
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 

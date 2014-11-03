@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"Home view controller moc: %@", self.jokeDataManager.managedObjectContext.description);
+    NSLog(@"joke data manager's moc in hvc: %@", self.jokeDataManager.managedObjectContext.description);
     
     //Let's do initialization logic
     //If it's the first time you are running the app, we don't do anything
@@ -37,8 +37,28 @@
     }
     else {
         //this is NOT the first launch ... Fetch from Core Data
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.jokeDataManager.managedObjectContext];
+        [fetchRequest setEntity:entity];
         
+//        // Specify criteria for filtering which objects to fetch
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+//        [fetchRequest setPredicate:predicate];
         
+        // Specify how the fetched objects should be sorted
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"creationDate"
+        ascending:NO];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+
+        NSError *error = nil;
+        NSMutableArray *fetchedObjects = [[self.jokeDataManager.managedObjectContext executeFetchRequest:fetchRequest error:&error]mutableCopy];
+        if (fetchedObjects == nil) {
+            NSLog(@"some horrible error in fetching CD: %@", error);
+        }
+        
+        self.jokeDataManager.jokes = fetchedObjects;
+        [self.tableView reloadData];
+                
     }
     
     
