@@ -11,6 +11,8 @@
 #import "SingleJokeViewController.h"
 #import "JokePL.h"
 #import "JokeCD.h"
+#import "JokeCustomCell.h"
+#import "NSObject+NSObject___TerryConvenience.h"
 
 @interface HomeViewController ()
 
@@ -28,6 +30,9 @@
     self.createNewJokeButton.layer.cornerRadius = 5;
     self.createNewJokeButton.layer.borderWidth = 2;
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"JokeCustomCell" bundle:nil]
+         forCellReuseIdentifier:@"JokeCustomCell"];
 }
 
 
@@ -58,25 +63,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
-    if(!cell){
-        cell =
-        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    }
-    
+    static NSString *simpleCellIdentifier = @"JokeCustomCell";
+    JokeCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+
     JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat: @"%@ (%d)", joke.title, joke.score];
+    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
+    cell.timeLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:joke.length];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    cell.detailTextLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+    [dateFormatter setDateFormat:@"M/dd/yy"];
+    
+    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
 
     
     return cell;
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
+}
 
 
 
@@ -93,7 +101,6 @@
         CreateViewController *cvc = [segue destinationViewController];
         cvc.jokeDataManager = self.jokeDataManager;
     }
-
     else if ([[segue identifier] isEqualToString:@"singleView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         SingleJokeViewController *sjvc = [segue destinationViewController];
@@ -101,8 +108,8 @@
         sjvc.joke  = selectedJoke;
         sjvc.title = selectedJoke.title;
         sjvc.jokeDataManager = self.jokeDataManager;
+
     }
-    
     
 }
 

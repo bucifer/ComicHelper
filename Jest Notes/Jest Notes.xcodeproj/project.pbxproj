@@ -24,6 +24,7 @@
 		AAD277701A07DDB8002AA22B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2776F1A07DDB8002AA22B /* CoreData.framework */; };
 		AAD277761A07F428002AA22B /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277751A07F428002AA22B /* JokeCD.m */; };
 		AAE5AEDE1A0975EB00E73566 /* JokeCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */; };
+		AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		AAD277741A07F428002AA22B /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = "<group>"; };
 		AAD277751A07F428002AA22B /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
 		AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JokeCustomCell.xib; sourceTree = "<group>"; };
+		AAE5AEDF1A0976F800E73566 /* JokeCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCustomCell.h; sourceTree = "<group>"; };
+		AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCustomCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				AAD277521A07DCBE002AA22B /* Main.storyboard */,
 				AAD277541A07DCD9002AA22B /* HomeViewController.h */,
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
+				AAE5AEDF1A0976F800E73566 /* JokeCustomCell.h */,
+				AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */,
 				AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
 				AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */,
@@ -268,6 +273,7 @@
 				AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */,
 				AAD277681A07DCED002AA22B /* CreateViewController.m in Sources */,
 				AAD277691A07DCED002AA22B /* EditViewController.m in Sources */,
+				AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */,
 				AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
 				AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */,
 				AAD2776C1A07DCED002AA22B /* JokePL.m in Sources */,
