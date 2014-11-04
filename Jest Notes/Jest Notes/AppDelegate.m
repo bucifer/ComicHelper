@@ -21,11 +21,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    UINavigationController *nav = (UINavigationController *) self.window.rootViewController;
+    UITabBarController *myTabBarController = (UITabBarController *) self.window.rootViewController;
+    ((UITabBarItem *)myTabBarController.tabBar.items[0]).selectedImage = [UIImage imageNamed:@"test"];
+    
     JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
     myJokeDatamanager.managedObjectContext = self.managedObjectContext;
     
-    HomeViewController *hvc = (HomeViewController *) nav.topViewController;
+    UINavigationController *myNavController = myTabBarController.viewControllers[0];
+    HomeViewController *hvc = (HomeViewController *) myNavController.topViewController;
     hvc.jokeDataManager = myJokeDatamanager;
     myJokeDatamanager.hvc = hvc;
     

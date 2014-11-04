@@ -23,6 +23,7 @@
 		AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277671A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m */; };
 		AAD277701A07DDB8002AA22B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2776F1A07DDB8002AA22B /* CoreData.framework */; };
 		AAD277761A07F428002AA22B /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277751A07F428002AA22B /* JokeCD.m */; };
+		AAE5AEDE1A0975EB00E73566 /* JokeCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		AAD2776F1A07DDB8002AA22B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AAD277741A07F428002AA22B /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = "<group>"; };
 		AAD277751A07F428002AA22B /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
+		AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JokeCustomCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				AAD277521A07DCBE002AA22B /* Main.storyboard */,
 				AAD277541A07DCD9002AA22B /* HomeViewController.h */,
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
+				AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
 				AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */,
 				AAD2775A1A07DCED002AA22B /* CreateViewController.h */,
@@ -244,6 +247,7 @@
 				AAD277531A07DCBE002AA22B /* Main.storyboard in Resources */,
 				AAD2773D1A07DC82002AA22B /* LaunchScreen.xib in Resources */,
 				AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */,
+				AAE5AEDE1A0975EB00E73566 /* JokeCustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
