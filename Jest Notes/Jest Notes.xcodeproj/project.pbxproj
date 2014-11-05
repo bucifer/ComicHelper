@@ -12,7 +12,6 @@
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
 		AAD2773D1A07DC82002AA22B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */; };
 		AAD277491A07DC82002AA22B /* Jest_NotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277481A07DC82002AA22B /* Jest_NotesTests.m */; };
-		AAD277531A07DCBE002AA22B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD277521A07DCBE002AA22B /* Main.storyboard */; };
 		AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277551A07DCD9002AA22B /* HomeViewController.m */; };
 		AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */; };
 		AAD277681A07DCED002AA22B /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775B1A07DCED002AA22B /* CreateViewController.m */; };
@@ -25,6 +24,7 @@
 		AAD277761A07F428002AA22B /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277751A07F428002AA22B /* JokeCD.m */; };
 		AAE5AEDE1A0975EB00E73566 /* JokeCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */; };
 		AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */; };
+		AAE5AEE31A098E9100E73566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEE21A098E9100E73566 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 		AAD277421A07DC82002AA22B /* Jest NotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jest NotesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD277471A07DC82002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD277481A07DC82002AA22B /* Jest_NotesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Jest_NotesTests.m; sourceTree = "<group>"; };
-		AAD277521A07DCBE002AA22B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AAD277541A07DCD9002AA22B /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		AAD277551A07DCD9002AA22B /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleJokeViewController.h; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		AAE5AEDD1A0975EB00E73566 /* JokeCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JokeCustomCell.xib; sourceTree = "<group>"; };
 		AAE5AEDF1A0976F800E73566 /* JokeCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCustomCell.h; sourceTree = "<group>"; };
 		AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCustomCell.m; sourceTree = "<group>"; };
+		AAE5AEE21A098E9100E73566 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +115,7 @@
 			children = (
 				AAD2772D1A07DC81002AA22B /* AppDelegate.h */,
 				AAD2772E1A07DC82002AA22B /* AppDelegate.m */,
-				AAD277521A07DCBE002AA22B /* Main.storyboard */,
+				AAE5AEE21A098E9100E73566 /* Main.storyboard */,
 				AAD277541A07DCD9002AA22B /* HomeViewController.h */,
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
 				AAE5AEDF1A0976F800E73566 /* JokeCustomCell.h */,
@@ -249,7 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAD277531A07DCBE002AA22B /* Main.storyboard in Resources */,
+				AAE5AEE31A098E9100E73566 /* Main.storyboard in Resources */,
 				AAD2773D1A07DC82002AA22B /* LaunchScreen.xib in Resources */,
 				AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */,
 				AAE5AEDE1A0975EB00E73566 /* JokeCustomCell.xib in Resources */,

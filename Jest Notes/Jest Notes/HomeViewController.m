@@ -30,9 +30,6 @@
     self.createNewJokeButton.layer.cornerRadius = 5;
     self.createNewJokeButton.layer.borderWidth = 2;
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"JokeCustomCell" bundle:nil]
-         forCellReuseIdentifier:@"JokeCustomCell"];
 }
 
 
