@@ -61,28 +61,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *simpleCellIdentifier = @"JokeCustomCell";
-    JokeCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
-
-    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
     
+    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
     cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
     cell.timeLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:joke.length];
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/dd/yy"];
     
     cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
-
-    
     return cell;
 }
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 65;
 }
-
 
 
 

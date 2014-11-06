@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HomeViewController.h"
 
 @interface JokeCustomCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
-
-@property (strong, nonatomic) HomeViewController *tableViewController;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
