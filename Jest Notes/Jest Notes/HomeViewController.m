@@ -93,6 +93,15 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
+        JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        
+        JokeCD *correspondingCDJoke = (JokeCD*) [self.jokeDataManager.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:nil];
+        [self.jokeDataManager.managedObjectContext deleteObject:correspondingCDJoke];
+        [self.jokeDataManager saveChangesInContextCoreData];
+
+        [self.jokeDataManager.jokes removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
     }
 }
 

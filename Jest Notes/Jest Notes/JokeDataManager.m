@@ -100,11 +100,11 @@
     correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
     correspondingCDJoke.score = [NSNumber numberWithInt:[score intValue]];
     correspondingCDJoke.creationDate = date;
-    [self saveChangesInCoreData];
+    [self saveChangesInContextCoreData];
 }
 
 
-- (void) saveChangesInCoreData {
+- (void) saveChangesInContextCoreData {
         NSError *err = nil;
         BOOL successful = [self.managedObjectContext save:&err];
         if(!successful){
