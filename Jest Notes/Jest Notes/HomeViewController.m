@@ -124,7 +124,6 @@
         sjvc.joke  = selectedJoke;
         sjvc.title = selectedJoke.title;
         sjvc.jokeDataManager = self.jokeDataManager;
-
     }
     
 }
