@@ -58,17 +58,20 @@
     //so we use unique managedObjectID (that comes by default in any managed object)
     //we are going to set a property with the presentation layer and save it to it as soon as it comes out of the oven converted
     
-    NSError *error;
-    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:&error];
-    correspondingCDJoke.title = changedTitle;
-    correspondingCDJoke.length = [NSNumber numberWithInt:([changedMinuteLength intValue] * 60 + [changedSecondsLength intValue])];
-    correspondingCDJoke.score = [NSNumber numberWithInt:[changedScore intValue]];
-    correspondingCDJoke.creationDate = self.creationDatePicker.date;
-    [self.jokeDataManager saveChangesInCoreData];
-    
+    [self saveEditedJokeInCoreData:selectedJoke title:changedTitle minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+     - (void) saveEditedJokeInCoreData: (JokePL *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date:  {
+    NSError *error;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
+    correspondingCDJoke.title = title;
+    correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
+    correspondingCDJoke.score = [NSNumber numberWithInt:[score intValue]];
+    correspondingCDJoke.creationDate = self.creationDatePicker.date;
+    [self.jokeDataManager saveChangesInCoreData];
+}
 
 /*
  #pragma mark - Navigation

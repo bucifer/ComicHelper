@@ -22,6 +22,7 @@
 		AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277671A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m */; };
 		AAD277701A07DDB8002AA22B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2776F1A07DDB8002AA22B /* CoreData.framework */; };
 		AAD277761A07F428002AA22B /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277751A07F428002AA22B /* JokeCD.m */; };
+		AAD44F781A0D64AB00FDB656 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD44F771A0D64AB00FDB656 /* Set.m */; };
 		AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */; };
 		AAE5AEE31A098E9100E73566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEE21A098E9100E73566 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,8 @@
 		AAD2776F1A07DDB8002AA22B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AAD277741A07F428002AA22B /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = "<group>"; };
 		AAD277751A07F428002AA22B /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
+		AAD44F761A0D64AB00FDB656 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
+		AAD44F771A0D64AB00FDB656 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		AAE5AEDF1A0976F800E73566 /* JokeCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCustomCell.h; sourceTree = "<group>"; };
 		AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCustomCell.m; sourceTree = "<group>"; };
 		AAE5AEE21A098E9100E73566 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				AAD2775B1A07DCED002AA22B /* CreateViewController.m */,
 				AAD2775C1A07DCED002AA22B /* EditViewController.h */,
 				AAD2775D1A07DCED002AA22B /* EditViewController.m */,
+				AAD44F761A0D64AB00FDB656 /* Set.h */,
+				AAD44F771A0D64AB00FDB656 /* Set.m */,
 				AAD277621A07DCED002AA22B /* JokePL.h */,
 				AAD277631A07DCED002AA22B /* JokePL.m */,
 				AAD277601A07DCED002AA22B /* JokeDataManager.h */,
@@ -275,6 +280,7 @@
 				AAD2776C1A07DCED002AA22B /* JokePL.m in Sources */,
 				AAD277761A07F428002AA22B /* JokeCD.m in Sources */,
 				AAD2772C1A07DC81002AA22B /* main.m in Sources */,
+				AAD44F781A0D64AB00FDB656 /* Set.m in Sources */,
 				AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */,
 				AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */,
 				AAD2776D1A07DCED002AA22B /* Jest_Notes.xcdatamodeld in Sources */,
