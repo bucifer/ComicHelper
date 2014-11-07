@@ -52,26 +52,11 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     selectedJoke.creationDate = self.creationDatePicker.date;
     
-    //now we need to edit the core data. If we don't, it will revert back to core data (pre-edit) version once you quit out of app
-    //to match this particular presentation layer joke with its appropriate core data joke object, we can predicate using name
-    //but that doesn't guarantee uniqueness
-    //so we use unique managedObjectID (that comes by default in any managed object)
-    //we are going to set a property with the presentation layer and save it to it as soon as it comes out of the oven converted
-    
-    [self saveEditedJokeInCoreData:selectedJoke title:changedTitle minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore
+    [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke title:changedTitle minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore date:self.creationDatePicker.date];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-     - (void) saveEditedJokeInCoreData: (JokePL *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date:  {
-    NSError *error;
-    JokeCD *correspondingCDJoke = (JokeCD *) [self.jokeDataManager.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
-    correspondingCDJoke.title = title;
-    correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
-    correspondingCDJoke.score = [NSNumber numberWithInt:[score intValue]];
-    correspondingCDJoke.creationDate = self.creationDatePicker.date;
-    [self.jokeDataManager saveChangesInCoreData];
-}
 
 /*
  #pragma mark - Navigation

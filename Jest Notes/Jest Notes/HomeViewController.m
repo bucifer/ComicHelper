@@ -66,7 +66,7 @@
     JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
     cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
-    cell.timeLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:joke.length];
+    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/dd/yy"];
     
@@ -81,7 +81,29 @@
     return 65;
 }
 
-
+- (NSString *) turnSecondsIntoReallyShortTimeFormatColon: (int) seconds {
+    
+    int minutes = seconds / 60;
+    int secondsLeftover = seconds % 60;
+    NSString* secondsString;
+    
+    if (secondsLeftover < 10) {
+        secondsString = [NSString stringWithFormat:@"0%d", secondsLeftover];
+    }
+    else {
+        secondsString = [NSString stringWithFormat:@"%d", secondsLeftover];
+    }
+    
+    
+    if (minutes == 0) {
+        return [NSString stringWithFormat:@"0:%@", secondsString];
+    }
+    else if (minutes == 1) {
+        return [NSString stringWithFormat:@"1:%@", secondsString];
+    }
+    
+    return [NSString stringWithFormat:@"%d:%@", minutes, secondsString];
+}
 
 
 #pragma mark - Navigation

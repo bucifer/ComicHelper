@@ -91,6 +91,19 @@
 }
 
 
+
+
+- (void) saveEditedJokeInCoreData: (JokePL *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date{
+    NSError *error;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
+    correspondingCDJoke.title = title;
+    correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
+    correspondingCDJoke.score = [NSNumber numberWithInt:[score intValue]];
+    correspondingCDJoke.creationDate = date;
+    [self saveChangesInCoreData];
+}
+
+
 - (void) saveChangesInCoreData {
         NSError *err = nil;
         BOOL successful = [self.managedObjectContext save:&err];
