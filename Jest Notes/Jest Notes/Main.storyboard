@@ -127,6 +127,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="6gw-nQ-OVZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Vd1-pj-oSD">
+                            <connections>
+                                <action selector="editButtonAction:" destination="BYZ-38-t0r" id="ysj-XT-7Vp"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dCw-DD-suf">
                             <connections>
                                 <segue destination="D7d-fq-uW8" kind="show" identifier="creation" id="EtW-zb-Ba2"/>

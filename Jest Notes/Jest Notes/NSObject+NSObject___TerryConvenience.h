@@ -13,5 +13,6 @@
 - (NSString *) quickStringFromInt: (int) someInt;
 
 - (NSString *) turnSecondsIntegerIntoMinuteAndSecondsFormat: (int) seconds;
+- (NSString *) turnSecondsIntoReallyShortTimeFormatColon: (int) seconds;
 
 @end

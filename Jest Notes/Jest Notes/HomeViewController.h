@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *createNewJokeButton;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+- (IBAction)editButtonAction:(id)sender;
 
 
 @end

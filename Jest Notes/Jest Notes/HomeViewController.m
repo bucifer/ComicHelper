@@ -30,6 +30,9 @@
     self.createNewJokeButton.layer.cornerRadius = 5;
     self.createNewJokeButton.layer.borderWidth = 2;
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+
 }
 
 
@@ -81,28 +84,16 @@
     return 65;
 }
 
-- (NSString *) turnSecondsIntoReallyShortTimeFormatColon: (int) seconds {
-    
-    int minutes = seconds / 60;
-    int secondsLeftover = seconds % 60;
-    NSString* secondsString;
-    
-    if (secondsLeftover < 10) {
-        secondsString = [NSString stringWithFormat:@"0%d", secondsLeftover];
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support deleting on swipe of the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
     }
-    else {
-        secondsString = [NSString stringWithFormat:@"%d", secondsLeftover];
-    }
-    
-    
-    if (minutes == 0) {
-        return [NSString stringWithFormat:@"0:%@", secondsString];
-    }
-    else if (minutes == 1) {
-        return [NSString stringWithFormat:@"1:%@", secondsString];
-    }
-    
-    return [NSString stringWithFormat:@"%d:%@", minutes, secondsString];
 }
 
 
@@ -130,6 +121,15 @@
 
 
 
+- (IBAction)editButtonAction:(id)sender {
+
+    if(self.tableView.editing){
+        [self.tableView setEditing: NO animated: YES];
+    }
+    else {
+        [self.tableView setEditing: YES animated: YES];
+    }
+}
 
 
 @end
