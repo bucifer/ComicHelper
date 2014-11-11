@@ -17,22 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xH-fo-i23">
-                                <rect key="frame" x="216" y="104" width="169" height="70"/>
-                                <color key="backgroundColor" red="0.51631037128050916" green="0.7846177725227601" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNo-PX-Phc">
+                                <rect key="frame" x="429" y="102" width="153" height="70"/>
+                                <color key="backgroundColor" red="0.51631037130000002" green="0.78461777249999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="tintColor" red="0.10085031077348061" green="0.030714938145241365" blue="0.037074266715506642" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.1008503108" green="0.030714938149999999" blue="0.037074266719999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="30" minY="20" maxX="30" maxY="20"/>
-                                <state key="normal" title="New Joke">
+                                <state key="normal" title="New Set">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                     <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                     <rect key="frame" x="337" y="147" width="126" height="30"/>
                                 </variation>
-                                <connections>
-                                    <segue destination="D7d-fq-uW8" kind="show" identifier="creation" id="EN2-AS-iZ9"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
                                 <rect key="frame" x="0.0" y="197" width="600" height="354"/>
@@ -107,21 +104,51 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Wdl-CJ-mmB"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xH-fo-i23">
+                                <rect key="frame" x="18" y="104" width="169" height="70"/>
+                                <color key="backgroundColor" red="0.51631037128050916" green="0.7846177725227601" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="tintColor" red="0.10085031077348061" green="0.030714938145241365" blue="0.037074266715506642" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="30" minY="20" maxX="30" maxY="20"/>
+                                <state key="normal" title="New Joke">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                    <rect key="frame" x="337" y="147" width="126" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="D7d-fq-uW8" kind="show" identifier="creation" id="EN2-AS-iZ9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0xH-fo-i23" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="2" id="53f-b7-Ix3"/>
                             <constraint firstAttribute="centerY" secondItem="0xH-fo-i23" secondAttribute="centerY" constant="144" id="5LR-KS-IMk"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="9T6-T5-Jzy"/>
+                            <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="AT1-ms-KOK"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="0xH-fo-i23" secondAttribute="bottom" constant="23" id="BGU-TK-nq5"/>
                             <constraint firstItem="0xH-fo-i23" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="COC-Fd-RxF"/>
+                            <constraint firstItem="0xH-fo-i23" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="200" id="NbJ-GZ-95t"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="centerX" secondItem="0xH-fo-i23" secondAttribute="centerX" id="QTQ-GP-O7e"/>
                             <constraint firstItem="0xH-fo-i23" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T7C-iI-ahk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0xH-fo-i23" secondAttribute="bottom" constant="427" id="bDv-o3-rY2"/>
+                            <constraint firstItem="GNo-PX-Phc" firstAttribute="leading" secondItem="0xH-fo-i23" secondAttribute="trailing" constant="85" id="bxh-V4-yW8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GNo-PX-Phc" secondAttribute="trailing" constant="2" id="lOb-0M-X0I"/>
+                            <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="GNo-PX-Phc" secondAttribute="bottom" constant="25" id="mce-wK-fQK"/>
+                            <constraint firstItem="GNo-PX-Phc" firstAttribute="leading" secondItem="0xH-fo-i23" secondAttribute="trailing" constant="20" id="nPm-hz-rWO"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="njP-Wv-pbl"/>
+                            <constraint firstItem="GNo-PX-Phc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="38" id="s3D-mp-X7H"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="5LR-KS-IMk"/>
+                                <exclude reference="NbJ-GZ-95t"/>
+                                <exclude reference="T7C-iI-ahk"/>
+                                <exclude reference="QTQ-GP-O7e"/>
+                                <exclude reference="bxh-V4-yW8"/>
+                                <exclude reference="nPm-hz-rWO"/>
                                 <exclude reference="bDv-o3-rY2"/>
                             </mask>
                         </variation>
@@ -621,7 +648,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH">
                                 <rect key="frame" x="85" y="72" width="345" height="266"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
