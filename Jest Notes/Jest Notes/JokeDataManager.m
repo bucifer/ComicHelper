@@ -117,6 +117,19 @@
 
 
 
+- (void) createNewJokeInCoreData: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    joke.title = jokeTitle;
+    joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue])];
+    joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
+    joke.creationDate = jokeDate;
+    [self saveChangesInContextCoreData];
+}
+
+
+
+
 
 #pragma mark calculation methods
 

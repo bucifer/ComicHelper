@@ -51,27 +51,32 @@
     }
     
     NSString *jokeScore = self.scoreField.text;
-    if ([self alertIfInvalid:jokeScore])
+    if ([self alertIfInvalid:jokeScore]) {
         return; //cuts off and interrupts create new action if the alert ever goes up
-    
+    }
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.jokeDataManager.managedObjectContext];
-    JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.jokeDataManager.managedObjectContext];
-    joke.title = jokeTitle;
-    joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue])];
-    joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
-    joke.creationDate = self.creationDatePicker.date;
-    [self.jokeDataManager saveChangesInContextCoreData];
+    NSDate *myDate = self.creationDatePicker.date;
     
-    //For presentation layer
-    //If you don't have this logic, when you create a joke, it won't show up on tableview right afterwards ... and only show up when you relaunch and refetch from Core Data. You don't want that
+    [self.jokeDataManager.jokes addObject:[self createNewJokeInPresentationLayer:jokeTitle jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate]];
+    [self.jokeDataManager createNewJokeInCoreData:jokeTitle jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
     
-    [self.jokeDataManager.jokes addObject:[self.jokeDataManager convertCoreDataJokeIntoPresentationLayerJoke:joke]];
-    
-    NSLog(@"New joke saved");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (JokePL *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
+    JokePL *joke = [[JokePL alloc]init];
+    joke.title = jokeTitle;
+    joke.score = [jokeScore floatValue];
+    joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
+    joke.creationDate = jokeDate;
+    return joke;
+}
+
+
+
+
 
 - (BOOL) alertIfInvalid: (NSString *) scoreString {
     int tempScoreStore = [scoreString floatValue];
