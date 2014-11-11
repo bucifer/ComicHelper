@@ -1,8 +1,8 @@
 //
-//  Joke.h
-//  ComicsHelperApp
+//  JokeCD.h
+//  Jest Notes
 //
-//  Created by Terry Bu on 10/31/14.
+//  Created by Aditya Narayan on 11/10/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Joke : NSManagedObject
+@interface JokeCD : NSManagedObject
 
 @property (nonatomic, retain) NSDate * creationDate;
 @property (nonatomic, retain) NSNumber * length;

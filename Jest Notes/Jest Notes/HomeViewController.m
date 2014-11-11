@@ -11,6 +11,8 @@
 #import "SingleJokeViewController.h"
 #import "JokePL.h"
 #import "JokeCD.h"
+#import "Set.h"
+
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 
@@ -53,27 +55,56 @@
 #pragma mark tableview methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSArray *myArray = @[@"Jokes", @"Sets"];
+    return [myArray objectAtIndex:section];
+}
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    switch(section){
+        case 0:
+            return self.jokeDataManager.jokes.count;
+        case 1:
+            return self.jokeDataManager.sets.count;
+    }
     return self.jokeDataManager.jokes.count;
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *simpleCellIdentifier = @"JokeCustomCell";
     JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
-    
-    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
-    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
-    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"M/dd/yy"];
-    
-    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+    switch([indexPath section]){
+        case 0: {
+            if (self.jokeDataManager.jokes.count > 0 ) {
+                JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+                cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+                cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
+                cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"M/dd/yy"];
+                cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+            }
+        }
+        case 1: {
+            if (self.jokeDataManager.sets.count > 0) {
+                Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
+                cell.titleLabel.text = [NSString stringWithFormat: @"%@", set.name];
+            }
+            
+        }
+    }
+
     return cell;
 }
 

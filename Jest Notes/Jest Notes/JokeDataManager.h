@@ -18,6 +18,8 @@
 @interface JokeDataManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *jokes;
+@property (nonatomic, strong) NSMutableArray *sets;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) HomeViewController *hvc;
 
@@ -28,6 +30,7 @@
 - (void) saveChangesInContextCoreData;
 
 
+- (BOOL) isScoreInputValid: (float) score;
 
 
 @end

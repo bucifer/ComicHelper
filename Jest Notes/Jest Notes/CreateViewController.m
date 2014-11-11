@@ -60,7 +60,7 @@
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.jokeDataManager.managedObjectContext];
     joke.title = jokeTitle;
     joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue])];
-    joke.score = [NSNumber numberWithInt:[jokeScore intValue]];
+    joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
     joke.creationDate = self.creationDatePicker.date;
     [self.jokeDataManager saveChangesInContextCoreData];
     
@@ -74,8 +74,8 @@
 }
 
 - (BOOL) alertIfInvalid: (NSString *) scoreString {
-    int tempScoreStore = [scoreString intValue];
-    if ([self isScoreInputValid:tempScoreStore] == FALSE) {
+    int tempScoreStore = [scoreString floatValue];
+    if ([self.jokeDataManager isScoreInputValid:tempScoreStore] == FALSE) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score out of range"
                                                         message:@"Your score input is out of range. Please input a number between 0 to 10 (inclusive) under Joke Score"
                                                        delegate:nil
@@ -87,12 +87,7 @@
     return FALSE;
 }
 
-- (BOOL) isScoreInputValid: (int) score {
-    if (score > 10 || score < 0) {
-        return FALSE;
-    }
-    return TRUE;
-}
+
 
 
 #pragma mark Keyboard Delegate methods

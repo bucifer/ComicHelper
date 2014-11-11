@@ -13,7 +13,7 @@
 @interface JokePL : NSObject
 
 @property (nonatomic, strong) NSString* title;
-@property int score;
+@property float score;
 @property int length;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) NSManagedObjectID *managedObjectID;

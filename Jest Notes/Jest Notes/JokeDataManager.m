@@ -14,8 +14,9 @@
 
 
 -(id)init {
-    if ( self = [super init] ) {
+    if (self = [super init] ) {
         self.jokes = [[NSMutableArray alloc]init];
+        self.sets = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -69,7 +70,7 @@
         JokeCD *oneCDJoke = fetchedObjectsArrayOfCDJokes[i];
         JokePL *newPLJoke = [[JokePL alloc]init];
         newPLJoke.title = oneCDJoke.title;
-        newPLJoke.score = [oneCDJoke.score intValue];
+        newPLJoke.score = [oneCDJoke.score floatValue];
         newPLJoke.length = [oneCDJoke.length intValue];
         newPLJoke.creationDate = oneCDJoke.creationDate;
         newPLJoke.managedObjectID = [oneCDJoke objectID];
@@ -82,7 +83,7 @@
 - (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
     JokePL *newPLJoke = [[JokePL alloc]init];
     newPLJoke.title = oneCoreDataJoke.title;
-    newPLJoke.score = [oneCoreDataJoke.score intValue];
+    newPLJoke.score = [oneCoreDataJoke.score floatValue];
     newPLJoke.length = [oneCoreDataJoke.length intValue];
     newPLJoke.creationDate = oneCoreDataJoke.creationDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
@@ -98,7 +99,7 @@
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
     correspondingCDJoke.title = title;
     correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
-    correspondingCDJoke.score = [NSNumber numberWithInt:[score intValue]];
+    correspondingCDJoke.score = [NSNumber numberWithFloat:[score floatValue]];
     correspondingCDJoke.creationDate = date;
     [self saveChangesInContextCoreData];
 }
@@ -113,6 +114,19 @@
             NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
         }
 }
+
+
+
+
+#pragma mark calculation methods
+
+- (BOOL) isScoreInputValid: (float) score {
+    if (score > 10 || score < 0) {
+        return FALSE;
+    }
+    return TRUE;
+}
+
 
 
 @end

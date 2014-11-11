@@ -31,7 +31,7 @@
     
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
     
-    NSString *score = [NSString stringWithFormat:@"%d", self.joke.score];
+    NSString *score = [NSString stringWithFormat:@"%.01f", self.joke.score];
     self.jokeScoreLabel.text = [NSString stringWithFormat: @"%@ out of 10", score];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
