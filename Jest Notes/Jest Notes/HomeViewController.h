@@ -17,8 +17,14 @@
 
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
-@property (strong, nonatomic) IBOutlet UIButton *createNewJokeButton;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+
+@property (strong, nonatomic) IBOutlet UIButton *createNewJokeButton;
+@property (strong, nonatomic) IBOutlet UIButton *createNewSetButton;
+
+
+
 
 - (IBAction)editButtonAction:(id)sender;
 

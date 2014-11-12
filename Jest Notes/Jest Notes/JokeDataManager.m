@@ -46,9 +46,13 @@
         //        [fetchRequest setPredicate:predicate];
         
         // Specify how the fetched objects should be sorted
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"creationDate"
+        
+        NSSortDescriptor *scoreSort = [[NSSortDescriptor alloc] initWithKey:@"score" ascending:NO];
+        
+        NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:@"creationDate"
                                                                        ascending:NO];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+        
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:scoreSort, dateSort, nil]];
         
         NSError *error = nil;
         NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];

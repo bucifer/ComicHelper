@@ -26,10 +26,21 @@
                                 <state key="normal" title="New Set">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                     <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                     <rect key="frame" x="337" y="147" width="126" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="createNewButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZ7-PG-MdR"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
                                 <rect key="frame" x="0.0" y="197" width="600" height="354"/>
@@ -98,6 +109,21 @@
                                             <segue destination="8Ol-YK-K5R" kind="show" identifier="singleView" id="aYj-sU-Xm4"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="C0q-rn-lnf" style="IBUITableViewCellStyleDefault" id="bz1-0l-T1N">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bz1-0l-T1N" id="xRs-c3-ZDK">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C0q-rn-lnf">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="JHw-Fy-xcB"/>
@@ -113,6 +139,14 @@
                                 <state key="normal" title="New Joke">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                     <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                     <rect key="frame" x="337" y="147" width="126" height="30"/>
@@ -167,6 +201,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createNewJokeButton" destination="0xH-fo-i23" id="Xkc-a1-qWR"/>
+                        <outlet property="createNewSetButton" destination="GNo-PX-Phc" id="cVD-dY-0ax"/>
                         <outlet property="tableView" destination="zrs-iD-EQY" id="Mmk-rh-sqk"/>
                     </connections>
                 </viewController>
@@ -645,15 +680,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH">
-                                <rect key="frame" x="85" y="72" width="345" height="266"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH">
+                                <rect key="frame" x="128" y="167" width="345" height="266"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="345" id="PC6-PX-iKL"/>
+                                </constraints>
+                                <string key="text">Thanks for Using This App. fpjdjfpsaifjsdpifjsapifsajfpijfpisadjpfisdjfpisajfpisdjfpisadjfpiasfjspdifjspadifjsdpiafjsdpifjsdpfjsdapfsdfjsdpaifjsdapifjsadipfjsapifjsdapfjsdapfjsapdp ... obviously you shouldn't use this textview here because it's so inefficient. Can't even go to next line on Return</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="centerY" secondItem="tsr-1B-gKi" secondAttribute="centerY" id="746-Pz-gut"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="centerX" secondItem="tsr-1B-gKi" secondAttribute="centerX" id="Lfr-Lv-04x"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="nMh-tA-dG3" secondAttribute="bottom" constant="103" id="vYR-EX-uqT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xaN-gM-lvg"/>
                 </viewController>

@@ -29,9 +29,8 @@
     // Do any additional setup after loading the view.
     [self.jokeDataManager appInitializationLogic];
     
-    self.createNewJokeButton.layer.cornerRadius = 5;
-    self.createNewJokeButton.layer.borderWidth = 2;
     self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
+    self.createNewSetButton.layer.borderColor = [UIColor blackColor].CGColor;
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
 
@@ -82,10 +81,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *simpleCellIdentifier = @"JokeCustomCell";
-    JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+    
+    
     switch([indexPath section]){
         case 0: {
+            //we are in Jokes section
+            
+            static NSString *simpleCellIdentifier = @"JokeCustomCell";
+            JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+            
             if (self.jokeDataManager.jokes.count > 0 ) {
                 JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
                 cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
@@ -94,18 +98,28 @@
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                 [dateFormatter setDateFormat:@"M/dd/yy"];
                 cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+                return cell;
             }
         }
         case 1: {
+            //we are in Set section
             if (self.jokeDataManager.sets.count > 0) {
+                
+                static NSString *CellIdentifier = @"Cell";
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                }
+                
                 Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
-                cell.titleLabel.text = [NSString stringWithFormat: @"%@", set.name];
+                cell.textLabel.text = [NSString stringWithFormat: @"%@", set.name];
+                return cell;
             }
             
         }
     }
 
-    return cell;
+    return nil;
 }
 
 
