@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+
+//Core Data related
 - (void) appInitializationLogic;
 - (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes;
 - (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke;
@@ -35,8 +37,10 @@
 - (void) saveChangesInContextCoreData;
 - (void) createNewJokeInCoreData: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate;
 
+//Logic Related
 - (NSNumber *) returnUniqueIDmaxValue;
 - (void) sortJokesArrayWithTwoDescriptors: (NSString *) firstDescriptorString secondDescriptor: (NSString *) secondDescriptorString;
+- (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending;
 - (BOOL) isScoreInputValid: (float) score;
 
 

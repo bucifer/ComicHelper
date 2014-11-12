@@ -49,11 +49,6 @@
         //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
         //        [fetchRequest setPredicate:predicate];
         
-        NSSortDescriptor *scoreSort = [[NSSortDescriptor alloc] initWithKey:@"score" ascending:NO];
-        NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:@"creationDate"
-                                                                       ascending:NO];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:scoreSort, dateSort, nil]];
-        
         NSError *error = nil;
         NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         if (fetchedJokesFromCD == nil) {
@@ -177,6 +172,13 @@
     NSArray *sortDescriptors = [NSArray arrayWithObjects:scoreSorter, dateSorter, nil];
     self.jokes = [[self.jokes sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
 }
+
+- (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending{
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc]initWithKey:descriptorString ascending:ascending];
+    myArray = [[NSArray arrayWithObjects:sorter, nil]mutableCopy];
+}
+
+
 
 - (BOOL) isScoreInputValid: (float) score {
     if (score > 10 || score < 0) {

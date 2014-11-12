@@ -40,7 +40,7 @@
     [super viewWillAppear:animated];
     
     //we need a way to sort the jokes when you created a new joke or edited a joke
-    [self.jokeDataManager sortJokesArrayWithTwoDescriptors:@"score" secondDescriptor:@"creationDate"];
+    [self.jokeDataManager sortArrayWithOneDescriptorString:self.jokeDataManager.jokes descriptor:@"uniqueID" ascending:YES];
     [self.tableView reloadData];
     
 }
