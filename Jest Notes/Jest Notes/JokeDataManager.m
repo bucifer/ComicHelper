@@ -21,6 +21,10 @@
     return self;
 }
 
+
+
+
+#pragma mark Core Data-related
 - (void) appInitializationLogic {
     //Let's do initialization logic
     //If it's the first time you are running the app, we don't do anything
@@ -48,10 +52,8 @@
         // Specify how the fetched objects should be sorted
         
         NSSortDescriptor *scoreSort = [[NSSortDescriptor alloc] initWithKey:@"score" ascending:NO];
-        
         NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:@"creationDate"
                                                                        ascending:NO];
-        
         [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:scoreSort, dateSort, nil]];
         
         NSError *error = nil;
@@ -135,7 +137,14 @@
 
 
 
-#pragma mark calculation methods
+#pragma mark Logic-Related
+
+- (void) sortJokesArrayWithTwoDescriptors:(NSString *)firstDescriptorString secondDescriptor:(NSString *)secondDescriptorString {
+    NSSortDescriptor *scoreSorter = [[NSSortDescriptor alloc]initWithKey:firstDescriptorString ascending:NO];
+    NSSortDescriptor *dateSorter = [[NSSortDescriptor alloc]initWithKey:secondDescriptorString ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:scoreSorter, dateSorter, nil];
+    self.jokes = [[self.jokes sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+}
 
 - (BOOL) isScoreInputValid: (float) score {
     if (score > 10 || score < 0) {
