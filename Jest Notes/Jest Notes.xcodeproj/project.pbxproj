@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA7FDBFC1A11973B003CCB10 /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7FDBFB1A11973B003CCB10 /* JokeCD.m */; };
+		AAC8B1171A13EC9B009FF212 /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC8B1161A13EC9B009FF212 /* JokeCD.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
@@ -38,8 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AA7FDBFA1A11973B003CCB10 /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = SOURCE_ROOT; };
-		AA7FDBFB1A11973B003CCB10 /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = SOURCE_ROOT; };
+		AAC8B1151A13EC9B009FF212 /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = "<group>"; };
+		AAC8B1161A13EC9B009FF212 /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2772A1A07DC81002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2772B1A07DC81002AA22B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,8 +131,8 @@
 				AAD44F771A0D64AB00FDB656 /* Set.m */,
 				AAD277621A07DCED002AA22B /* JokePL.h */,
 				AAD277631A07DCED002AA22B /* JokePL.m */,
-				AA7FDBFA1A11973B003CCB10 /* JokeCD.h */,
-				AA7FDBFB1A11973B003CCB10 /* JokeCD.m */,
+				AAC8B1151A13EC9B009FF212 /* JokeCD.h */,
+				AAC8B1161A13EC9B009FF212 /* JokeCD.m */,
 				AAD277601A07DCED002AA22B /* JokeDataManager.h */,
 				AAD277611A07DCED002AA22B /* JokeDataManager.m */,
 				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
@@ -278,7 +278,7 @@
 				AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
 				AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */,
 				AAD2776C1A07DCED002AA22B /* JokePL.m in Sources */,
-				AA7FDBFC1A11973B003CCB10 /* JokeCD.m in Sources */,
+				AAC8B1171A13EC9B009FF212 /* JokeCD.m in Sources */,
 				AAD2772C1A07DC81002AA22B /* main.m in Sources */,
 				AAD44F781A0D64AB00FDB656 /* Set.m in Sources */,
 				AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */,

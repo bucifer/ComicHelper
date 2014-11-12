@@ -2,7 +2,7 @@
 //  JokeCD.m
 //  Jest Notes
 //
-//  Created by Aditya Narayan on 11/10/14.
+//  Created by Aditya Narayan on 11/12/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
@@ -15,5 +15,6 @@
 @dynamic length;
 @dynamic score;
 @dynamic title;
+@dynamic uniqueID;
 
 @end

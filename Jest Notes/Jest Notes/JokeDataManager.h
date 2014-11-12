@@ -19,9 +19,14 @@
 
 @property (nonatomic, strong) NSMutableArray *jokes;
 @property (nonatomic, strong) NSMutableArray *sets;
+@property (nonatomic, strong) HomeViewController *hvc;
+
+@property (nonatomic, strong) NSNumber* uniqueIDmaxValue;
+
+
+
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) HomeViewController *hvc;
 
 - (void) appInitializationLogic;
 - (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes;
@@ -30,6 +35,7 @@
 - (void) saveChangesInContextCoreData;
 - (void) createNewJokeInCoreData: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate;
 
+- (NSNumber *) returnUniqueID;
 - (void) sortJokesArrayWithTwoDescriptors: (NSString *) firstDescriptorString secondDescriptor: (NSString *) secondDescriptorString;
 - (BOOL) isScoreInputValid: (float) score;
 

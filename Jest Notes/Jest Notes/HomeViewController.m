@@ -38,12 +38,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //we need a way to sort the jokes when you created a new joke
-    //right now, they are correctly sorted only when we launch the app (due to sort descriptors in fetch request)
-    //we need to make sure they are sorted right when you've created a new joke or edited one
     
+    //we need a way to sort the jokes when you created a new joke or edited a joke
     [self.jokeDataManager sortJokesArrayWithTwoDescriptors:@"score" secondDescriptor:@"creationDate"];
-    [self.tableView reloadData]; // to reload selected cell
+    [self.tableView reloadData];
+    
+    NSLog(@"%@",[self.jokeDataManager returnUniqueID]);
+
 }
 
 
@@ -74,6 +75,9 @@
     
     if (self.jokeDataManager.jokes.count > 0 ) {
         JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        
+        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"%@", joke.uniqueID];
+        
         cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
         cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
         cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];

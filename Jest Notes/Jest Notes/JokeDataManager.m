@@ -49,8 +49,6 @@
         //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
         //        [fetchRequest setPredicate:predicate];
         
-        // Specify how the fetched objects should be sorted
-        
         NSSortDescriptor *scoreSort = [[NSSortDescriptor alloc] initWithKey:@"score" ascending:NO];
         NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:@"creationDate"
                                                                        ascending:NO];
@@ -64,8 +62,8 @@
         
         self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
         [self.hvc.tableView reloadData];
+        
     }
-
 }
 
 - (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes {
@@ -80,6 +78,7 @@
         newPLJoke.length = [oneCDJoke.length intValue];
         newPLJoke.creationDate = oneCDJoke.creationDate;
         newPLJoke.managedObjectID = [oneCDJoke objectID];
+        newPLJoke.uniqueID = oneCDJoke.uniqueID;
         [resultArrayOfJokePLs addObject:newPLJoke];
     }
     
@@ -93,7 +92,8 @@
     newPLJoke.length = [oneCoreDataJoke.length intValue];
     newPLJoke.creationDate = oneCoreDataJoke.creationDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
-    
+    newPLJoke.uniqueID = oneCoreDataJoke.uniqueID;
+
     return newPLJoke;
 }
 
@@ -130,6 +130,7 @@
     joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue])];
     joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
     joke.creationDate = jokeDate;
+    joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
     [self saveChangesInContextCoreData];
 }
 
@@ -138,6 +139,31 @@
 
 
 #pragma mark Logic-Related
+
+
+- (NSNumber *) returnUniqueID {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedJokesFromCD == nil) {
+        NSLog(@"error in fetching CD: %@", error);
+    }
+    
+    NSNumber *maxValue = nil;
+    if (fetchedJokesFromCD)
+        if ([fetchedJokesFromCD valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"] != nil)
+            maxValue = [fetchedJokesFromCD valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"];
+        else
+            maxValue = [NSNumber numberWithUnsignedInteger:0];
+    else
+        maxValue = [NSNumber numberWithUnsignedInteger:0];
+    
+    self.uniqueIDmaxValue = maxValue;
+    return maxValue;
+}
+
 
 - (void) sortJokesArrayWithTwoDescriptors:(NSString *)firstDescriptorString secondDescriptor:(NSString *)secondDescriptorString {
     NSSortDescriptor *scoreSorter = [[NSSortDescriptor alloc]initWithKey:firstDescriptorString ascending:NO];

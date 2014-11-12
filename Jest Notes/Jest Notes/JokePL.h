@@ -16,6 +16,11 @@
 @property float score;
 @property int length;
 @property (nonatomic, strong) NSDate *creationDate;
+
+//this ID is used for User Interface purposes so that people can easily identify their jokes
+@property (nonatomic, strong) NSNumber *uniqueID;
+
+//this ID is used for matching up presentation and core data layer objects
 @property (nonatomic, strong) NSManagedObjectID *managedObjectID;
 
 

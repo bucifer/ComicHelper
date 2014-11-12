@@ -76,6 +76,12 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLB-HY-678">
+                                                    <rect key="frame" x="62" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="gV6-xb-AVD" secondAttribute="trailing" constant="4" id="2G8-u9-LiH"/>
@@ -121,23 +127,9 @@
                                             <outlet property="scoreLabel" destination="gV6-xb-AVD" id="hSL-ow-562"/>
                                             <outlet property="timeLabel" destination="0f0-gt-zJk" id="Duo-On-eZN"/>
                                             <outlet property="titleLabel" destination="Ynb-jW-wTs" id="Q2Y-qI-2UL"/>
+                                            <outlet property="uniqueIDLabel" destination="DLB-HY-678" id="rNN-mb-IIV"/>
                                             <segue destination="8Ol-YK-K5R" kind="show" identifier="singleView" id="aYj-sU-Xm4"/>
                                         </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="C0q-rn-lnf" style="IBUITableViewCellStyleDefault" id="bz1-0l-T1N">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bz1-0l-T1N" id="xRs-c3-ZDK">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C0q-rn-lnf">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -662,7 +654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4461" y="335"/>
+            <point key="canvasLocation" x="3249" y="361"/>
         </scene>
         <!--Home-->
         <scene sceneID="7FY-N7-vJt">
@@ -756,7 +748,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAz-hD-8E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="827"/>
+            <point key="canvasLocation" x="900" y="811"/>
         </scene>
     </scenes>
     <resources>
