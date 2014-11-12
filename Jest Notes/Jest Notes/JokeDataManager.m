@@ -144,16 +144,20 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
+    
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueID==max(uniqueID)"];
+
     NSError *error = nil;
-    NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (fetchedJokesFromCD == nil) {
+    NSArray *arrayOfOneJokeWithHighestUniqueID = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (arrayOfOneJokeWithHighestUniqueID == nil) {
         NSLog(@"error in fetching CD: %@", error);
     }
     
     NSNumber *maxValue = nil;
-    if (fetchedJokesFromCD)
-        if ([fetchedJokesFromCD valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"] != nil)
-            maxValue = [fetchedJokesFromCD valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"];
+    if (arrayOfOneJokeWithHighestUniqueID)
+        if ([arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"] != nil)
+            maxValue = [arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"];
         else
             maxValue = [NSNumber numberWithUnsignedInteger:0];
     else
