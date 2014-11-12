@@ -61,6 +61,8 @@
         }
         
         self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
+        self.uniqueIDmaxValue = [self returnUniqueIDmaxValue];
+        
         [self.hvc.tableView reloadData];
         
     }
@@ -132,6 +134,8 @@
     joke.creationDate = jokeDate;
     joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
     [self saveChangesInContextCoreData];
+    
+    [self returnUniqueIDmaxValue];
 }
 
 
@@ -141,7 +145,7 @@
 #pragma mark Logic-Related
 
 
-- (NSNumber *) returnUniqueID {
+- (NSNumber *) returnUniqueIDmaxValue {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -161,6 +165,8 @@
         maxValue = [NSNumber numberWithUnsignedInteger:0];
     
     self.uniqueIDmaxValue = maxValue;
+    NSLog(@"%@",self.uniqueIDmaxValue);
+
     return maxValue;
 }
 

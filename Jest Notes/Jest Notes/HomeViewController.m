@@ -43,8 +43,6 @@
     [self.jokeDataManager sortJokesArrayWithTwoDescriptors:@"score" secondDescriptor:@"creationDate"];
     [self.tableView reloadData];
     
-    NSLog(@"%@",[self.jokeDataManager returnUniqueID]);
-
 }
 
 

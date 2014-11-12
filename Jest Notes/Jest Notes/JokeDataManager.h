@@ -35,7 +35,7 @@
 - (void) saveChangesInContextCoreData;
 - (void) createNewJokeInCoreData: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate;
 
-- (NSNumber *) returnUniqueID;
+- (NSNumber *) returnUniqueIDmaxValue;
 - (void) sortJokesArrayWithTwoDescriptors: (NSString *) firstDescriptorString secondDescriptor: (NSString *) secondDescriptorString;
 - (BOOL) isScoreInputValid: (float) score;
 
