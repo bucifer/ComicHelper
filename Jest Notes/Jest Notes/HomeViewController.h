@@ -23,8 +23,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *createNewSetButton;
 
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteBarButton;
 
-- (IBAction)editButtonAction:(id)sender;
+- (IBAction)deleteBarButtonAction:(id)sender;
 
 
 @end

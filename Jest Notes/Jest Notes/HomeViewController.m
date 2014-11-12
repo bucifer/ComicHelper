@@ -76,7 +76,7 @@
     if (self.jokeDataManager.jokes.count > 0 ) {
         JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         
-        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"%@", joke.uniqueID];
+        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
         
         cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
         cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
@@ -142,14 +142,17 @@
 
 
 
-- (IBAction)editButtonAction:(id)sender {
+- (IBAction)deleteBarButtonAction:(id)sender {
 
-    if(self.tableView.editing){
-        [self.tableView setEditing: NO animated: YES];
+    if (![self.tableView isEditing]) {
+        [sender setTitle:@"Done"];
     }
     else {
-        [self.tableView setEditing: YES animated: YES];
+        [sender setTitle:@"Delete"];
     }
+    
+    [self.tableView setEditing:![self.tableView isEditing]];
+    
 }
 
 

@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--HomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="HomeViewController" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -76,9 +76,9 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLB-HY-678">
-                                                    <rect key="frame" x="62" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLB-HY-678">
+                                                    <rect key="frame" x="10" y="4" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -93,6 +93,7 @@
                                                 <constraint firstItem="LxR-yn-Zaf" firstAttribute="top" secondItem="0f0-gt-zJk" secondAttribute="bottom" constant="1" id="Es1-oQ-94e"/>
                                                 <constraint firstItem="LxR-yn-Zaf" firstAttribute="trailing" secondItem="yfT-oM-cSO" secondAttribute="trailingMargin" id="M2h-hR-b6r"/>
                                                 <constraint firstItem="LxR-yn-Zaf" firstAttribute="trailing" secondItem="0f0-gt-zJk" secondAttribute="trailing" id="MkG-wU-ARu"/>
+                                                <constraint firstItem="DLB-HY-678" firstAttribute="top" secondItem="yfT-oM-cSO" secondAttribute="topMargin" constant="-4" id="RUn-cN-QhB"/>
                                                 <constraint firstItem="Ynb-jW-wTs" firstAttribute="centerY" secondItem="0f0-gt-zJk" secondAttribute="centerY" id="TQs-4o-wg2"/>
                                                 <constraint firstItem="gV6-xb-AVD" firstAttribute="trailing" secondItem="0f0-gt-zJk" secondAttribute="trailing" id="TdD-Nm-aeJ"/>
                                                 <constraint firstItem="gV6-xb-AVD" firstAttribute="leading" secondItem="0f0-gt-zJk" secondAttribute="leading" id="TvI-g7-CJD"/>
@@ -103,7 +104,10 @@
                                                 <constraint firstItem="LxR-yn-Zaf" firstAttribute="top" secondItem="gV6-xb-AVD" secondAttribute="bottom" constant="13" id="hTo-bV-xhW"/>
                                                 <constraint firstItem="gV6-xb-AVD" firstAttribute="centerX" secondItem="yfT-oM-cSO" secondAttribute="centerX" id="jjI-Am-vF8"/>
                                                 <constraint firstItem="LxR-yn-Zaf" firstAttribute="trailing" secondItem="yfT-oM-cSO" secondAttribute="trailingMargin" constant="6" id="jtS-0B-H7u"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DLB-HY-678" secondAttribute="bottom" constant="31" id="kmb-hV-pQd"/>
+                                                <constraint firstItem="DLB-HY-678" firstAttribute="centerX" secondItem="Ynb-jW-wTs" secondAttribute="centerX" id="mTt-Do-sEa"/>
                                                 <constraint firstItem="0f0-gt-zJk" firstAttribute="top" secondItem="gV6-xb-AVD" secondAttribute="bottom" constant="1" id="uba-6c-nuj"/>
+                                                <constraint firstItem="DLB-HY-678" firstAttribute="leading" secondItem="yfT-oM-cSO" secondAttribute="leadingMargin" constant="2" id="ybX-qm-Swq"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -195,9 +199,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="6gw-nQ-OVZ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Vd1-pj-oSD">
+                        <barButtonItem key="leftBarButtonItem" title="Delete" id="Vd1-pj-oSD">
                             <connections>
-                                <action selector="editButtonAction:" destination="BYZ-38-t0r" id="ysj-XT-7Vp"/>
+                                <action selector="deleteBarButtonAction:" destination="BYZ-38-t0r" id="Zsx-Ms-hbl"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dCw-DD-suf">
@@ -209,6 +213,7 @@
                     <connections>
                         <outlet property="createNewJokeButton" destination="0xH-fo-i23" id="Xkc-a1-qWR"/>
                         <outlet property="createNewSetButton" destination="GNo-PX-Phc" id="cVD-dY-0ax"/>
+                        <outlet property="deleteBarButton" destination="Vd1-pj-oSD" id="GD7-y4-78e"/>
                         <outlet property="tableView" destination="zrs-iD-EQY" id="Mmk-rh-sqk"/>
                     </connections>
                 </viewController>
