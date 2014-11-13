@@ -164,7 +164,7 @@
         maxValue = [NSNumber numberWithUnsignedInteger:0];
     
     self.uniqueIDmaxValue = maxValue;
-    NSLog(@"%@",self.uniqueIDmaxValue);
+    NSLog(@"Max ID value is %@ for your jokes: From JDM",self.uniqueIDmaxValue);
 
     return maxValue;
 }

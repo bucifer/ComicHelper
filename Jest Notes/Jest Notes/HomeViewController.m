@@ -12,7 +12,6 @@
 #import "JokePL.h"
 #import "JokeCD.h"
 #import "Set.h"
-
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 
