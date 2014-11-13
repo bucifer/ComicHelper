@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA05BFF71A153F1F00C57A38 /* Fruit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA05BFF61A153F1F00C57A38 /* Fruit.m */; };
 		AAD971C21A150CAB005A9EE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD971C11A150CAB005A9EE5 /* main.m */; };
 		AAD971C51A150CAB005A9EE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD971C41A150CAB005A9EE5 /* AppDelegate.m */; };
 		AAD971CB1A150CAB005A9EE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD971C91A150CAB005A9EE5 /* Main.storyboard */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA05BFF51A153F1F00C57A38 /* Fruit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fruit.h; sourceTree = "<group>"; };
+		AA05BFF61A153F1F00C57A38 /* Fruit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fruit.m; sourceTree = "<group>"; };
 		AAD971BC1A150CAB005A9EE5 /* Multi-SelectWithOrdering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Multi-SelectWithOrdering.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD971C01A150CAB005A9EE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD971C11A150CAB005A9EE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				AAD971E51A150D0F005A9EE5 /* MyTableViewController.h */,
 				AAD971E61A150D0F005A9EE5 /* MyTableViewController.m */,
 				AAD971C91A150CAB005A9EE5 /* Main.storyboard */,
+				AA05BFF51A153F1F00C57A38 /* Fruit.h */,
+				AA05BFF61A153F1F00C57A38 /* Fruit.m */,
 				AAD971C31A150CAB005A9EE5 /* AppDelegate.h */,
 				AAD971C41A150CAB005A9EE5 /* AppDelegate.m */,
 				AAD971CC1A150CAB005A9EE5 /* Images.xcassets */,
@@ -219,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA05BFF71A153F1F00C57A38 /* Fruit.m in Sources */,
 				AAD971E71A150D0F005A9EE5 /* MyTableViewController.m in Sources */,
 				AAD971C51A150CAB005A9EE5 /* AppDelegate.m in Sources */,
 				AAD971C21A150CAB005A9EE5 /* main.m in Sources */,

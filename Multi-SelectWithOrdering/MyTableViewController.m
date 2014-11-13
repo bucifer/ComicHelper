@@ -7,9 +7,11 @@
 //
 
 #import "MyTableViewController.h"
+#import "Fruit.h"
 
 @interface MyTableViewController () {
     NSMutableArray *dataArray;
+    NSMutableArray *fruitsArray;
 }
 
 @property (nonatomic, strong) NSMutableArray *searchResults;
@@ -27,10 +29,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    dataArray = [[NSMutableArray alloc]initWithObjects:@"Apple", @"Burger", @"Crane", @"Bu", @"Dark", @"Elephant", @"Friend", @"Gold", nil];
+    fruitsArray = [[NSMutableArray alloc]init];
+    dataArray = [[NSMutableArray alloc]initWithObjects:@"Apple", @"Grape", @"Blueberry", @"Strawberry", @"Banana", @"Mango", @"Pineapple", @"Watermelon", nil];
+    
+    for (int i=0; i < dataArray.count; i++) {
+        Fruit *fruit = [[Fruit alloc]init];
+        fruit.name = dataArray[i];
+        [fruitsArray addObject:fruit];
+    }
     
     //Setting up searchbar filter functionality
-    self.searchResults = [NSMutableArray arrayWithCapacity:[dataArray count]];
+    self.searchResults = [NSMutableArray arrayWithCapacity:[fruitsArray count]];
     self.selectedContacts = [[NSMutableArray array]init];
     self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
 }
@@ -45,8 +54,8 @@
 #pragma mark Search Bar Methods
 - (void)filterContentForSearchText:(NSString*)searchText scope: (NSString *) scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH[cd] %@", searchText];
-    self.searchResults = [[dataArray filteredArrayUsingPredicate:resultPredicate]mutableCopy];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
+    self.searchResults = [[fruitsArray filteredArrayUsingPredicate:resultPredicate]mutableCopy];
     NSLog(self.searchResults.description);
 }
 
@@ -80,7 +89,7 @@
         return [self.searchResults count];
     }
     else {
-        return dataArray.count;
+        return fruitsArray.count;
     }
 }
 
@@ -94,10 +103,10 @@
     
     // Configure the cell...
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[self.searchResults objectAtIndex:indexPath.row] name];
     }
     else {
-        cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[fruitsArray objectAtIndex:indexPath.row] name];
     }
     return cell;
 }
