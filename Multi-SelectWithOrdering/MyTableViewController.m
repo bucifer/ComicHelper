@@ -22,29 +22,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+     self.clearsSelectionOnViewWillAppear = YES;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    dataArray = [[NSMutableArray alloc]initWithObjects:@"A", @"B", @"C", @"D", @"E", @"F", @"G", nil];
+    dataArray = [[NSMutableArray alloc]initWithObjects:@"Apple", @"Burger", @"Crane", @"Bu", @"Dark", @"Elephant", @"Friend", @"Gold", nil];
     
     //Setting up searchbar filter functionality
     self.searchResults = [NSMutableArray arrayWithCapacity:[dataArray count]];
     self.selectedContacts = [[NSMutableArray array]init];
     self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
-
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
+#pragma mark Search Bar Methods
+- (void)filterContentForSearchText:(NSString*)searchText scope: (NSString *) scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH[cd] %@", searchText];
+    self.searchResults = [[dataArray filteredArrayUsingPredicate:resultPredicate]mutableCopy];
+    NSLog(self.searchResults.description);
+}
+
+
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    
+    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles]objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+
+    return YES;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
+    [tableView reloadData];
+    [self.tableView reloadData]; //these two lines make sure that both Filterview and Tableview data are refreshed - without it, it doesn't work
+}
+
+
+
+
+
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -63,12 +86,19 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if(!cell){
+        cell =
+        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
     
     // Configure the cell...
-    
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
-    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
+    }
+    else {
+        cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    }
     return cell;
 }
 
