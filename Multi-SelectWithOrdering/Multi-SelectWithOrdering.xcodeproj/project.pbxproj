@@ -15,7 +15,6 @@
 		AAD971CD1A150CAB005A9EE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD971CC1A150CAB005A9EE5 /* Images.xcassets */; };
 		AAD971D01A150CAB005A9EE5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD971CE1A150CAB005A9EE5 /* LaunchScreen.xib */; };
 		AAD971DC1A150CAB005A9EE5 /* Multi_SelectWithOrderingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD971DB1A150CAB005A9EE5 /* Multi_SelectWithOrderingTests.m */; };
-		AAD971E71A150D0F005A9EE5 /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD971E61A150D0F005A9EE5 /* MyTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +43,6 @@
 		AAD971D51A150CAB005A9EE5 /* Multi-SelectWithOrderingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Multi-SelectWithOrderingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD971DA1A150CAB005A9EE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD971DB1A150CAB005A9EE5 /* Multi_SelectWithOrderingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Multi_SelectWithOrderingTests.m; sourceTree = "<group>"; };
-		AAD971E51A150D0F005A9EE5 /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTableViewController.h; path = ../MyTableViewController.h; sourceTree = "<group>"; };
-		AAD971E61A150D0F005A9EE5 /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTableViewController.m; path = ../MyTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +84,6 @@
 		AAD971BE1A150CAB005A9EE5 /* Multi-SelectWithOrdering */ = {
 			isa = PBXGroup;
 			children = (
-				AAD971E51A150D0F005A9EE5 /* MyTableViewController.h */,
-				AAD971E61A150D0F005A9EE5 /* MyTableViewController.m */,
 				AAD971C91A150CAB005A9EE5 /* Main.storyboard */,
 				AA05BFF81A1541EF00C57A38 /* HomeViewController.h */,
 				AA05BFF91A1541EF00C57A38 /* HomeViewController.m */,
@@ -230,7 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA05BFF71A153F1F00C57A38 /* Fruit.m in Sources */,
-				AAD971E71A150D0F005A9EE5 /* MyTableViewController.m in Sources */,
 				AAD971C51A150CAB005A9EE5 /* AppDelegate.m in Sources */,
 				AA05BFFA1A1541EF00C57A38 /* HomeViewController.m in Sources */,
 				AAD971C21A150CAB005A9EE5 /* main.m in Sources */,
