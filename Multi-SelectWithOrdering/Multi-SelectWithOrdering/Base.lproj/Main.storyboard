@@ -12,6 +12,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="R79-qT-f4a">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="zGd-8L-amh" id="j2t-Iq-bXj"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="MKZ-PF-Nyu">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -26,8 +34,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="qQ2-YP-u2L"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="o0D-l7-8ZW" id="Ueq-UE-tBi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fc5-ZD-CWi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="o0D-l7-8ZW">
+                    <connections>
+                        <outlet property="delegate" destination="zGd-8L-amh" id="fRI-Ae-zho"/>
+                        <outlet property="searchBar" destination="R79-qT-f4a" id="RTg-sg-z2S"/>
+                        <outlet property="searchContentsController" destination="zGd-8L-amh" id="sgl-0z-eMl"/>
+                        <outlet property="searchResultsDataSource" destination="zGd-8L-amh" id="urY-yy-Y2X"/>
+                        <outlet property="searchResultsDelegate" destination="zGd-8L-amh" id="BQa-ag-1Ok"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1170" y="429"/>
         </scene>
