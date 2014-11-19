@@ -137,7 +137,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="6gw-nQ-OVZ">
+                    <navigationItem key="navigationItem" title="Jokes" id="6gw-nQ-OVZ">
                         <barButtonItem key="leftBarButtonItem" title="Delete" id="Vd1-pj-oSD">
                             <connections>
                                 <action selector="deleteBarButtonAction:" destination="BYZ-38-t0r" id="Zsx-Ms-hbl"/>

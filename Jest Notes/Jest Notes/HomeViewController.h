@@ -13,7 +13,7 @@
 @class JokeDataManager;
 
 
-@interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;

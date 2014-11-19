@@ -32,6 +32,34 @@
     self.createNewSetButton.layer.borderColor = [UIColor blackColor].CGColor;
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:@"My Title"
+                                 message:@"Select you Choice"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    
+    [view addAction:ok];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
 }
 
 
