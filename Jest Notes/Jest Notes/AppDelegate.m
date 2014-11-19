@@ -22,7 +22,6 @@
     // Override point for customization after application launch.
     
     UITabBarController *myTabBarController = (UITabBarController *) self.window.rootViewController;
-    ((UITabBarItem *)myTabBarController.tabBar.items[0]).selectedImage = [UIImage imageNamed:@"test"];
     
     JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
     myJokeDatamanager.managedObjectContext = self.managedObjectContext;

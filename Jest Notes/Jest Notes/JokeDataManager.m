@@ -63,6 +63,19 @@
     }
 }
 
+- (void) refreshDataWithNewFetch {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedJokesFromCD == nil) {
+        NSLog(@"some horrible error in fetching CD: %@", error);
+    }
+    self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
+    NSLog(@"refreshed data with new fetch");
+}
+
 - (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes {
     
     NSMutableArray *resultArrayOfJokePLs = [[NSMutableArray alloc]init];
@@ -133,7 +146,18 @@
     [self returnUniqueIDmaxValue];
 }
 
-
+- (JokePL *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
+    JokePL *joke = [[JokePL alloc]init];
+    joke.title = jokeTitle;
+    joke.score = [jokeScore floatValue];
+    joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
+    joke.creationDate = jokeDate;
+    joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
+    
+    [self.jokes addObject:joke];
+    
+    return joke;
+}
 
 
 

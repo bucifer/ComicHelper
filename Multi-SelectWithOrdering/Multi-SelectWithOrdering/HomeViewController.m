@@ -100,13 +100,37 @@
         [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    // Configure the cell...
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] name];
+    Fruit *selectedFruit;
+    if (tableView != self.searchDisplayController.searchResultsTableView) {
+        //if we are in regular table view
+        
+        selectedFruit = [fruitsArray objectAtIndex:indexPath.row];
+
+        
+        if (selectedFruit.checkmarkFlag == YES) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else if (selectedFruit.checkmarkFlag == NO) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        cell.textLabel.text = selectedFruit.name;
     }
     else {
-        cell.textLabel.text = [[fruitsArray objectAtIndex:indexPath.row] name];
+        //if we are in filter search results view
+        selectedFruit = [searchResults objectAtIndex:indexPath.row];
+        if (selectedFruit.checkmarkFlag == YES) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else if (selectedFruit.checkmarkFlag == NO) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        cell.textLabel.text = selectedFruit.name;
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //to make sure there's no gray highlighting when it's clicked - important
+    
+    
     return cell;
 }
 

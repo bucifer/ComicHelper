@@ -58,24 +58,13 @@
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.creationDatePicker.date;
     
-    [self createNewJokeInPresentationLayer:jokeTitle jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
+    [self.jokeDataManager createNewJokeInPresentationLayer:jokeTitle jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
     [self.jokeDataManager createNewJokeInCoreData:jokeTitle jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (JokePL *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
-    JokePL *joke = [[JokePL alloc]init];
-    joke.title = jokeTitle;
-    joke.score = [jokeScore floatValue];
-    joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
-    joke.creationDate = jokeDate;
-    joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.jokeDataManager.uniqueIDmaxValue intValue] + 1];
 
-    [self.jokeDataManager.jokes addObject:joke];
-    
-    return joke;
-}
 
 
 

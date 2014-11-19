@@ -23,7 +23,7 @@
                                     <outlet property="delegate" destination="0k1-ew-k58" id="PPp-tX-sRe"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qLK-lh-6Sv">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="qLK-lh-6Sv">
                                 <rect key="frame" x="0.0" y="108" width="600" height="29"/>
                                 <segments>
                                     <segment title="First"/>
