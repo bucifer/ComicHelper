@@ -209,7 +209,7 @@
 
 
 - (BOOL) isScoreInputValid: (float) score {
-    if (score > 10 || score < 0) {
+    if (score > 10.0 || score < 0) {
         return FALSE;
     }
     return TRUE;

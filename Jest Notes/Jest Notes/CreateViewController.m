@@ -10,9 +10,7 @@
 #import "JokePL.h"
 #import "JokeCD.h"
 
-@interface CreateViewController () {
-    NSString *temporaryStoredDate;
-}
+@interface CreateViewController ()
 
 @end
 
@@ -71,8 +69,7 @@
 
 
 - (BOOL) alertIfInvalid: (NSString *) scoreString {
-    int tempScoreStore = [scoreString floatValue];
-    if ([self.jokeDataManager isScoreInputValid:tempScoreStore] == FALSE) {
+    if ([self.jokeDataManager isScoreInputValid:[scoreString floatValue]] == NO) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score out of range"
                                                         message:@"Your score input is out of range. Please input a number between 0 to 10 (inclusive) under Joke Score"
                                                        delegate:nil

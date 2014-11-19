@@ -28,38 +28,8 @@
     // Do any additional setup after loading the view.
     [self.jokeDataManager appInitializationLogic];
     
-    self.createNewJokeButton.layer.borderColor = [UIColor blackColor].CGColor;
-    self.createNewSetButton.layer.borderColor = [UIColor blackColor].CGColor;
-    
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
-    UIAlertController * view=   [UIAlertController
-                                 alertControllerWithTitle:@"My Title"
-                                 message:@"Select you Choice"
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             //Do some thing here
-                             [view dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [view dismissViewControllerAnimated:YES completion:nil];
-                                 
-                             }];
-    
-    
-    [view addAction:ok];
-    [view addAction:cancel];
-    [self presentViewController:view animated:YES completion:nil];
 }
 
 
@@ -179,6 +149,51 @@
     
     [self.tableView setEditing:![self.tableView isEditing]];
     
+}
+
+- (IBAction)addButtonAction:(id)sender {
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:nil
+                                 message:nil
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* jokeAdd = [UIAlertAction
+                         actionWithTitle:@"Add New Joke"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             CreateViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+                             cvc.jokeDataManager = self.jokeDataManager;
+                             [self.navigationController pushViewController:cvc animated:YES];
+                             [view dismissViewControllerAnimated:YES completion:nil];
+                         }];
+    
+    UIAlertAction* setAdd = [UIAlertAction
+                              actionWithTitle:@"Add New Set"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  //Do some thing here
+                                  [view dismissViewControllerAnimated:YES completion:nil];
+                                  
+                              }];
+    
+    
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    
+    [view addAction:jokeAdd];
+    [view addAction:setAdd];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
+
 }
 
 
