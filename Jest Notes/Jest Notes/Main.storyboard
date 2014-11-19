@@ -143,7 +143,7 @@
                                 <action selector="deleteBarButtonAction:" destination="BYZ-38-t0r" id="Zsx-Ms-hbl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="dCw-DD-suf">
+                        <barButtonItem key="rightBarButtonItem" image="pen" style="plain" id="dCw-DD-suf">
                             <connections>
                                 <action selector="addButtonAction:" destination="BYZ-38-t0r" id="C4N-EZ-pKb"/>
                             </connections>
@@ -695,6 +695,7 @@
     </scenes>
     <resources>
         <image name="basicHome" width="32" height="32"/>
+        <image name="pen" width="32" height="32"/>
         <image name="questionMark" width="32" height="32"/>
     </resources>
 </document>

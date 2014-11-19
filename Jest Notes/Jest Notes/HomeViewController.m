@@ -41,6 +41,11 @@
     [self.jokeDataManager refreshDataWithNewFetch];
     [self.jokeDataManager sortArrayWithOneDescriptorString:self.jokeDataManager.jokes descriptor:@"uniqueID" ascending:YES];
     [self.tableView reloadData];
+    
+    if (self.jokeDataManager.jokes.count == 0)
+        self.deleteBarButton.title = nil;
+    else if (self.jokeDataManager.jokes.count > 0)
+        self.deleteBarButton.title = @"Delete";
 }
 
 
@@ -102,15 +107,19 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
         JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-        
         JokeCD *correspondingCDJoke = (JokeCD*) [self.jokeDataManager.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:nil];
         [self.jokeDataManager.managedObjectContext deleteObject:correspondingCDJoke];
         [self.jokeDataManager saveChangesInContextCoreData];
 
         [self.jokeDataManager.jokes removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
     }
+    
+    if (self.jokeDataManager.jokes.count == 0) {
+        self.deleteBarButton.title = nil;
+        [self.tableView setEditing:![self.tableView isEditing]];
+    }
+    
 }
 
 
