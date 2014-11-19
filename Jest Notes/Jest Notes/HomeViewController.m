@@ -32,7 +32,6 @@
     
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -161,7 +160,7 @@
 }
 
 - (IBAction)addButtonAction:(id)sender {
-    UIAlertController * view=   [UIAlertController
+    UIAlertController *myAc=   [UIAlertController
                                  alertControllerWithTitle:nil
                                  message:nil
                                  preferredStyle:UIAlertControllerStyleActionSheet];
@@ -174,7 +173,7 @@
                              CreateViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
                              cvc.jokeDataManager = self.jokeDataManager;
                              [self.navigationController pushViewController:cvc animated:YES];
-                             [view dismissViewControllerAnimated:YES completion:nil];
+                             [myAc dismissViewControllerAnimated:YES completion:nil];
                          }];
     
     UIAlertAction* setAdd = [UIAlertAction
@@ -183,7 +182,7 @@
                               handler:^(UIAlertAction * action)
                               {
                                   //Do some thing here
-                                  [view dismissViewControllerAnimated:YES completion:nil];
+                                  [myAc dismissViewControllerAnimated:YES completion:nil];
                                   
                               }];
     
@@ -193,15 +192,15 @@
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 [myAc dismissViewControllerAnimated:YES completion:nil];
                                  
                              }];
     
     
-    [view addAction:jokeAdd];
-    [view addAction:setAdd];
-    [view addAction:cancel];
-    [self presentViewController:view animated:YES completion:nil];
+    [myAc addAction:jokeAdd];
+    [myAc addAction:setAdd];
+    [myAc addAction:cancel];
+    [self presentViewController:myAc animated:YES completion:nil];
 
 }
 

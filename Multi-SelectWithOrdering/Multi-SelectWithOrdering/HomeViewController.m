@@ -53,7 +53,6 @@
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
     searchResults = [[fruitsArray filteredArrayUsingPredicate:resultPredicate]mutableCopy];
-    NSLog(searchResults.description);
 }
 
 
@@ -66,8 +65,7 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
     [tableView reloadData];
-//    [self.tableView reloadData];
-    
+    [self.tableView reloadData];
     //these two lines make sure that both Filterview and Tableview data are refreshed - without it, it doesn't work
 }
 
@@ -106,9 +104,12 @@
         
         selectedFruit = [fruitsArray objectAtIndex:indexPath.row];
 
-        
         if (selectedFruit.checkmarkFlag == YES) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
+            //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
+            //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview 
         }
         else if (selectedFruit.checkmarkFlag == NO) {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -137,13 +138,50 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    Fruit *selectedFruit;
+    
+    //if its filterview mode
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        selectedFruit = [searchResults objectAtIndex:indexPath.row];
+        if (selectedFruit.checkmarkFlag == YES) {
+            selectedFruit.checkmarkFlag = NO;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [selectedObjects removeObject:selectedFruit];
+        }
+        else {
+            selectedFruit.checkmarkFlag = YES;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [selectedObjects addObject:selectedFruit];
+        }
+    }
+    
+    //if its just regular tableview mode, and you selected something
+    //this can get tricky because you might be in this regular tableview when you are
+    // 1) first time you are seeing the tableview
+    // 2) You came back to the regular tableview after using the filter view
+    // so we need logic to take care of both cases
+    
+    else {
+        selectedFruit = [fruitsArray objectAtIndex:indexPath.row];
+        selectedFruit.checkmarkFlag = YES;
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [selectedObjects addObject:selectedFruit];
+    }
+    
+    
+    NSLog(@"%@", selectedObjects);
 }
 
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    Fruit *selectedFruit = [fruitsArray objectAtIndex:indexPath.row];
+    selectedFruit.checkmarkFlag = NO;
     cell.accessoryType = UITableViewCellAccessoryNone;
+    [selectedObjects removeObject:fruitsArray[indexPath.row]];
+    
+    NSLog(@"%@", selectedObjects);
+
 }
 
 
