@@ -18,11 +18,9 @@
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteBarButton;
 
 - (IBAction)deleteBarButtonAction:(id)sender;
-- (IBAction)addButtonAction:(id)sender;
 
 
 @end

@@ -14,6 +14,7 @@
 #import "Set.h"
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
+#import "SetCreateViewController.h"
 
 @interface HomeViewController ()
 
@@ -29,6 +30,14 @@
     [self.jokeDataManager appInitializationLogic];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    
+    
+    UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addJokeButtonAction)];
+    UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addSetButtonAction)];
+
+    
+    NSArray *buttonArray = [NSArray arrayWithObjects:addJokeButton, addSetButton, nil];
+    self.navigationItem.rightBarButtonItems = buttonArray;
     
 }
 
@@ -127,10 +136,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"creation"])
+    if ([[segue identifier] isEqualToString:@"jokeCreationViewSegue"])
     {
         // Get reference to the destination view controller
-        CreateViewController *cvc = [segue destinationViewController];
+        CreateViewController *cvc = (CreateViewController*) [segue destinationViewController];
         cvc.jokeDataManager = self.jokeDataManager;
     }
     else if ([[segue identifier] isEqualToString:@"singleView"]) {
@@ -142,6 +151,12 @@
         sjvc.jokeDataManager = self.jokeDataManager;
     }
     
+    else if ([[segue identifier] isEqualToString:@"setCreationViewSegue"])
+    {
+        // Get reference to the destination view controller
+        SetCreateViewController *scvc = (SetCreateViewController*)[[segue destinationViewController] topViewController];
+        scvc.jokeDataManager = self.jokeDataManager;
+    }
 }
 
 
@@ -159,50 +174,23 @@
     
 }
 
-- (IBAction)addButtonAction:(id)sender {
-    UIAlertController *myAc=   [UIAlertController
-                                 alertControllerWithTitle:nil
-                                 message:nil
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
+- (IBAction) addSetButtonAction {
     
-    UIAlertAction* jokeAdd = [UIAlertAction
-                         actionWithTitle:@"Add New Joke"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             CreateViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-                             cvc.jokeDataManager = self.jokeDataManager;
-                             [self.navigationController pushViewController:cvc animated:YES];
-                             [myAc dismissViewControllerAnimated:YES completion:nil];
-                         }];
-    
-    UIAlertAction* setAdd = [UIAlertAction
-                              actionWithTitle:@"Add New Set"
-                              style:UIAlertActionStyleDefault
-                              handler:^(UIAlertAction * action)
-                              {
-                                  //Do some thing here
-                                  [myAc dismissViewControllerAnimated:YES completion:nil];
-                                  
-                              }];
-    
-    
-    UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [myAc dismissViewControllerAnimated:YES completion:nil];
-                                 
-                             }];
-    
-    
-    [myAc addAction:jokeAdd];
-    [myAc addAction:setAdd];
-    [myAc addAction:cancel];
-    [self presentViewController:myAc animated:YES completion:nil];
-
+    [self performSegueWithIdentifier:@"setCreationViewSegue" sender:self];
 }
+
+                                                                                                                                              
+- (IBAction) addJokeButtonAction {
+    
+    [self performSegueWithIdentifier:@"jokeCreationViewSegue" sender:self];
+
+    
+}
+                                                                                                                                              
+                                                                                                                                              
+                                                                                                                                        
+                                                                                                                                              
+
 
 
 @end

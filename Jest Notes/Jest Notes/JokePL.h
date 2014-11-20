@@ -21,6 +21,7 @@
 //this ID is used for matching up presentation and core data layer objects
 @property (nonatomic, strong) NSManagedObjectID *managedObjectID;
 
+@property BOOL checkmarkFlag; 
 
 
 @end
