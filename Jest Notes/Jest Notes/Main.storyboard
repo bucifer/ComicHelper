@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hn7-Ye-daZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hn7-Ye-daZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -8,7 +8,7 @@
         <!--HomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="HomeViewController" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController title="JokesViewController" id="BYZ-38-t0r" userLabel="HomeViewController" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -143,7 +143,7 @@
                                 <action selector="deleteBarButtonAction:" destination="BYZ-38-t0r" id="Zsx-Ms-hbl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="pen" style="plain" id="dCw-DD-suf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="dCw-DD-suf">
                             <connections>
                                 <action selector="addButtonAction:" destination="BYZ-38-t0r" id="C4N-EZ-pKb"/>
                             </connections>
@@ -156,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1667" y="-89"/>
+            <point key="canvasLocation" x="1369" y="-297"/>
         </scene>
         <!--Joke Creation View-->
         <scene sceneID="8ae-Ql-Nzv">
@@ -451,7 +451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA5-6P-Gd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2499" y="361"/>
+            <point key="canvasLocation" x="3311" y="361"/>
         </scene>
         <!--Edit Screen-->
         <scene sceneID="3Uo-D1-X8C">
@@ -596,13 +596,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3249" y="361"/>
+            <point key="canvasLocation" x="4061" y="361"/>
         </scene>
-        <!--Home-->
+        <!--Nav-Jokes-->
         <scene sceneID="7FY-N7-vJt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E1r-ee-IgC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="basicHome" id="IeX-J6-GNH"/>
+                <navigationController title="Nav-Jokes" automaticallyAdjustsScrollViewInsets="NO" id="E1r-ee-IgC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Jokes" image="joke" id="IeX-J6-GNH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fhN-bf-q2W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -615,9 +615,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQ0-b4-00J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="-94"/>
+            <point key="canvasLocation" x="492" y="-292"/>
         </scene>
-        <!--View Controller-->
+        <!--Help-->
         <scene sceneID="Pis-wU-7eG">
             <objects>
                 <viewController id="1oQ-IZ-I1j" sceneMemberID="viewController">
@@ -647,11 +647,11 @@
                             <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="nMh-tA-dG3" secondAttribute="bottom" constant="103" id="vYR-EX-uqT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xaN-gM-lvg"/>
+                    <navigationItem key="navigationItem" title="Help" id="xaN-gM-lvg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0u-VD-RGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1694" y="835"/>
+            <point key="canvasLocation" x="2506" y="835"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Ttk-4D-hLq">
@@ -666,17 +666,37 @@
                     </tabBar>
                     <connections>
                         <segue destination="E1r-ee-IgC" kind="relationship" relationship="viewControllers" id="b1k-8Q-Cj4"/>
+                        <segue destination="7aL-fj-iKb" kind="relationship" relationship="viewControllers" id="23C-2t-1r8"/>
                         <segue destination="IrR-7d-6Y9" kind="relationship" relationship="viewControllers" id="7OW-j3-Uxj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aK-Vb-N5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-242" y="76"/>
+            <point key="canvasLocation" x="-440" y="-302"/>
         </scene>
-        <!--Help-->
+        <!--Set-->
+        <scene sceneID="9rK-8M-FXL">
+            <objects>
+                <viewController id="id4-8F-qdT" customClass="SetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RCU-pi-mJa"/>
+                        <viewControllerLayoutGuide type="bottom" id="3CJ-pu-yKe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j5a-9M-fIe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Set" id="0Te-rv-1wE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DF1-K6-32A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="610"/>
+        </scene>
+        <!--Nav-Help-->
         <scene sceneID="1PN-uw-a1F">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IrR-7d-6Y9" sceneMemberID="viewController">
+                <navigationController title="Nav-Help" automaticallyAdjustsScrollViewInsets="NO" id="IrR-7d-6Y9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Help" image="questionMark" id="hyL-ua-MWv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kmS-yJ-0qL">
@@ -690,12 +710,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAz-hD-8E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="811"/>
+            <point key="canvasLocation" x="1712" y="811"/>
+        </scene>
+        <!--Nav-Set-->
+        <scene sceneID="WiY-zk-2NH">
+            <objects>
+                <navigationController title="Nav-Set" automaticallyAdjustsScrollViewInsets="NO" id="7aL-fj-iKb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Set" image="set" id="kaW-5w-QnV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cU7-wg-lR7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="id4-8F-qdT" kind="relationship" relationship="rootViewController" id="UZj-nN-kNj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1yj-uf-nTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-300" y="610"/>
         </scene>
     </scenes>
     <resources>
-        <image name="basicHome" width="32" height="32"/>
-        <image name="pen" width="32" height="32"/>
+        <image name="joke" width="32" height="32"/>
         <image name="questionMark" width="32" height="32"/>
+        <image name="set" width="32" height="32"/>
     </resources>
 </document>
