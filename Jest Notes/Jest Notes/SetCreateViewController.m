@@ -57,7 +57,6 @@
 
 
 
-
 #pragma mark tableview methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -76,91 +75,86 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *simpleCellIdentifier = @"JokeCustomCell";
-    JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
-    if(!cell){
-        cell =
-        [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
-    }
     
     JokePL *joke;
     if (tableView != self.searchDisplayController.searchResultsTableView) {
         //if we are in regular table view
-        
+        JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+        if(!cell){
+            cell =
+            [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
+        }
         joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-        
+        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
+        cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+        cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
+        cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"M/dd/yy"];
+        cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
         if (joke.checkmarkFlag == YES) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.accessoryView = [self createCustomCheckmarkAccessoryViewWithImage];
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
             //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
             //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview
         }
         else if (joke.checkmarkFlag == NO) {
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.accessoryView = nil;
         }
+        //Background color for selection
+        UIView *bgColorView = [[UIView alloc] init];
+        bgColorView.backgroundColor = [self colorWithHexString:@"ffe700"];
+        [cell setSelectedBackgroundView:bgColorView];
+        return cell;
     }
     else {
         //if we are in filter search results view
+        UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if(!cell){
+            cell =
+            [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
+        }
         joke = [searchResults objectAtIndex:indexPath.row];
-        if (joke.checkmarkFlag == YES) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else if (joke.checkmarkFlag == NO) {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
+
+        //Fill in the cell with data
+        cell.textLabel.text = joke.title;
+        
+        //Background color for selection
+        UIView *bgColorView = [[UIView alloc] init];
+        bgColorView.backgroundColor = [self colorWithHexString:@"ffe700"];
+        [cell setSelectedBackgroundView:bgColorView];
+        
+        //checkmark logic
+        cell.accessoryView = (joke.checkmarkFlag == YES) ? [self createCustomCheckmarkAccessoryViewWithImage] : nil;
+
+        return cell;
     }
-    
-    //Background color for selection
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [self colorWithHexString:@"ffe700"];
-    [cell setSelectedBackgroundView:bgColorView];
-    
-    cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
-    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
-    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
-    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"M/dd/yy"];
-    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
-    
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     JokePL *selectedJoke;
     
-    //if its filterview mode
     if (tableView == self.searchDisplayController.searchResultsTableView){
+        //if its filterview mode
         selectedJoke = [searchResults objectAtIndex:indexPath.row];
         if (selectedJoke.checkmarkFlag == YES) {
             selectedJoke.checkmarkFlag = NO;
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.accessoryView = nil;
             [selectedObjects removeObject:selectedJoke];
         }
         else {
             selectedJoke.checkmarkFlag = YES;
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.accessoryView = [self createCustomCheckmarkAccessoryViewWithImage];
             [selectedObjects addObject:selectedJoke];
         }
     }
-    
-    //if its just regular tableview mode, and you selected something
-    //this can get tricky because you might be in this regular tableview when you are
-    // 1) first time you are seeing the tableview
-    // 2) You came back to the regular tableview after using the filter view
-    // so we need logic to take care of both cases
-    
     else {
+        //if we are in regular tableview mode
         selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         selectedJoke.checkmarkFlag = YES;
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        UIImage *image = [UIImage imageNamed:@"checkmark"];
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
-        button.frame = frame;
-        [button setBackgroundImage:image forState:UIControlStateNormal];
-        cell.accessoryView = button;
+        cell.accessoryView = [self createCustomCheckmarkAccessoryViewWithImage];
         [selectedObjects addObject:selectedJoke];
     }
     
@@ -168,12 +162,23 @@
     NSLog(@"%@", selectedObjects);
 }
 
+- (UIButton *) createCustomCheckmarkAccessoryViewWithImage {
+    UIImage *image = [UIImage imageNamed:@"checkmark"];
+    UIButton *customCheckmarkImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
+    customCheckmarkImageButton.frame = frame;
+    [customCheckmarkImageButton setBackgroundImage:image forState:UIControlStateNormal];
+    return customCheckmarkImageButton;
+}
+
+
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     selectedJoke.checkmarkFlag = NO;
     cell.accessoryView = nil;
+
     [selectedObjects removeObject:selectedJoke];
     
     NSLog(@"%@", selectedObjects);

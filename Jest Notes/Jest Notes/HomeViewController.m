@@ -36,7 +36,7 @@
     UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addSetButtonAction)];
 
     
-    NSArray *buttonArray = [NSArray arrayWithObjects:addJokeButton, addSetButton, nil];
+    NSArray *buttonArray = [NSArray arrayWithObjects:addSetButton, addJokeButton, nil];
     self.navigationItem.rightBarButtonItems = buttonArray;
     
 }
