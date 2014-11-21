@@ -148,7 +148,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Jokes" id="6gw-nQ-OVZ">
+                    <navigationItem key="navigationItem" title="Your Jokes" id="6gw-nQ-OVZ">
                         <barButtonItem key="leftBarButtonItem" title="Delete" id="Vd1-pj-oSD">
                             <connections>
                                 <action selector="deleteBarButtonAction:" destination="BYZ-38-t0r" id="Zsx-Ms-hbl"/>
@@ -358,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-7l-PX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304" y="-1106"/>
+            <point key="canvasLocation" x="1304" y="-1402"/>
         </scene>
         <!--Single Joke View Controller-->
         <scene sceneID="tPC-WR-RFV">
@@ -468,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA5-6P-Gd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304" y="-385"/>
+            <point key="canvasLocation" x="1304" y="-701"/>
         </scene>
         <!--Edit Screen-->
         <scene sceneID="3Uo-D1-X8C">
@@ -613,7 +613,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2139" y="-385"/>
+            <point key="canvasLocation" x="2109" y="-701"/>
         </scene>
         <!--Nav-Jokes-->
         <scene sceneID="7FY-N7-vJt">
@@ -668,7 +668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0u-VD-RGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="495" y="1034"/>
+            <point key="canvasLocation" x="525" y="1058"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Ttk-4D-hLq">
@@ -714,8 +714,8 @@
                                 <rect key="frame" x="0.0" y="108" width="600" height="29"/>
                                 <segments>
                                     <segment title="Sort by Joke #"/>
-                                    <segment title="Sort A-Z"/>
-                                    <segment title="Sort by Date"/>
+                                    <segment title="A-Z"/>
+                                    <segment title="Most Recent"/>
                                 </segments>
                                 <connections>
                                     <action selector="segCtrlAction:" destination="id4-8F-qdT" eventType="valueChanged" id="bOq-gs-Fgz"/>
@@ -847,13 +847,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Your Set" id="0Te-rv-1wE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="QSi-dx-QRn">
-                            <connections>
-                                <action selector="doneAction:" destination="id4-8F-qdT" id="2CG-Nh-fbf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Create Your Set" id="0Te-rv-1wE"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="Ecd-aq-8vR" id="wZJ-kX-WT6"/>
                         <outlet property="tableView" destination="MWA-sW-jqe" id="ihp-07-NsN"/>
@@ -870,7 +864,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="495" y="210"/>
+            <point key="canvasLocation" x="1304" y="12"/>
         </scene>
         <!--Nav-Help-->
         <scene sceneID="1PN-uw-a1F">
@@ -889,23 +883,53 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAz-hD-8E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-246" y="1034"/>
+            <point key="canvasLocation" x="-220" y="1058"/>
         </scene>
         <!--Nav-Set-->
         <scene sceneID="WiY-zk-2NH">
             <objects>
                 <navigationController title="Nav-Set" automaticallyAdjustsScrollViewInsets="NO" id="7aL-fj-iKb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Set" image="set" id="kaW-5w-QnV"/>
+                    <tabBarItem key="tabBarItem" title="Sets" image="set" id="kaW-5w-QnV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cU7-wg-lR7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="D5R-Up-jtI" kind="relationship" relationship="rootViewController" id="GfT-hE-uOf"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1yj-uf-nTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-246" y="210"/>
+            <point key="canvasLocation" x="-220" y="210"/>
+        </scene>
+        <!--Your Sets-->
+        <scene sceneID="JAT-is-RoV">
+            <objects>
+                <tableViewController id="D5R-Up-jtI" customClass="SetViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1th-N8-Fw3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Hne-sD-Imm">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hne-sD-Imm" id="9Fz-Xh-o90">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="D5R-Up-jtI" id="Jhl-ir-YUu"/>
+                            <outlet property="delegate" destination="D5R-Up-jtI" id="U9h-7Q-Wt3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Your Sets" id="Mhq-ii-MYj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YJD-Lf-azJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="210"/>
         </scene>
     </scenes>
     <resources>

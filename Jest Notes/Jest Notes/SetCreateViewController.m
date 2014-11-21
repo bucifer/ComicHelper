@@ -29,6 +29,15 @@
     selectedObjects = [[NSMutableArray array]init];
     self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
     
+    
+    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshSetSelectionAction:)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
+    
+    
+    NSArray *buttonArray = [NSArray arrayWithObjects:doneButton, clearButton, nil];
+    self.navigationItem.rightBarButtonItems = buttonArray;
+    
+    
     viewManager = [[ViewManager alloc]init];
     
 }
@@ -215,7 +224,7 @@
         }
         case 2: {
             NSLog(@"Sort by Joke Creation Date");
-            [self sortYourJokesArrayWithDescriptor:@"creationDate" ascending:YES];
+            [self sortYourJokesArrayWithDescriptor:@"creationDate" ascending:NO];
             break;
         }
         default:
@@ -235,13 +244,35 @@
 }
 
 
+- (IBAction)refreshSetSelectionAction:(id)sender {
+    
+    for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row ++)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        selectedJoke.checkmarkFlag = NO;
+        cell.accessoryView = nil;
+        [selectedObjects removeObject:selectedJoke];
+    }
+
+    //doesn't work for some reason. if i dont reload data, it seems like it works but it doesn't work once you refresh - cells stay highlighted
+    
+    
+}
+
+
 - (IBAction)doneAction:(id)sender {
     
-    for (int i=0; i < selectedObjects.count; i++) {
-        JokePL *oneJoke = selectedObjects[i];
-        NSLog(@"%@", oneJoke.title);
+    if (selectedObjects.count == 0)
+        NSLog(@"Nothing Selected");
+    else {
+        for (int i=0; i < selectedObjects.count; i++) {
+            JokePL *oneJoke = selectedObjects[i];
+            NSLog(@"%@", oneJoke.title);
+        }
     }
-    
 }
 
 @end
