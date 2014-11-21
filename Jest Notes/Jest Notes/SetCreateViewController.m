@@ -9,10 +9,12 @@
 #import "SetCreateViewController.h"
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
+#import "ViewManager.h"
 
 @interface SetCreateViewController ()  {
     NSMutableArray *searchResults;
     NSMutableArray *selectedObjects;
+    ViewManager *viewManager;
 }
 
 @end
@@ -26,6 +28,9 @@
     searchResults = [NSMutableArray arrayWithCapacity:[self.jokeDataManager.jokes count]];
     selectedObjects = [[NSMutableArray array]init];
     self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
+    
+    viewManager = [[ViewManager alloc]init];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,7 +98,7 @@
         [dateFormatter setDateFormat:@"M/dd/yy"];
         cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
         if (joke.checkmarkFlag == YES) {
-            cell.accessoryView = [self createCustomCheckmarkAccessoryViewWithImage];
+            cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
             //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
@@ -104,7 +109,7 @@
         }
         //Background color for selection
         UIView *bgColorView = [[UIView alloc] init];
-        bgColorView.backgroundColor = [self colorWithHexString:@"ffe700"];
+        bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
         [cell setSelectedBackgroundView:bgColorView];
         return cell;
     }
@@ -122,11 +127,11 @@
         
         //Background color for selection
         UIView *bgColorView = [[UIView alloc] init];
-        bgColorView.backgroundColor = [self colorWithHexString:@"ffe700"];
+        bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
         [cell setSelectedBackgroundView:bgColorView];
         
         //checkmark logic
-        cell.accessoryView = (joke.checkmarkFlag == YES) ? [self createCustomCheckmarkAccessoryViewWithImage] : nil;
+        cell.accessoryView = (joke.checkmarkFlag == YES) ? [viewManager createCustomCheckmarkAccessoryViewWithImage] : nil;
 
         return cell;
     }
@@ -146,7 +151,7 @@
         }
         else {
             selectedJoke.checkmarkFlag = YES;
-            cell.accessoryView = [self createCustomCheckmarkAccessoryViewWithImage];
+            cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
             [selectedObjects addObject:selectedJoke];
         }
     }
@@ -154,7 +159,7 @@
         //if we are in regular tableview mode
         selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         selectedJoke.checkmarkFlag = YES;
-        cell.accessoryView = [self createCustomCheckmarkAccessoryViewWithImage];
+        cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
         [selectedObjects addObject:selectedJoke];
     }
     
@@ -162,14 +167,7 @@
     NSLog(@"%@", selectedObjects);
 }
 
-- (UIButton *) createCustomCheckmarkAccessoryViewWithImage {
-    UIImage *image = [UIImage imageNamed:@"checkmark"];
-    UIButton *customCheckmarkImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
-    customCheckmarkImageButton.frame = frame;
-    [customCheckmarkImageButton setBackgroundImage:image forState:UIControlStateNormal];
-    return customCheckmarkImageButton;
-}
+
 
 
 
@@ -192,40 +190,58 @@
 }
 
 
-- (UIColor*)colorWithHexString:(NSString*)hex
-{
-    NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+#pragma mark IBAction methods
+
+- (IBAction)segCtrlAction:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
     
-    // String should be 6 or 8 characters
-    if ([cString length] < 6) return [UIColor grayColor];
+    switch (selectedSegment) {
+        case 0: {
+            NSLog(@"Sort by Joke ID Number");
+            [self sortYourJokesArrayWithDescriptor:@"uniqueID" ascending:YES];
+            break;
+        }
+        case 1: {
+            NSLog(@"Sort by joke title alphabetical");
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"
+                                                                           ascending:YES
+                                                                            selector:@selector(localizedCaseInsensitiveCompare:)];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            NSArray *sortedArray = [self.jokeDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
+            self.jokeDataManager.jokes = [sortedArray mutableCopy];
+            [self.tableView reloadData];
+            break;
+        }
+        case 2: {
+            NSLog(@"Sort by Joke Creation Date");
+            [self sortYourJokesArrayWithDescriptor:@"creationDate" ascending:YES];
+            break;
+        }
+        default:
+            break;
+    }
+
+}
+
+- (void) sortYourJokesArrayWithDescriptor: (NSString *) descriptor ascending: (BOOL) ascending {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:descriptor
+                                                                   ascending:ascending
+                                        ];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [self.jokeDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
+    self.jokeDataManager.jokes = [sortedArray mutableCopy];
+    [self.tableView reloadData];
+}
+
+
+- (IBAction)doneAction:(id)sender {
     
-    // strip 0X if it appears
-    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    for (int i=0; i < selectedObjects.count; i++) {
+        JokePL *oneJoke = selectedObjects[i];
+        NSLog(@"%@", oneJoke.title);
+    }
     
-    if ([cString length] != 6) return  [UIColor grayColor];
-    
-    // Separate into r, g, b substrings
-    NSRange range;
-    range.location = 0;
-    range.length = 2;
-    NSString *rString = [cString substringWithRange:range];
-    
-    range.location = 2;
-    NSString *gString = [cString substringWithRange:range];
-    
-    range.location = 4;
-    NSString *bString = [cString substringWithRange:range];
-    
-    // Scan values
-    unsigned int r, g, b;
-    [[NSScanner scannerWithString:rString] scanHexInt:&r];
-    [[NSScanner scannerWithString:gString] scanHexInt:&g];
-    [[NSScanner scannerWithString:bString] scanHexInt:&b];
-    
-    return [UIColor colorWithRed:((float) r / 255.0f)
-                           green:((float) g / 255.0f)
-                            blue:((float) b / 255.0f)
-                           alpha:1.0f];
 }
 
 @end

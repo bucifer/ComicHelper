@@ -11,7 +11,6 @@
 @interface NSObject (NSObject___TerryConvenience)
 
 - (NSString *) quickStringFromInt: (int) someInt;
-
 - (NSString *) turnSecondsIntegerIntoMinuteAndSecondsFormat: (int) seconds;
 - (NSString *) turnSecondsIntoReallyShortTimeFormatColon: (int) seconds;
 
