@@ -782,6 +782,7 @@
                                                 <constraint firstItem="dAT-SB-bBj" firstAttribute="trailing" secondItem="hYC-Tz-dNn" secondAttribute="trailing" id="U43-Ma-vb2"/>
                                                 <constraint firstItem="Fdg-iw-H3f" firstAttribute="top" secondItem="LMe-ec-aZd" secondAttribute="topMargin" constant="13" id="XHr-nc-yer"/>
                                                 <constraint firstItem="OHg-Eg-uxk" firstAttribute="centerX" secondItem="Fdg-iw-H3f" secondAttribute="centerX" id="aYL-8j-R7w"/>
+                                                <constraint firstItem="dAT-SB-bBj" firstAttribute="top" secondItem="LMe-ec-aZd" secondAttribute="topMargin" constant="-2" id="aYP-iq-jKK"/>
                                                 <constraint firstItem="AgB-Nj-Rkf" firstAttribute="trailing" secondItem="hYC-Tz-dNn" secondAttribute="trailing" constant="12" id="dYY-3K-QTJ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="OHg-Eg-uxk" secondAttribute="bottom" constant="31" id="ftY-qp-TTW"/>
                                                 <constraint firstItem="AgB-Nj-Rkf" firstAttribute="trailing" secondItem="LMe-ec-aZd" secondAttribute="trailingMargin" id="iHH-yY-fQn"/>
@@ -793,6 +794,7 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="9aZ-vi-MSq"/>
                                                     <exclude reference="D6b-xx-Pd1"/>
                                                     <exclude reference="IDt-e3-Yda"/>
                                                     <exclude reference="JfB-jb-x0N"/>
