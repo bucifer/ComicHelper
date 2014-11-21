@@ -78,7 +78,36 @@
         [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
     }
     
-    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    JokePL *joke;
+    if (tableView != self.searchDisplayController.searchResultsTableView) {
+        //if we are in regular table view
+        
+        joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        
+        if (joke.checkmarkFlag == YES) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
+            //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
+            //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview
+        }
+        else if (joke.checkmarkFlag == NO) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
+    else {
+        //if we are in filter search results view
+        joke = [searchResults objectAtIndex:indexPath.row];
+        if (joke.checkmarkFlag == YES) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else if (joke.checkmarkFlag == NO) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //to make sure there's no gray highlighting when it's clicked - important
+    
     cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
     cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
     cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
@@ -86,7 +115,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/dd/yy"];
     cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
-        
+    
     return cell;
 }
 
