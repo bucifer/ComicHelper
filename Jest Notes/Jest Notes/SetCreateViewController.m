@@ -140,8 +140,7 @@
         }
         else {
             selectedJoke.checkmarkFlag = YES;
-            UIImageView *checkmarkImage = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"checkmark"]];
-            cell.accessoryView = checkmarkImage;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [selectedObjects addObject:selectedJoke];
         }
     }
@@ -174,7 +173,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     selectedJoke.checkmarkFlag = NO;
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryView = nil;
     [selectedObjects removeObject:selectedJoke];
     
     NSLog(@"%@", selectedObjects);
