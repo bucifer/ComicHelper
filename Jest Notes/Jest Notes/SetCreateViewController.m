@@ -207,12 +207,10 @@
     
     switch (selectedSegment) {
         case 0: {
-            NSLog(@"Sort by Joke ID Number");
             [self sortYourJokesArrayWithDescriptor:@"uniqueID" ascending:YES];
             break;
         }
         case 1: {
-            NSLog(@"Sort by joke title alphabetical");
             NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"
                                                                            ascending:YES
                                                                             selector:@selector(localizedCaseInsensitiveCompare:)];
@@ -223,7 +221,6 @@
             break;
         }
         case 2: {
-            NSLog(@"Sort by Joke Creation Date");
             [self sortYourJokesArrayWithDescriptor:@"creationDate" ascending:NO];
             break;
         }
