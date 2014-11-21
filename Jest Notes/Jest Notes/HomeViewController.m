@@ -154,7 +154,7 @@
     else if ([[segue identifier] isEqualToString:@"setCreationViewSegue"])
     {
         // Get reference to the destination view controller
-        SetCreateViewController *scvc = (SetCreateViewController*)[[segue destinationViewController] topViewController];
+        SetCreateViewController *scvc = (SetCreateViewController*)[segue destinationViewController];
         scvc.jokeDataManager = self.jokeDataManager;
     }
 }

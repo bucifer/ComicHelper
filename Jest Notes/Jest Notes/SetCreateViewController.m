@@ -78,42 +78,15 @@
         [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
     }
     
-    JokePL *joke;
-    
-    if (self.jokeDataManager.jokes.count > 0 ) {
+    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
+    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
+    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/dd/yy"];
+    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
         
-        if (tableView != self.searchDisplayController.searchResultsTableView) {
-            //if we are in regular table view
-            joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-            if (joke.checkmarkFlag == YES) {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            }
-            else if (joke.checkmarkFlag == NO) {
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
-
-        }
-        else {
-            //if we are in search filter tableview
-            joke = [searchResults objectAtIndex:indexPath.row];
-            if (joke.checkmarkFlag == YES) {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            }
-            else if (joke.checkmarkFlag == NO) {
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
-        }
-        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
-        cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
-        cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
-        cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"M/dd/yy"];
-        cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
-        
-    }
-    
     return cell;
 }
 
