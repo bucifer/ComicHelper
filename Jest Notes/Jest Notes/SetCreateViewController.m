@@ -22,6 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //Setting up searchbar filter functionality
+    searchResults = [NSMutableArray arrayWithCapacity:[self.jokeDataManager.jokes count]];
+    selectedObjects = [[NSMutableArray array]init];
+    self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,8 +109,11 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //to make sure there's no gray highlighting when it's clicked - important
+    
+    //Background color for selection
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [self colorWithHexString:@"ffe700"];
+    [cell setSelectedBackgroundView:bgColorView];
     
     cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
     cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
@@ -119,9 +126,102 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    JokePL *selectedJoke;
+    
+    //if its filterview mode
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        selectedJoke = [searchResults objectAtIndex:indexPath.row];
+        if (selectedJoke.checkmarkFlag == YES) {
+            selectedJoke.checkmarkFlag = NO;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [selectedObjects removeObject:selectedJoke];
+        }
+        else {
+            selectedJoke.checkmarkFlag = YES;
+            UIImageView *checkmarkImage = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"checkmark"]];
+            cell.accessoryView = checkmarkImage;
+            [selectedObjects addObject:selectedJoke];
+        }
+    }
+    
+    //if its just regular tableview mode, and you selected something
+    //this can get tricky because you might be in this regular tableview when you are
+    // 1) first time you are seeing the tableview
+    // 2) You came back to the regular tableview after using the filter view
+    // so we need logic to take care of both cases
+    
+    else {
+        selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        selectedJoke.checkmarkFlag = YES;
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        UIImage *image = [UIImage imageNamed:@"checkmark"];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
+        button.frame = frame;
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        cell.accessoryView = button;
+        [selectedObjects addObject:selectedJoke];
+    }
+    
+    cell.tintColor = [UIColor blackColor];
+    NSLog(@"%@", selectedObjects);
+}
+
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    selectedJoke.checkmarkFlag = NO;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    [selectedObjects removeObject:selectedJoke];
+    
+    NSLog(@"%@", selectedObjects);
+    
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 65;
+}
+
+
+- (UIColor*)colorWithHexString:(NSString*)hex
+{
+    NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor grayColor];
+    
+    // strip 0X if it appears
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    
+    if ([cString length] != 6) return  [UIColor grayColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
+    
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
+    
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:1.0f];
 }
 
 @end
