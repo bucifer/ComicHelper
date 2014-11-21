@@ -10,6 +10,7 @@
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 #import "ViewManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SetCreateViewController ()  {
     NSMutableArray *searchResults;
@@ -168,7 +169,17 @@
         //if we are in regular tableview mode
         selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         selectedJoke.checkmarkFlag = YES;
-        cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0.0f, 0.0f, 24, 24);
+        button.layer.cornerRadius = button.bounds.size.width / 2.0;
+        button.layer.borderWidth = 1;
+        button.layer.borderColor = [[UIColor blackColor]CGColor];
+        
+        [button setTitle:@"1" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        cell.accessoryView = button;
         [selectedObjects addObject:selectedJoke];
     }
     
