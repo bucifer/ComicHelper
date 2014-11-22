@@ -2,7 +2,7 @@
 //  ViewManager.h
 //  Jest Notes
 //
-//  Created by Aditya Narayan on 11/21/14.
+//  Created by Terry Bu on 11/21/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 

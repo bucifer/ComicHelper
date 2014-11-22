@@ -2,7 +2,7 @@
 //  SetCreateViewController.m
 //  Jest Notes
 //
-//  Created by Aditya Narayan on 11/20/14.
+//  Created by Terry Bu on 11/20/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "NSObject+NSObject___TerryConvenience.h"
 #import "ViewManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Set.h"
 
 @interface SetCreateViewController ()  {
     NSMutableArray *searchResults;
@@ -28,9 +29,16 @@
     [self setUpSearchFilterFunctionality];
     [self initializeBarButtons];
 
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
+    [[self navigationItem] setLeftBarButtonItem:item];
+    
     viewManager = [[ViewManager alloc]init];
 }
 
+- (void)backButtonPressed
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -324,6 +332,26 @@
             NSLog(@"%@", oneJoke.title);
         }
     }
+    
+    if (selectedObjects.count == 0) {
+        [self alertIfNothingWasSelected];
+        return;
+    }
+    
+    Set *newSet = [[Set alloc]init];
+    newSet.jokes = selectedObjects;
+    [self performSegueWithIdentifier:@"setFinalizeViewSegue" sender:self];
 }
+
+- (void) alertIfNothingWasSelected {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Select at least 1 joke"
+                                                    message:nil
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+
 
 @end

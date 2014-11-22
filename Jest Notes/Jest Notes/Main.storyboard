@@ -149,6 +149,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Your Jokes" id="6gw-nQ-OVZ">
+                        <barButtonItem key="backBarButtonItem" title="Jokes" id="8dA-fG-Ado"/>
                         <barButtonItem key="leftBarButtonItem" title="Delete" id="Vd1-pj-oSD">
                             <connections>
                                 <action selector="deleteBarButtonAction:" destination="BYZ-38-t0r" id="Zsx-Ms-hbl"/>
@@ -159,12 +160,12 @@
                         <outlet property="deleteBarButton" destination="Vd1-pj-oSD" id="GD7-y4-78e"/>
                         <outlet property="tableView" destination="zrs-iD-EQY" id="Mmk-rh-sqk"/>
                         <segue destination="D7d-fq-uW8" kind="show" identifier="jokeCreationViewSegue" id="Dco-OX-Ca3"/>
-                        <segue destination="id4-8F-qdT" kind="show" identifier="setCreationViewSegue" id="Ttd-Lv-me2"/>
+                        <segue destination="id4-8F-qdT" kind="custom" identifier="setCreationViewSegue" customClass="PushNoAnimationSegue" id="Ttd-Lv-me2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="436" y="-728"/>
+            <point key="canvasLocation" x="370" y="-1278"/>
         </scene>
         <!--Add New Joke-->
         <scene sceneID="8ae-Ql-Nzv">
@@ -358,7 +359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-7l-PX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304" y="-1402"/>
+            <point key="canvasLocation" x="1322" y="-1682"/>
         </scene>
         <!--Single Joke View Controller-->
         <scene sceneID="tPC-WR-RFV">
@@ -452,6 +453,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="U4R-Q4-hjr">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="8tV-Dq-AHG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Gwe-MH-37a">
                             <connections>
                                 <segue destination="Cna-bj-bpX" kind="show" identifier="editView" id="qcR-7x-QYM"/>
@@ -468,9 +470,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA5-6P-Gd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304" y="-701"/>
+            <point key="canvasLocation" x="1322" y="-997"/>
         </scene>
-        <!--Edit Screen-->
+        <!--Edit Your Joke-->
         <scene sceneID="3Uo-D1-X8C">
             <objects>
                 <viewController storyboardIdentifier="editViewController" id="Cna-bj-bpX" customClass="EditViewController" sceneMemberID="viewController">
@@ -596,7 +598,7 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Edit Screen" id="mVb-EF-PG9">
+                    <navigationItem key="navigationItem" title="Edit Your Joke" id="mVb-EF-PG9">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="sX6-al-f55">
                             <connections>
                                 <action selector="saveButtonAction:" destination="Cna-bj-bpX" id="tEA-QD-oXd"/>
@@ -613,7 +615,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2109" y="-701"/>
+            <point key="canvasLocation" x="2025" y="-997"/>
         </scene>
         <!--Nav-Jokes-->
         <scene sceneID="7FY-N7-vJt">
@@ -632,7 +634,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQ0-b4-00J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-246" y="-728"/>
+            <point key="canvasLocation" x="-306" y="-1278"/>
         </scene>
         <!--Help-->
         <scene sceneID="Pis-wU-7eG">
@@ -847,10 +849,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Your Set" id="0Te-rv-1wE"/>
+                    <navigationItem key="navigationItem" title="Create Your Set" prompt="Select your jokes and press Done " id="0Te-rv-1wE">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="DGf-zH-J4K"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="Ecd-aq-8vR" id="wZJ-kX-WT6"/>
                         <outlet property="tableView" destination="MWA-sW-jqe" id="ihp-07-NsN"/>
+                        <segue destination="EVz-pt-y6z" kind="custom" identifier="setFinalizeViewSegue" customClass="PushNoAnimationSegue" id="XbW-Kv-awY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DF1-K6-32A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -864,7 +869,25 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1304" y="12"/>
+            <point key="canvasLocation" x="1322" y="-290"/>
+        </scene>
+        <!--Confirm Your Set-->
+        <scene sceneID="vzN-PS-Vwc">
+            <objects>
+                <viewController title="Confirm Your Set" id="EVz-pt-y6z" customClass="SetFinalizeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d4w-aT-Qbn"/>
+                        <viewControllerLayoutGuide type="bottom" id="nxI-Hj-qQs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JHi-Ly-Nfy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ssj-mH-Mm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2050" y="-290"/>
         </scene>
         <!--Nav-Help-->
         <scene sceneID="1PN-uw-a1F">
