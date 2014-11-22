@@ -24,24 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //Setting up searchbar filter functionality
-    searchResults = [NSMutableArray arrayWithCapacity:[self.jokeDataManager.jokes count]];
-    selectedObjects = [[NSMutableArray array]init];
-    self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
-    
-    
-    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshSetSelectionAction:)];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
-    
-    
-    NSArray *buttonArray = [NSArray arrayWithObjects:doneButton, clearButton, nil];
-    self.navigationItem.rightBarButtonItems = buttonArray;
-    
-    
+
+    [self setUpSearchFilterFunctionality];
+    [self initializeBarButtons];
+
     viewManager = [[ViewManager alloc]init];
-    
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -114,48 +104,7 @@
     }
 }
 
-- (void) cellStylingLogicForFilterView: (UITableViewCell *) cell indexPath:(NSIndexPath *)indexPath {
-    JokePL *joke = [searchResults objectAtIndex:indexPath.row];
-    
-    //Fill in the cell with data
-    cell.textLabel.text = joke.title;
-    
-    //Background color for selection -- we do it separately for searchview and tableview because we are not using JokeCustomCell for this filterview
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
-    [cell setSelectedBackgroundView:bgColorView];
-    
-    //checkmark logic
-    cell.accessoryView = (joke.checkmarkFlag == YES) ? [viewManager createCustomCheckmarkAccessoryViewWithImage] : nil;
-}
 
-- (void) cellStylingLogicForRegTableView: (JokeCustomCell *) cell indexPath:(NSIndexPath *)indexPath {
-   
-    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-    cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
-    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
-    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
-    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"M/dd/yy"];
-    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
-    if (joke.checkmarkFlag == YES) {
-        cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
-        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
-        //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
-        //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview
-    }
-    else if (joke.checkmarkFlag == NO) {
-        cell.accessoryView = nil;
-    }
-    //Background color for selection
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
-    [cell setSelectedBackgroundView:bgColorView];
-
-    
-}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -170,53 +119,6 @@
     
     cell.tintColor = [UIColor blackColor];
     [self logWhatsBeenSelected];
-}
-
-- (void) didSelectCheckmarkLogicForSearchFilterView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
-    //if its filterview mode
-    JokePL *selectedJoke = [searchResults objectAtIndex:indexPath.row];
-    if (selectedJoke.checkmarkFlag == YES) {
-        selectedJoke.checkmarkFlag = NO;
-        cell.accessoryView = nil;
-        [selectedObjects removeObject:selectedJoke];
-    }
-    else {
-        selectedJoke.checkmarkFlag = YES;
-        cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
-        [selectedObjects addObject:selectedJoke];
-    }
-}
-
-- (void) didSelectCheckmarkLogicForRegularTableView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
-
-    //if we are in regular tableview mode
-    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-    selectedJoke.checkmarkFlag = YES;
-    
-    UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
-    jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
-    jokeOrderButton.layer.borderWidth = 3;
-    jokeOrderButton.layer.borderColor = [[UIColor blackColor]CGColor];
-    [jokeOrderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    jokeOrderButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
-    
-    NSUInteger selectedObjectsCount = selectedObjects.count + 1;
-    
-    [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)selectedObjectsCount] forState:UIControlStateNormal];
-    
-    cell.accessoryView = jokeOrderButton;
-    [selectedObjects addObject:selectedJoke];
-
-}
-
-- (void) logWhatsBeenSelected {
-    
-    for (int i=0; i < selectedObjects.count; i++) {
-        JokePL *joke = selectedObjects[i];
-        NSLog(@"%@", joke.title);
-    }
-    NSLog(@"\n");
 }
 
 
@@ -238,6 +140,116 @@
 {
     return 65;
 }
+
+
+
+
+#pragma mark Refactored Methods
+- (void) setUpSearchFilterFunctionality {
+    searchResults = [NSMutableArray arrayWithCapacity:[self.jokeDataManager.jokes count]];
+    selectedObjects = [[NSMutableArray array]init];
+    self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
+}
+
+- (void) initializeBarButtons {
+    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshSetSelectionAction:)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
+    NSArray *buttonArray = [NSArray arrayWithObjects:doneButton, clearButton, nil];
+    self.navigationItem.rightBarButtonItems = buttonArray;
+}
+
+
+#pragma mark Refactored TableView methods
+- (void) cellStylingLogicForFilterView: (UITableViewCell *) cell indexPath:(NSIndexPath *)indexPath {
+    JokePL *joke = [searchResults objectAtIndex:indexPath.row];
+    
+    //Fill in the cell with data
+    cell.textLabel.text = joke.title;
+    
+    //Background color for selection -- we do it separately for searchview and tableview because we are not using JokeCustomCell for this filterview
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    [cell setSelectedBackgroundView:bgColorView];
+    
+    //checkmark logic
+    cell.accessoryView = (joke.checkmarkFlag == YES) ? [self createJokeOrderButton] : nil;
+}
+
+- (void) cellStylingLogicForRegTableView: (JokeCustomCell *) cell indexPath:(NSIndexPath *)indexPath {
+    
+    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
+    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
+    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/dd/yy"];
+    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+    if (joke.checkmarkFlag == YES) {
+        cell.accessoryView = [self createJokeOrderButton];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
+        //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
+        //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview
+    }
+    else if (joke.checkmarkFlag == NO) {
+        cell.accessoryView = nil;
+    }
+    //Background color for selection
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    [cell setSelectedBackgroundView:bgColorView];
+}
+
+- (void) didSelectCheckmarkLogicForSearchFilterView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
+    //if its filterview mode
+    JokePL *selectedJoke = [searchResults objectAtIndex:indexPath.row];
+    if (selectedJoke.checkmarkFlag == YES) {
+        selectedJoke.checkmarkFlag = NO;
+        cell.accessoryView = nil;
+        [selectedObjects removeObject:selectedJoke];
+    }
+    else {
+        //if it was never selected before,
+        selectedJoke.checkmarkFlag = YES;
+        cell.accessoryView = [self createJokeOrderButton];
+        [selectedObjects addObject:selectedJoke];
+    }
+}
+
+- (void) didSelectCheckmarkLogicForRegularTableView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
+    
+    //if we are in regular tableview mode
+    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    selectedJoke.checkmarkFlag = YES;
+    cell.accessoryView = [self createJokeOrderButton];
+    [selectedObjects addObject:selectedJoke];
+}
+
+- (UIButton *) createJokeOrderButton {
+    UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
+    jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
+    jokeOrderButton.layer.borderWidth = 3;
+    jokeOrderButton.layer.borderColor = [[UIColor blackColor]CGColor];
+    [jokeOrderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    jokeOrderButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
+    NSUInteger selectedObjectsCount = selectedObjects.count + 1;
+    [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)selectedObjectsCount] forState:UIControlStateNormal];
+    
+    return jokeOrderButton;
+}
+
+- (void) logWhatsBeenSelected {
+    
+    for (int i=0; i < selectedObjects.count; i++) {
+        JokePL *joke = selectedObjects[i];
+        NSLog(@"%@", joke.title);
+    }
+    NSLog(@"\n");
+}
+
+
 
 
 #pragma mark IBAction methods
