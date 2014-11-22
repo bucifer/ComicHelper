@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *jokes;
 
-@property (strong, nonatomic) IBOutlet UILabel *setIDFillLabel;
 @property (strong, nonatomic) IBOutlet UITextField *setNameField;
 @property (strong, nonatomic) IBOutlet UILabel *setLengthFillLabel;
 

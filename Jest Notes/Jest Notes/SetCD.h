@@ -16,7 +16,10 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * uniqueID;
 @property (nonatomic, retain) NSSet *jokes;
+
 @end
+
+
 
 @interface SetCD (CoreDataGeneratedAccessors)
 
