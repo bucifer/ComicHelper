@@ -89,63 +89,74 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *simpleCellIdentifier = @"JokeCustomCell";
-    
-    JokePL *joke;
-    if (tableView != self.searchDisplayController.searchResultsTableView) {
-        //if we are in regular table view
-        JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
-        if(!cell){
-            cell =
-            [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
-        }
-        joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
-        cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
-        cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
-        cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"M/dd/yy"];
-        cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
-        if (joke.checkmarkFlag == YES) {
-            cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
-            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
-            //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
-            //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview
-        }
-        else if (joke.checkmarkFlag == NO) {
-            cell.accessoryView = nil;
-        }
-        //Background color for selection
-        UIView *bgColorView = [[UIView alloc] init];
-        bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
-        [cell setSelectedBackgroundView:bgColorView];
-        return cell;
-    }
-    else {
-        //if we are in filter search results view
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        //we are in filter search results view
         UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         if(!cell){
             cell =
             [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
         }
-        joke = [searchResults objectAtIndex:indexPath.row];
-
-        //Fill in the cell with data
-        cell.textLabel.text = joke.title;
         
-        //Background color for selection
-        UIView *bgColorView = [[UIView alloc] init];
-        bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
-        [cell setSelectedBackgroundView:bgColorView];
-        
-        //checkmark logic
-        cell.accessoryView = (joke.checkmarkFlag == YES) ? [viewManager createCustomCheckmarkAccessoryViewWithImage] : nil;
-
+        [self cellStylingLogicForFilterView:cell indexPath:indexPath];
+        return cell;
+    }
+    
+    else {
+        //we are in regular table view
+        static NSString *simpleCellIdentifier = @"JokeCustomCell";
+        JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+        if(!cell){
+            cell =
+            [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
+        }
+        [self cellStylingLogicForRegTableView:cell indexPath:indexPath];
         return cell;
     }
 }
+
+- (void) cellStylingLogicForFilterView: (UITableViewCell *) cell indexPath:(NSIndexPath *)indexPath {
+    JokePL *joke = [searchResults objectAtIndex:indexPath.row];
+    
+    //Fill in the cell with data
+    cell.textLabel.text = joke.title;
+    
+    //Background color for selection -- we do it separately for searchview and tableview because we are not using JokeCustomCell for this filterview
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    [cell setSelectedBackgroundView:bgColorView];
+    
+    //checkmark logic
+    cell.accessoryView = (joke.checkmarkFlag == YES) ? [viewManager createCustomCheckmarkAccessoryViewWithImage] : nil;
+}
+
+- (void) cellStylingLogicForRegTableView: (JokeCustomCell *) cell indexPath:(NSIndexPath *)indexPath {
+   
+    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
+    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
+    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/dd/yy"];
+    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+    if (joke.checkmarkFlag == YES) {
+        cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
+        //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
+        //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview
+    }
+    else if (joke.checkmarkFlag == NO) {
+        cell.accessoryView = nil;
+    }
+    //Background color for selection
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    [cell setSelectedBackgroundView:bgColorView];
+
+    
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
