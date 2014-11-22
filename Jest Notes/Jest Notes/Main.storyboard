@@ -945,6 +945,10 @@
                                         <exclude reference="Rz6-dj-JKd"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="EVz-pt-y6z" id="eFm-HL-FY3"/>
+                                    <outlet property="delegate" destination="EVz-pt-y6z" id="cys-Cr-8fs"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1V-QF-D63">
                                 <rect key="frame" x="164" y="463" width="273" height="117"/>
@@ -964,6 +968,9 @@
                                         <exclude reference="IfP-nQ-tzd"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="createSetButton:" destination="EVz-pt-y6z" eventType="touchUpInside" id="XQL-Vk-SlO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1043,6 +1050,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="setIDFillLabel" destination="gl4-d7-pNQ" id="SHR-jY-glG"/>
+                        <outlet property="setIDFilllabel" destination="gl4-d7-pNQ" id="OEU-nV-ULS"/>
+                        <outlet property="setLengthFillLabel" destination="Vhw-G6-F0O" id="6XK-ZY-ZZA"/>
+                        <outlet property="setNameField" destination="pgu-QK-ci5" id="wrn-e0-qTc"/>
+                        <outlet property="setNameLabel" destination="pgu-QK-ci5" id="WhC-Kl-es2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssj-mH-Mm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
