@@ -149,55 +149,63 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    JokePL *selectedJoke;
     
     if (tableView == self.searchDisplayController.searchResultsTableView){
-        //if its filterview mode
-        selectedJoke = [searchResults objectAtIndex:indexPath.row];
-        if (selectedJoke.checkmarkFlag == YES) {
-            selectedJoke.checkmarkFlag = NO;
-            cell.accessoryView = nil;
-            [selectedObjects removeObject:selectedJoke];
-        }
-        else {
-            selectedJoke.checkmarkFlag = YES;
-            cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
-            [selectedObjects addObject:selectedJoke];
-        }
+        [self didSelectCheckmarkLogicForSearchFilterView:indexPath cell:cell];
     }
     else {
-        //if we are in regular tableview mode
-        selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-        selectedJoke.checkmarkFlag = YES;
-        
-        UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
-        jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
-        jokeOrderButton.layer.borderWidth = 3;
-        jokeOrderButton.layer.borderColor = [[UIColor blackColor]CGColor];
-        [jokeOrderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        jokeOrderButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
-        
-        NSUInteger selectedObjectsCount = selectedObjects.count + 1;
-        
-        [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)selectedObjectsCount] forState:UIControlStateNormal];
-        
-        cell.accessoryView = jokeOrderButton;
-        [selectedObjects addObject:selectedJoke];
+        [self didSelectCheckmarkLogicForRegularTableView:indexPath cell:cell];
     }
     
     cell.tintColor = [UIColor blackColor];
-    [self showWhatsBeenSelected];
+    [self logWhatsBeenSelected];
 }
 
-- (void) showWhatsBeenSelected {
+- (void) didSelectCheckmarkLogicForSearchFilterView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
+    //if its filterview mode
+    JokePL *selectedJoke = [searchResults objectAtIndex:indexPath.row];
+    if (selectedJoke.checkmarkFlag == YES) {
+        selectedJoke.checkmarkFlag = NO;
+        cell.accessoryView = nil;
+        [selectedObjects removeObject:selectedJoke];
+    }
+    else {
+        selectedJoke.checkmarkFlag = YES;
+        cell.accessoryView = [viewManager createCustomCheckmarkAccessoryViewWithImage];
+        [selectedObjects addObject:selectedJoke];
+    }
+}
+
+- (void) didSelectCheckmarkLogicForRegularTableView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
+
+    //if we are in regular tableview mode
+    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    selectedJoke.checkmarkFlag = YES;
+    
+    UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
+    jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
+    jokeOrderButton.layer.borderWidth = 3;
+    jokeOrderButton.layer.borderColor = [[UIColor blackColor]CGColor];
+    [jokeOrderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    jokeOrderButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
+    
+    NSUInteger selectedObjectsCount = selectedObjects.count + 1;
+    
+    [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)selectedObjectsCount] forState:UIControlStateNormal];
+    
+    cell.accessoryView = jokeOrderButton;
+    [selectedObjects addObject:selectedJoke];
+
+}
+
+- (void) logWhatsBeenSelected {
     
     for (int i=0; i < selectedObjects.count; i++) {
         JokePL *joke = selectedObjects[i];
         NSLog(@"%@", joke.title);
     }
     NSLog(@"\n");
-    
 }
 
 
