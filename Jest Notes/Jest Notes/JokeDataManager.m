@@ -9,6 +9,8 @@
 #import "JokeDataManager.h"
 #import "JokeCD.h"
 #import "JokePL.h"
+#import "SetCD.h"
+#import "Set.h"
 
 @implementation JokeDataManager
 
@@ -41,16 +43,12 @@
     }
     else {
         //this is NOT the first launch ... Fetch from Core Data
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSFetchRequest *jokesFetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        //        Specify criteria for filtering which objects to fetch
-        //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
-        //        [fetchRequest setPredicate:predicate];
+        [jokesFetchRequest setEntity:entity];
         
         NSError *error = nil;
-        NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:jokesFetchRequest error:&error];
         if (fetchedJokesFromCD == nil) {
             NSLog(@"some horrible error in fetching CD: %@", error);
         }
@@ -60,10 +58,23 @@
         
         [self.hvc.tableView reloadData];
         
+        
+        //taking care of fetching SETS now
+        
+        NSFetchRequest *setsFetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *setsEntity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+        [setsFetchRequest setEntity:setsEntity];
+        NSError *error2 = nil;
+        NSArray *fetchedSetsFromCD = [self.managedObjectContext executeFetchRequest:setsFetchRequest error:&error2];
+        if (fetchedSetsFromCD == nil) {
+            NSLog(@"some horrible error in fetching CD: %@", error);
+        }
+        self.sets = [fetchedSetsFromCD mutableCopy];
+        
     }
 }
 
-- (void) refreshDataWithNewFetch {
+- (void) refreshJokesCDDataWithNewFetch {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -73,7 +84,21 @@
         NSLog(@"some horrible error in fetching CD: %@", error);
     }
     self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
-    NSLog(@"refreshed data with new fetch");
+    NSLog(@"refreshed jokes cd data with new fetch");
+}
+
+- (void) refreshSetsCDDataWithNewFetch {
+    NSFetchRequest *setsFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *setsEntity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+    [setsFetchRequest setEntity:setsEntity];
+    NSError *error2 = nil;
+    NSArray *fetchedSetsFromCD = [self.managedObjectContext executeFetchRequest:setsFetchRequest error:&error2];
+    if (fetchedSetsFromCD == nil) {
+        NSLog(@"some horrible error in fetching CD: %@", error2);
+    }
+    self.sets = [fetchedSetsFromCD mutableCopy];
+    NSLog(@"refreshed sets cd data with new fetch");
+
 }
 
 - (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes {
@@ -95,6 +120,8 @@
     return resultArrayOfJokePLs;
 }
 
+
+#pragma mark JokeCD Related
 - (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
     JokePL *newPLJoke = [[JokePL alloc]init];
     newPLJoke.name = oneCoreDataJoke.name;
@@ -161,9 +188,20 @@
 
 
 
+#pragma mark SetCDs-related
+
+- (void) createNewSetInCoreData:(NSString *)setName {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+    SetCD *set = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    set.name = setName;
+    [self saveChangesInContextCoreData];
+}
+
+
+
+
+
 #pragma mark Logic-Related
-
-
 - (NSNumber *) returnUniqueIDmaxValue {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];

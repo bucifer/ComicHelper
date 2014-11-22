@@ -15,7 +15,6 @@
 
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
-
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteBarButton;

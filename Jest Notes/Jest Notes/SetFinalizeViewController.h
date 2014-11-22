@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JokeDataManager.h"
 
 @interface SetFinalizeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *jokes;
-
 @property (strong, nonatomic) IBOutlet UITextField *setNameField;
 @property (strong, nonatomic) IBOutlet UILabel *setLengthFillLabel;
-
+@property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
 - (IBAction)createSetButton:(id)sender;
 

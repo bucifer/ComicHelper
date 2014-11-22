@@ -7,6 +7,7 @@
 //
 
 #import "SetViewController.h"
+#import "SetCD.h"
 
 @interface SetViewController ()
 
@@ -24,6 +25,14 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //we need a way to sort the jokes when you created a new joke or edited a joke
+    
+    [self.jokeDataManager refreshSetsCDDataWithNewFetch];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -33,23 +42,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return self.jokeDataManager.sets.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
     
+    SetCD* set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
+    cell.textLabel.text = set.name;
+    
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

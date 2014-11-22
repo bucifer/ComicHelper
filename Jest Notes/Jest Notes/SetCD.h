@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * uniqueID;
 @property (nonatomic, retain) NSSet *jokes;
+@property (nonatomic, retain) NSDate * creationDate;
 
 @end
 

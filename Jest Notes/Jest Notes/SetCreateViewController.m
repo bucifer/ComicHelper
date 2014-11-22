@@ -361,6 +361,7 @@
         // Get reference to the destination view controller
         SetFinalizeViewController *sfvc = [segue destinationViewController];
         sfvc.jokes = selectedObjects;
+        sfvc.jokeDataManager = self.jokeDataManager;
     }
 }
 

@@ -43,10 +43,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     //we need a way to sort the jokes when you created a new joke or edited a joke
     
-    [self.jokeDataManager refreshDataWithNewFetch];
+    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.jokeDataManager sortArrayWithOneDescriptorString:self.jokeDataManager.jokes descriptor:@"uniqueID" ascending:YES];
     [self.tableView reloadData];
     
@@ -133,7 +132,7 @@
 }
 
 
-#pragma mark - Navigation
+#pragma mark - Navigation and IBActions
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

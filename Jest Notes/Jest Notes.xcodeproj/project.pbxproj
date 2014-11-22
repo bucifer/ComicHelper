@@ -132,12 +132,12 @@
 		AAD277281A07DC81002AA22B /* Jest Notes */ = {
 			isa = PBXGroup;
 			children = (
-				AAE5AEE21A098E9100E73566 /* Main.storyboard */,
-				AAD59B961A21112F006B145C /* View Controllers */,
-				AAD59B931A210EA5006B145C /* Custom Objects */,
-				AAD59B941A210ED6006B145C /* Manager Objects */,
 				AAD2772D1A07DC81002AA22B /* AppDelegate.h */,
 				AAD2772E1A07DC82002AA22B /* AppDelegate.m */,
+				AAE5AEE21A098E9100E73566 /* Main.storyboard */,
+				AAD59B941A210ED6006B145C /* Manager Objects */,
+				AAD59B961A21112F006B145C /* View Controllers */,
+				AAD59B931A210EA5006B145C /* Custom Objects */,
 				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
 				AAD59B951A2110EB006B145C /* Custom Views & Effects */,
 				AAD277661A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.h */,

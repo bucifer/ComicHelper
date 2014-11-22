@@ -11,6 +11,8 @@
 #import "JokePL.h"
 #import "JokeCD.h"
 #import "HomeViewController.h"
+#import "SetCD.h"
+#import "Set.h"
 
 @class HomeViewController;
 
@@ -19,26 +21,30 @@
 
 @property (nonatomic, strong) NSMutableArray *jokes;
 @property (nonatomic, strong) NSMutableArray *sets;
+
 @property (nonatomic, strong) HomeViewController *hvc;
-
 @property (nonatomic, strong) NSNumber* uniqueIDmaxValue;
-
-
-
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 
 //Core Data related
 - (void) appInitializationLogic;
-- (void) refreshDataWithNewFetch;
+- (void) refreshJokesCDDataWithNewFetch;
+- (void) refreshSetsCDDataWithNewFetch;
 
-- (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes;
-- (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke;
+
 - (void) saveEditedJokeInCoreData: (JokePL *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date;
 - (void) saveChangesInContextCoreData;
+
+//For JokeCDs
+- (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes;
+- (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke;
 - (void) createNewJokeInCoreData: (NSString *) jokeName jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate;
 - (JokePL *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate;
+
+//For SetCDs
+- (void) createNewSetInCoreData: (NSString *) setName;
 
 //Logic Related
 - (NSNumber *) returnUniqueIDmaxValue;

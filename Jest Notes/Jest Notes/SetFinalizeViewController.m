@@ -9,6 +9,7 @@
 #import "SetFinalizeViewController.h"
 #import "JokePL.h"
 #import "NSObject+NSObject___TerryConvenience.h"
+#import "SetCD.h"
 
 @interface SetFinalizeViewController ()
 
@@ -29,6 +30,11 @@
     self.setLengthFillLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:setLength];
     
     
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,7 +75,19 @@
 }
 */
 
+
 - (IBAction)createSetButton:(id)sender {
+    
+    [self.jokeDataManager createNewSetInCoreData: self.setNameField.text];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
+#pragma mark Keyboard Delegate methods
+
+-(void)dismissKeyboard {
+    [self.setNameField resignFirstResponder]; //or whatever your textfield you want this to apply to
+
 }
 
 
