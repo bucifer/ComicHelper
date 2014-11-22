@@ -126,13 +126,8 @@
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-    selectedJoke.checkmarkFlag = NO;
+    [self jokeWasDeselected:selectedJoke];
     cell.accessoryView = nil;
-
-    [selectedObjects removeObject:selectedJoke];
-    
-    NSLog(@"%@", selectedObjects);
-    
 }
 
 
@@ -172,7 +167,7 @@
     [cell setSelectedBackgroundView:bgColorView];
     
     //checkmark logic
-    cell.accessoryView = (joke.checkmarkFlag == YES) ? [self createJokeOrderButton] : nil;
+    cell.accessoryView = (joke.checkmarkFlag == YES) ? [self createJokeOrderButtonForJoke:joke] : nil;
 }
 
 - (void) cellStylingLogicForRegTableView: (JokeCustomCell *) cell indexPath:(NSIndexPath *)indexPath {
@@ -186,7 +181,7 @@
     [dateFormatter setDateFormat:@"M/dd/yy"];
     cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
     if (joke.checkmarkFlag == YES) {
-        cell.accessoryView = [self createJokeOrderButton];
+        cell.accessoryView = [self createJokeOrderButtonForJoke: joke];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
         //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
@@ -205,28 +200,38 @@
     //if its filterview mode
     JokePL *selectedJoke = [searchResults objectAtIndex:indexPath.row];
     if (selectedJoke.checkmarkFlag == YES) {
-        selectedJoke.checkmarkFlag = NO;
+        [self jokeWasDeselected:selectedJoke];
         cell.accessoryView = nil;
-        [selectedObjects removeObject:selectedJoke];
     }
     else {
         //if it was never selected before,
-        selectedJoke.checkmarkFlag = YES;
-        cell.accessoryView = [self createJokeOrderButton];
-        [selectedObjects addObject:selectedJoke];
+        [self jokeWasSelected:selectedJoke];
+        cell.accessoryView = [self createJokeOrderButtonForJoke: selectedJoke];
     }
 }
 
 - (void) didSelectCheckmarkLogicForRegularTableView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
-    
-    //if we are in regular tableview mode
     JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    [self jokeWasSelected:selectedJoke];
+    cell.accessoryView = [self createJokeOrderButtonForJoke:selectedJoke];
+}
+
+- (void) jokeWasSelected: (JokePL*) selectedJoke {
     selectedJoke.checkmarkFlag = YES;
-    cell.accessoryView = [self createJokeOrderButton];
+    
+    //the order the joke will possess in the set - is the order in which you've placed it into the selected objects array
+    //when the array is empty, the set order defaults to #1
+    //when it's not, the joke's set order is selectedObjects.count + 1
+    selectedJoke.setOrder = selectedObjects ? selectedObjects.count + 1 : 1;
     [selectedObjects addObject:selectedJoke];
 }
 
-- (UIButton *) createJokeOrderButton {
+- (void) jokeWasDeselected: (JokePL*) selectedJoke {
+    selectedJoke.checkmarkFlag = NO;
+    [selectedObjects removeObject:selectedJoke];
+}
+
+- (UIButton *) createJokeOrderButtonForJoke: (JokePL*) joke {
     UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
     jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
     jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
@@ -234,8 +239,7 @@
     jokeOrderButton.layer.borderColor = [[UIColor blackColor]CGColor];
     [jokeOrderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     jokeOrderButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
-    NSUInteger selectedObjectsCount = selectedObjects.count + 1;
-    [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)selectedObjectsCount] forState:UIControlStateNormal];
+    [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)joke.setOrder] forState:UIControlStateNormal];
     
     return jokeOrderButton;
 }
