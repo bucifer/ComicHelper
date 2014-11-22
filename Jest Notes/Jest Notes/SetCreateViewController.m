@@ -170,24 +170,35 @@
         selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         selectedJoke.checkmarkFlag = YES;
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0.0f, 0.0f, 24, 24);
-        button.layer.cornerRadius = button.bounds.size.width / 2.0;
-        button.layer.borderWidth = 1;
-        button.layer.borderColor = [[UIColor blackColor]CGColor];
+        UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
+        jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
+        jokeOrderButton.layer.borderWidth = 3;
+        jokeOrderButton.layer.borderColor = [[UIColor blackColor]CGColor];
+        [jokeOrderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        jokeOrderButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
         
-        [button setTitle:@"1" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        NSUInteger selectedObjectsCount = selectedObjects.count + 1;
         
-        cell.accessoryView = button;
+        [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)selectedObjectsCount] forState:UIControlStateNormal];
+        
+        cell.accessoryView = jokeOrderButton;
         [selectedObjects addObject:selectedJoke];
     }
     
     cell.tintColor = [UIColor blackColor];
-    NSLog(@"%@", selectedObjects);
+    [self showWhatsBeenSelected];
 }
 
-
+- (void) showWhatsBeenSelected {
+    
+    for (int i=0; i < selectedObjects.count; i++) {
+        JokePL *joke = selectedObjects[i];
+        NSLog(@"%@", joke.title);
+    }
+    NSLog(@"\n");
+    
+}
 
 
 
@@ -264,9 +275,6 @@
         cell.accessoryView = nil;
         [selectedObjects removeObject:selectedJoke];
     }
-
-    //doesn't work for some reason. if i dont reload data, it seems like it works but it doesn't work once you refresh - cells stay highlighted
-    
     
 }
 
