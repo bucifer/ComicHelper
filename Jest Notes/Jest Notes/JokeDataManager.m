@@ -160,6 +160,13 @@
 
 
 
+- (JokeCD *) getCorrespondingJokeCDFromJokePL: (JokePL *) jokePL {
+    NSError *error;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
+    return correspondingCDJoke;
+}
+
+
 - (void) createNewJokeInCoreData: (NSString *) jokeName jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -190,10 +197,21 @@
 
 #pragma mark SetCDs-related
 
-- (void) createNewSetInCoreData:(NSString *)setName {
+- (void) createNewSetInCoreData:(NSString *)setName jokes:(NSMutableArray *)jokes{
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
     SetCD *set = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     set.name = setName;
+    
+    NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
+    
+    for (int i; i < jokeCDArray.count; i++) {
+        JokePL *joke = jokeCDArray[i];
+        JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokePL:joke];
+        [jokeCDArray addObject:jokeCD];
+    }
+    
+    set.jokes = [NSSet setWithArray:[jokeCDArray copy]];
+    
     [self saveChangesInContextCoreData];
 }
 

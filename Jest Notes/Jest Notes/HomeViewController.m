@@ -14,7 +14,7 @@
 #import "Set.h"
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
-#import "SetCreateViewController.h"
+#import "SetJokesSelectionViewController.h"
 
 @interface HomeViewController ()
 
@@ -155,7 +155,7 @@
     else if ([[segue identifier] isEqualToString:@"setCreationViewSegue"])
     {
         // Get reference to the destination view controller
-        SetCreateViewController *scvc = (SetCreateViewController*)[segue destinationViewController];
+        SetJokesSelectionViewController *scvc = (SetJokesSelectionViewController*)[segue destinationViewController];
         scvc.jokeDataManager = self.jokeDataManager;
     }
 }

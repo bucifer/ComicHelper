@@ -44,7 +44,7 @@
 - (JokePL *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate;
 
 //For SetCDs
-- (void) createNewSetInCoreData: (NSString *) setName;
+- (void) createNewSetInCoreData: (NSString *) setName jokes: (NSMutableArray *) jokes;
 
 //Logic Related
 - (NSNumber *) returnUniqueIDmaxValue;

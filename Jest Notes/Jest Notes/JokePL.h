@@ -25,7 +25,9 @@
 
 //this checkmarkFlag is used to Set Creation view to see if one's been checked off or not
 @property BOOL checkmarkFlag;
-//for Set Creation View, a joke would have this?? not sure yet 
+
+
+
 @property NSUInteger setOrder;
 
 

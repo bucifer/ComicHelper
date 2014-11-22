@@ -1,0 +1,370 @@
+//
+//  SetCreateViewController.m
+//  Jest Notes
+//
+//  Created by Terry Bu on 11/20/14.
+//  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
+//
+
+#import "SetJokesSelectionViewController.h"
+#import "JokeCustomCell.h"
+#import "NSObject+NSObject___TerryConvenience.h"
+#import "ViewManager.h"
+#import <QuartzCore/QuartzCore.h>
+#import "Set.h"
+#import "SetCreateViewController.h"
+
+@interface SetJokesSelectionViewController ()  {
+    NSMutableArray *searchResults;
+    NSMutableArray *selectedObjects;
+    ViewManager *viewManager;
+}
+
+@end
+
+@implementation SetJokesSelectionViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self setUpSearchFilterFunctionality];
+    [self initializeBarButtons];
+
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
+    [[self navigationItem] setLeftBarButtonItem:item];
+    
+    viewManager = [[ViewManager alloc]init];
+}
+
+- (void)backButtonPressed
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark Search Bar Methods
+- (void)filterContentForSearchText:(NSString*)searchText scope: (NSString *) scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
+    searchResults = [[self.jokeDataManager.jokes filteredArrayUsingPredicate:resultPredicate]mutableCopy];
+}
+
+
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    
+    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles]objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
+    [tableView reloadData];
+    [self.tableView reloadData];
+    //these two lines make sure that both Filterview and Tableview data are refreshed - without it, it doesn't work
+}
+
+
+
+#pragma mark tableview methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+    }
+    else {
+        return self.jokeDataManager.jokes.count;
+    }
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        //we are in filter search results view
+        UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if(!cell){
+            cell =
+            [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
+        }
+        
+        [self cellStylingLogicForFilterView:cell indexPath:indexPath];
+        return cell;
+    }
+    
+    else {
+        //we are in regular table view
+        static NSString *simpleCellIdentifier = @"JokeCustomCell";
+        JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+        if(!cell){
+            cell =
+            [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
+        }
+        [self cellStylingLogicForRegTableView:cell indexPath:indexPath];
+        return cell;
+    }
+}
+
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        [self didSelectCheckmarkLogicForSearchFilterView:indexPath cell:cell];
+    }
+    else {
+        [self didSelectCheckmarkLogicForRegularTableView:indexPath cell:cell];
+    }
+    
+    cell.tintColor = [UIColor blackColor];
+    [self logWhatsBeenSelected];
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    [self jokeWasDeselected:selectedJoke];
+    cell.accessoryView = nil;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
+}
+
+
+
+
+#pragma mark Refactored Methods
+- (void) setUpSearchFilterFunctionality {
+    searchResults = [NSMutableArray arrayWithCapacity:[self.jokeDataManager.jokes count]];
+    selectedObjects = [[NSMutableArray array]init];
+    self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
+}
+
+- (void) initializeBarButtons {
+    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshSetSelectionAction:)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
+    NSArray *buttonArray = [NSArray arrayWithObjects:doneButton, clearButton, nil];
+    self.navigationItem.rightBarButtonItems = buttonArray;
+}
+
+
+#pragma mark Refactored TableView methods
+- (void) cellStylingLogicForFilterView: (UITableViewCell *) cell indexPath:(NSIndexPath *)indexPath {
+    JokePL *joke = [searchResults objectAtIndex:indexPath.row];
+    
+    //Fill in the cell with data
+    cell.textLabel.text = joke.name;
+    
+    //Background color for selection -- we do it separately for searchview and tableview because we are not using JokeCustomCell for this filterview
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    [cell setSelectedBackgroundView:bgColorView];
+    
+    //checkmark logic
+    cell.accessoryView = (joke.checkmarkFlag == YES) ? [self createJokeOrderButtonForJoke:joke] : nil;
+}
+
+- (void) cellStylingLogicForRegTableView: (JokeCustomCell *) cell indexPath:(NSIndexPath *)indexPath {
+    
+    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
+    cell.nameLabel.text = [NSString stringWithFormat: @"%@", joke.name];
+    cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
+    cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/dd/yy"];
+    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+    if (joke.checkmarkFlag == YES) {
+        cell.accessoryView = [self createJokeOrderButtonForJoke: joke];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        //this line solved issue of cells not being selected correctly when we go from "filter tableview" to "regular tableview"
+        //the issue happened because whenever we came back to regular table view, the ones that are "checked marked" wouldn't be selected,
+        //so "didDESELECT" method wouldn't get properly called when we click on them from reg tableview
+    }
+    else if (joke.checkmarkFlag == NO) {
+        cell.accessoryView = nil;
+    }
+    //Background color for selection
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    [cell setSelectedBackgroundView:bgColorView];
+}
+
+- (void) didSelectCheckmarkLogicForSearchFilterView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
+    //if its filterview mode
+    JokePL *selectedJoke = [searchResults objectAtIndex:indexPath.row];
+    if (selectedJoke.checkmarkFlag == YES) {
+        [self jokeWasDeselected:selectedJoke];
+        cell.accessoryView = nil;
+    }
+    else {
+        //if it was never selected before,
+        [self jokeWasSelected:selectedJoke];
+        cell.accessoryView = [self createJokeOrderButtonForJoke: selectedJoke];
+    }
+}
+
+- (void) didSelectCheckmarkLogicForRegularTableView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
+    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    [self jokeWasSelected:selectedJoke];
+    cell.accessoryView = [self createJokeOrderButtonForJoke:selectedJoke];
+}
+
+- (void) jokeWasSelected: (JokePL*) selectedJoke {
+    selectedJoke.checkmarkFlag = YES;
+    
+    //the order the joke will possess in the set - is the order in which you've placed it into the selected objects array
+    //when the array is empty, the set order defaults to #1
+    //when it's not, the joke's set order is selectedObjects.count + 1
+    selectedJoke.setOrder = selectedObjects ? selectedObjects.count + 1 : 1;
+    [selectedObjects addObject:selectedJoke];
+}
+
+- (void) jokeWasDeselected: (JokePL*) selectedJoke {
+    selectedJoke.checkmarkFlag = NO;
+    [selectedObjects removeObject:selectedJoke];
+}
+
+- (UIButton *) createJokeOrderButtonForJoke: (JokePL*) joke {
+    UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
+    jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
+    jokeOrderButton.layer.borderWidth = 3;
+    jokeOrderButton.layer.borderColor = [[UIColor blackColor]CGColor];
+    [jokeOrderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    jokeOrderButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
+    [jokeOrderButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)joke.setOrder] forState:UIControlStateNormal];
+    
+    return jokeOrderButton;
+}
+
+- (void) logWhatsBeenSelected {
+    
+    for (int i=0; i < selectedObjects.count; i++) {
+        JokePL *joke = selectedObjects[i];
+        NSLog(@"%@", joke.name);
+    }
+    NSLog(@"\n");
+}
+
+
+
+
+#pragma mark IBAction methods
+
+- (IBAction)segCtrlAction:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    switch (selectedSegment) {
+        case 0: {
+            [self sortYourJokesArrayWithDescriptor:@"uniqueID" ascending:YES];
+            break;
+        }
+        case 1: {
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                                           ascending:YES
+                                                                            selector:@selector(localizedCaseInsensitiveCompare:)];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            NSArray *sortedArray = [self.jokeDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
+            self.jokeDataManager.jokes = [sortedArray mutableCopy];
+            [self.tableView reloadData];
+            break;
+        }
+        case 2: {
+            [self sortYourJokesArrayWithDescriptor:@"creationDate" ascending:NO];
+            break;
+        }
+        default:
+            break;
+    }
+
+}
+
+- (void) sortYourJokesArrayWithDescriptor: (NSString *) descriptor ascending: (BOOL) ascending {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:descriptor
+                                                                   ascending:ascending
+                                        ];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [self.jokeDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
+    self.jokeDataManager.jokes = [sortedArray mutableCopy];
+    [self.tableView reloadData];
+}
+
+
+- (IBAction)refreshSetSelectionAction:(id)sender {
+    
+    for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row ++)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        selectedJoke.checkmarkFlag = NO;
+        cell.accessoryView = nil;
+        [selectedObjects removeObject:selectedJoke];
+    }
+    
+}
+
+
+- (IBAction)doneAction:(id)sender {
+    if (selectedObjects.count == 0)
+        NSLog(@"Nothing Selected");
+    else {
+        for (int i=0; i < selectedObjects.count; i++) {
+            JokePL *oneJoke = selectedObjects[i];
+            NSLog(@"%@", oneJoke.name);
+        }
+    }
+    
+    if (selectedObjects.count == 0) {
+        [self alertIfNothingWasSelected];
+        return;
+    }
+    
+    [self performSegueWithIdentifier:@"setFinalizeViewSegue" sender:self];
+}
+
+- (void) alertIfNothingWasSelected {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Select at least 1 joke"
+                                                    message:nil
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"setFinalizeViewSegue"])
+    {
+        // Get reference to the destination view controller
+        SetCreateViewController *scvc = [segue destinationViewController];
+        scvc.selectedJokes = selectedObjects;
+        scvc.jokeDataManager = self.jokeDataManager;
+    }
+}
+
+
+
+@end

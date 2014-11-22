@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA7562D91A1EAC1E003F5F03 /* SetCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7562D81A1EAC1E003F5F03 /* SetCreateViewController.m */; };
+		AA7562D91A1EAC1E003F5F03 /* SetJokesSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7562D81A1EAC1E003F5F03 /* SetJokesSelectionViewController.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
@@ -23,7 +23,7 @@
 		AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277671A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m */; };
 		AAD277701A07DDB8002AA22B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2776F1A07DDB8002AA22B /* CoreData.framework */; };
 		AAD44F781A0D64AB00FDB656 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD44F771A0D64AB00FDB656 /* Set.m */; };
-		AAD59B8F1A2107BC006B145C /* SetFinalizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B8E1A2107BC006B145C /* SetFinalizeViewController.m */; };
+		AAD59B8F1A2107BC006B145C /* SetCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B8E1A2107BC006B145C /* SetCreateViewController.m */; };
 		AAD59B921A210BC8006B145C /* PushNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B911A210BC8006B145C /* PushNoAnimationSegue.m */; };
 		AAD59B991A213ED1006B145C /* SetCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B981A213ED1006B145C /* SetCD.m */; };
 		AAD59B9C1A213EF2006B145C /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B9B1A213EF2006B145C /* JokeCD.m */; };
@@ -44,8 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AA7562D71A1EAC1E003F5F03 /* SetCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCreateViewController.h; sourceTree = "<group>"; };
-		AA7562D81A1EAC1E003F5F03 /* SetCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCreateViewController.m; sourceTree = "<group>"; };
+		AA7562D71A1EAC1E003F5F03 /* SetJokesSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetJokesSelectionViewController.h; sourceTree = "<group>"; };
+		AA7562D81A1EAC1E003F5F03 /* SetJokesSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetJokesSelectionViewController.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2772A1A07DC81002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2772B1A07DC81002AA22B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -74,8 +74,8 @@
 		AAD2776F1A07DDB8002AA22B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AAD44F761A0D64AB00FDB656 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		AAD44F771A0D64AB00FDB656 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
-		AAD59B8D1A2107BC006B145C /* SetFinalizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetFinalizeViewController.h; sourceTree = "<group>"; };
-		AAD59B8E1A2107BC006B145C /* SetFinalizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetFinalizeViewController.m; sourceTree = "<group>"; };
+		AAD59B8D1A2107BC006B145C /* SetCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCreateViewController.h; sourceTree = "<group>"; };
+		AAD59B8E1A2107BC006B145C /* SetCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCreateViewController.m; sourceTree = "<group>"; };
 		AAD59B901A210BC8006B145C /* PushNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoAnimationSegue.h; sourceTree = "<group>"; };
 		AAD59B911A210BC8006B145C /* PushNoAnimationSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoAnimationSegue.m; sourceTree = "<group>"; };
 		AAD59B971A213ED1006B145C /* SetCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCD.h; sourceTree = "<group>"; };
@@ -223,10 +223,10 @@
 				AAD2775B1A07DCED002AA22B /* CreateViewController.m */,
 				AAD2775C1A07DCED002AA22B /* EditViewController.h */,
 				AAD2775D1A07DCED002AA22B /* EditViewController.m */,
-				AA7562D71A1EAC1E003F5F03 /* SetCreateViewController.h */,
-				AA7562D81A1EAC1E003F5F03 /* SetCreateViewController.m */,
-				AAD59B8D1A2107BC006B145C /* SetFinalizeViewController.h */,
-				AAD59B8E1A2107BC006B145C /* SetFinalizeViewController.m */,
+				AA7562D71A1EAC1E003F5F03 /* SetJokesSelectionViewController.h */,
+				AA7562D81A1EAC1E003F5F03 /* SetJokesSelectionViewController.m */,
+				AAD59B8D1A2107BC006B145C /* SetCreateViewController.h */,
+				AAD59B8E1A2107BC006B145C /* SetCreateViewController.m */,
 				AAD7A62C1A1FFE4C00DA8165 /* SetViewController.h */,
 				AAD7A62D1A1FFE4C00DA8165 /* SetViewController.m */,
 			);
@@ -333,7 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7562D91A1EAC1E003F5F03 /* SetCreateViewController.m in Sources */,
+				AA7562D91A1EAC1E003F5F03 /* SetJokesSelectionViewController.m in Sources */,
 				AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */,
 				AAD277681A07DCED002AA22B /* CreateViewController.m in Sources */,
 				AAD277691A07DCED002AA22B /* EditViewController.m in Sources */,
@@ -348,7 +348,7 @@
 				AAD7A62B1A1FB9E300DA8165 /* ViewManager.m in Sources */,
 				AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */,
 				AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */,
-				AAD59B8F1A2107BC006B145C /* SetFinalizeViewController.m in Sources */,
+				AAD59B8F1A2107BC006B145C /* SetCreateViewController.m in Sources */,
 				AAD59B991A213ED1006B145C /* SetCD.m in Sources */,
 				AAD2776D1A07DCED002AA22B /* Jest_Notes.xcdatamodeld in Sources */,
 				AAD59B921A210BC8006B145C /* PushNoAnimationSegue.m in Sources */,

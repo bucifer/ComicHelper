@@ -696,7 +696,7 @@
         <!--Create Your Set-->
         <scene sceneID="9rK-8M-FXL">
             <objects>
-                <viewController id="id4-8F-qdT" customClass="SetCreateViewController" sceneMemberID="viewController">
+                <viewController id="id4-8F-qdT" customClass="SetJokesSelectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RCU-pi-mJa"/>
                         <viewControllerLayoutGuide type="bottom" id="3CJ-pu-yKe"/>
@@ -874,7 +874,7 @@
         <!--Confirm Your Set-->
         <scene sceneID="vzN-PS-Vwc">
             <objects>
-                <viewController title="Confirm Your Set" id="EVz-pt-y6z" customClass="SetFinalizeViewController" sceneMemberID="viewController">
+                <viewController title="Confirm Your Set" id="EVz-pt-y6z" customClass="SetCreateViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d4w-aT-Qbn"/>
                         <viewControllerLayoutGuide type="bottom" id="nxI-Hj-qQs"/>
