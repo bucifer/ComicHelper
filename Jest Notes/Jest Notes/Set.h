@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *jokes;
 @property (nonatomic, strong) NSDate *creationDate;
 @property int totalLength;
+@property (nonatomic, strong) NSNumber *uniqueID;
 
 @end

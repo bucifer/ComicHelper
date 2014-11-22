@@ -12,6 +12,7 @@
 #import "ViewManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Set.h"
+#import "SetFinalizeViewController.h"
 
 @interface SetCreateViewController ()  {
     NSMutableArray *searchResults;
@@ -323,7 +324,6 @@
 
 
 - (IBAction)doneAction:(id)sender {
-    
     if (selectedObjects.count == 0)
         NSLog(@"Nothing Selected");
     else {
@@ -338,8 +338,6 @@
         return;
     }
     
-    Set *newSet = [[Set alloc]init];
-    newSet.jokes = selectedObjects;
     [self performSegueWithIdentifier:@"setFinalizeViewSegue" sender:self];
 }
 
@@ -350,6 +348,20 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"setFinalizeViewSegue"])
+    {
+        // Get reference to the destination view controller
+        SetFinalizeViewController *sfvc = [segue destinationViewController];
+        sfvc.jokes = selectedObjects;
+    }
 }
 
 

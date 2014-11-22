@@ -10,4 +10,7 @@
 
 @interface SetFinalizeViewController : UIViewController
 
+@property (nonatomic, strong) NSMutableArray *jokes;
+
+
 @end
