@@ -37,8 +37,8 @@
 
 - (IBAction)createNewJokeAction:(id)sender {
     
-    NSString *jokeTitle = self.titleField.text;
-    if (jokeTitle.length <= 0) {
+    NSString *jokeName = self.nameField.text;
+    if (jokeName.length <= 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No joke title"
                                                         message:@"You need to specify a joke title"
                                                        delegate:nil
@@ -56,8 +56,8 @@
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.creationDatePicker.date;
     
-    [self.jokeDataManager createNewJokeInPresentationLayer:jokeTitle jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
-    [self.jokeDataManager createNewJokeInCoreData:jokeTitle jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
+    [self.jokeDataManager createNewJokeInPresentationLayer:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
+    [self.jokeDataManager createNewJokeInCoreData:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -87,7 +87,7 @@
 #pragma mark Keyboard Delegate methods
 
 -(void)dismissKeyboard {
-    [self.titleField resignFirstResponder]; //or whatever your textfield you want this to apply to
+    [self.nameField resignFirstResponder]; //or whatever your textfield you want this to apply to
     [self.lengthMinField resignFirstResponder]; //or whatever your textfield you want this to apply to
     [self.scoreField resignFirstResponder]; //or whatever your textfield you want this to apply to
     

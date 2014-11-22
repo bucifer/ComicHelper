@@ -83,7 +83,7 @@
     for (int i=0; i < fetchedObjectsArrayOfCDJokes.count; i++) {
         JokeCD *oneCDJoke = fetchedObjectsArrayOfCDJokes[i];
         JokePL *newPLJoke = [[JokePL alloc]init];
-        newPLJoke.title = oneCDJoke.title;
+        newPLJoke.name = oneCDJoke.name;
         newPLJoke.score = [oneCDJoke.score floatValue];
         newPLJoke.length = [oneCDJoke.length intValue];
         newPLJoke.creationDate = oneCDJoke.creationDate;
@@ -97,7 +97,7 @@
 
 - (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
     JokePL *newPLJoke = [[JokePL alloc]init];
-    newPLJoke.title = oneCoreDataJoke.title;
+    newPLJoke.name = oneCoreDataJoke.name;
     newPLJoke.score = [oneCoreDataJoke.score floatValue];
     newPLJoke.length = [oneCoreDataJoke.length intValue];
     newPLJoke.creationDate = oneCoreDataJoke.creationDate;
@@ -113,7 +113,7 @@
 - (void) saveEditedJokeInCoreData: (JokePL *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date{
     NSError *error;
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
-    correspondingCDJoke.title = title;
+    correspondingCDJoke.name = title;
     correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
     correspondingCDJoke.score = [NSNumber numberWithFloat:[score floatValue]];
     correspondingCDJoke.creationDate = date;
@@ -133,10 +133,10 @@
 
 
 
-- (void) createNewJokeInCoreData: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
+- (void) createNewJokeInCoreData: (NSString *) jokeName jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    joke.title = jokeTitle;
+    joke.name = jokeName;
     joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue])];
     joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
     joke.creationDate = jokeDate;
@@ -148,7 +148,7 @@
 
 - (JokePL *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
     JokePL *joke = [[JokePL alloc]init];
-    joke.title = jokeTitle;
+    joke.name = jokeTitle;
     joke.score = [jokeScore floatValue];
     joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
     joke.creationDate = jokeDate;

@@ -27,7 +27,7 @@
 }
 
 - (void) displayMostRecentJokeForUI {
-    self.jokeTitleLabel.text = self.joke.title;
+    self.jokeNameLabel.text = self.joke.name;
     
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
     

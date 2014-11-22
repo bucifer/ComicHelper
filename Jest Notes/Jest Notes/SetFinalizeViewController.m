@@ -7,6 +7,8 @@
 //
 
 #import "SetFinalizeViewController.h"
+#import "JokePL.h"
+#import "NSObject+NSObject___TerryConvenience.h"
 
 @interface SetFinalizeViewController ()
 
@@ -17,11 +19,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    int setLength;
+    
+    for (int i=0; i < self.jokes.count; i++) {
+        JokePL *joke = self.jokes[i];
+        setLength += joke.length;
+    }
+    
+    self.setLengthFillLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:setLength];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.jokes.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *simpleCellIdentifier = @"Cell";
+    UITableViewCell *cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+    if(!cell){
+        cell =
+        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
+    }
+    
+    JokePL *selectedJoke = [self.jokes objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%li. %@", indexPath.row+1, selectedJoke.name];
+    
+    return cell;
 }
 
 /*
@@ -36,4 +71,6 @@
 
 - (IBAction)createSetButton:(id)sender {
 }
+
+
 @end

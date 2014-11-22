@@ -87,7 +87,7 @@
         
         cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
         
-        cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+        cell.nameLabel.text = [NSString stringWithFormat: @"%@", joke.name];
         cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
         cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -149,7 +149,7 @@
         SingleJokeViewController *sjvc = [segue destinationViewController];
         JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         sjvc.joke  = selectedJoke;
-        sjvc.title = selectedJoke.title;
+        sjvc.title = selectedJoke.name;
         sjvc.jokeDataManager = self.jokeDataManager;
     }
     
@@ -166,10 +166,10 @@
 - (IBAction)deleteBarButtonAction:(id)sender {
 
     if (![self.tableView isEditing]) {
-        [sender setTitle:@"Done"];
+        [sender setName:@"Done"];
     }
     else {
-        [sender setTitle:@"Delete"];
+        [sender setName:@"Delete"];
     }
     
     [self.tableView setEditing:![self.tableView isEditing]];

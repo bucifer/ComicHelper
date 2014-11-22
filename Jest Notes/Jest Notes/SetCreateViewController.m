@@ -51,7 +51,7 @@
 #pragma mark Search Bar Methods
 - (void)filterContentForSearchText:(NSString*)searchText scope: (NSString *) scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title BEGINSWITH[cd] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
     searchResults = [[self.jokeDataManager.jokes filteredArrayUsingPredicate:resultPredicate]mutableCopy];
 }
 
@@ -168,7 +168,7 @@
     JokePL *joke = [searchResults objectAtIndex:indexPath.row];
     
     //Fill in the cell with data
-    cell.textLabel.text = joke.title;
+    cell.textLabel.text = joke.name;
     
     //Background color for selection -- we do it separately for searchview and tableview because we are not using JokeCustomCell for this filterview
     UIView *bgColorView = [[UIView alloc] init];
@@ -183,7 +183,7 @@
     
     JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
-    cell.titleLabel.text = [NSString stringWithFormat: @"%@", joke.title];
+    cell.nameLabel.text = [NSString stringWithFormat: @"%@", joke.name];
     cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
     cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -257,7 +257,7 @@
     
     for (int i=0; i < selectedObjects.count; i++) {
         JokePL *joke = selectedObjects[i];
-        NSLog(@"%@", joke.title);
+        NSLog(@"%@", joke.name);
     }
     NSLog(@"\n");
 }
@@ -277,7 +277,7 @@
             break;
         }
         case 1: {
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
                                                                            ascending:YES
                                                                             selector:@selector(localizedCaseInsensitiveCompare:)];
             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -329,7 +329,7 @@
     else {
         for (int i=0; i < selectedObjects.count; i++) {
             JokePL *oneJoke = selectedObjects[i];
-            NSLog(@"%@", oneJoke.title);
+            NSLog(@"%@", oneJoke.name);
         }
     }
     

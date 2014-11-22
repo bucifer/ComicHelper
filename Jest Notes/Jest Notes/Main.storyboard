@@ -114,9 +114,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="LxR-yn-Zaf" id="f38-kM-vHO"/>
+                                            <outlet property="nameLabel" destination="Ynb-jW-wTs" id="KO2-3p-zeh"/>
                                             <outlet property="scoreLabel" destination="gV6-xb-AVD" id="hSL-ow-562"/>
                                             <outlet property="timeLabel" destination="0f0-gt-zJk" id="Duo-On-eZN"/>
-                                            <outlet property="titleLabel" destination="Ynb-jW-wTs" id="Q2Y-qI-2UL"/>
                                             <outlet property="uniqueIDLabel" destination="DLB-HY-678" id="rNN-mb-IIV"/>
                                             <segue destination="8Ol-YK-K5R" kind="show" identifier="singleView" id="aYj-sU-Xm4"/>
                                         </connections>
@@ -195,8 +195,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="026-p6-Q9y">
-                                <rect key="frame" x="38" y="89" width="74" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="026-p6-Q9y">
+                                <rect key="frame" x="38" y="89" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -353,8 +353,8 @@
                         <outlet property="creationDatePicker" destination="7FF-Aq-7hM" id="RPs-bu-a6W"/>
                         <outlet property="lengthMinField" destination="IdX-pS-Wds" id="eL4-4I-MUQ"/>
                         <outlet property="lengthSecondsField" destination="6HM-c7-enc" id="rdp-wk-sqO"/>
+                        <outlet property="nameField" destination="sgg-es-aAN" id="Hj0-Si-Mpt"/>
                         <outlet property="scoreField" destination="k89-rh-UfL" id="ato-AV-QNH"/>
-                        <outlet property="titleField" destination="sgg-es-aAN" id="tv7-t1-ccO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-7l-PX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -373,8 +373,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYr-pV-elY">
-                                <rect key="frame" x="199" y="153" width="89" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYr-pV-elY">
+                                <rect key="frame" x="199" y="153" width="104" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -415,8 +415,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57i-6i-suh">
-                                <rect key="frame" x="199" y="178" width="33" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57i-6i-suh">
+                                <rect key="frame" x="199" y="178" width="46" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="BBR-l9-ahN"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="E3p-oK-RBY"/>
@@ -464,8 +464,8 @@
                     <connections>
                         <outlet property="jokeDateLabel" destination="kLr-cV-pPW" id="H8F-IG-rhN"/>
                         <outlet property="jokeLengthLabel" destination="PAo-bm-mE0" id="fE3-fo-EIX"/>
+                        <outlet property="jokeNameLabel" destination="57i-6i-suh" id="otW-jI-5kn"/>
                         <outlet property="jokeScoreLabel" destination="IWc-8i-zT7" id="gwj-7n-pxy"/>
-                        <outlet property="jokeTitleLabel" destination="57i-6i-suh" id="56N-YI-obP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA5-6P-Gd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -484,8 +484,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXW-rB-yKn">
-                                <rect key="frame" x="162" y="116" width="74" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXW-rB-yKn">
+                                <rect key="frame" x="162" y="116" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -609,8 +609,8 @@
                         <outlet property="creationDatePicker" destination="PPm-7c-gDC" id="XuN-Ym-wdv"/>
                         <outlet property="lengthMinField" destination="InT-6R-Ang" id="K0g-5p-sSV"/>
                         <outlet property="lengthSecondsField" destination="rtz-za-ekv" id="h6C-4u-lIO"/>
+                        <outlet property="nameField" destination="2Wg-Fp-uta" id="qxx-Kn-AD7"/>
                         <outlet property="scoreField" destination="kIw-xU-7Uy" id="y1x-DM-biP"/>
-                        <outlet property="titleField" destination="2Wg-Fp-uta" id="IdD-XX-Mb2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -706,14 +706,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search by Joke Title" translatesAutoresizingMaskIntoConstraints="NO" id="6SF-pk-Jdf">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="id4-8F-qdT" id="M4k-bs-U0M"/>
                                 </connections>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qss-3A-owH">
-                                <rect key="frame" x="0.0" y="108" width="600" height="29"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="29"/>
                                 <segments>
                                     <segment title="Sort by Joke #"/>
                                     <segment title="A-Z"/>
@@ -724,7 +724,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MWA-sW-jqe">
-                                <rect key="frame" x="0.0" y="137" width="600" height="414"/>
+                                <rect key="frame" x="0.0" y="93" width="600" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeCustomCell" rowHeight="65" id="HG3-Sh-mF9" customClass="JokeCustomCell">
@@ -733,8 +733,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HG3-Sh-mF9" id="LMe-ec-aZd">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="jokeTitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdg-iw-H3f">
-                                                    <rect key="frame" x="8" y="21" width="46" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jokeName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdg-iw-H3f">
+                                                    <rect key="frame" x="8" y="21" width="84" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="ays-iI-V9v"/>
                                                     </constraints>
@@ -742,26 +742,26 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="jokeScore" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAT-SB-bBj">
-                                                    <rect key="frame" x="552" y="6" width="36" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jokeScore" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAT-SB-bBj">
+                                                    <rect key="frame" x="523" y="6" width="65" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" misplaced="YES" text="jokeLength" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYC-Tz-dNn">
-                                                    <rect key="frame" x="552" y="24" width="36" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="jokeLength" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYC-Tz-dNn">
+                                                    <rect key="frame" x="516" y="24" width="72" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="jokeDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgB-Nj-Rkf">
-                                                    <rect key="frame" x="550" y="42" width="38" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jokeDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgB-Nj-Rkf">
+                                                    <rect key="frame" x="527" y="42" width="61" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="jokeID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHg-Eg-uxk">
-                                                    <rect key="frame" x="10" y="4" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jokeID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHg-Eg-uxk">
+                                                    <rect key="frame" x="10" y="4" width="80" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -797,6 +797,11 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="9aZ-vi-MSq"/>
+                                                    <exclude reference="SYJ-dt-ZGN"/>
+                                                    <exclude reference="0yo-Jv-GRd"/>
+                                                    <exclude reference="BJh-5d-jVP"/>
+                                                    <exclude reference="ByF-eO-Yd5"/>
+                                                    <exclude reference="ipW-yx-r34"/>
                                                     <exclude reference="D6b-xx-Pd1"/>
                                                     <exclude reference="IDt-e3-Yda"/>
                                                     <exclude reference="JfB-jb-x0N"/>
@@ -804,19 +809,14 @@
                                                     <exclude reference="iHH-yY-fQn"/>
                                                     <exclude reference="odx-pW-BCo"/>
                                                     <exclude reference="ofK-ZL-yrh"/>
-                                                    <exclude reference="0yo-Jv-GRd"/>
-                                                    <exclude reference="BJh-5d-jVP"/>
-                                                    <exclude reference="ByF-eO-Yd5"/>
-                                                    <exclude reference="ipW-yx-r34"/>
-                                                    <exclude reference="SYJ-dt-ZGN"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="AgB-Nj-Rkf" id="BhO-ws-t5W"/>
+                                            <outlet property="nameLabel" destination="Fdg-iw-H3f" id="d4t-8W-bsA"/>
                                             <outlet property="scoreLabel" destination="dAT-SB-bBj" id="3NO-Gg-b8k"/>
                                             <outlet property="timeLabel" destination="hYC-Tz-dNn" id="9rH-Fh-OGq"/>
-                                            <outlet property="titleLabel" destination="Fdg-iw-H3f" id="DBL-5P-fgI"/>
                                             <outlet property="uniqueIDLabel" destination="OHg-Eg-uxk" id="0dC-sa-cfj"/>
                                         </connections>
                                     </tableViewCell>
@@ -886,14 +886,14 @@
                             <userLayoutGuide location="300" affinity="minY"/>
                         </userGuides>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview Your Set" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqx-Ws-Y0i">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Preview Your Set" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqx-Ws-Y0i">
                                 <rect key="frame" x="235" y="151" width="130" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Total Length:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsU-nS-Mtb">
-                                <rect key="frame" x="68" y="428" width="130" height="21"/>
+                                <rect key="frame" x="16" y="428" width="130" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -907,12 +907,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="setLengthFillLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhw-G6-F0O">
-                                <rect key="frame" x="205" y="428" width="140" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1V-QF-D63">
+                                <rect key="frame" x="164" y="463" width="273" height="117"/>
+                                <color key="backgroundColor" red="1" green="0.94389784425202961" blue="0.07244340633798807" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="IfP-nQ-tzd"/>
+                                    <constraint firstAttribute="width" constant="273" id="yKl-7m-RrD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                <state key="normal" title="Create Set">
+                                    <color key="titleColor" red="1" green="0.24397308445203514" blue="0.15121273075573205" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IfP-nQ-tzd"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="createSetButton:" destination="EVz-pt-y6z" eventType="touchUpInside" id="XQL-Vk-SlO"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set ID: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4P-Wd-4Jl">
                                 <rect key="frame" x="16" y="20" width="57" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -950,28 +966,12 @@
                                     <outlet property="delegate" destination="EVz-pt-y6z" id="cys-Cr-8fs"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1V-QF-D63">
-                                <rect key="frame" x="164" y="463" width="273" height="117"/>
-                                <color key="backgroundColor" red="1" green="0.94389784425202961" blue="0.07244340633798807" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="IfP-nQ-tzd"/>
-                                    <constraint firstAttribute="width" constant="273" id="yKl-7m-RrD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
-                                <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                                <state key="normal" title="Create Set">
-                                    <color key="titleColor" red="1" green="0.24397308445203514" blue="0.15121273075573205" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="IfP-nQ-tzd"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="createSetButton:" destination="EVz-pt-y6z" eventType="touchUpInside" id="XQL-Vk-SlO"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="setLengthFillLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhw-G6-F0O">
+                                <rect key="frame" x="154" y="428" width="140" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -989,7 +989,7 @@
                             <constraint firstItem="pgu-QK-ci5" firstAttribute="top" secondItem="d4w-aT-Qbn" secondAttribute="bottom" constant="35" id="IYp-dq-RO0"/>
                             <constraint firstItem="brE-X3-umy" firstAttribute="top" secondItem="gl4-d7-pNQ" secondAttribute="bottom" constant="12" id="Joy-OI-ohD"/>
                             <constraint firstAttribute="centerY" secondItem="H1V-QF-D63" secondAttribute="centerY" constant="-221.5" id="KiZ-tS-1ZP"/>
-                            <constraint firstItem="Vhw-G6-F0O" firstAttribute="leading" secondItem="TsU-nS-Mtb" secondAttribute="trailing" constant="7" id="MeX-pT-gbu"/>
+                            <constraint firstItem="Vhw-G6-F0O" firstAttribute="leading" secondItem="TsU-nS-Mtb" secondAttribute="trailing" constant="8" id="MeX-pT-gbu"/>
                             <constraint firstItem="gl4-d7-pNQ" firstAttribute="leading" secondItem="s4P-Wd-4Jl" secondAttribute="trailing" constant="8" symbolic="YES" id="N7X-6k-v59"/>
                             <constraint firstItem="H1V-QF-D63" firstAttribute="centerX" secondItem="Ham-SS-2RJ" secondAttribute="centerX" id="OJN-PI-7aG"/>
                             <constraint firstItem="pgu-QK-ci5" firstAttribute="baseline" secondItem="brE-X3-umy" secondAttribute="baseline" constant="32" id="Oph-kI-FSm"/>
@@ -1018,7 +1018,7 @@
                             <constraint firstItem="s4P-Wd-4Jl" firstAttribute="top" secondItem="d4w-aT-Qbn" secondAttribute="bottom" id="v0P-s0-z1a"/>
                             <constraint firstItem="pgu-QK-ci5" firstAttribute="centerY" secondItem="brE-X3-umy" secondAttribute="centerY" constant="1.5" id="vao-Tz-fcT"/>
                             <constraint firstItem="TsU-nS-Mtb" firstAttribute="top" secondItem="Ham-SS-2RJ" secondAttribute="bottom" constant="8" symbolic="YES" id="y3d-tn-I7z"/>
-                            <constraint firstItem="brE-X3-umy" firstAttribute="leading" secondItem="TsU-nS-Mtb" secondAttribute="leading" id="y4p-Hf-yzK"/>
+                            <constraint firstItem="brE-X3-umy" firstAttribute="leading" secondItem="TsU-nS-Mtb" secondAttribute="leading" constant="52" id="y4p-Hf-yzK"/>
                             <constraint firstItem="Ham-SS-2RJ" firstAttribute="centerX" secondItem="H1V-QF-D63" secondAttribute="centerX" id="zQt-1f-aJv"/>
                         </constraints>
                         <variation key="default">
@@ -1052,10 +1052,8 @@
                     </view>
                     <connections>
                         <outlet property="setIDFillLabel" destination="gl4-d7-pNQ" id="SHR-jY-glG"/>
-                        <outlet property="setIDFilllabel" destination="gl4-d7-pNQ" id="OEU-nV-ULS"/>
                         <outlet property="setLengthFillLabel" destination="Vhw-G6-F0O" id="6XK-ZY-ZZA"/>
                         <outlet property="setNameField" destination="pgu-QK-ci5" id="wrn-e0-qTc"/>
-                        <outlet property="setNameLabel" destination="pgu-QK-ci5" id="WhC-Kl-es2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssj-mH-Mm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1100,10 +1098,10 @@
             </objects>
             <point key="canvasLocation" x="-220" y="210"/>
         </scene>
-        <!--Your Sets-->
+        <!--SetsView-->
         <scene sceneID="JAT-is-RoV">
             <objects>
-                <tableViewController id="D5R-Up-jtI" customClass="SetViewController" sceneMemberID="viewController">
+                <tableViewController title="SetsView" id="D5R-Up-jtI" customClass="SetViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1th-N8-Fw3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

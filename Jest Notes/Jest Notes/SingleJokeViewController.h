@@ -18,7 +18,7 @@
 @property (nonatomic, strong) JokePL *joke;
 @property (nonatomic, strong) JokeDataManager *jokeDataManager;
 
-@property (strong, nonatomic) IBOutlet UILabel *jokeTitleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *jokeNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeLengthLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeScoreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeDateLabel;

@@ -12,7 +12,7 @@
 @interface CreateViewController : UIViewController
 
 
-@property (strong, nonatomic) IBOutlet UITextField *titleField;
+@property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UITextField *lengthMinField;
 @property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
 @property (strong, nonatomic) IBOutlet UITextField *scoreField;

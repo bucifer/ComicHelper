@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.titleField.text = self.joke.title;
+    self.nameField.text = self.joke.name;
     self.lengthMinField.text = [NSString stringWithFormat:@"%d", (self.joke.length / 60)];
     self.lengthSecondsField.text = [NSString stringWithFormat:@"%d", (self.joke.length % 60)];
     self.scoreField.text = [self quickStringFromInt:self.joke.score];
@@ -38,21 +38,21 @@
 
 
 - (IBAction)saveButtonAction:(id)sender {
-    NSString *changedTitle = self.titleField.text;
+    NSString *changedName = self.nameField.text;
     NSString *changedScore = self.scoreField.text;
     NSString *changedMinuteLength = self.lengthMinField.text;
     NSString *changedSecondsLength = self.lengthSecondsField.text;
     
     //editing presentation layer joke
     JokePL *selectedJoke = self.joke;
-    selectedJoke.title = changedTitle;
+    selectedJoke.name = changedName;
     selectedJoke.length = [changedMinuteLength intValue] * 60 + [changedSecondsLength intValue];
     selectedJoke.score = [changedScore floatValue];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     selectedJoke.creationDate = self.creationDatePicker.date;
     
-    [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke title:changedTitle minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore date:self.creationDatePicker.date];
+    [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke title:changedName minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore date:self.creationDatePicker.date];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
