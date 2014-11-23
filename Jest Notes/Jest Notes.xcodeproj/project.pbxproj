@@ -27,6 +27,7 @@
 		AAD59B921A210BC8006B145C /* PushNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B911A210BC8006B145C /* PushNoAnimationSegue.m */; };
 		AAD59B991A213ED1006B145C /* SetCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B981A213ED1006B145C /* SetCD.m */; };
 		AAD59B9C1A213EF2006B145C /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B9B1A213EF2006B145C /* JokeCD.m */; };
+		AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */; };
 		AAD7A62B1A1FB9E300DA8165 /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD7A62A1A1FB9E300DA8165 /* ViewManager.m */; };
 		AAD7A62E1A1FFE4C00DA8165 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD7A62D1A1FFE4C00DA8165 /* SetViewController.m */; };
 		AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */; };
@@ -82,6 +83,8 @@
 		AAD59B981A213ED1006B145C /* SetCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCD.m; sourceTree = "<group>"; };
 		AAD59B9A1A213EF2006B145C /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = SOURCE_ROOT; };
 		AAD59B9B1A213EF2006B145C /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = SOURCE_ROOT; };
+		AAD59B9D1A215A7C006B145C /* SingleSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleSetViewController.h; sourceTree = "<group>"; };
+		AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleSetViewController.m; sourceTree = "<group>"; };
 		AAD7A6291A1FB9E300DA8165 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
 		AAD7A62A1A1FB9E300DA8165 /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
 		AAD7A62C1A1FFE4C00DA8165 /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 				AAD59B8E1A2107BC006B145C /* SetCreateViewController.m */,
 				AAD7A62C1A1FFE4C00DA8165 /* SetViewController.h */,
 				AAD7A62D1A1FFE4C00DA8165 /* SetViewController.m */,
+				AAD59B9D1A215A7C006B145C /* SingleSetViewController.h */,
+				AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */,
 				AAD59B9C1A213EF2006B145C /* JokeCD.m in Sources */,
 				AAD2776C1A07DCED002AA22B /* JokePL.m in Sources */,
+				AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */,
 				AAD7A62E1A1FFE4C00DA8165 /* SetViewController.m in Sources */,
 				AAD2772C1A07DC81002AA22B /* main.m in Sources */,
 				AAD44F781A0D64AB00FDB656 /* Set.m in Sources */,
