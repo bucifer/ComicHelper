@@ -12,7 +12,7 @@
 
 @interface EditViewController : UIViewController
 
-@property (nonatomic, strong) JokePL *joke;
+@property (nonatomic, strong) Joke *joke;
 
 
 @property (strong, nonatomic) IBOutlet UITextField *nameField;

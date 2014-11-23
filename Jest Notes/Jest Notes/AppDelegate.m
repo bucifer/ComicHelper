@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "HomeViewController.h"
 #import "JokeDataManager.h"
-#import "SetViewController.h"
+#import "SetsViewController.h"
 
 @interface AppDelegate ()
 
@@ -33,7 +33,7 @@
     myJokeDatamanager.hvc = hvc;
     
     UINavigationController *secondNavController = myTabBarController.viewControllers[1];
-    SetViewController *svc = (SetViewController *) secondNavController.topViewController;
+    SetsViewController *svc = (SetsViewController *) secondNavController.topViewController;
     svc.jokeDataManager = myJokeDatamanager;
     
     return YES;

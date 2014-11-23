@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "JokePL.h"
+#import "Joke.h"
 
-@implementation JokePL
+@implementation Joke
 
 @end

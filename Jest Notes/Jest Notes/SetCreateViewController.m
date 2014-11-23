@@ -7,7 +7,7 @@
 //
 
 #import "SetCreateViewController.h"
-#import "JokePL.h"
+#import "Joke.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 #import "SetCD.h"
 
@@ -23,7 +23,7 @@
     int setLength;
     
     for (int i=0; i < self.selectedJokes.count; i++) {
-        JokePL *joke = self.selectedJokes[i];
+        Joke *joke = self.selectedJokes[i];
         setLength += joke.length;
     }
     
@@ -57,7 +57,7 @@
         [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
     }
     
-    JokePL *selectedJoke = [self.selectedJokes objectAtIndex:indexPath.row];
+    Joke *selectedJoke = [self.selectedJokes objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%li. %@", indexPath.row+1, selectedJoke.name];
     
     return cell;

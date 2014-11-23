@@ -8,7 +8,7 @@
 
 #import "JokeDataManager.h"
 #import "JokeCD.h"
-#import "JokePL.h"
+#import "Joke.h"
 #import "SetCD.h"
 #import "Set.h"
 
@@ -107,7 +107,7 @@
     
     for (int i=0; i < fetchedObjectsArrayOfCDJokes.count; i++) {
         JokeCD *oneCDJoke = fetchedObjectsArrayOfCDJokes[i];
-        JokePL *newPLJoke = [[JokePL alloc]init];
+        Joke *newPLJoke = [[Joke alloc]init];
         newPLJoke.name = oneCDJoke.name;
         newPLJoke.score = [oneCDJoke.score floatValue];
         newPLJoke.length = [oneCDJoke.length intValue];
@@ -122,8 +122,8 @@
 
 
 #pragma mark JokeCD Related
-- (JokePL *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
-    JokePL *newPLJoke = [[JokePL alloc]init];
+- (Joke *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
+    Joke *newPLJoke = [[Joke alloc]init];
     newPLJoke.name = oneCoreDataJoke.name;
     newPLJoke.score = [oneCoreDataJoke.score floatValue];
     newPLJoke.length = [oneCoreDataJoke.length intValue];
@@ -137,7 +137,7 @@
 
 
 
-- (void) saveEditedJokeInCoreData: (JokePL *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date{
+- (void) saveEditedJokeInCoreData: (Joke *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date{
     NSError *error;
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
     correspondingCDJoke.name = title;
@@ -160,7 +160,7 @@
 
 
 
-- (JokeCD *) getCorrespondingJokeCDFromJokePL: (JokePL *) jokePL {
+- (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL {
     NSError *error;
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
     return correspondingCDJoke;
@@ -180,8 +180,8 @@
     [self returnUniqueIDmaxValue];
 }
 
-- (JokePL *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
-    JokePL *joke = [[JokePL alloc]init];
+- (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
+    Joke *joke = [[Joke alloc]init];
     joke.name = jokeTitle;
     joke.score = [jokeScore floatValue];
     joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
@@ -205,7 +205,7 @@
     NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
     
     for (int i; i < jokeCDArray.count; i++) {
-        JokePL *joke = jokeCDArray[i];
+        Joke *joke = jokeCDArray[i];
         JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokePL:joke];
         [jokeCDArray addObject:jokeCD];
     }

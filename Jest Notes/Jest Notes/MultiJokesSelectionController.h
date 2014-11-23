@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
 
-@interface SetJokesSelectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchControllerDelegate>
+@interface MultiJokesSelectionController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchControllerDelegate>
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

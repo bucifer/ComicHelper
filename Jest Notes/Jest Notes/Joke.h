@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface JokePL : NSObject
+@interface Joke : NSObject
 
 @property (nonatomic, strong) NSString* name;
 @property float score;

@@ -7,7 +7,7 @@
 //
 
 #import "CreateViewController.h"
-#import "JokePL.h"
+#import "Joke.h"
 #import "JokeCD.h"
 
 @interface CreateViewController ()

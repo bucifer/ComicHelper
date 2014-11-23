@@ -7,7 +7,7 @@
 //
 
 #import "EditViewController.h"
-#import "JokePL.h"
+#import "Joke.h"
 #import "JokeCD.h"
 
 @interface EditViewController ()
@@ -44,7 +44,7 @@
     NSString *changedSecondsLength = self.lengthSecondsField.text;
     
     //editing presentation layer joke
-    JokePL *selectedJoke = self.joke;
+    Joke *selectedJoke = self.joke;
     selectedJoke.name = changedName;
     selectedJoke.length = [changedMinuteLength intValue] * 60 + [changedSecondsLength intValue];
     selectedJoke.score = [changedScore floatValue];

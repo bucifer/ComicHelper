@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JokePL.h"
+#import "Joke.h"
 #import "JokeDataManager.h"
 #import "JokeCD.h"
 
@@ -15,7 +15,7 @@
 @interface SingleJokeViewController : UIViewController
 
 
-@property (nonatomic, strong) JokePL *joke;
+@property (nonatomic, strong) Joke *joke;
 @property (nonatomic, strong) JokeDataManager *jokeDataManager;
 
 @property (strong, nonatomic) IBOutlet UILabel *jokeNameLabel;

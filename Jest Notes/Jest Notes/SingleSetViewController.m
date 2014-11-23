@@ -7,8 +7,12 @@
 //
 
 #import "SingleSetViewController.h"
+#import "Joke.h"
 
-@interface SingleSetViewController ()
+@interface SingleSetViewController () {
+    
+    NSArray *jokes;
+}
 
 @end
 
@@ -17,11 +21,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSLog(self.selectedSet.jokes.description);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.selectedSet.jokes.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if(!cell){
+        cell =
+        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
+    }
+    
+    Joke *selectedJoke = [jokes objectAtIndex:indexPath.row];
+    cell.textLabel.text = selectedJoke.name;
+    
+    return cell;
 }
 
 /*

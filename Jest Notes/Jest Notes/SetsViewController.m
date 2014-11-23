@@ -6,14 +6,15 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "SetViewController.h"
+#import "SetsViewController.h"
 #import "SetCD.h"
+#import "SingleSetViewController.h"
 
-@interface SetViewController ()
+@interface SetsViewController ()
 
 @end
 
-@implementation SetViewController
+@implementation SetsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -105,7 +106,10 @@
     // Get the new view controller using [segue destinationViewController].
     if ([[segue identifier] isEqualToString:@"singleSetViewSegue"])
     {
-        
+        // Get reference to the destination view controller
+        SingleSetViewController *singleSetView = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        singleSetView.selectedSet = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
     }
 }
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "SetJokesSelectionViewController.h"
+#import "MultiJokesSelectionController.h"
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 #import "ViewManager.h"
@@ -14,7 +14,7 @@
 #import "Set.h"
 #import "SetCreateViewController.h"
 
-@interface SetJokesSelectionViewController ()  {
+@interface MultiJokesSelectionController ()  {
     NSMutableArray *searchResults;
     NSMutableArray *selectedObjects;
     ViewManager *viewManager;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation SetJokesSelectionViewController
+@implementation MultiJokesSelectionController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -134,7 +134,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     [self jokeWasDeselected:selectedJoke];
     cell.accessoryView = nil;
 }
@@ -165,7 +165,7 @@
 
 #pragma mark Refactored TableView methods
 - (void) cellStylingLogicForFilterView: (UITableViewCell *) cell indexPath:(NSIndexPath *)indexPath {
-    JokePL *joke = [searchResults objectAtIndex:indexPath.row];
+    Joke *joke = [searchResults objectAtIndex:indexPath.row];
     
     //Fill in the cell with data
     cell.textLabel.text = joke.name;
@@ -181,7 +181,7 @@
 
 - (void) cellStylingLogicForRegTableView: (JokeCustomCell *) cell indexPath:(NSIndexPath *)indexPath {
     
-    JokePL *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    Joke *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
     cell.nameLabel.text = [NSString stringWithFormat: @"%@", joke.name];
     cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
@@ -207,7 +207,7 @@
 
 - (void) didSelectCheckmarkLogicForSearchFilterView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
     //if its filterview mode
-    JokePL *selectedJoke = [searchResults objectAtIndex:indexPath.row];
+    Joke *selectedJoke = [searchResults objectAtIndex:indexPath.row];
     if (selectedJoke.checkmarkFlag == YES) {
         [self jokeWasDeselected:selectedJoke];
         cell.accessoryView = nil;
@@ -220,12 +220,12 @@
 }
 
 - (void) didSelectCheckmarkLogicForRegularTableView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
-    JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
     [self jokeWasSelected:selectedJoke];
     cell.accessoryView = [self createJokeOrderButtonForJoke:selectedJoke];
 }
 
-- (void) jokeWasSelected: (JokePL*) selectedJoke {
+- (void) jokeWasSelected: (Joke*) selectedJoke {
     selectedJoke.checkmarkFlag = YES;
     
     //the order the joke will possess in the set - is the order in which you've placed it into the selected objects array
@@ -235,12 +235,12 @@
     [selectedObjects addObject:selectedJoke];
 }
 
-- (void) jokeWasDeselected: (JokePL*) selectedJoke {
+- (void) jokeWasDeselected: (Joke*) selectedJoke {
     selectedJoke.checkmarkFlag = NO;
     [selectedObjects removeObject:selectedJoke];
 }
 
-- (UIButton *) createJokeOrderButtonForJoke: (JokePL*) joke {
+- (UIButton *) createJokeOrderButtonForJoke: (Joke*) joke {
     UIButton *jokeOrderButton = [UIButton buttonWithType:UIButtonTypeCustom];
     jokeOrderButton.frame = CGRectMake(0.0f, 0.0f, 32, 32);
     jokeOrderButton.layer.cornerRadius = jokeOrderButton.bounds.size.width / 3;
@@ -256,7 +256,7 @@
 - (void) logWhatsBeenSelected {
     
     for (int i=0; i < selectedObjects.count; i++) {
-        JokePL *joke = selectedObjects[i];
+        Joke *joke = selectedObjects[i];
         NSLog(@"%@", joke.name);
     }
     NSLog(@"\n");
@@ -314,7 +314,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        JokePL *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         selectedJoke.checkmarkFlag = NO;
         cell.accessoryView = nil;
         [selectedObjects removeObject:selectedJoke];
@@ -328,7 +328,7 @@
         NSLog(@"Nothing Selected");
     else {
         for (int i=0; i < selectedObjects.count; i++) {
-            JokePL *oneJoke = selectedObjects[i];
+            Joke *oneJoke = selectedObjects[i];
             NSLog(@"%@", oneJoke.name);
         }
     }

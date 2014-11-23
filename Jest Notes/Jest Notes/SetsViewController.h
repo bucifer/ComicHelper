@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
 
-@interface SetViewController : UITableViewController
+@interface SetsViewController : UITableViewController
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 

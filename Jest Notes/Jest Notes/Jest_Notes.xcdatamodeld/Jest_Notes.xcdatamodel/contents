@@ -6,16 +6,16 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Float" minValueString="0" maxValueString="10" defaultValueString="0" syncable="YES"/>
         <attribute name="uniqueID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="set" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetCD" inverseName="jokes" inverseEntity="SetCD" syncable="YES"/>
+        <relationship name="set" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetCD" inverseName="jokes" inverseEntity="SetCD" syncable="YES"/>
     </entity>
     <entity name="SetCD" representedClassName="SetCD" syncable="YES">
         <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="jokes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JokeCD" inverseName="set" inverseEntity="JokeCD" syncable="YES"/>
+        <relationship name="jokes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="JokeCD" inverseName="set" inverseEntity="JokeCD" syncable="YES"/>
     </entity>
     <elements>
         <element name="JokeCD" positionX="-207" positionY="164" width="128" height="133"/>
-        <element name="SetCD" positionX="-398" positionY="-90" width="128" height="103"/>
+        <element name="SetCD" positionX="-585" positionY="194" width="128" height="103"/>
     </elements>
 </model>
