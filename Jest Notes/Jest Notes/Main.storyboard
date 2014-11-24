@@ -176,11 +176,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ems-Yy-lNg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H4F-Pc-exI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3J-Xy-RQ8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="750"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Press to name your joke" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-es-aAN">
                                         <rect key="frame" x="20" y="49" width="216" height="30"/>
@@ -246,7 +246,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIZ-3Y-VOD">
-                                        <rect key="frame" x="8" y="116" width="398" height="153"/>
+                                        <rect key="frame" x="8" y="116" width="584" height="153"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="153" id="Vhe-n7-BD4"/>
@@ -280,7 +280,7 @@
                                     </datePicker>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="7FF-Aq-7hM" secondAttribute="bottom" constant="140" id="1xX-CO-9HS"/>
+                                    <constraint firstAttribute="bottom" secondItem="7FF-Aq-7hM" secondAttribute="bottom" constant="90" id="1xX-CO-9HS"/>
                                     <constraint firstItem="7FF-Aq-7hM" firstAttribute="top" secondItem="brY-TS-EEz" secondAttribute="bottom" constant="1" id="4m6-QI-CuS"/>
                                     <constraint firstItem="IdX-pS-Wds" firstAttribute="trailing" secondItem="k89-rh-UfL" secondAttribute="trailing" id="5rl-i1-Y8A"/>
                                     <constraint firstItem="hIZ-3Y-VOD" firstAttribute="top" secondItem="tjx-OW-BSW" secondAttribute="bottom" constant="8" symbolic="YES" id="6lX-y0-3aX"/>
@@ -294,7 +294,7 @@
                                     <constraint firstItem="1Q9-47-bsw" firstAttribute="leading" secondItem="6HM-c7-enc" secondAttribute="trailing" constant="8" symbolic="YES" id="Ii4-Iw-gnZ"/>
                                     <constraint firstItem="75b-D3-FtO" firstAttribute="leading" secondItem="IdX-pS-Wds" secondAttribute="leading" id="Lfe-9i-HgM"/>
                                     <constraint firstItem="6HM-c7-enc" firstAttribute="baseline" secondItem="IdX-pS-Wds" secondAttribute="baseline" id="PA3-Zt-VuP"/>
-                                    <constraint firstAttribute="bottom" secondItem="hIZ-3Y-VOD" secondAttribute="bottom" constant="481" id="Re2-xG-qld"/>
+                                    <constraint firstAttribute="bottom" secondItem="hIZ-3Y-VOD" secondAttribute="bottom" constant="431" id="Re2-xG-qld"/>
                                     <constraint firstItem="7FF-Aq-7hM" firstAttribute="top" secondItem="brY-TS-EEz" secondAttribute="bottom" constant="8" id="TgV-th-4K7"/>
                                     <constraint firstItem="sgg-es-aAN" firstAttribute="leading" secondItem="tjx-OW-BSW" secondAttribute="leading" id="Tv2-My-ft9"/>
                                     <constraint firstItem="brY-TS-EEz" firstAttribute="top" secondItem="k89-rh-UfL" secondAttribute="bottom" constant="16" id="U5T-ns-IlS"/>
@@ -328,7 +328,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="a3J-Xy-RQ8" secondAttribute="bottom" constant="-14" id="4uz-Ds-Y6m"/>
+                            <constraint firstAttribute="bottom" secondItem="a3J-Xy-RQ8" secondAttribute="bottom" constant="-100" id="4uz-Ds-Y6m"/>
                             <constraint firstAttribute="trailing" secondItem="a3J-Xy-RQ8" secondAttribute="trailing" id="lkT-wC-pRx"/>
                             <constraint firstItem="a3J-Xy-RQ8" firstAttribute="leading" secondItem="H4F-Pc-exI" secondAttribute="leading" id="upV-m0-zmh"/>
                             <constraint firstItem="a3J-Xy-RQ8" firstAttribute="top" secondItem="H4F-Pc-exI" secondAttribute="top" id="vXB-bb-0FC"/>
@@ -341,7 +341,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="creationDatePicker" destination="7FF-Aq-7hM" id="RPs-bu-a6W"/>
                         <outlet property="jokeBodyTextField" destination="hIZ-3Y-VOD" id="Bzn-iO-YmB"/>

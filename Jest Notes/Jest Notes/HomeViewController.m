@@ -163,12 +163,14 @@
 
 
 - (IBAction)deleteBarButtonAction:(id)sender {
-
+    
+    UIBarButtonItem *barButtonItemPointer = (UIBarButtonItem *) sender;
+    
     if (![self.tableView isEditing]) {
-        [sender setName:@"Done"];
+        [barButtonItemPointer setTitle:@"Done"];
     }
     else {
-        [sender setName:@"Delete"];
+        [barButtonItemPointer setTitle:@"Delete"];
     }
     
     [self.tableView setEditing:![self.tableView isEditing]];

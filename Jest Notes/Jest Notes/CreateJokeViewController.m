@@ -10,9 +10,13 @@
 #import "Joke.h"
 #import "JokeCD.h"
 
-@interface CreateJokeViewController ()
+@interface CreateJokeViewController () {
+    UITextField *activeField;
+}
 
 @end
+
+
 
 @implementation CreateJokeViewController
 
@@ -30,6 +34,9 @@
     self.scoreField.delegate = self;
     
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -89,10 +96,10 @@
 #pragma mark Keyboard Delegate methods
 
 -(void)dismissKeyboard {
-    [self.nameField resignFirstResponder]; //or whatever your textfield you want this to apply to
-    [self.lengthMinField resignFirstResponder]; //or whatever your textfield you want this to apply to
-    [self.scoreField resignFirstResponder]; //or whatever your textfield you want this to apply to
-    
+    [self.nameField resignFirstResponder];
+    [self.lengthMinField resignFirstResponder];
+    [self.lengthSecondsField resignFirstResponder];
+    [self.scoreField resignFirstResponder];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
