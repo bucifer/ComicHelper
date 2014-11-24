@@ -27,6 +27,9 @@
     
     self.creationDatePicker.datePickerMode = UIDatePickerModeDate;
     
+    self.jokeBodyTextField.layer.borderWidth = 2;
+    self.jokeBodyTextField.layer.borderColor = [[UIColor blackColor] CGColor];
+    
 }
 
 - (void)didReceiveMemoryWarning {
