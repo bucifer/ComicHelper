@@ -9,10 +9,7 @@
 #import "SingleSetViewController.h"
 #import "Joke.h"
 
-@interface SingleSetViewController () {
-    
-    NSArray *jokes;
-}
+@interface SingleSetViewController ()
 
 @end
 
@@ -22,6 +19,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     NSLog(self.selectedSet.jokes.description);
 }
 
@@ -45,7 +45,9 @@
         [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
     }
     
-    Joke *selectedJoke = [jokes objectAtIndex:indexPath.row];
+    
+    
+    Joke *selectedJoke = [self.selectedSet.jokes objectAtIndex:indexPath.row];
     cell.textLabel.text = selectedJoke.name;
     
     return cell;

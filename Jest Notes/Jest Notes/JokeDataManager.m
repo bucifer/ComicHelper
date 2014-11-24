@@ -43,36 +43,40 @@
     }
     else {
         //this is NOT the first launch ... Fetch from Core Data
-        NSFetchRequest *jokesFetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-        [jokesFetchRequest setEntity:entity];
-        
-        NSError *error = nil;
-        NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:jokesFetchRequest error:&error];
-        if (fetchedJokesFromCD == nil) {
-            NSLog(@"some horrible error in fetching CD: %@", error);
-        }
-        
+        NSArray *fetchedJokesFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"JokeCD"];
         self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
         self.uniqueIDmaxValue = [self returnUniqueIDmaxValue];
-        
         [self.hvc.tableView reloadData];
-        
         
         //taking care of fetching SETS now
         
-        NSFetchRequest *setsFetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *setsEntity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
-        [setsFetchRequest setEntity:setsEntity];
-        NSError *error2 = nil;
-        NSArray *fetchedSetsFromCD = [self.managedObjectContext executeFetchRequest:setsFetchRequest error:&error2];
-        if (fetchedSetsFromCD == nil) {
-            NSLog(@"some horrible error in fetching CD: %@", error);
-        }
+        NSArray *fetchedSetsFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"SetCD"];
         self.sets = [fetchedSetsFromCD mutableCopy];
-        
+        for (SetCD* setCD in self.sets) {
+            [setCD valueForKey:@"jokes"];
+        }
     }
 }
+
+
+- (NSArray *) fetchAndReturnArrayOfCDObjectWithEntityName: (NSString *) entityString {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityString inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error = nil;
+    NSArray *fetchedStuff = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedStuff == nil) {
+        NSLog(@"some horrible error in fetching CD: %@", error);
+        return nil;
+    }
+    
+    return fetchedStuff;
+}
+
+
+
+
 
 - (void) refreshJokesCDDataWithNewFetch {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -97,6 +101,11 @@
         NSLog(@"some horrible error in fetching CD: %@", error2);
     }
     self.sets = [fetchedSetsFromCD mutableCopy];
+    
+    for (SetCD* setCD in self.sets) {
+        NSLog(setCD.jokes.description);
+    }
+    
     NSLog(@"refreshed sets cd data with new fetch");
 
 }
@@ -204,13 +213,13 @@
     
     NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
     
-    for (int i; i < jokeCDArray.count; i++) {
+    for (int i; i < jokes.count; i++) {
         Joke *joke = jokeCDArray[i];
         JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokePL:joke];
         [jokeCDArray addObject:jokeCD];
     }
     
-    set.jokes = [NSSet setWithArray:[jokeCDArray copy]];
+    set.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
     
     [self saveChangesInContextCoreData];
 }
