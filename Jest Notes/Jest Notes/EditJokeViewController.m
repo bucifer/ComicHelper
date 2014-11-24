@@ -52,7 +52,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     selectedJoke.creationDate = self.creationDatePicker.date;
     
-    [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke title:changedName minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore date:self.creationDatePicker.date];
+    [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke title:changedName minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore date:self.creationDatePicker.date bodyText:nil];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

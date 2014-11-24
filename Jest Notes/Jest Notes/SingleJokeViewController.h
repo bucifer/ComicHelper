@@ -18,11 +18,10 @@
 @property (nonatomic, strong) Joke *joke;
 @property (nonatomic, strong) JokeDataManager *jokeDataManager;
 
-@property (strong, nonatomic) IBOutlet UILabel *jokeNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeLengthLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeScoreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeDateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *jokeIDLabel;
+@property (strong, nonatomic) IBOutlet UITextView *jokeBodyTextView;
 
 
 @end

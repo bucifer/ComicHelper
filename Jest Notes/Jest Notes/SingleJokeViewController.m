@@ -27,8 +27,6 @@
 }
 
 - (void) displayMostRecentJokeForUI {
-    self.jokeNameLabel.text = self.joke.name;
-    
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
     
     NSString *score = [NSString stringWithFormat:@"%.01f", self.joke.score];
@@ -38,6 +36,8 @@
     
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.creationDate];
+    
+    self.jokeBodyTextView.text = self.joke.bodyText;
 }
 
 

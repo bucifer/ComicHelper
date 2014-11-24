@@ -118,6 +118,7 @@
         newPLJoke.creationDate = oneCDJoke.creationDate;
         newPLJoke.managedObjectID = [oneCDJoke objectID];
         newPLJoke.uniqueID = oneCDJoke.uniqueID;
+        newPLJoke.bodyText = oneCDJoke.bodyText;
         [resultArrayOfJokePLs addObject:newPLJoke];
     }
     
@@ -132,6 +133,7 @@
     newPLJoke.creationDate = oneCoreDataJoke.creationDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
     newPLJoke.uniqueID = oneCoreDataJoke.uniqueID;
+    newPLJoke.bodyText = oneCoreDataJoke.bodyText;
     
     return newPLJoke;
 }
@@ -140,25 +142,26 @@
 #pragma mark Joke Object-related
 
 
-- (void) saveEditedJokeInCoreData: (Joke *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date{
+- (void) saveEditedJokeInCoreData: (Joke *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date bodyText:(NSString *)bodyText{
     NSError *error;
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
     correspondingCDJoke.name = title;
     correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
     correspondingCDJoke.score = [NSNumber numberWithFloat:[score floatValue]];
     correspondingCDJoke.creationDate = date;
+    correspondingCDJoke.bodyText = bodyText;
     [self saveChangesInContextCoreData];
 }
 
 
 - (void) saveChangesInContextCoreData {
-        NSError *err = nil;
-        BOOL successful = [self.managedObjectContext save:&err];
-        if(!successful){
-            NSLog(@"Error saving: %@", [err localizedDescription]);
-        } else {
-            NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
-        }
+    NSError *err = nil;
+    BOOL successful = [self.managedObjectContext save:&err];
+    if(!successful){
+        NSLog(@"Error saving: %@", [err localizedDescription]);
+    } else {
+        NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
+    }
 }
 
 
@@ -170,7 +173,7 @@
 }
 
 
-- (void) createNewJokeInCoreData: (NSString *) jokeName jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
+- (void) createNewJokeInCoreData: (NSString *) jokeName jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText: (NSString*) bodyText{
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     joke.name = jokeName;
@@ -178,18 +181,20 @@
     joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
     joke.creationDate = jokeDate;
     joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
-    [self saveChangesInContextCoreData];
+    joke.bodyText = bodyText;
     
+    [self saveChangesInContextCoreData];
     [self returnUniqueIDmaxValue];
 }
 
-- (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate {
+- (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText:(NSString *)bodyText{
     Joke *joke = [[Joke alloc]init];
     joke.name = jokeTitle;
     joke.score = [jokeScore floatValue];
     joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
     joke.creationDate = jokeDate;
     joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
+    joke.bodyText = bodyText;
     
     [self.jokes addObject:joke];
     

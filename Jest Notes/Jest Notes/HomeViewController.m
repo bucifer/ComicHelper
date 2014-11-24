@@ -92,6 +92,8 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"M/dd/yy"];
         cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+        
+        NSLog(@"%@", joke.bodyText);
     }
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

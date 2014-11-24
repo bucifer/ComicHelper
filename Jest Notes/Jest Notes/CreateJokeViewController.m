@@ -71,8 +71,8 @@
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.creationDatePicker.date;
     
-    [self.jokeDataManager createNewJokeInPresentationLayer:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
-    [self.jokeDataManager createNewJokeInCoreData:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate];
+    [self.jokeDataManager createNewJokeInPresentationLayer:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate bodyText:self.jokeBodyTextView.text];
+    [self.jokeDataManager createNewJokeInCoreData:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate bodyText:self.jokeBodyTextView.text];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -96,7 +96,7 @@
 
 
 
-#pragma mark Keyboard Delegate methods
+#pragma mark Keyboard and TextView Delegate methods
 
 -(void)dismissKeyboard {
     [self.nameField resignFirstResponder];

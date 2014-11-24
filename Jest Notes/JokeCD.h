@@ -19,6 +19,9 @@
 @property (nonatomic, retain) NSNumber * score;
 @property (nonatomic, retain) NSNumber * uniqueID;
 @property (nonatomic, retain) NSSet *set;
+@property (nonatomic, retain) NSString *bodyText;
+
+
 @end
 
 @interface JokeCD (CoreDataGeneratedAccessors)

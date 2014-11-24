@@ -16,6 +16,8 @@
 @dynamic length;
 @dynamic name;
 @dynamic score;
+@dynamic bodyText;
+
 @dynamic uniqueID;
 @dynamic set;
 
