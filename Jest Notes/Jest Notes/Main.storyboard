@@ -182,7 +182,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3J-Xy-RQ8">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Press to name your joke" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-es-aAN">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap to name your joke" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-es-aAN">
                                         <rect key="frame" x="20" y="49" width="216" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="216" id="ViH-IY-bT8"/>
@@ -214,12 +214,12 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="press" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k89-rh-UfL">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="tap" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k89-rh-UfL">
                                         <rect key="frame" x="20" y="381" width="64" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="press" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-pS-Wds">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="tap" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-pS-Wds">
                                         <rect key="frame" x="20" y="306" width="64" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="D9S-4i-t4l"/>
@@ -245,13 +245,12 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIZ-3Y-VOD">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="hIZ-3Y-VOD">
                                         <rect key="frame" x="8" y="116" width="584" height="153"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="153" id="Vhe-n7-BD4"/>
                                         </constraints>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -261,7 +260,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="press" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6HM-c7-enc">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="tap" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6HM-c7-enc">
                                         <rect key="frame" x="170" y="306" width="64" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="dHY-fX-ECi"/>
@@ -343,7 +342,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="creationDatePicker" destination="7FF-Aq-7hM" id="RPs-bu-a6W"/>
-                        <outlet property="jokeBodyTextField" destination="hIZ-3Y-VOD" id="Bzn-iO-YmB"/>
+                        <outlet property="jokeBodyTextView" destination="hIZ-3Y-VOD" id="TzY-Nr-4rd"/>
                         <outlet property="lengthMinField" destination="IdX-pS-Wds" id="eL4-4I-MUQ"/>
                         <outlet property="lengthSecondsField" destination="6HM-c7-enc" id="rdp-wk-sqO"/>
                         <outlet property="myScrollView" destination="a3J-Xy-RQ8" id="u5Y-SD-3XJ"/>

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
 
-@interface CreateJokeViewController : UIViewController <UITextFieldDelegate>
+@interface CreateJokeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
@@ -17,9 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
 @property (strong, nonatomic) IBOutlet UITextField *scoreField;
 @property (strong, nonatomic) IBOutlet UIDatePicker *creationDatePicker;
-@property (strong, nonatomic) IBOutlet UITextView *jokeBodyTextField;
-
-
+@property (strong, nonatomic) IBOutlet UITextView *jokeBodyTextView;
 @property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
