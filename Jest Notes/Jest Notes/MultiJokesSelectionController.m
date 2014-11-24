@@ -324,16 +324,8 @@
 
 
 - (IBAction)doneAction:(id)sender {
-    if (selectedObjects.count == 0)
-        NSLog(@"Nothing Selected");
-    else {
-        for (int i=0; i < selectedObjects.count; i++) {
-            Joke *oneJoke = selectedObjects[i];
-            NSLog(@"%@", oneJoke.name);
-        }
-    }
-    
     if (selectedObjects.count == 0) {
+        NSLog(@"Nothing Selected");
         [self alertIfNothingWasSelected];
         return;
     }

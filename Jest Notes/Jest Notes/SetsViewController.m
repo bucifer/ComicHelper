@@ -7,7 +7,6 @@
 //
 
 #import "SetsViewController.h"
-#import "SetCD.h"
 #import "SingleSetViewController.h"
 
 @interface SetsViewController ()
@@ -57,7 +56,7 @@
     
     // Configure the cell...
     
-    SetCD* set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
+    Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
     cell.textLabel.text = set.name;
     
     return cell;
@@ -110,6 +109,11 @@
         SingleSetViewController *singleSetView = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         singleSetView.selectedSet = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
+        
+        for(JokeCD *joke in singleSetView.selectedSet.jokes)
+        {
+            NSLog(@"%@", joke.name);
+        }
     }
 }
 

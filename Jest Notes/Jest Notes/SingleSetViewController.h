@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SetCD.h"
+#import "Set.h"
 
 @interface SingleSetViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) SetCD *selectedSet;
+@property (strong, nonatomic) Set *selectedSet;
 
 
 @end

@@ -22,7 +22,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(self.selectedSet.jokes.description);
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,8 +44,6 @@
         cell =
         [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
     }
-    
-    
     
     Joke *selectedJoke = [self.selectedSet.jokes objectAtIndex:indexPath.row];
     cell.textLabel.text = selectedJoke.name;

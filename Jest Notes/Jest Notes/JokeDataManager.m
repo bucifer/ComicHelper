@@ -26,7 +26,7 @@
 
 
 
-#pragma mark Core Data-related
+#pragma mark Initialization Logic
 - (void) appInitializationLogic {
     //Let's do initialization logic
     //If it's the first time you are running the app, we don't do anything
@@ -42,19 +42,16 @@
         [userDefaults synchronize];
     }
     else {
-        //this is NOT the first launch ... Fetch from Core Data
+        //this is NOT the first launch ... Fetch Jokesfrom Core Data
         NSArray *fetchedJokesFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"JokeCD"];
-        self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
+        self.jokes = [self convertCoreDataJokesArrayIntoPresentationLayer:fetchedJokesFromCD];
         self.uniqueIDmaxValue = [self returnUniqueIDmaxValue];
         [self.hvc.tableView reloadData];
         
         //taking care of fetching SETS now
-        
         NSArray *fetchedSetsFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"SetCD"];
-        self.sets = [fetchedSetsFromCD mutableCopy];
-        for (SetCD* setCD in self.sets) {
-            [setCD valueForKey:@"jokes"];
-        }
+        self.sets = [self convertCoreDataSetsIntoPresentationLayer:fetchedSetsFromCD];
+    
     }
 }
 
@@ -76,7 +73,7 @@
 
 
 
-
+#pragma mark Refresh-Logic Core Data-Related
 
 - (void) refreshJokesCDDataWithNewFetch {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -87,7 +84,7 @@
     if (fetchedJokesFromCD == nil) {
         NSLog(@"some horrible error in fetching CD: %@", error);
     }
-    self.jokes = [self convertCoreDataJokesArrayIntoJokePLs:fetchedJokesFromCD];
+    self.jokes = [self convertCoreDataJokesArrayIntoPresentationLayer:fetchedJokesFromCD];
     NSLog(@"refreshed jokes cd data with new fetch");
 }
 
@@ -102,15 +99,13 @@
     }
     self.sets = [fetchedSetsFromCD mutableCopy];
     
-    for (SetCD* setCD in self.sets) {
-        NSLog(setCD.jokes.description);
-    }
-    
     NSLog(@"refreshed sets cd data with new fetch");
 
 }
 
-- (NSMutableArray *) convertCoreDataJokesArrayIntoJokePLs: (NSArray *) fetchedObjectsArrayOfCDJokes {
+#pragma mark Converting Core Data/Presentation Layer logic
+
+- (NSMutableArray *) convertCoreDataJokesArrayIntoPresentationLayer: (NSArray *) fetchedObjectsArrayOfCDJokes {
     
     NSMutableArray *resultArrayOfJokePLs = [[NSMutableArray alloc]init];
     
@@ -129,8 +124,6 @@
     return resultArrayOfJokePLs;
 }
 
-
-#pragma mark JokeCD Related
 - (Joke *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
     Joke *newPLJoke = [[Joke alloc]init];
     newPLJoke.name = oneCoreDataJoke.name;
@@ -139,11 +132,12 @@
     newPLJoke.creationDate = oneCoreDataJoke.creationDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
     newPLJoke.uniqueID = oneCoreDataJoke.uniqueID;
-
+    
     return newPLJoke;
 }
 
 
+#pragma mark Joke Object-related
 
 
 - (void) saveEditedJokeInCoreData: (Joke *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date{
@@ -202,33 +196,54 @@
     return joke;
 }
 
+- (void) sortJokesArrayWithTwoDescriptors:(NSString *)firstDescriptorString secondDescriptor:(NSString *)secondDescriptorString {
+    NSSortDescriptor *scoreSorter = [[NSSortDescriptor alloc]initWithKey:firstDescriptorString ascending:NO];
+    NSSortDescriptor *dateSorter = [[NSSortDescriptor alloc]initWithKey:secondDescriptorString ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:scoreSorter, dateSorter, nil];
+    self.jokes = [[self.jokes sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+}
+
+
 
 
 #pragma mark SetCDs-related
-
 - (void) createNewSetInCoreData:(NSString *)setName jokes:(NSMutableArray *)jokes{
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
     SetCD *set = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     set.name = setName;
     
+    //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
     NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
-    
-    for (int i; i < jokes.count; i++) {
-        Joke *joke = jokeCDArray[i];
+    for (int i = 0; i < jokes.count; i++) {
+        Joke *joke = jokes[i];
         JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokePL:joke];
         [jokeCDArray addObject:jokeCD];
     }
     
     set.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
-    
     [self saveChangesInContextCoreData];
+}
+
+- (NSMutableArray *) convertCoreDataSetsIntoPresentationLayer: (NSArray *) fetchedCDSetsArray {
+    
+    NSMutableArray *resultArraySetPLs = [[NSMutableArray alloc]init];
+    
+    for (int i=0; i < fetchedCDSetsArray.count; i++) {
+        SetCD *oneCDSet = fetchedCDSetsArray[i];
+        Set *newSet = [[Set alloc]init];
+        newSet.name = oneCDSet.name;
+        newSet.jokes = [[oneCDSet.jokes array] mutableCopy];
+        [resultArraySetPLs addObject:newSet];
+    }
+    
+    return resultArraySetPLs;
 }
 
 
 
 
 
-#pragma mark Logic-Related
+#pragma mark Other Custom Logic-Related
 - (NSNumber *) returnUniqueIDmaxValue {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
@@ -259,12 +274,7 @@
 }
 
 
-- (void) sortJokesArrayWithTwoDescriptors:(NSString *)firstDescriptorString secondDescriptor:(NSString *)secondDescriptorString {
-    NSSortDescriptor *scoreSorter = [[NSSortDescriptor alloc]initWithKey:firstDescriptorString ascending:NO];
-    NSSortDescriptor *dateSorter = [[NSSortDescriptor alloc]initWithKey:secondDescriptorString ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:scoreSorter, dateSorter, nil];
-    self.jokes = [[self.jokes sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
-}
+
 
 - (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending{
     NSSortDescriptor *sorter = [[NSSortDescriptor alloc]initWithKey:descriptorString ascending:ascending];
