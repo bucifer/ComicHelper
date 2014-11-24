@@ -58,7 +58,7 @@
     }
     
     NSString *jokeScore = self.scoreField.text;
-    if ([self alertIfInvalid:jokeScore]) {
+    if ([self alertScoreInputInvalid:jokeScore]) {
         return; //cuts off and interrupts create new action if the alert ever goes up
     }
     NSString *jokeMinuteLength = self.lengthMinField.text;
@@ -74,10 +74,7 @@
 
 
 
-
-
-
-- (BOOL) alertIfInvalid: (NSString *) scoreString {
+- (BOOL) alertScoreInputInvalid: (NSString *) scoreString {
     if ([self.jokeDataManager isScoreInputValid:[scoreString floatValue]] == NO) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score out of range"
                                                         message:@"Your score input is out of range. Please input a number between 0 to 10 (inclusive) under Joke Score"

@@ -76,8 +76,26 @@
 
 - (IBAction)createSetButton:(id)sender {
     
-    [self.jokeDataManager createNewSetInCoreData: self.setNameField.text jokes:self.selectedJokes];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if ([self alertIfSetNameFieldInvalid]) {
+        return;
+    }
+    else {
+        [self.jokeDataManager createNewSetInCoreData: self.setNameField.text jokes:self.selectedJokes];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+- (BOOL) alertIfSetNameFieldInvalid {
+    if ([self.setNameField.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Set Name Invalid"
+                                                        message:@"You need a name for your set"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return YES;
+    }
+    return NO;
 }
 
 
