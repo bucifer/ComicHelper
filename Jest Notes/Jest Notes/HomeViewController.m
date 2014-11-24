@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-#import "CreateViewController.h"
+#import "CreateJokeViewController.h"
 #import "SingleJokeViewController.h"
 #import "Joke.h"
 #import "JokeCD.h"
@@ -140,7 +140,7 @@
     if ([[segue identifier] isEqualToString:@"jokeCreationViewSegue"])
     {
         // Get reference to the destination view controller
-        CreateViewController *cvc = (CreateViewController*) [segue destinationViewController];
+        CreateJokeViewController *cvc = (CreateJokeViewController*) [segue destinationViewController];
         cvc.jokeDataManager = self.jokeDataManager;
     }
     else if ([[segue identifier] isEqualToString:@"singleView"]) {

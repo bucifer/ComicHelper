@@ -7,7 +7,7 @@
 //
 
 #import "SingleJokeViewController.h"
-#import "EditViewController.h"
+#import "EditJokeViewController.h"
 
 @interface SingleJokeViewController ()
 
@@ -59,7 +59,7 @@
     if ([[segue identifier] isEqualToString:@"editView"])
     {
         // Get reference to the destination view controller
-        EditViewController *evc = [segue destinationViewController];
+        EditJokeViewController *evc = [segue destinationViewController];
         evc.jokeDataManager = self.jokeDataManager;
         evc.joke = self.joke;
     }

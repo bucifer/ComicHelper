@@ -15,8 +15,8 @@
 		AAD277491A07DC82002AA22B /* Jest_NotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277481A07DC82002AA22B /* Jest_NotesTests.m */; };
 		AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277551A07DCD9002AA22B /* HomeViewController.m */; };
 		AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */; };
-		AAD277681A07DCED002AA22B /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775B1A07DCED002AA22B /* CreateViewController.m */; };
-		AAD277691A07DCED002AA22B /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775D1A07DCED002AA22B /* EditViewController.m */; };
+		AAD277681A07DCED002AA22B /* CreateJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775B1A07DCED002AA22B /* CreateJokeViewController.m */; };
+		AAD277691A07DCED002AA22B /* EditJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775D1A07DCED002AA22B /* EditJokeViewController.m */; };
 		AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277611A07DCED002AA22B /* JokeDataManager.m */; };
 		AAD2776C1A07DCED002AA22B /* Joke.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277631A07DCED002AA22B /* Joke.m */; };
 		AAD2776D1A07DCED002AA22B /* Jest_Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */; };
@@ -61,10 +61,10 @@
 		AAD277551A07DCD9002AA22B /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleJokeViewController.h; sourceTree = "<group>"; };
 		AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleJokeViewController.m; sourceTree = "<group>"; };
-		AAD2775A1A07DCED002AA22B /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
-		AAD2775B1A07DCED002AA22B /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
-		AAD2775C1A07DCED002AA22B /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
-		AAD2775D1A07DCED002AA22B /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		AAD2775A1A07DCED002AA22B /* CreateJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateJokeViewController.h; sourceTree = "<group>"; };
+		AAD2775B1A07DCED002AA22B /* CreateJokeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateJokeViewController.m; sourceTree = "<group>"; };
+		AAD2775C1A07DCED002AA22B /* EditJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditJokeViewController.h; sourceTree = "<group>"; };
+		AAD2775D1A07DCED002AA22B /* EditJokeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditJokeViewController.m; sourceTree = "<group>"; };
 		AAD277601A07DCED002AA22B /* JokeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeDataManager.h; sourceTree = "<group>"; };
 		AAD277611A07DCED002AA22B /* JokeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeDataManager.m; sourceTree = "<group>"; };
 		AAD277621A07DCED002AA22B /* Joke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joke.h; sourceTree = "<group>"; };
@@ -222,10 +222,10 @@
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
 				AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */,
-				AAD2775A1A07DCED002AA22B /* CreateViewController.h */,
-				AAD2775B1A07DCED002AA22B /* CreateViewController.m */,
-				AAD2775C1A07DCED002AA22B /* EditViewController.h */,
-				AAD2775D1A07DCED002AA22B /* EditViewController.m */,
+				AAD2775A1A07DCED002AA22B /* CreateJokeViewController.h */,
+				AAD2775B1A07DCED002AA22B /* CreateJokeViewController.m */,
+				AAD2775C1A07DCED002AA22B /* EditJokeViewController.h */,
+				AAD2775D1A07DCED002AA22B /* EditJokeViewController.m */,
 				AA7562D71A1EAC1E003F5F03 /* MultiJokesSelectionController.h */,
 				AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */,
 				AAD59B8D1A2107BC006B145C /* SetCreateViewController.h */,
@@ -341,8 +341,8 @@
 				AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */,
 				AAD39E681A22A58500AB60FA /* SetCD.m in Sources */,
 				AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */,
-				AAD277681A07DCED002AA22B /* CreateViewController.m in Sources */,
-				AAD277691A07DCED002AA22B /* EditViewController.m in Sources */,
+				AAD277681A07DCED002AA22B /* CreateJokeViewController.m in Sources */,
+				AAD277691A07DCED002AA22B /* EditJokeViewController.m in Sources */,
 				AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */,
 				AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
 				AAD39E6B1A22A5E100AB60FA /* JokeCD.m in Sources */,

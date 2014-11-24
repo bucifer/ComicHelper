@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "EditViewController.h"
+#import "EditJokeViewController.h"
 #import "Joke.h"
 #import "JokeCD.h"
 
-@interface EditViewController ()
+@interface EditJokeViewController ()
 
 @end
 
-@implementation EditViewController
+@implementation EditJokeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "CreateViewController.h"
+#import "CreateJokeViewController.h"
 #import "Joke.h"
 #import "JokeCD.h"
 
-@interface CreateViewController ()
+@interface CreateJokeViewController ()
 
 @end
 
-@implementation CreateViewController
+@implementation CreateJokeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,11 +24,10 @@
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
-    
-    self.creationDatePicker.datePickerMode = UIDatePickerModeDate;
-    
     self.jokeBodyTextField.layer.borderWidth = 2;
     self.jokeBodyTextField.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    self.scoreField.delegate = self;
     
 }
 
@@ -94,6 +93,15 @@
     [self.lengthMinField resignFirstResponder]; //or whatever your textfield you want this to apply to
     [self.scoreField resignFirstResponder]; //or whatever your textfield you want this to apply to
     
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGPoint scrollPoint = CGPointMake(0, self.scoreField.frame.origin.y-220);
+    [self.myScrollView setContentOffset:scrollPoint animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self.myScrollView setContentOffset:CGPointZero animated:YES];
 }
 
 

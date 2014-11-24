@@ -1,15 +1,18 @@
 //
-//  JokeCreationViewController.h
+//  EditViewController.h
 //  ComicsHelperApp
 //
-//  Created by Terry Bu on 10/30/14.
+//  Created by Terry Bu on 10/31/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
+#import "NSObject+NSObject___TerryConvenience.h"
 
-@interface CreateViewController : UIViewController
+@interface EditJokeViewController : UIViewController
+
+@property (nonatomic, strong) Joke *joke;
 
 
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
@@ -17,11 +20,12 @@
 @property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
 @property (strong, nonatomic) IBOutlet UITextField *scoreField;
 @property (strong, nonatomic) IBOutlet UIDatePicker *creationDatePicker;
-@property (strong, nonatomic) IBOutlet UITextView *jokeBodyTextField;
-
-
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
-- (IBAction)createNewJokeAction:(id)sender;
+
+- (IBAction)saveButtonAction:(id)sender;
+
+
+
 
 @end

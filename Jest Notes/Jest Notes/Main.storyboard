@@ -167,10 +167,10 @@
             </objects>
             <point key="canvasLocation" x="370" y="-1278"/>
         </scene>
-        <!--Add New Joke-->
+        <!--Create New Joke-->
         <scene sceneID="8ae-Ql-Nzv">
             <objects>
-                <viewController storyboardIdentifier="CreateViewController" id="D7d-fq-uW8" customClass="CreateViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateViewController" title="Create New Joke" id="D7d-fq-uW8" customClass="CreateJokeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pdN-MC-MBs"/>
                         <viewControllerLayoutGuide type="bottom" id="ems-Yy-lNg"/>
@@ -180,9 +180,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3J-Xy-RQ8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="750"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-es-aAN">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Press to name your joke" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-es-aAN">
                                         <rect key="frame" x="20" y="49" width="216" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="216" id="ViH-IY-bT8"/>
@@ -214,12 +214,12 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k89-rh-UfL">
-                                        <rect key="frame" x="20" y="381" width="64" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="press" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k89-rh-UfL">
+                                        <rect key="frame" x="20" y="381" width="64" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-pS-Wds">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="press" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-pS-Wds">
                                         <rect key="frame" x="20" y="306" width="64" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="D9S-4i-t4l"/>
@@ -234,7 +234,7 @@
                                         </variation>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Create Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brY-TS-EEz">
-                                        <rect key="frame" x="20" y="419" width="134" height="21"/>
+                                        <rect key="frame" x="20" y="426" width="134" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -261,7 +261,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6HM-c7-enc">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="press" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6HM-c7-enc">
                                         <rect key="frame" x="170" y="306" width="64" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="dHY-fX-ECi"/>
@@ -269,7 +269,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <datePicker contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-Aq-7hM">
+                                    <datePicker contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-Aq-7hM">
                                         <rect key="frame" x="-50" y="448" width="412" height="162"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="412" id="Inp-5F-7T1"/>
@@ -280,8 +280,8 @@
                                     </datePicker>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="7FF-Aq-7hM" secondAttribute="bottom" constant="190" id="1xX-CO-9HS"/>
-                                    <constraint firstItem="7FF-Aq-7hM" firstAttribute="top" secondItem="brY-TS-EEz" secondAttribute="bottom" constant="8" symbolic="YES" id="4m6-QI-CuS"/>
+                                    <constraint firstAttribute="bottom" secondItem="7FF-Aq-7hM" secondAttribute="bottom" constant="140" id="1xX-CO-9HS"/>
+                                    <constraint firstItem="7FF-Aq-7hM" firstAttribute="top" secondItem="brY-TS-EEz" secondAttribute="bottom" constant="1" id="4m6-QI-CuS"/>
                                     <constraint firstItem="IdX-pS-Wds" firstAttribute="trailing" secondItem="k89-rh-UfL" secondAttribute="trailing" id="5rl-i1-Y8A"/>
                                     <constraint firstItem="hIZ-3Y-VOD" firstAttribute="top" secondItem="tjx-OW-BSW" secondAttribute="bottom" constant="8" symbolic="YES" id="6lX-y0-3aX"/>
                                     <constraint firstItem="026-p6-Q9y" firstAttribute="top" secondItem="a3J-Xy-RQ8" secondAttribute="top" constant="20" id="8e9-G1-EHq"/>
@@ -294,7 +294,7 @@
                                     <constraint firstItem="1Q9-47-bsw" firstAttribute="leading" secondItem="6HM-c7-enc" secondAttribute="trailing" constant="8" symbolic="YES" id="Ii4-Iw-gnZ"/>
                                     <constraint firstItem="75b-D3-FtO" firstAttribute="leading" secondItem="IdX-pS-Wds" secondAttribute="leading" id="Lfe-9i-HgM"/>
                                     <constraint firstItem="6HM-c7-enc" firstAttribute="baseline" secondItem="IdX-pS-Wds" secondAttribute="baseline" id="PA3-Zt-VuP"/>
-                                    <constraint firstAttribute="bottom" secondItem="hIZ-3Y-VOD" secondAttribute="bottom" constant="531" id="Re2-xG-qld"/>
+                                    <constraint firstAttribute="bottom" secondItem="hIZ-3Y-VOD" secondAttribute="bottom" constant="481" id="Re2-xG-qld"/>
                                     <constraint firstItem="7FF-Aq-7hM" firstAttribute="top" secondItem="brY-TS-EEz" secondAttribute="bottom" constant="8" id="TgV-th-4K7"/>
                                     <constraint firstItem="sgg-es-aAN" firstAttribute="leading" secondItem="tjx-OW-BSW" secondAttribute="leading" id="Tv2-My-ft9"/>
                                     <constraint firstItem="brY-TS-EEz" firstAttribute="top" secondItem="k89-rh-UfL" secondAttribute="bottom" constant="16" id="U5T-ns-IlS"/>
@@ -305,7 +305,7 @@
                                     <constraint firstItem="sgg-es-aAN" firstAttribute="top" secondItem="026-p6-Q9y" secondAttribute="bottom" constant="8" symbolic="YES" id="fkm-aJ-ivp"/>
                                     <constraint firstItem="tjx-OW-BSW" firstAttribute="top" secondItem="sgg-es-aAN" secondAttribute="bottom" constant="8" symbolic="YES" id="i8f-Nw-dL6"/>
                                     <constraint firstItem="brY-TS-EEz" firstAttribute="top" secondItem="k89-rh-UfL" secondAttribute="bottom" constant="16" id="iv0-Lk-qnZ"/>
-                                    <constraint firstItem="brY-TS-EEz" firstAttribute="top" secondItem="k89-rh-UfL" secondAttribute="bottom" constant="8" id="kr5-qr-gfl"/>
+                                    <constraint firstItem="brY-TS-EEz" firstAttribute="top" secondItem="k89-rh-UfL" secondAttribute="bottom" constant="14" id="kr5-qr-gfl"/>
                                     <constraint firstItem="k89-rh-UfL" firstAttribute="top" secondItem="c7K-pU-BTI" secondAttribute="bottom" constant="8" symbolic="YES" id="lL3-ju-g0x"/>
                                     <constraint firstItem="026-p6-Q9y" firstAttribute="leading" secondItem="a3J-Xy-RQ8" secondAttribute="leading" constant="20" id="lVq-QI-YFH"/>
                                     <constraint firstItem="hIZ-3Y-VOD" firstAttribute="centerX" secondItem="a3J-Xy-RQ8" secondAttribute="centerX" id="lfV-h9-XfZ"/>
@@ -328,7 +328,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="a3J-Xy-RQ8" secondAttribute="bottom" constant="-64" id="4uz-Ds-Y6m"/>
+                            <constraint firstAttribute="bottom" secondItem="a3J-Xy-RQ8" secondAttribute="bottom" constant="-14" id="4uz-Ds-Y6m"/>
                             <constraint firstAttribute="trailing" secondItem="a3J-Xy-RQ8" secondAttribute="trailing" id="lkT-wC-pRx"/>
                             <constraint firstItem="a3J-Xy-RQ8" firstAttribute="leading" secondItem="H4F-Pc-exI" secondAttribute="leading" id="upV-m0-zmh"/>
                             <constraint firstItem="a3J-Xy-RQ8" firstAttribute="top" secondItem="H4F-Pc-exI" secondAttribute="top" id="vXB-bb-0FC"/>
@@ -347,6 +347,7 @@
                         <outlet property="jokeBodyTextField" destination="hIZ-3Y-VOD" id="Bzn-iO-YmB"/>
                         <outlet property="lengthMinField" destination="IdX-pS-Wds" id="eL4-4I-MUQ"/>
                         <outlet property="lengthSecondsField" destination="6HM-c7-enc" id="rdp-wk-sqO"/>
+                        <outlet property="myScrollView" destination="a3J-Xy-RQ8" id="u5Y-SD-3XJ"/>
                         <outlet property="nameField" destination="sgg-es-aAN" id="Hj0-Si-Mpt"/>
                         <outlet property="scoreField" destination="k89-rh-UfL" id="ato-AV-QNH"/>
                     </connections>
@@ -469,7 +470,7 @@
         <!--Edit Your Joke-->
         <scene sceneID="3Uo-D1-X8C">
             <objects>
-                <viewController storyboardIdentifier="editViewController" id="Cna-bj-bpX" customClass="EditViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editViewController" id="Cna-bj-bpX" customClass="EditJokeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IWe-Z9-2bs"/>
                         <viewControllerLayoutGuide type="bottom" id="EHA-Ri-YOG"/>
