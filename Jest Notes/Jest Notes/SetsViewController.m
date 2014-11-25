@@ -109,11 +109,7 @@
         SingleSetViewController *singleSetView = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         singleSetView.selectedSet = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
-        
-        for(JokeCD *joke in singleSetView.selectedSet.jokes)
-        {
-            NSLog(@"%@", joke.name);
-        }
+        singleSetView.title = singleSetView.selectedSet.name;
     }
 }
 
