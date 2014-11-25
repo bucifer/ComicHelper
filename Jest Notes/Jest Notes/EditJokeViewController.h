@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *creationDatePicker;
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
+@property (strong, nonatomic) IBOutlet UITextView *bodyTextView;
 
 - (IBAction)saveButtonAction:(id)sender;
 

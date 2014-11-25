@@ -142,14 +142,14 @@
 #pragma mark Joke Object-related
 
 
-- (void) saveEditedJokeInCoreData: (Joke *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date bodyText:(NSString *)bodyText{
+- (void) saveEditedJokeInCoreData: (Joke *) joke {
     NSError *error;
-    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
-    correspondingCDJoke.name = title;
-    correspondingCDJoke.length = [NSNumber numberWithInt:([minLength intValue] * 60 + [secLength intValue])];
-    correspondingCDJoke.score = [NSNumber numberWithFloat:[score floatValue]];
-    correspondingCDJoke.creationDate = date;
-    correspondingCDJoke.bodyText = bodyText;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:joke.managedObjectID error:&error];
+    correspondingCDJoke.name = joke.name;
+    correspondingCDJoke.length = [NSNumber numberWithInt:joke.length];
+    correspondingCDJoke.score = [NSNumber numberWithFloat:joke.score];
+    correspondingCDJoke.creationDate = joke.creationDate;
+    correspondingCDJoke.bodyText = joke.bodyText;
     [self saveChangesInContextCoreData];
 }
 

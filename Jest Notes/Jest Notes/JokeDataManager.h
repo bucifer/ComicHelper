@@ -33,7 +33,7 @@
 - (void) refreshJokesCDDataWithNewFetch;
 - (void) refreshSetsCDDataWithNewFetch;
 
-- (void) saveEditedJokeInCoreData: (Joke *) jokePL title:(NSString*)title minLength:(NSString*)minLength secLength:(NSString*)secLength score:(NSString*)score date: (NSDate *) date bodyText: (NSString *) bodyText;
+- (void) saveEditedJokeInCoreData: (Joke *) joke;
 - (void) saveChangesInContextCoreData;
 
 //For JokeCDs

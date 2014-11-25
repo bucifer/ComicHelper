@@ -28,6 +28,8 @@
     self.creationDatePicker.datePickerMode = UIDatePickerModeDate;
     self.creationDatePicker.date = self.joke.creationDate;
     
+    self.bodyTextView.text = self.joke.bodyText;
+    
 }
 
 
@@ -51,8 +53,9 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     selectedJoke.creationDate = self.creationDatePicker.date;
+    selectedJoke.bodyText = self.bodyTextView.text;
     
-    [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke title:changedName minLength:changedMinuteLength secLength:changedSecondsLength score:changedScore date:self.creationDatePicker.date bodyText:nil];
+    [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
