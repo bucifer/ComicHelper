@@ -25,6 +25,10 @@
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
+    [self displayMostRecentJokeForUI];
+}
+
+- (void) displayMostRecentJokeForUI {
     self.nameField.text = self.joke.name;
     self.lengthMinField.text = [NSString stringWithFormat:@"%d", (self.joke.length / 60)];
     self.lengthSecondsField.text = [NSString stringWithFormat:@"%d", (self.joke.length % 60)];
@@ -37,7 +41,6 @@
     self.creationDatePicker.datePickerMode = UIDatePickerModeDate;
     self.creationDatePicker.date = self.joke.creationDate;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
