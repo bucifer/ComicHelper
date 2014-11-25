@@ -20,16 +20,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    
     self.nameField.text = self.joke.name;
     self.lengthMinField.text = [NSString stringWithFormat:@"%d", (self.joke.length / 60)];
     self.lengthSecondsField.text = [NSString stringWithFormat:@"%d", (self.joke.length % 60)];
     self.scoreField.text = [self quickStringFromInt:self.joke.score];
     
+    self.bodyTextView.text = self.joke.bodyText;
+    self.bodyTextView.layer.borderWidth = 2;
+    self.bodyTextView.layer.borderColor = [[UIColor blackColor] CGColor];
+    
     self.creationDatePicker.datePickerMode = UIDatePickerModeDate;
     self.creationDatePicker.date = self.joke.creationDate;
-    
-    self.bodyTextView.text = self.joke.bodyText;
-    
 }
 
 
@@ -70,5 +76,15 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+#pragma mark Keyboard and TextView Delegate methods
+
+-(void)dismissKeyboard {
+    [self.nameField resignFirstResponder];
+    [self.lengthMinField resignFirstResponder];
+    [self.lengthSecondsField resignFirstResponder];
+    [self.scoreField resignFirstResponder];
+    [self.bodyTextView resignFirstResponder];
+}
 
 @end

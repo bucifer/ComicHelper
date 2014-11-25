@@ -18,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.jokeBodyTextView.layer.borderWidth = 2;
+    self.jokeBodyTextView.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
 
@@ -28,7 +31,7 @@
 
 - (void) displayMostRecentJokeForUI {
     
-    self.jokeIDLabel.text = [NSString stringWithFormat: @"ID #: %@", self.joke.uniqueID];
+    self.jokeIDLabel.text = [NSString stringWithFormat: @"ID #%@", self.joke.uniqueID];
     
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
     

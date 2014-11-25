@@ -103,6 +103,7 @@
     [self.lengthMinField resignFirstResponder];
     [self.lengthSecondsField resignFirstResponder];
     [self.scoreField resignFirstResponder];
+    [self.jokeBodyTextView resignFirstResponder];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {

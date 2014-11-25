@@ -10,7 +10,7 @@
 #import "JokeDataManager.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 
-@interface EditJokeViewController : UIViewController
+@interface EditJokeViewController : UIViewController <UITextFieldDelegate> 
 
 @property (nonatomic, strong) Joke *joke;
 
