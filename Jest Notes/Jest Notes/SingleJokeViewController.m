@@ -27,6 +27,9 @@
 }
 
 - (void) displayMostRecentJokeForUI {
+    
+    self.jokeIDLabel.text = [NSString stringWithFormat: @"ID #: %@", self.joke.uniqueID];
+    
     self.jokeLengthLabel.text = [self turnSecondsIntegerIntoMinuteAndSecondsFormat:self.joke.length];
     
     NSString *score = [NSString stringWithFormat:@"%.01f", self.joke.score];

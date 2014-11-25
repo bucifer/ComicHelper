@@ -407,8 +407,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLr-cV-pPW">
-                                <rect key="frame" x="16" y="200" width="36" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLr-cV-pPW">
+                                <rect key="frame" x="16" y="200" width="34" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="TVU-uX-DNA"/>
                                     <constraint firstAttribute="width" constant="36" id="aKk-VZ-CkM"/>
@@ -440,6 +440,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID #:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOU-d0-ukA">
+                                <rect key="frame" x="548" y="73" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -462,6 +468,8 @@
                             <constraint firstItem="cCe-nV-JIi" firstAttribute="top" secondItem="m0I-J7-2lN" secondAttribute="bottom" constant="8" symbolic="YES" id="m4e-fq-1U3"/>
                             <constraint firstItem="l89-KN-3yR" firstAttribute="top" secondItem="mtK-Ys-RgE" secondAttribute="bottom" constant="8" symbolic="YES" id="nqZ-ni-dFK"/>
                             <constraint firstItem="m0I-J7-2lN" firstAttribute="leading" secondItem="8KT-4j-eVE" secondAttribute="leading" id="oJC-h8-lH0"/>
+                            <constraint firstItem="LOU-d0-ukA" firstAttribute="trailing" secondItem="uVn-ek-vyV" secondAttribute="trailingMargin" id="owe-RA-Jkg"/>
+                            <constraint firstItem="LOU-d0-ukA" firstAttribute="top" secondItem="mtK-Ys-RgE" secondAttribute="bottom" constant="9" id="qf5-OD-b6X"/>
                             <constraint firstItem="PAo-bm-mE0" firstAttribute="leading" secondItem="l89-KN-3yR" secondAttribute="leading" id="qzx-z1-3R1"/>
                             <constraint firstItem="IWc-8i-zT7" firstAttribute="top" secondItem="PAo-bm-mE0" secondAttribute="bottom" constant="31" id="ydo-Yd-93M"/>
                             <constraint firstItem="Dfm-hX-oVG" firstAttribute="top" secondItem="IWc-8i-zT7" secondAttribute="bottom" constant="8" symbolic="YES" id="zon-0i-m6O"/>
@@ -485,6 +493,7 @@
                     <connections>
                         <outlet property="jokeBodyTextView" destination="m0I-J7-2lN" id="9MR-uX-dBO"/>
                         <outlet property="jokeDateLabel" destination="kLr-cV-pPW" id="H8F-IG-rhN"/>
+                        <outlet property="jokeIDLabel" destination="LOU-d0-ukA" id="9hl-35-5cI"/>
                         <outlet property="jokeLengthLabel" destination="PAo-bm-mE0" id="fE3-fo-EIX"/>
                         <outlet property="jokeScoreLabel" destination="IWc-8i-zT7" id="gwj-7n-pxy"/>
                     </connections>

@@ -23,5 +23,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *jokeDateLabel;
 @property (strong, nonatomic) IBOutlet UITextView *jokeBodyTextView;
 
+@property (strong, nonatomic) IBOutlet UILabel *jokeIDLabel;
 
 @end
