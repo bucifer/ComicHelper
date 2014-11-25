@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */; };
+		AACA815C1A25320E0014E86F /* HelpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA815B1A25320E0014E86F /* HelpMenuController.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
@@ -47,6 +48,8 @@
 /* Begin PBXFileReference section */
 		AA7562D71A1EAC1E003F5F03 /* MultiJokesSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiJokesSelectionController.h; sourceTree = "<group>"; };
 		AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiJokesSelectionController.m; sourceTree = "<group>"; };
+		AACA815A1A25320E0014E86F /* HelpMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpMenuController.h; sourceTree = "<group>"; };
+		AACA815B1A25320E0014E86F /* HelpMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpMenuController.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2772A1A07DC81002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2772B1A07DC81002AA22B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				AAD7A62D1A1FFE4C00DA8165 /* SetsViewController.m */,
 				AAD59B9D1A215A7C006B145C /* SingleSetViewController.h */,
 				AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */,
+				AACA815A1A25320E0014E86F /* HelpMenuController.h */,
+				AACA815B1A25320E0014E86F /* HelpMenuController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */,
 				AAD2776C1A07DCED002AA22B /* Joke.m in Sources */,
 				AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */,
+				AACA815C1A25320E0014E86F /* HelpMenuController.m in Sources */,
 				AAD7A62E1A1FFE4C00DA8165 /* SetsViewController.m in Sources */,
 				AAD2772C1A07DC81002AA22B /* main.m in Sources */,
 				AAD44F781A0D64AB00FDB656 /* Set.m in Sources */,

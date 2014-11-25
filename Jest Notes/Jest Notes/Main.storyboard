@@ -771,7 +771,7 @@
         <!--Help-->
         <scene sceneID="Pis-wU-7eG">
             <objects>
-                <viewController id="1oQ-IZ-I1j" sceneMemberID="viewController">
+                <viewController id="1oQ-IZ-I1j" customClass="HelpMenuController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nMh-tA-dG3"/>
                         <viewControllerLayoutGuide type="bottom" id="1Ji-x7-ZCN"/>
@@ -780,25 +780,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH">
-                                <rect key="frame" x="128" y="167" width="345" height="266"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
+                                <rect key="frame" x="14" y="15" width="573" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="345" id="PC6-PX-iKL"/>
-                                </constraints>
-                                <string key="text">Thanks for Using This App. fpjdjfpsaifjsdpifjsapifsajfpijfpisadjpfisdjfpisajfpisdjfpisadjfpiasfjspdifjspadifjsdpiafjsdpifjsdpfjsdapfsdfjsdpaifjsdapifjsadipfjsapifjsdapfjsdapfjsapdp ... obviously you shouldn't use this textview here because it's so inefficient. Can't even go to next line on Return</string>
+                                <mutableString key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
+
+You can create a set on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
+
+This app has a web application component where you can conveniently write out your jokes on your web browser at http://jestnotesapp.com. 
+
+Jokes 
+- Create your joke by pressing on the (+) button on the Home Screen 
+- I don't recommend writing out your jokes on the phone because of a mobile phone's intrinsic small screen width. Instead, use our web application at http://jestnotesapp.com
+
+Sets
+- The Sets icon will take you to the listing of your created sets. Once you click on a set, you will be able to see all the jokes associated with that set 
+- If you want to delete a set, don't worry about the jokes. All the jokes will still stay in our database, unless you explicit delete them from the Jokes Home Menu. 
+
+Enjoy!</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="centerY" secondItem="tsr-1B-gKi" secondAttribute="centerY" id="746-Pz-gut"/>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="centerX" secondItem="tsr-1B-gKi" secondAttribute="centerX" id="Lfr-Lv-04x"/>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="nMh-tA-dG3" secondAttribute="bottom" constant="103" id="vYR-EX-uqT"/>
+                            <constraint firstAttribute="bottom" secondItem="st1-fg-KEH" secondAttribute="bottom" constant="-15" id="G4x-2I-P8Q"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="tsr-1B-gKi" secondAttribute="top" constant="15" id="Yrz-E6-CGU"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="leading" secondItem="tsr-1B-gKi" secondAttribute="leadingMargin" constant="-2" id="rbj-dr-6Si"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="centerX" secondItem="tsr-1B-gKi" secondAttribute="centerX" id="trl-Of-mRk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Help" id="xaN-gM-lvg"/>
+                    <connections>
+                        <outlet property="helpManualTextView" destination="st1-fg-KEH" id="kDC-Aq-4p8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0u-VD-RGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
