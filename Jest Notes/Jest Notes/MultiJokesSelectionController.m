@@ -188,7 +188,7 @@
     cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/dd/yy"];
-    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+    cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.writeDate]];
     if (joke.checkmarkFlag == YES) {
         cell.accessoryView = [self createJokeOrderButtonForJoke: joke];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -287,7 +287,7 @@
             break;
         }
         case 2: {
-            [self sortYourJokesArrayWithDescriptor:@"creationDate" ascending:NO];
+            [self sortYourJokesArrayWithDescriptor:@"writeDate" ascending:NO];
             break;
         }
         default:

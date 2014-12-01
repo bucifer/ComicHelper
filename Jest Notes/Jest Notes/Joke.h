@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString* name;
 @property float score;
 @property int length;
-@property (nonatomic, strong) NSDate *creationDate;
+@property (nonatomic, strong) NSDate *writeDate;
 @property (nonatomic, strong) NSString* bodyText; 
 
 //this uniqueID is used for User Interface purposes (joke #4) so that people can easily identify their jokes

@@ -85,7 +85,7 @@
         NSLog(@"some horrible error in fetching CD: %@", error);
     }
     self.jokes = [self convertCoreDataJokesArrayIntoPresentationLayer:fetchedJokesFromCD];
-    NSLog(@"refreshed jokes cd data with new fetch");
+//    NSLog(@"refreshed jokes cd data with new fetch");
 }
 
 - (void) refreshSetsCDDataWithNewFetch {
@@ -98,8 +98,7 @@
         NSLog(@"some horrible error in fetching CD: %@", error2);
     }
     self.sets = [fetchedSetsFromCD mutableCopy];
-    
-    NSLog(@"refreshed sets cd data with new fetch");
+//    NSLog(@"refreshed sets cd data with new fetch");
 
 }
 
@@ -115,7 +114,7 @@
         newPLJoke.name = oneCDJoke.name;
         newPLJoke.score = [oneCDJoke.score floatValue];
         newPLJoke.length = [oneCDJoke.length intValue];
-        newPLJoke.creationDate = oneCDJoke.creationDate;
+        newPLJoke.writeDate = oneCDJoke.writeDate;
         newPLJoke.managedObjectID = [oneCDJoke objectID];
         newPLJoke.uniqueID = oneCDJoke.uniqueID;
         newPLJoke.bodyText = oneCDJoke.bodyText;
@@ -130,7 +129,7 @@
     newPLJoke.name = oneCoreDataJoke.name;
     newPLJoke.score = [oneCoreDataJoke.score floatValue];
     newPLJoke.length = [oneCoreDataJoke.length intValue];
-    newPLJoke.creationDate = oneCoreDataJoke.creationDate;
+    newPLJoke.writeDate = oneCoreDataJoke.writeDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
     newPLJoke.uniqueID = oneCoreDataJoke.uniqueID;
     newPLJoke.bodyText = oneCoreDataJoke.bodyText;
@@ -148,7 +147,7 @@
     correspondingCDJoke.name = joke.name;
     correspondingCDJoke.length = [NSNumber numberWithInt:joke.length];
     correspondingCDJoke.score = [NSNumber numberWithFloat:joke.score];
-    correspondingCDJoke.creationDate = joke.creationDate;
+    correspondingCDJoke.writeDate = joke.writeDate;
     correspondingCDJoke.bodyText = joke.bodyText;
     [self saveChangesInContextCoreData];
 }
@@ -179,7 +178,7 @@
     joke.name = jokeName;
     joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue])];
     joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
-    joke.creationDate = jokeDate;
+    joke.writeDate = jokeDate;
     joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
     joke.bodyText = bodyText;
     
@@ -192,7 +191,7 @@
     joke.name = jokeTitle;
     joke.score = [jokeScore floatValue];
     joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
-    joke.creationDate = jokeDate;
+    joke.writeDate = jokeDate;
     joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
     joke.bodyText = bodyText;
     

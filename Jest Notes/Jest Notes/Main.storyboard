@@ -262,8 +262,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Create Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brY-TS-EEz" userLabel="jokeCreateDateLabel">
-                                        <rect key="frame" x="20" y="426" width="134" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Written On:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brY-TS-EEz" userLabel="jokeCreateDateLabel">
+                                        <rect key="frame" x="20" y="426" width="129" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -341,13 +341,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="creationDatePicker" destination="7FF-Aq-7hM" id="RPs-bu-a6W"/>
                         <outlet property="jokeBodyTextView" destination="hIZ-3Y-VOD" id="TzY-Nr-4rd"/>
                         <outlet property="lengthMinField" destination="IdX-pS-Wds" id="eL4-4I-MUQ"/>
                         <outlet property="lengthSecondsField" destination="6HM-c7-enc" id="rdp-wk-sqO"/>
                         <outlet property="myScrollView" destination="a3J-Xy-RQ8" id="u5Y-SD-3XJ"/>
                         <outlet property="nameField" destination="sgg-es-aAN" id="Hj0-Si-Mpt"/>
                         <outlet property="scoreField" destination="k89-rh-UfL" id="ato-AV-QNH"/>
+                        <outlet property="writeDatePicker" destination="7FF-Aq-7hM" id="YSc-UN-3Z0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-7l-PX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -401,7 +401,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creation Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfm-hX-oVG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfm-hX-oVG">
                                 <rect key="frame" x="16" y="177" width="127" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -738,16 +738,16 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bodyTextView" destination="vyE-IP-8do" id="xDZ-HQ-31F"/>
-                        <outlet property="creationDatePicker" destination="PPm-7c-gDC" id="XuN-Ym-wdv"/>
                         <outlet property="lengthMinField" destination="InT-6R-Ang" id="K0g-5p-sSV"/>
                         <outlet property="lengthSecondsField" destination="rtz-za-ekv" id="h6C-4u-lIO"/>
                         <outlet property="nameField" destination="2Wg-Fp-uta" id="qxx-Kn-AD7"/>
                         <outlet property="scoreField" destination="kIw-xU-7Uy" id="y1x-DM-biP"/>
+                        <outlet property="writeDatePicker" destination="PPm-7c-gDC" id="PnF-QU-S6a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2071" y="-984"/>
+            <point key="canvasLocation" x="2069" y="-938"/>
         </scene>
         <!--Nav-Jokes-->
         <scene sceneID="7FY-N7-vJt">
@@ -783,7 +783,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
                                 <rect key="frame" x="14" y="15" width="573" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
+                                <string key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
 
 You can create a set on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
 
@@ -797,7 +797,7 @@ Sets
 - The Sets icon will take you to the listing of your created sets. Once you click on a set, you will be able to see all the jokes associated with that set 
 - If you want to delete a set, don't worry about the jokes. All the jokes will still stay in our database, unless you explicit delete them from the Jokes Home Menu. 
 
-Enjoy!</mutableString>
+Enjoy!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
@@ -1248,7 +1248,9 @@ Enjoy!</mutableString>
                             <outlet property="delegate" destination="D5R-Up-jtI" id="U9h-7Q-Wt3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Your Sets" id="Mhq-ii-MYj"/>
+                    <navigationItem key="navigationItem" title="Your Sets" id="Mhq-ii-MYj">
+                        <barButtonItem key="backBarButtonItem" title="Sets" id="wiT-3p-CTa"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJD-Lf-azJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1292,6 +1294,9 @@ Enjoy!</mutableString>
                             <constraint firstItem="3Wd-LY-XgN" firstAttribute="leading" secondItem="DEH-rI-2dY" secondAttribute="leading" id="vRr-ba-pD6"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="pY8-CH-xlK">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="qs5-72-KqM"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMw-3b-Rqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -41,7 +41,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.creationDate];
+    self.jokeDateLabel.text = [dateFormatter stringFromDate:self.joke.writeDate];
     
     self.jokeBodyTextView.text = self.joke.bodyText;
 }

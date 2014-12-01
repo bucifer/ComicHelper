@@ -12,7 +12,7 @@
 
 @implementation SetCD
 
-@dynamic creationDate;
+@dynamic createDate;
 @dynamic name;
 @dynamic uniqueID;
 @dynamic jokes;

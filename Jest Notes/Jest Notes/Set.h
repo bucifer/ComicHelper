@@ -11,7 +11,7 @@
 @interface Set : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (nonatomic, strong) NSDate *creationDate;
+@property (nonatomic, strong) NSDate *createDate;
 @property int totalLength;
 @property (nonatomic, strong) NSNumber *uniqueID;
 @property (strong, nonatomic) NSMutableArray *jokes;

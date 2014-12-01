@@ -38,8 +38,8 @@
     self.bodyTextView.layer.borderWidth = 2;
     self.bodyTextView.layer.borderColor = [[UIColor blackColor] CGColor];
     
-    self.creationDatePicker.datePickerMode = UIDatePickerModeDate;
-    self.creationDatePicker.date = self.joke.creationDate;
+    self.writeDatePicker.datePickerMode = UIDatePickerModeDate;
+    self.writeDatePicker.date = self.joke.writeDate;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +61,7 @@
     selectedJoke.score = [changedScore floatValue];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    selectedJoke.creationDate = self.creationDatePicker.date;
+    selectedJoke.writeDate = self.writeDatePicker.date;
     selectedJoke.bodyText = self.bodyTextView.text;
     
     [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke];

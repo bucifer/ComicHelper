@@ -69,7 +69,7 @@
     }
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
-    NSDate *myDate = self.creationDatePicker.date;
+    NSDate *myDate = self.writeDatePicker.date;
     
     [self.jokeDataManager createNewJokeInPresentationLayer:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate bodyText:self.jokeBodyTextView.text];
     [self.jokeDataManager createNewJokeInCoreData:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate bodyText:self.jokeBodyTextView.text];

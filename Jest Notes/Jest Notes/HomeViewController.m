@@ -91,7 +91,7 @@
         cell.timeLabel.text = [self turnSecondsIntoReallyShortTimeFormatColon:joke.length];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"M/dd/yy"];
-        cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.creationDate]];
+        cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.writeDate]];
     }
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

@@ -13,7 +13,7 @@
 
 @interface JokeCD : NSManagedObject
 
-@property (nonatomic, retain) NSDate * creationDate;
+@property (nonatomic, retain) NSDate * writeDate;
 @property (nonatomic, retain) NSNumber * length;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * score;

@@ -19,7 +19,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *lengthMinField;
 @property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
 @property (strong, nonatomic) IBOutlet UITextField *scoreField;
-@property (strong, nonatomic) IBOutlet UIDatePicker *creationDatePicker;
+@property (strong, nonatomic) IBOutlet UIDatePicker *writeDatePicker;
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
 @property (strong, nonatomic) IBOutlet UITextView *bodyTextView;

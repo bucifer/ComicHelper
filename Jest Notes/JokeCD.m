@@ -12,7 +12,7 @@
 
 @implementation JokeCD
 
-@dynamic creationDate;
+@dynamic writeDate;
 @dynamic length;
 @dynamic name;
 @dynamic score;
