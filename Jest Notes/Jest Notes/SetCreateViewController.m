@@ -99,6 +99,17 @@
 }
 
 
+#pragma mark backup
+
+- (UIButton *) createCustomCheckmarkAccessoryViewWithImage {
+    UIImage *image = [UIImage imageNamed:@"checkmark"];
+    UIButton *customCheckmarkImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
+    customCheckmarkImageButton.frame = frame;
+    [customCheckmarkImageButton setBackgroundImage:image forState:UIControlStateNormal];
+    return customCheckmarkImageButton;
+}
+
 #pragma mark Keyboard Delegate methods
 
 -(void)dismissKeyboard {

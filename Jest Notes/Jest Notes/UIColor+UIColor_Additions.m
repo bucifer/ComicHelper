@@ -1,16 +1,16 @@
 //
-//  ViewManager.m
+//  UIColor+UIColor_Additions.m
 //  Jest Notes
 //
-//  Created by Terry Bu on 11/21/14.
+//  Created by Aditya Narayan on 12/1/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "ViewManager.h"
+#import "UIColor+UIColor_Additions.h"
 
-@implementation ViewManager
+@implementation UIColor (UIColor_Additions)
 
-- (UIColor*)colorWithHexString:(NSString*)hex
++ (UIColor*)colorWithHexString:(NSString*)hex
 {
     NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
@@ -46,13 +46,6 @@
                            alpha:1.0f];
 }
 
-- (UIButton *) createCustomCheckmarkAccessoryViewWithImage {
-    UIImage *image = [UIImage imageNamed:@"checkmark"];
-    UIButton *customCheckmarkImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
-    customCheckmarkImageButton.frame = frame;
-    [customCheckmarkImageButton setBackgroundImage:image forState:UIControlStateNormal];
-    return customCheckmarkImageButton;
-}
+
 
 @end

@@ -9,15 +9,14 @@
 #import "MultiJokesSelectionController.h"
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
-#import "ViewManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Set.h"
 #import "SetCreateViewController.h"
+#import "UIColor+UIColor_Additions.h"
 
 @interface MultiJokesSelectionController ()  {
     NSMutableArray *searchResults;
     NSMutableArray *selectedObjects;
-    ViewManager *viewManager;
 }
 
 @end
@@ -32,8 +31,6 @@
 
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
     [[self navigationItem] setLeftBarButtonItem:item];
-    
-    viewManager = [[ViewManager alloc]init];
 }
 
 - (void)backButtonPressed
@@ -172,7 +169,7 @@
     
     //Background color for selection -- we do it separately for searchview and tableview because we are not using JokeCustomCell for this filterview
     UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    bgColorView.backgroundColor = [UIColor colorWithHexString:@"ffe700"];
     [cell setSelectedBackgroundView:bgColorView];
     
     //checkmark logic
@@ -201,7 +198,7 @@
     }
     //Background color for selection
     UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [viewManager colorWithHexString:@"ffe700"];
+    bgColorView.backgroundColor = [UIColor colorWithHexString:@"ffe700"];
     [cell setSelectedBackgroundView:bgColorView];
 }
 
