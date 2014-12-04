@@ -97,8 +97,9 @@
     if (fetchedSetsFromCD == nil) {
         NSLog(@"some horrible error in fetching CD: %@", error2);
     }
-    self.sets = [fetchedSetsFromCD mutableCopy];
-//    NSLog(@"refreshed sets cd data with new fetch");
+    
+    
+    self.sets = [self convertCoreDataSetsIntoPresentationLayer:fetchedSetsFromCD];
 
 }
 
@@ -137,9 +138,26 @@
     return newPLJoke;
 }
 
+- (NSMutableArray *) convertCoreDataSetsIntoPresentationLayer: (NSArray *) fetchedCDSetsArray {
+    
+    NSMutableArray *resultArraySetPLs = [[NSMutableArray alloc]init];
+    
+    for (int i=0; i < fetchedCDSetsArray.count; i++) {
+        SetCD *oneCDSet = fetchedCDSetsArray[i];
+        Set *newSet = [[Set alloc]init];
+        newSet.name = oneCDSet.name;
+        newSet.createDate = oneCDSet.createDate;
+        newSet.managedObjectID = oneCDSet.objectID;
+        newSet.jokes = [[oneCDSet.jokes array] mutableCopy];
+        [resultArraySetPLs addObject:newSet];
+    }
+    
+    return resultArraySetPLs;
+}
+
+
 
 #pragma mark Joke Object-related
-
 
 - (void) saveEditedJokeInCoreData: (Joke *) joke {
     NSError *error;
@@ -172,15 +190,15 @@
 }
 
 
-- (void) createNewJokeInCoreData: (NSString *) jokeName jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText: (NSString*) bodyText{
+- (void) createNewJokeInCoreData: (Joke *) newJoke{
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    joke.name = jokeName;
-    joke.length = [NSNumber numberWithInt: ([jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue])];
-    joke.score = [NSNumber numberWithFloat:[jokeScore floatValue]];
-    joke.writeDate = jokeDate;
+    joke.name = newJoke.name;
+    joke.length = [NSNumber numberWithInt:newJoke.length];
+    joke.score = [NSNumber numberWithFloat:newJoke.score];
+    joke.writeDate = newJoke.writeDate;
     joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
-    joke.bodyText = bodyText;
+    joke.bodyText = newJoke.bodyText;
     
     [self saveChangesInContextCoreData];
     [self returnUniqueIDmaxValue];
@@ -188,12 +206,7 @@
 
 - (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText:(NSString *)bodyText{
     Joke *joke = [[Joke alloc]init];
-    joke.name = jokeTitle;
-    joke.score = [jokeScore floatValue];
-    joke.length = [jokeMinuteLength intValue] * 60 + [jokeSecsLength intValue];
-    joke.writeDate = jokeDate;
-    joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
-    joke.bodyText = bodyText;
+
     
     [self.jokes addObject:joke];
     
@@ -208,40 +221,45 @@
 }
 
 
+- (void) deleteJoke: (NSIndexPath *) indexPath {
+    Joke *selectedJoke = [self.jokes objectAtIndex:indexPath.row];
+    JokeCD *correspondingCDJoke = (JokeCD*) [self.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:nil];
+    [self.managedObjectContext deleteObject:correspondingCDJoke];
+    [self saveChangesInContextCoreData];
+    [self.jokes removeObjectAtIndex:indexPath.row];
+}
+
 
 
 #pragma mark SetCDs-related
-- (void) createNewSetInCoreData:(NSString *)setName jokes:(NSMutableArray *)jokes{
+- (void) createNewSetInCoreData: (Set *) newSet {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
-    SetCD *set = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    set.name = setName;
-    set.createDate = [NSDate date];
+    SetCD *setCD = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    setCD.name = newSet.name;
+    setCD.createDate = [NSDate date];
     
     //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
     NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < jokes.count; i++) {
-        Joke *joke = jokes[i];
+    for (int i = 0; i < newSet.jokes.count; i++) {
+        Joke *joke = newSet.jokes[i];
         JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokePL:joke];
         [jokeCDArray addObject:jokeCD];
     }
     
-    set.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
+    setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
     [self saveChangesInContextCoreData];
 }
 
-- (NSMutableArray *) convertCoreDataSetsIntoPresentationLayer: (NSArray *) fetchedCDSetsArray {
+- (void) deleteSet: (NSIndexPath *) indexPath {
+    Set *set = [self.sets objectAtIndex:indexPath.row];
+    SetCD *correspondingCDSet = (SetCD *) [self.managedObjectContext existingObjectWithID:set.managedObjectID error:nil];
     
-    NSMutableArray *resultArraySetPLs = [[NSMutableArray alloc]init];
+    //First we remove from our presentation layer
+    [self.sets removeObjectAtIndex:indexPath.row];
     
-    for (int i=0; i < fetchedCDSetsArray.count; i++) {
-        SetCD *oneCDSet = fetchedCDSetsArray[i];
-        Set *newSet = [[Set alloc]init];
-        newSet.name = oneCDSet.name;
-        newSet.jokes = [[oneCDSet.jokes array] mutableCopy];
-        [resultArraySetPLs addObject:newSet];
-    }
-    
-    return resultArraySetPLs;
+    //Then we remove from core Data layer
+    [self.managedObjectContext deleteObject:correspondingCDSet];
+    [self saveChangesInContextCoreData];
 }
 
 

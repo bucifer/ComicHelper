@@ -115,22 +115,25 @@
 // Override to support deleting on swipe of the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-        Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
-        JokeCD *correspondingCDJoke = (JokeCD*) [self.jokeDataManager.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:nil];
-        [self.jokeDataManager.managedObjectContext deleteObject:correspondingCDJoke];
-        [self.jokeDataManager saveChangesInContextCoreData];
-
-        [self.jokeDataManager.jokes removeObjectAtIndex:indexPath.row];
+        
+        //Delete from Data Source
+        [self.jokeDataManager deleteJoke:indexPath];
+        
+        //Delete from visually
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
     if (self.jokeDataManager.jokes.count == 0) {
+        //Just an aesthetic gimmick. I didn't want the delete button to show up when a user has no jokes
         self.deleteBarButton.title = nil;
         [self.tableView setEditing:![self.tableView isEditing]];
     }
-    
 }
+
+
+
+
+
 
 
 #pragma mark - Navigation and IBActions

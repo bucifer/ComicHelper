@@ -26,6 +26,7 @@
 
 //this checkmarkFlag is used to Set Creation view to see if one's been checked off or not
 @property BOOL checkmarkFlag;
+//This setORder button is used for MultiJokesSelectionController - same as checkmarkFlag - to denote what's been selected
 @property NSUInteger setOrder;
 
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface Set : NSObject
 
@@ -15,5 +16,8 @@
 @property int totalLength;
 @property (nonatomic, strong) NSNumber *uniqueID;
 @property (strong, nonatomic) NSMutableArray *jokes;
+
+//this ID is used for matching up presentation and core data layer objects
+@property (nonatomic, strong) NSManagedObjectID *managedObjectID;
 
 @end

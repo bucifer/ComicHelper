@@ -39,11 +39,18 @@
 //For JokeCDs
 - (NSMutableArray *) convertCoreDataJokesArrayIntoPresentationLayer: (NSArray *) fetchedObjectsArrayOfCDJokes;
 - (Joke *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke;
-- (void) createNewJokeInCoreData: (NSString *) jokeName jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText: (NSString*) bodyText;
-- (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText: (NSString*) bodyText;
+
+- (void) createNewJokeInCoreData: (Joke *) newJoke;
+- (void) deleteJoke: (NSIndexPath *) indexPath;
+
+
 
 //For SetCDs
-- (void) createNewSetInCoreData: (NSString *) setName jokes: (NSMutableArray *) jokes;
+- (void) createNewSetInCoreData: (Set *) newSet;
+- (void) deleteSet: (NSIndexPath *) indexPath;
+
+
+
 
 //Logic Related
 - (NSNumber *) returnUniqueIDmaxValue;

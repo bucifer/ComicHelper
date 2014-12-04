@@ -71,8 +71,18 @@
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.writeDatePicker.date;
     
-    [self.jokeDataManager createNewJokeInPresentationLayer:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate bodyText:self.jokeBodyTextView.text];
-    [self.jokeDataManager createNewJokeInCoreData:jokeName jokeScore:jokeScore jokeMinLength:jokeMinuteLength jokeSecsLength:jokeSecondsLength jokeDate:myDate bodyText:self.jokeBodyTextView.text];
+    //When you create a new joke, first you add one to the Presentation Laye by adding it to the  DAO
+    Joke *newJoke = [[Joke alloc]init];
+    newJoke.name = jokeName;
+    newJoke.score = [jokeScore floatValue];
+    newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
+    newJoke.writeDate = myDate;
+    newJoke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.jokeDataManager.uniqueIDmaxValue intValue] + 1];
+    newJoke.bodyText = self.jokeBodyTextView.text;
+    [self.jokeDataManager.jokes addObject: newJoke];
+    
+    //Then you create one in the actual Core Data
+    [self.jokeDataManager createNewJokeInCoreData:newJoke];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

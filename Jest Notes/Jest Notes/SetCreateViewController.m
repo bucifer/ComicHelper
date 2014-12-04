@@ -84,10 +84,19 @@
         return;
     }
     else {
-        [self.jokeDataManager createNewSetInCoreData: self.setNameField.text jokes:self.selectedJokes];
+        
+        Set *newSet = [[Set alloc]init];
+        newSet.name = self.setNameField.text;
+        newSet.jokes = self.selectedJokes;
+        newSet.createDate = [NSDate date];
+        
+        //First we add it to Presentation Layer
+        [self.jokeDataManager.sets addObject:newSet];
+        //Then we add to Core Data
+        [self.jokeDataManager createNewSetInCoreData: newSet];
+        
         
         [self.tabBarController setSelectedIndex:1]; //we are going to sets view right when we are done creating one from the tabbar view
-        
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
