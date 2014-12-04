@@ -124,7 +124,7 @@
     }
     
     cell.tintColor = [UIColor blackColor];
-    [self logWhatsBeenSelected];
+//    [self logWhatsBeenSelected];
 }
 
 

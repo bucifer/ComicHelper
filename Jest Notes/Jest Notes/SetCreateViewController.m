@@ -63,15 +63,19 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    
+    
 }
-*/
+
 
 
 - (IBAction)createSetButton:(id)sender {
@@ -81,6 +85,9 @@
     }
     else {
         [self.jokeDataManager createNewSetInCoreData: self.setNameField.text jokes:self.selectedJokes];
+        
+        [self.tabBarController setSelectedIndex:1]; //we are going to sets view right when we are done creating one from the tabbar view
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
