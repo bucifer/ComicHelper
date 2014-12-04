@@ -132,10 +132,16 @@
 - (IBAction)editButton:(UIBarButtonItem *)sender {
 
     if (![self.tableView isEditing]) {
+        //this means that you pressed it for the very first time to enable the reordering feature
         [sender setTitle:@"Done"];
     }
     else {
+        //this means that you are done reordering, and you are pressing the "Done" button.
         [sender setTitle:@"Reorder"];
+        
+        //I want to take a snapshot of the ordering at this state, and create a NSOrderedSet to save into core data right now
+        
+        
     }
     
     [self.tableView setEditing:![self.tableView isEditing]];
