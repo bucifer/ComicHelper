@@ -21,6 +21,12 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    
+    [self.jokeDataManager refreshSetsCDDataWithNewFetch];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -74,15 +80,28 @@
     return YES;
 }
 
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
+
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    NSMutableArray *jokesArray = self.selectedSet.jokes;
+    [jokesArray exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    
+    //Core Data --> SetCDs --> Each has a Jokes property of NSOrderedSet
+    //When you convert at launch, SetCD becomes a Set with a Jokes property of NSMutableArray
+    
+    SetCD* setCD = [self.jokeDataManager getCorrespondingSetCDFromSetPL:self.selectedSet];
+    NSMutableOrderedSet *mutableSet = [setCD.jokes mutableCopy];
+    [mutableSet exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    setCD.jokes = [NSOrderedSet orderedSetWithArray:[mutableSet array]];
+    
+    [self.jokeDataManager saveChangesInContextCoreData];
+}
+
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     //to get rid of the red delete button

@@ -128,6 +128,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         singleSetView.selectedSet = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
         singleSetView.title = singleSetView.selectedSet.name;
+        singleSetView.jokeDataManager = self.jokeDataManager;
     }
 }
 

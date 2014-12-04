@@ -263,7 +263,11 @@
 }
 
 
-
+- (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL {
+    NSError *error;
+    SetCD *correspondingCDSet = (SetCD *) [self.managedObjectContext existingObjectWithID:setPL.managedObjectID error:&error];
+    return correspondingCDSet;
+}
 
 
 #pragma mark Other Custom Logic-Related

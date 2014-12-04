@@ -43,12 +43,14 @@
 - (void) createNewJokeInCoreData: (Joke *) newJoke;
 - (void) deleteJoke: (NSIndexPath *) indexPath;
 
+- (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL;
 
 
 //For SetCDs
+- (NSMutableArray *) convertCoreDataSetsIntoPresentationLayer: (NSArray *) fetchedCDSetsArray;
 - (void) createNewSetInCoreData: (Set *) newSet;
 - (void) deleteSet: (NSIndexPath *) indexPath;
-
+- (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL;
 
 
 

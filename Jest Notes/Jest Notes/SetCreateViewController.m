@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    int setLength;
+    int setLength = 0;
     
     for (int i=0; i < self.selectedJokes.count; i++) {
         Joke *joke = self.selectedJokes[i];
