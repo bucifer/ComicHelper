@@ -48,13 +48,16 @@
     cell.textLabel.font = myFont;
     
     cell.accessoryType = UITableViewCellAccessoryDetailButton;
-    
+
     return cell;
 }
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70;
 }
+
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         //do nothing
@@ -82,8 +85,15 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //to get rid of the red delete button
     return UITableViewCellEditingStyleNone;
 }
+
+//this helps to remove unnecesary padding on the left that happens from above editingStyle set to None and delete button going away
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
 
 
 #pragma mark - Navigation
