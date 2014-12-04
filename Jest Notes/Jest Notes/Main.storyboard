@@ -1311,7 +1311,7 @@ Enjoy!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="XME-Wq-PEH" kind="show" identifier="accessoryButtonJokeDetailSegue" id="Jua-Ia-Ocy"/>
+                                            <segue destination="XME-Wq-PEH" kind="show" identifier="JokeDetailSegue" id="Jua-Ia-Ocy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1331,6 +1331,11 @@ Enjoy!</string>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="pY8-CH-xlK">
                         <barButtonItem key="backBarButtonItem" title="Back" id="qs5-72-KqM"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reorder" id="8i9-hm-jYr">
+                            <connections>
+                                <action selector="editButton:" destination="eRR-eF-VFb" id="NeG-w1-Xun"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="3Wd-LY-XgN" id="ruQ-vC-eRw"/>

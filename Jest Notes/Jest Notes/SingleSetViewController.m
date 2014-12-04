@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,17 +60,56 @@
         //do nothing
 }
 
+
+
+#pragma mark Reordering rows
+
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+}
+
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"accessoryButtonJokeDetailSegue"]) {
+    if ([segue.identifier isEqualToString:@"JokeDetailSegue"]) {
         SetToJokeDetailViewController *stjdvc = (SetToJokeDetailViewController*) segue.destinationViewController;
         stjdvc.joke = [self.selectedSet.jokes objectAtIndex:[self.tableView indexPathForSelectedRow].row];
     }
     
+}
+
+
+- (IBAction)editButton:(UIBarButtonItem *)sender {
+
+    if (![self.tableView isEditing]) {
+        [sender setTitle:@"Done"];
+    }
+    else {
+        [sender setTitle:@"Reorder"];
+    }
+    
+    [self.tableView setEditing:![self.tableView isEditing]];
 }
 
 
