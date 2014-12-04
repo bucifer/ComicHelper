@@ -90,16 +90,6 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     NSMutableArray *jokesArray = self.selectedSet.jokes;
     [jokesArray exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
-    
-    //Core Data --> SetCDs --> Each has a Jokes property of NSOrderedSet
-    //When you convert at launch, SetCD becomes a Set with a Jokes property of NSMutableArray
-    
-    SetCD* setCD = [self.jokeDataManager getCorrespondingSetCDFromSetPL:self.selectedSet];
-    NSMutableOrderedSet *mutableSet = [setCD.jokes mutableCopy];
-    [mutableSet exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
-    setCD.jokes = [NSOrderedSet orderedSetWithArray:[mutableSet array]];
-    
-    [self.jokeDataManager saveChangesInContextCoreData];
 }
 
 
@@ -140,8 +130,10 @@
         [sender setTitle:@"Reorder"];
         
         //I want to take a snapshot of the ordering at this state, and create a NSOrderedSet to save into core data right now
-        
-        
+        SetCD* setCD = [self.jokeDataManager getCorrespondingSetCDFromSetPL:self.selectedSet];
+        setCD.jokes = [NSOrderedSet orderedSetWithArray:self.selectedSet.jokes];
+        [self.jokeDataManager saveChangesInContextCoreData];
+        [self.tableView reloadData];
     }
     
     [self.tableView setEditing:![self.tableView isEditing]];
