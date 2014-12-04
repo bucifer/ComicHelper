@@ -148,7 +148,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Jokes" id="6gw-nQ-OVZ">
+                    <navigationItem key="navigationItem" title="View Your Jokes" id="6gw-nQ-OVZ">
                         <barButtonItem key="backBarButtonItem" title="Jokes" id="8dA-fG-Ado"/>
                         <barButtonItem key="leftBarButtonItem" title="Delete" id="Vd1-pj-oSD">
                             <connections>
@@ -838,7 +838,7 @@ Enjoy!</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aK-Vb-N5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1536" y="210"/>
+            <point key="canvasLocation" x="-2498" y="192"/>
         </scene>
         <!--MultiJokesSelection-->
         <scene sceneID="9rK-8M-FXL">
@@ -1251,10 +1251,24 @@ Enjoy!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Hne-sD-Imm">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="gdn-fB-FnB" detailTextLabel="Mqk-dB-Hv8" style="IBUITableViewCellStyleValue1" id="Hne-sD-Imm">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hne-sD-Imm" id="9Fz-Xh-o90">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gdn-fB-FnB">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mqk-dB-Hv8">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="eRR-eF-VFb" kind="show" identifier="singleSetViewSegue" id="OO4-hN-Eke"/>
@@ -1266,7 +1280,7 @@ Enjoy!</string>
                             <outlet property="delegate" destination="D5R-Up-jtI" id="U9h-7Q-Wt3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Your Sets" id="Mhq-ii-MYj">
+                    <navigationItem key="navigationItem" title="View Your Sets" id="Mhq-ii-MYj">
                         <barButtonItem key="backBarButtonItem" title="Sets" id="wiT-3p-CTa"/>
                     </navigationItem>
                 </tableViewController>

@@ -106,8 +106,9 @@
 }
 
 
-#pragma mark backup
+#pragma mark backup reference method .. just in case
 
+//this button can be used in the accessoryView of any tableview row. I was using this before using numbering for multijokes selection for set creation
 - (UIButton *) createCustomCheckmarkAccessoryViewWithImage {
     UIImage *image = [UIImage imageNamed:@"checkmark"];
     UIButton *customCheckmarkImageButton = [UIButton buttonWithType:UIButtonTypeCustom];

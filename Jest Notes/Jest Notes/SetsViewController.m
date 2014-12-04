@@ -53,11 +53,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
     // Configure the cell...
+    if(!cell){
+        cell =
+        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+    }
     
     Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
-    cell.textLabel.text = set.name;
+    cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", indexPath.row + 1,set.name];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+    cell.detailTextLabel.text =  [dateFormatter stringFromDate:set.createDate];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

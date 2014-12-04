@@ -215,6 +215,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
     SetCD *set = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     set.name = setName;
+    set.createDate = [NSDate date];
     
     //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
     NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
