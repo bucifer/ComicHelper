@@ -10,6 +10,7 @@
 		AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */; };
 		AACA80E21A2D041D0003F9F3 /* UIColor+UIColor_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA80E11A2D041D0003F9F3 /* UIColor+UIColor_Additions.m */; };
 		AACA815C1A25320E0014E86F /* HelpMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA815B1A25320E0014E86F /* HelpMenuController.m */; };
+		AACDCD041A31073600FEF4F2 /* SetToJokeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACDCD031A31073600FEF4F2 /* SetToJokeDetailViewController.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
@@ -52,6 +53,8 @@
 		AACA80E11A2D041D0003F9F3 /* UIColor+UIColor_Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor_Additions.m"; sourceTree = "<group>"; };
 		AACA815A1A25320E0014E86F /* HelpMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpMenuController.h; sourceTree = "<group>"; };
 		AACA815B1A25320E0014E86F /* HelpMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpMenuController.m; sourceTree = "<group>"; };
+		AACDCD021A31073600FEF4F2 /* SetToJokeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetToJokeDetailViewController.h; sourceTree = "<group>"; };
+		AACDCD031A31073600FEF4F2 /* SetToJokeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetToJokeDetailViewController.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2772A1A07DC81002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2772B1A07DC81002AA22B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 				AAD7A62D1A1FFE4C00DA8165 /* SetsViewController.m */,
 				AAD59B9D1A215A7C006B145C /* SingleSetViewController.h */,
 				AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */,
+				AACDCD021A31073600FEF4F2 /* SetToJokeDetailViewController.h */,
+				AACDCD031A31073600FEF4F2 /* SetToJokeDetailViewController.m */,
 				AACA815A1A25320E0014E86F /* HelpMenuController.h */,
 				AACA815B1A25320E0014E86F /* HelpMenuController.m */,
 			);
@@ -353,6 +358,7 @@
 				AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */,
 				AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */,
 				AAD59B8F1A2107BC006B145C /* SetCreateViewController.m in Sources */,
+				AACDCD041A31073600FEF4F2 /* SetToJokeDetailViewController.m in Sources */,
 				AAD2776D1A07DCED002AA22B /* Jest_Notes.xcdatamodeld in Sources */,
 				AAD59B921A210BC8006B145C /* PushNoAnimationSegue.m in Sources */,
 				AACA80E21A2D041D0003F9F3 /* UIColor+UIColor_Additions.m in Sources */,

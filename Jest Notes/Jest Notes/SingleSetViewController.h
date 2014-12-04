@@ -13,5 +13,6 @@
 
 @property (strong, nonatomic) Set *selectedSet;
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

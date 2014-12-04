@@ -1310,6 +1310,9 @@ Enjoy!</string>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PrK-Cm-ePG" id="54H-Oa-VH3">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="XME-Wq-PEH" kind="show" identifier="accessoryButtonJokeDetailSegue" id="Jua-Ia-Ocy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1329,10 +1332,48 @@ Enjoy!</string>
                     <navigationItem key="navigationItem" title="Title" id="pY8-CH-xlK">
                         <barButtonItem key="backBarButtonItem" title="Back" id="qs5-72-KqM"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="3Wd-LY-XgN" id="ruQ-vC-eRw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMw-3b-Rqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1360" y="542"/>
+        </scene>
+        <!--Set To Joke Detail View Controller-->
+        <scene sceneID="k2I-bS-yZo">
+            <objects>
+                <viewController id="XME-Wq-PEH" customClass="SetToJokeDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uhU-NL-Kek"/>
+                        <viewControllerLayoutGuide type="bottom" id="i0O-VB-Iwc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1cw-so-Il0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZYv-RB-kkB" userLabel="JokeBodyTextView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZYv-RB-kkB" firstAttribute="top" secondItem="uhU-NL-Kek" secondAttribute="bottom" id="LnP-Yk-Hiq"/>
+                            <constraint firstItem="ZYv-RB-kkB" firstAttribute="leading" secondItem="1cw-so-Il0" secondAttribute="leading" id="R5f-t4-Iw1"/>
+                            <constraint firstItem="ZYv-RB-kkB" firstAttribute="bottom" secondItem="i0O-VB-Iwc" secondAttribute="top" id="h1c-Kh-TIY"/>
+                            <constraint firstAttribute="trailing" secondItem="ZYv-RB-kkB" secondAttribute="trailing" id="jJO-jV-fZf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="jokeBodyTextView" destination="ZYv-RB-kkB" id="UNb-3x-T0d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ldt-EN-MDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2072" y="532"/>
         </scene>
     </scenes>
     <resources>

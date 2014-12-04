@@ -8,6 +8,7 @@
 
 #import "SingleSetViewController.h"
 #import "Joke.h"
+#import "SetToJokeDetailViewController.h"
 
 @interface SingleSetViewController ()
 
@@ -42,19 +43,36 @@
     }
     
     Joke *selectedJoke = [self.selectedSet.jokes objectAtIndex:indexPath.row];
-    cell.textLabel.text = selectedJoke.name;
+    cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", indexPath.row + 1, selectedJoke.name];
+
+    UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 30.0 ];
+    cell.textLabel.font = myFont;
+    
+    cell.accessoryType = UITableViewCellAccessoryDetailButton;
     
     return cell;
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+        //do nothing
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"accessoryButtonJokeDetailSegue"]) {
+        SetToJokeDetailViewController *stjdvc = (SetToJokeDetailViewController*) segue.destinationViewController;
+        stjdvc.joke = [self.selectedSet.jokes objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+    }
+    
 }
-*/
+
 
 @end

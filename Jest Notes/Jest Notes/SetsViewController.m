@@ -63,14 +63,20 @@
     cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", indexPath.row + 1,set.name];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    cell.detailTextLabel.text =  [dateFormatter stringFromDate:set.createDate];
+    [dateFormatter setDateFormat:@"M/dd/yy"];
+    cell.detailTextLabel.text =  [NSString stringWithFormat:@"Created %@", [dateFormatter stringFromDate:set.createDate]];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 30.0 ];
+    cell.textLabel.font = myFont;
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
+}
 
 
 // Override to support conditional editing of the table view.

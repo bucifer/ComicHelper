@@ -66,7 +66,7 @@
     
     [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke];
 
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
