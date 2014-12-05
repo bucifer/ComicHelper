@@ -21,7 +21,6 @@
             // Do something with the found objects
             
             for (JokeParse *jokeParse in objects) {
-                NSLog(@"%@", jokeParse.objectId);
                 [self convertParseJokeToCoreData:jokeParse];
             }
             
@@ -44,7 +43,7 @@
     joke.score = jokeParse.score;
     joke.writeDate = jokeParse.writeDate;
     joke.bodyText = jokeParse.bodyText;
-//    joke.uniqueID = [self returnUniqueIDmaxValue];
+    joke.uniqueID = [self returnUniqueIDmaxValue];
     [self saveChangesInContextCoreData];
 }
 
