@@ -29,12 +29,9 @@
     JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
     myJokeDatamanager.managedObjectContext = self.managedObjectContext;
     
-    ParseDataManager *myParseDataManager = [[ParseDataManager alloc]init];
-    myParseDataManager.managedObjectContext = self.managedObjectContext;
-//    myParseDataManager.jokeDataManager = myJokeDatamanager;
-    
     UINavigationController *firstNavController = myTabBarController.viewControllers[0];
     HomeViewController *hvc = (HomeViewController *) firstNavController.topViewController;
+    
     hvc.jokeDataManager = myJokeDatamanager;
     myJokeDatamanager.hvc = hvc;
     
@@ -46,9 +43,15 @@
     NSString *applicationId = [dictionary objectForKey:@"parseAppID"];
     NSString *clientKey = [dictionary objectForKey:@"parseClientKey"];
     
+    ParseDataManager *myParseDataManager = [[ParseDataManager alloc]init];
+    myParseDataManager.managedObjectContext = self.managedObjectContext;
+    hvc.parseDataManager = myParseDataManager;
+    
     [Parse setApplicationId:applicationId
                   clientKey:clientKey];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+
     
     return YES;
 }

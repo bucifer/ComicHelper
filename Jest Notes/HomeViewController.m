@@ -15,7 +15,6 @@
 #import "JokeCustomCell.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 #import "MultiJokesSelectionController.h"
-#import <Parse/Parse.h>
 #import "JokeParse.h"
 
 @interface HomeViewController ()
@@ -29,10 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ParseDataManager *pdm = [[ParseDataManager alloc]init];
-    pdm.delegate = self;
-    [pdm getAllParseJokesAsynchronously];
-    
+    self.parseDataManager.delegate = self;
+    [self.parseDataManager getAllParseJokesAsynchronously];
     
     
     // Do any additional setup after loading the view.
@@ -66,6 +63,8 @@
 
 - (void) parseDataManagerDidFinishGettingAllParseJokes {
     NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
+    
+    [self.tableView reloadData];
 }
 
 

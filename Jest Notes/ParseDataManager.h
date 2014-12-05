@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-//#import "JokeDataManager.h"
 #import <Parse/Parse.h>
 #import "JokeParse.h"
 #import "JokeCD.h"
 
-//@class JokeDataManager;
 
 @protocol ParseDataManagerDelegate;
 
@@ -21,10 +19,7 @@
 
 @property (nonatomic, strong) NSMutableArray *jokesParse;
 @property (nonatomic, strong) NSMutableArray *setsParse;
-
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-//@property (nonatomic, strong) JokeDataManager *jokeDataManager;
-
 @property (nonatomic, weak) id <ParseDataManagerDelegate> delegate;
 
 

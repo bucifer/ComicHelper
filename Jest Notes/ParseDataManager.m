@@ -12,6 +12,7 @@
 @implementation ParseDataManager
 
 - (void) getAllParseJokesAsynchronously {
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -21,6 +22,7 @@
             
             for (JokeParse *jokeParse in objects) {
                 NSLog(@"%@", jokeParse.objectId);
+                [self convertParseJokeToCoreData:jokeParse];
             }
             
             [self.delegate parseDataManagerDidFinishGettingAllParseJokes];
@@ -34,7 +36,7 @@
 }
 
 
-- (JokeCD*) convertParseJokeToCoreData: (JokeParse *) jokeParse {
+- (void) convertParseJokeToCoreData: (JokeParse *) jokeParse {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     joke.name = jokeParse.name;
@@ -42,11 +44,8 @@
     joke.score = jokeParse.score;
     joke.writeDate = jokeParse.writeDate;
     joke.bodyText = jokeParse.bodyText;
-//    joke.uniqueID = [self.jokeDataManager returnUniqueIDmaxValue];
-    
+//    joke.uniqueID = [self returnUniqueIDmaxValue];
     [self saveChangesInContextCoreData];
-    
-    return joke;
 }
 
 - (void) saveChangesInContextCoreData {
@@ -55,10 +54,34 @@
     if(!successful){
         NSLog(@"Error saving: %@", [err localizedDescription]);
     } else {
-        NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
+        NSLog(@"Core Data Saved without errors");
     }
 }
 
-
+- (NSNumber *) returnUniqueIDmaxValue {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueID==max(uniqueID)"];
+    
+    NSError *error = nil;
+    NSArray *arrayOfOneJokeWithHighestUniqueID = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (arrayOfOneJokeWithHighestUniqueID == nil) {
+        NSLog(@"error in fetching CD: %@", error);
+    }
+    
+    NSNumber *maxValue = nil;
+    if (arrayOfOneJokeWithHighestUniqueID)
+        if ([arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"] != nil)
+            maxValue = [arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"];
+        else
+            maxValue = [NSNumber numberWithUnsignedInteger:0];
+        else
+            maxValue = [NSNumber numberWithUnsignedInteger:0];
+    
+    return maxValue;
+}
 
 @end
