@@ -1,19 +1,16 @@
 *.pem
 *.zip
-
 *.png
 *.jpeg
 *.jpg
 *.gif
 *.mp3
 *.wav
-
 *.json
 
-SplitAppTests/
-Samples/
+Jest Notes/Keys.plist
 
-TabApp/Images.xcassets/
+
 # Xcode
 #
 build/
