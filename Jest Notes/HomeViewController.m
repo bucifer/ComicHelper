@@ -16,6 +16,8 @@
 #import "NSObject+NSObject___TerryConvenience.h"
 #import "MultiJokesSelectionController.h"
 #import <Parse/Parse.h>
+#import "JokeParse.h"
+#import "ParseDataManager.h"
 
 @interface HomeViewController ()
 
@@ -28,12 +30,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    ParseDataManager *pdm = [[ParseDataManager alloc]init];
+    [pdm getAllParseJokes];
+    
+    
     
     // Do any additional setup after loading the view.
     [self.jokeDataManager appInitializationLogic];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    
     
     UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addJokeButtonAction)];
     UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addSetButtonAction)];
