@@ -28,11 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TerryTestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
-    
-
     
     // Do any additional setup after loading the view.
     [self.jokeDataManager appInitializationLogic];
