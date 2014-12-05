@@ -7,12 +7,37 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+//#import "JokeDataManager.h"
+#import <Parse/Parse.h>
+#import "JokeParse.h"
+#import "JokeCD.h"
+
+//@class JokeDataManager;
+
+@protocol ParseDataManagerDelegate;
 
 @interface ParseDataManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *jokesParse;
 @property (nonatomic, strong) NSMutableArray *setsParse;
 
-- (void) getAllParseJokes;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+//@property (nonatomic, strong) JokeDataManager *jokeDataManager;
+
+@property (nonatomic, weak) id <ParseDataManagerDelegate> delegate;
+
+
+- (void) getAllParseJokesAsynchronously;
+
+
+
+
+@end
+
+
+@protocol ParseDataManagerDelegate
+
+- (void) parseDataManagerDidFinishGettingAllParseJokes;
 
 @end

@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "JokeDataManager.h"
+#import "ParseDataManager.h"
 
 @class JokeDataManager;
 
-
-@interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParseDataManagerDelegate>
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

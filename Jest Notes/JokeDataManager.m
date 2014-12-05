@@ -7,10 +7,7 @@
 //
 
 #import "JokeDataManager.h"
-#import "JokeCD.h"
-#import "Joke.h"
-#import "SetCD.h"
-#import "Set.h"
+
 
 @implementation JokeDataManager
 
@@ -203,6 +200,8 @@
     [self saveChangesInContextCoreData];
     [self returnUniqueIDmaxValue];
 }
+
+
 
 - (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText:(NSString *)bodyText{
     Joke *joke = [[Joke alloc]init];

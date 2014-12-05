@@ -17,7 +17,6 @@
 #import "MultiJokesSelectionController.h"
 #import <Parse/Parse.h>
 #import "JokeParse.h"
-#import "ParseDataManager.h"
 
 @interface HomeViewController ()
 
@@ -31,7 +30,8 @@
     [super viewDidLoad];
     
     ParseDataManager *pdm = [[ParseDataManager alloc]init];
-    [pdm getAllParseJokes];
+    pdm.delegate = self;
+    [pdm getAllParseJokesAsynchronously];
     
     
     
@@ -62,6 +62,12 @@
     else if (self.jokeDataManager.jokes.count > 0)
         self.deleteBarButton.title = @"Delete";
 }
+
+
+- (void) parseDataManagerDidFinishGettingAllParseJokes {
+    NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
+}
+
 
 
 

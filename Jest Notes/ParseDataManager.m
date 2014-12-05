@@ -7,12 +7,11 @@
 //
 
 #import "ParseDataManager.h"
-#import <Parse/Parse.h>
-#import "JokeParse.h"
+
 
 @implementation ParseDataManager
 
-- (void) getAllParseJokes {
+- (void) getAllParseJokesAsynchronously {
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -24,6 +23,8 @@
                 NSLog(@"%@", jokeParse.objectId);
             }
             
+            [self.delegate parseDataManagerDidFinishGettingAllParseJokes];
+            
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -31,5 +32,33 @@
     }];
 
 }
+
+
+- (JokeCD*) convertParseJokeToCoreData: (JokeParse *) jokeParse {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    joke.name = jokeParse.name;
+    joke.length = jokeParse.length;
+    joke.score = jokeParse.score;
+    joke.writeDate = jokeParse.writeDate;
+    joke.bodyText = jokeParse.bodyText;
+//    joke.uniqueID = [self.jokeDataManager returnUniqueIDmaxValue];
+    
+    [self saveChangesInContextCoreData];
+    
+    return joke;
+}
+
+- (void) saveChangesInContextCoreData {
+    NSError *err = nil;
+    BOOL successful = [self.managedObjectContext save:&err];
+    if(!successful){
+        NSLog(@"Error saving: %@", [err localizedDescription]);
+    } else {
+        NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
+    }
+}
+
+
 
 @end
