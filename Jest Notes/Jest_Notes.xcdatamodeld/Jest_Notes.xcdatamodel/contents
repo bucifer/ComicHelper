@@ -5,7 +5,7 @@
         <attribute name="length" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parseObjectID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="score" optional="YES" attributeType="Float" minValueString="0" maxValueString="10" defaultValueString="0" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="10" defaultValueString="0" syncable="YES"/>
         <attribute name="writeDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="set" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetCD" inverseName="jokes" inverseEntity="SetCD" syncable="YES"/>
     </entity>

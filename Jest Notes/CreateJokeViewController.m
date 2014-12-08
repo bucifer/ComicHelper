@@ -74,7 +74,7 @@
     //When you create a new joke, first you add one to the Presentation Laye by adding it to the  DAO
     Joke *newJoke = [[Joke alloc]init];
     newJoke.name = jokeName;
-    newJoke.score = [jokeScore floatValue];
+    newJoke.score = [jokeScore intValue];
     newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
     newJoke.writeDate = myDate;
     newJoke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.jokeDataManager.uniqueIDmaxValue intValue] + 1];
@@ -91,7 +91,7 @@
 
 
 - (BOOL) alertScoreInputInvalid: (NSString *) scoreString {
-    if ([self.jokeDataManager isScoreInputValid:[scoreString floatValue]] == NO) {
+    if ([self.jokeDataManager isScoreInputValid:[scoreString intValue]] == NO) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score out of range"
                                                         message:@"Your score input is out of range. Please input a number between 0 to 10 (inclusive) under Joke Score"
                                                        delegate:nil

@@ -110,7 +110,7 @@
         JokeCD *oneCDJoke = fetchedObjectsArrayOfCDJokes[i];
         Joke *newPLJoke = [[Joke alloc]init];
         newPLJoke.name = oneCDJoke.name;
-        newPLJoke.score = [oneCDJoke.score floatValue];
+        newPLJoke.score = [oneCDJoke.score intValue];
         newPLJoke.length = [oneCDJoke.length intValue];
         newPLJoke.writeDate = oneCDJoke.writeDate;
         newPLJoke.managedObjectID = [oneCDJoke objectID];
@@ -125,7 +125,7 @@
 - (Joke *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke {
     Joke *newPLJoke = [[Joke alloc]init];
     newPLJoke.name = oneCoreDataJoke.name;
-    newPLJoke.score = [oneCoreDataJoke.score floatValue];
+    newPLJoke.score = [oneCoreDataJoke.score intValue];
     newPLJoke.length = [oneCoreDataJoke.length intValue];
     newPLJoke.writeDate = oneCoreDataJoke.writeDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
@@ -161,7 +161,7 @@
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:joke.managedObjectID error:&error];
     correspondingCDJoke.name = joke.name;
     correspondingCDJoke.length = [NSNumber numberWithInt:joke.length];
-    correspondingCDJoke.score = [NSNumber numberWithFloat:joke.score];
+    correspondingCDJoke.score = [NSNumber numberWithInt:joke.score];
     correspondingCDJoke.writeDate = joke.writeDate;
     correspondingCDJoke.bodyText = joke.bodyText;
     [self saveChangesInContextCoreData];
@@ -192,7 +192,7 @@
     JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     joke.name = newJoke.name;
     joke.length = [NSNumber numberWithInt:newJoke.length];
-    joke.score = [NSNumber numberWithFloat:newJoke.score];
+    joke.score = [NSNumber numberWithInt:newJoke.score];
     joke.writeDate = newJoke.writeDate;
     joke.bodyText = newJoke.bodyText;
     
@@ -308,8 +308,8 @@
 
 
 
-- (BOOL) isScoreInputValid: (float) score {
-    if (score > 10.0 || score < 0) {
+- (BOOL) isScoreInputValid: (int) score {
+    if (score > 10 || score < 0) {
         return FALSE;
     }
     return TRUE;

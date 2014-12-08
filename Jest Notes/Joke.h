@@ -13,7 +13,7 @@
 @interface Joke : NSObject
 
 @property (nonatomic, strong) NSString* name;
-@property float score;
+@property int score;
 @property int length;
 @property (nonatomic, strong) NSDate *writeDate;
 @property (nonatomic, strong) NSString* bodyText; 

@@ -58,7 +58,7 @@
     Joke *selectedJoke = self.joke;
     selectedJoke.name = changedName;
     selectedJoke.length = [changedMinuteLength intValue] * 60 + [changedSecondsLength intValue];
-    selectedJoke.score = [changedScore floatValue];
+    selectedJoke.score = [changedScore intValue];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     selectedJoke.writeDate = self.writeDatePicker.date;
