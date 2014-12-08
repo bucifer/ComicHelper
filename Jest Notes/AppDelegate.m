@@ -13,6 +13,7 @@
 #import "SetsViewController.h"
 #import <Parse/Parse.h>
 #import "ParseDataManager.h"
+#import "HomeTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    UITabBarController *myTabBarController = (UITabBarController *) self.window.rootViewController;
+    HomeTabBarController *myTabBarController = (HomeTabBarController *) self.window.rootViewController;
     
     JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
     myJokeDatamanager.managedObjectContext = self.managedObjectContext;

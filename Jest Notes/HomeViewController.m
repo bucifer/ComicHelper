@@ -39,9 +39,9 @@
     UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"pen"] style:UIBarButtonItemStyleDone target:self action:@selector(addJokeButtonAction)];
     
     UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"set"] style:UIBarButtonItemStyleDone  target:self action:@selector(addSetButtonAction)];
-    
-    addSetButton.imageInsets = UIEdgeInsetsMake(0.75, 0, 0, 0);
-    addJokeButton.imageInsets = UIEdgeInsetsMake(0, 0, 1.5, 0);
+
+    addJokeButton.imageInsets = UIEdgeInsetsMake(0, 3, 1.5, 0);
+    addSetButton.imageInsets = UIEdgeInsetsMake(0.75, 0, 0, 3);
 
     NSArray *buttonArray = [NSArray arrayWithObjects:addSetButton, addJokeButton, nil];
     self.navigationItem.rightBarButtonItems = buttonArray;
