@@ -37,6 +37,8 @@
             
             [self.delegate parseDataManagerDidFinishGettingAllParseJokes];
             
+            self.jokesParse = [objects mutableCopy];
+            
         }
         else {
             // Log details of the failure

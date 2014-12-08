@@ -7,7 +7,9 @@
 //
 
 #import "JokeDataManager.h"
-
+#import "ParseDataManager.h"
+#import "JokeParse.h"
+#import <Parse/Parse.h>
 
 @implementation JokeDataManager
 
@@ -114,7 +116,6 @@
         newPLJoke.length = [oneCDJoke.length intValue];
         newPLJoke.writeDate = oneCDJoke.writeDate;
         newPLJoke.managedObjectID = [oneCDJoke objectID];
-//        newPLJoke.uniqueID = oneCDJoke.uniqueID;
         newPLJoke.bodyText = oneCDJoke.bodyText;
         [resultArrayOfJokePLs addObject:newPLJoke];
     }
@@ -129,7 +130,6 @@
     newPLJoke.length = [oneCoreDataJoke.length intValue];
     newPLJoke.writeDate = oneCoreDataJoke.writeDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
-//    newPLJoke.uniqueID = oneCoreDataJoke.uniqueID;
     newPLJoke.bodyText = oneCoreDataJoke.bodyText;
     
     return newPLJoke;
@@ -222,9 +222,30 @@
 - (void) deleteJoke: (NSIndexPath *) indexPath {
     Joke *selectedJoke = [self.jokes objectAtIndex:indexPath.row];
     JokeCD *correspondingCDJoke = (JokeCD*) [self.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:nil];
+    
+    NSString *tempObjectIdStore = [correspondingCDJoke.parseObjectID copy];
+    
     [self.managedObjectContext deleteObject:correspondingCDJoke];
     [self saveChangesInContextCoreData];
     [self.jokes removeObjectAtIndex:indexPath.row];
+    
+    JokeParse *correspondingParseJoke = [JokeParse objectWithoutDataWithClassName:@"Joke" objectId:tempObjectIdStore];
+    [correspondingParseJoke deleteEventually];
+    
+    
+//    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+//    [query whereKey:@"objectId" equalTo:tempObjectIdStore];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            // The find succeeded.
+//            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+//            // Do something with the found objects
+//            [JokeParse deleteAllInBackground:objects];
+//        } else {
+//            // Log details of the failure
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
 }
 
 
