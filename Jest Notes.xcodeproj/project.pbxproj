@@ -47,6 +47,7 @@
 		AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */; };
 		AAD7A62E1A1FFE4C00DA8165 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD7A62D1A1FFE4C00DA8165 /* SetsViewController.m */; };
 		AAE50A191A36298E00A380A1 /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE50A181A36298E00A380A1 /* JokeCD.m */; };
+		AAE50A221A363F0A00A380A1 /* HomeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE50A211A363F0A00A380A1 /* HomeTabBarController.m */; };
 		AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */; };
 		AAE5AEE31A098E9100E73566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEE21A098E9100E73566 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,8 @@
 		AAD7A62D1A1FFE4C00DA8165 /* SetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetsViewController.m; sourceTree = "<group>"; };
 		AAE50A171A36298E00A380A1 /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = "<group>"; };
 		AAE50A181A36298E00A380A1 /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
+		AAE50A201A363F0A00A380A1 /* HomeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTabBarController.h; sourceTree = "<group>"; };
+		AAE50A211A363F0A00A380A1 /* HomeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTabBarController.m; sourceTree = "<group>"; };
 		AAE5AEDF1A0976F800E73566 /* JokeCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCustomCell.h; sourceTree = "<group>"; };
 		AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCustomCell.m; sourceTree = "<group>"; };
 		AAE5AEE21A098E9100E73566 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -209,10 +212,10 @@
 				AAD2772E1A07DC82002AA22B /* AppDelegate.m */,
 				AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */,
 				AAE5AEE21A098E9100E73566 /* Main.storyboard */,
+				AAD277391A07DC82002AA22B /* Images.xcassets */,
 				AAD59B961A21112F006B145C /* View Controllers */,
 				AAD59B931A210EA5006B145C /* Data Objects */,
 				AAD59B951A2110EB006B145C /* Categories & Custom Views */,
-				AAD277391A07DC82002AA22B /* Images.xcassets */,
 				AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */,
 				AAD277291A07DC81002AA22B /* Supporting Files */,
 			);
@@ -285,6 +288,8 @@
 		AAD59B961A21112F006B145C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AAE50A201A363F0A00A380A1 /* HomeTabBarController.h */,
+				AAE50A211A363F0A00A380A1 /* HomeTabBarController.m */,
 				AAD277541A07DCD9002AA22B /* HomeViewController.h */,
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
@@ -411,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */,
+				AAE50A221A363F0A00A380A1 /* HomeTabBarController.m in Sources */,
 				AAD39E681A22A58500AB60FA /* SetCD.m in Sources */,
 				AAE50A191A36298E00A380A1 /* JokeCD.m in Sources */,
 				AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */,

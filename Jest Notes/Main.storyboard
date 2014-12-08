@@ -819,10 +819,10 @@ Enjoy!</string>
             </objects>
             <point key="canvasLocation" x="-1001" y="1052"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Home Tab Bar Controller-->
         <scene sceneID="Ttk-4D-hLq">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hn7-Ye-daZ" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="hn7-Ye-daZ" customClass="HomeTabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="O3F-ww-BIM"/>
                     <nil key="simulatedBottomBarMetrics"/>

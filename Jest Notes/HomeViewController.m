@@ -37,14 +37,18 @@
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
-    UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addJokeButtonAction)];
-    UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addSetButtonAction)];
+    UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addJokeButtonAction)];
+    UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"set"] style:UIBarButtonItemStyleDone  target:self action:@selector(addSetButtonAction)];
 
     
     NSArray *buttonArray = [NSArray arrayWithObjects:addSetButton, addJokeButton, nil];
     self.navigationItem.rightBarButtonItems = buttonArray;
     
+
+    
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
