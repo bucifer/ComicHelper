@@ -31,16 +31,18 @@
     self.parseDataManager.delegate = self;
     [self.parseDataManager getAllParseJokesAsynchronously];
     
-    
-    // Do any additional setup after loading the view.
     [self.jokeDataManager appInitializationLogic];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
-    UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addJokeButtonAction)];
-    UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"set"] style:UIBarButtonItemStyleDone  target:self action:@selector(addSetButtonAction)];
-
+//    UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addJokeButtonAction)];
+    UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"pen"] style:UIBarButtonItemStyleDone target:self action:@selector(addJokeButtonAction)];
     
+    UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"set"] style:UIBarButtonItemStyleDone  target:self action:@selector(addSetButtonAction)];
+    
+    addSetButton.imageInsets = UIEdgeInsetsMake(0.75, 0, 0, 0);
+    addJokeButton.imageInsets = UIEdgeInsetsMake(0, 0, 1.5, 0);
+
     NSArray *buttonArray = [NSArray arrayWithObjects:addSetButton, addJokeButton, nil];
     self.navigationItem.rightBarButtonItems = buttonArray;
     
