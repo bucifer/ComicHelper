@@ -96,8 +96,9 @@
     
     if (self.jokeDataManager.jokes.count > 0 ) {
         Joke *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        joke.uniqueID = [NSNumber numberWithLong:indexPath.row+1];
         
-        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%ld", (long)indexPath.row+1];
+        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
         
         cell.nameLabel.text = [NSString stringWithFormat: @"%@", joke.name];
         cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
