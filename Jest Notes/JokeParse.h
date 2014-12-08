@@ -17,7 +17,6 @@
 @property (retain) NSNumber *length;
 @property (retain) NSNumber * score;
 
-
 + (NSString *)parseClassName;
 
 

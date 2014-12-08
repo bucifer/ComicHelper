@@ -17,8 +17,8 @@
 @dynamic name;
 @dynamic score;
 @dynamic bodyText;
-
-@dynamic uniqueID;
 @dynamic set;
+
+@dynamic parseObjectID;
 
 @end

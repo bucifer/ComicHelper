@@ -51,7 +51,7 @@
     //we need a way to sort the jokes when you created a new joke or edited a joke
     
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
-    [self.jokeDataManager sortArrayWithOneDescriptorString:self.jokeDataManager.jokes descriptor:@"uniqueID" ascending:YES];
+//    [self.jokeDataManager sortArrayWithOneDescriptorString:self.jokeDataManager.jokes descriptor:@"uniqueID" ascending:YES];
     [self.tableView reloadData];
     
     if (self.jokeDataManager.jokes.count == 0)
@@ -63,7 +63,7 @@
 
 - (void) parseDataManagerDidFinishGettingAllParseJokes {
     NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
-    
+    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
 }
 
@@ -97,7 +97,7 @@
     if (self.jokeDataManager.jokes.count > 0 ) {
         Joke *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
         
-        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
+        cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%ld", (long)indexPath.row+1];
         
         cell.nameLabel.text = [NSString stringWithFormat: @"%@", joke.name];
         cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];

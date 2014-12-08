@@ -17,7 +17,6 @@
 @dynamic bodyText;
 @dynamic writeDate;
 
-
 + (void)load {
     [self registerSubclass];
 }

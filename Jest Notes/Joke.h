@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSDate *writeDate;
 @property (nonatomic, strong) NSString* bodyText; 
 
-//this uniqueID is used for User Interface purposes (joke #4) so that people can easily identify their jokes
+//this uniqueID is used for User Interface ordering purposes (joke #4) so that people can easily identify and order their jokes
 @property (nonatomic, strong) NSNumber *uniqueID;
 
 //this ID is used for matching up presentation and core data layer objects

@@ -42,7 +42,7 @@
         //this is NOT the first launch ... Fetch Jokesfrom Core Data
         NSArray *fetchedJokesFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"JokeCD"];
         self.jokes = [self convertCoreDataJokesArrayIntoPresentationLayer:fetchedJokesFromCD];
-        self.uniqueIDmaxValue = [self returnUniqueIDmaxValue];
+//        self.uniqueIDmaxValue = [self returnUniqueIDmaxValue];
         [self.hvc.tableView reloadData];
         
         //taking care of fetching SETS now
@@ -114,7 +114,7 @@
         newPLJoke.length = [oneCDJoke.length intValue];
         newPLJoke.writeDate = oneCDJoke.writeDate;
         newPLJoke.managedObjectID = [oneCDJoke objectID];
-        newPLJoke.uniqueID = oneCDJoke.uniqueID;
+//        newPLJoke.uniqueID = oneCDJoke.uniqueID;
         newPLJoke.bodyText = oneCDJoke.bodyText;
         [resultArrayOfJokePLs addObject:newPLJoke];
     }
@@ -129,7 +129,7 @@
     newPLJoke.length = [oneCoreDataJoke.length intValue];
     newPLJoke.writeDate = oneCoreDataJoke.writeDate;
     newPLJoke.managedObjectID = [oneCoreDataJoke objectID];
-    newPLJoke.uniqueID = oneCoreDataJoke.uniqueID;
+//    newPLJoke.uniqueID = oneCoreDataJoke.uniqueID;
     newPLJoke.bodyText = oneCoreDataJoke.bodyText;
     
     return newPLJoke;
@@ -194,11 +194,10 @@
     joke.length = [NSNumber numberWithInt:newJoke.length];
     joke.score = [NSNumber numberWithFloat:newJoke.score];
     joke.writeDate = newJoke.writeDate;
-    joke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.uniqueIDmaxValue intValue] + 1];
     joke.bodyText = newJoke.bodyText;
     
     [self saveChangesInContextCoreData];
-    [self returnUniqueIDmaxValue];
+//    [self returnUniqueIDmaxValue];
 }
 
 
@@ -270,34 +269,34 @@
 
 
 #pragma mark Other Custom Logic-Related
-- (NSNumber *) returnUniqueIDmaxValue {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    fetchRequest.fetchLimit = 1;
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueID==max(uniqueID)"];
-
-    NSError *error = nil;
-    NSArray *arrayOfOneJokeWithHighestUniqueID = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (arrayOfOneJokeWithHighestUniqueID == nil) {
-        NSLog(@"error in fetching CD: %@", error);
-    }
-    
-    NSNumber *maxValue = nil;
-    if (arrayOfOneJokeWithHighestUniqueID)
-        if ([arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"] != nil)
-            maxValue = [arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"];
-        else
-            maxValue = [NSNumber numberWithUnsignedInteger:0];
-    else
-        maxValue = [NSNumber numberWithUnsignedInteger:0];
-    
-    self.uniqueIDmaxValue = maxValue;
-    NSLog(@"Max ID value is %@ for your jokes: From JDM",self.uniqueIDmaxValue);
-
-    return maxValue;
-}
+//- (NSNumber *) returnUniqueIDmaxValue {
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+//    [fetchRequest setEntity:entity];
+//    
+//    fetchRequest.fetchLimit = 1;
+//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueID==max(uniqueID)"];
+//
+//    NSError *error = nil;
+//    NSArray *arrayOfOneJokeWithHighestUniqueID = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//    if (arrayOfOneJokeWithHighestUniqueID == nil) {
+//        NSLog(@"error in fetching CD: %@", error);
+//    }
+//    
+//    NSNumber *maxValue = nil;
+//    if (arrayOfOneJokeWithHighestUniqueID)
+//        if ([arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"] != nil)
+//            maxValue = [arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"];
+//        else
+//            maxValue = [NSNumber numberWithUnsignedInteger:0];
+//    else
+//        maxValue = [NSNumber numberWithUnsignedInteger:0];
+//    
+//    self.uniqueIDmaxValue = maxValue;
+//    NSLog(@"Max ID value is %@ for your jokes: From JDM",self.uniqueIDmaxValue);
+//
+//    return maxValue;
+//}
 
 
 

@@ -17,10 +17,10 @@
 @property (nonatomic, retain) NSNumber * length;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * score;
-@property (nonatomic, retain) NSNumber * uniqueID;
 @property (nonatomic, retain) NSSet *set;
 @property (nonatomic, retain) NSString *bodyText;
 
+@property (nonatomic, retain) NSString *parseObjectID;
 
 @end
 
