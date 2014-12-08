@@ -20,16 +20,21 @@
             NSLog(@"Successfully retrieved %lu jokes from Parse server", objects.count);
             // Do something with the found objects
             
+            BOOL someNewDataNeedsToBeSavedToCache = NO;
+            
             for (JokeParse *jokeParse in objects) {
                 if ([self parseObjectAlreadyExistsInCoreData:jokeParse]) {
                     NSLog(@"the parse object you just queried was already found in CD - NO ACTION");
                 }
                 else {
                     [self convertParseJokeToCoreData:jokeParse];
+                    someNewDataNeedsToBeSavedToCache = YES;
                 }
             }
             
-            [self saveChangesInContextCoreData];
+            if (someNewDataNeedsToBeSavedToCache)
+                [self saveChangesInContextCoreData];
+            
             [self.delegate parseDataManagerDidFinishGettingAllParseJokes];
             
         }

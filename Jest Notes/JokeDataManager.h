@@ -55,7 +55,6 @@
 
 
 //Logic Related
-- (NSNumber *) returnUniqueIDmaxValue;
 - (void) sortJokesArrayWithTwoDescriptors: (NSString *) firstDescriptorString secondDescriptor: (NSString *) secondDescriptorString;
 - (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending;
 - (BOOL) isScoreInputValid: (int) score;

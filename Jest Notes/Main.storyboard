@@ -783,21 +783,20 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
                                 <rect key="frame" x="14" y="15" width="573" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
+                                <mutableString key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
 
 You can create a set on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
 
 This app has a web application component where you can conveniently write out your jokes on your web browser at http://jestnotesapp.com. 
 
 Jokes 
-- Create your joke by pressing on the (+) button on the Home Screen 
+- Create your joke by pressing on the Pen on the Home Screen 
 - I don't recommend writing out your jokes on the phone because of a mobile phone's intrinsic small screen width. Instead, use our web application at http://jestnotesapp.com
 
 Sets
 - The Sets icon will take you to the listing of your created sets. Once you click on a set, you will be able to see all the jokes associated with that set 
-- If you want to delete a set, don't worry about the jokes. All the jokes will still stay in our database, unless you explicit delete them from the Jokes Home Menu. 
 
-Enjoy!</string>
+Enjoy!</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
@@ -862,15 +861,15 @@ Enjoy!</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Search by Joke Title" translatesAutoresizingMaskIntoConstraints="NO" id="6SF-pk-Jdf">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                            <searchBar contentMode="redraw" placeholder="Search by Joke Title" translatesAutoresizingMaskIntoConstraints="NO" id="6SF-pk-Jdf">
+                                <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="id4-8F-qdT" id="M4k-bs-U0M"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qss-3A-owH">
-                                <rect key="frame" x="0.0" y="64" width="600" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qss-3A-owH">
+                                <rect key="frame" x="0.0" y="138" width="600" height="29"/>
                                 <segments>
                                     <segment title="Sort by Joke #"/>
                                     <segment title="A-Z"/>
@@ -880,8 +879,8 @@ Enjoy!</string>
                                     <action selector="segCtrlAction:" destination="id4-8F-qdT" eventType="valueChanged" id="bOq-gs-Fgz"/>
                                 </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MWA-sW-jqe">
-                                <rect key="frame" x="0.0" y="93" width="600" height="507"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MWA-sW-jqe">
+                                <rect key="frame" x="0.0" y="167" width="600" height="384"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeCustomCell" rowHeight="65" id="HG3-Sh-mF9" customClass="JokeCustomCell">
