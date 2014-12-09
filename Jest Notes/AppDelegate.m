@@ -40,19 +40,24 @@
     SetsViewController *svc = (SetsViewController *) secondNavController.topViewController;
     svc.jokeDataManager = myJokeDatamanager;
     
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"]];
-    NSString *applicationId = [dictionary objectForKey:@"parseAppID"];
-    NSString *clientKey = [dictionary objectForKey:@"parseClientKey"];
     
+    //Parse Related
     ParseDataManager *myParseDataManager = [[ParseDataManager alloc]init];
     myParseDataManager.managedObjectContext = self.managedObjectContext;
     hvc.parseDataManager = myParseDataManager;
+    
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"]];
+    NSString *applicationId = [dictionary objectForKey:@"parseAppID"];
+    NSString *clientKey = [dictionary objectForKey:@"parseClientKey"];
     
     [Parse setApplicationId:applicationId
                   clientKey:clientKey];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
 
+    
+    
+    
     
     return YES;
 }
