@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+        
     // Do any additional setup after loading the view.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -42,8 +43,6 @@
 }
 
 
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -53,20 +52,19 @@
 - (IBAction)createNewJokeAction:(id)sender {
     
     NSString *jokeName = self.nameField.text;
-    if (jokeName.length <= 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No joke title"
-                                                        message:@"You need to specify a joke title"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+    if ([self nameInputInvalid:jokeName]) {
         return;
+        //cuts off the entire IBAction if the alert ever goes up
     }
     
     NSString *jokeScore = self.scoreField.text;
-    if ([self alertScoreInputInvalid:jokeScore]) {
-        return; //cuts off and interrupts create new action if the alert ever goes up
+    if ([self scoreInputInvalid:jokeScore]) {
+        return;
+        //cuts off the entire IBAction if the alert ever goes up
     }
+    
+    
+    
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.writeDatePicker.date;
@@ -77,7 +75,6 @@
     newJoke.score = [jokeScore intValue];
     newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
     newJoke.writeDate = myDate;
-    newJoke.uniqueID = [NSNumber numberWithUnsignedInteger:[self.jokeDataManager.uniqueIDmaxValue intValue] + 1];
     newJoke.bodyText = self.jokeBodyTextView.text;
     [self.jokeDataManager.jokes addObject: newJoke];
     
@@ -89,8 +86,37 @@
 
 
 
+#pragma mark Alert view for Input validation checking methods
 
-- (BOOL) alertScoreInputInvalid: (NSString *) scoreString {
+
+
+- (BOOL) nameInputInvalid: (NSString *) jokeName {
+    if (jokeName.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No joke title"
+                                                        message:@"You need to specify a joke title"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return YES;
+    }
+    
+    else if ([self.jokeDataManager foundDuplicateJokeNameInCoreData:jokeName]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You already have a joke with the same name"
+                                                            message:@"Please name it differently before trying to save."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        return YES;
+    }
+    
+    
+    return FALSE;
+}
+
+
+- (BOOL) scoreInputInvalid: (NSString *) scoreString {
     if ([self.jokeDataManager isScoreInputValid:[scoreString intValue]] == NO) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score out of range"
                                                         message:@"Your score input is out of range. Please input a number between 0 to 10 (inclusive) under Joke Score"

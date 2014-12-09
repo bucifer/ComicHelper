@@ -199,6 +199,26 @@
     [self saveChangesInContextCoreData];
 }
 
+- (BOOL) foundDuplicateJokeNameInCoreData: (NSString *) jokeName {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", jokeName];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest
+                                                                 error:&error];
+    if (count == NSNotFound) {
+        NSLog(@"Error: %@", error);
+    }
+    else if (count >= 1) {
+        return YES;
+    }
+    return NO;
+}
+
 
 
 - (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText:(NSString *)bodyText{

@@ -16,16 +16,18 @@
 
 @class HomeViewController;
 
+@protocol JokeDataManagerDelegate;
+
 
 @interface JokeDataManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *jokes;
 @property (nonatomic, strong) NSMutableArray *sets;
-
 @property (nonatomic, strong) HomeViewController *hvc;
-@property (nonatomic, strong) NSNumber* uniqueIDmaxValue;
-
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+@property (weak, nonatomic) id <JokeDataManagerDelegate> delegate;
+
 
 
 //Core Data related
@@ -35,6 +37,8 @@
 
 - (void) saveEditedJokeInCoreData: (Joke *) joke;
 - (void) saveChangesInContextCoreData;
+
+
 
 //For JokeCDs
 - (NSMutableArray *) convertCoreDataJokesArrayIntoPresentationLayer: (NSArray *) fetchedObjectsArrayOfCDJokes;
@@ -54,10 +58,17 @@
 
 
 
-//Logic Related
+//Logic & Validation Related
 - (void) sortJokesArrayWithTwoDescriptors: (NSString *) firstDescriptorString secondDescriptor: (NSString *) secondDescriptorString;
 - (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending;
 - (BOOL) isScoreInputValid: (int) score;
+- (BOOL) foundDuplicateJokeNameInCoreData: (NSString *) jokeName;
+
+
+@end
+
+
+@protocol JokeDataManagerDelegate
 
 
 @end
