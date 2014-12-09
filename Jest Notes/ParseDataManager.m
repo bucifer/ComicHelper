@@ -16,7 +16,6 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
             NSLog(@"Successfully retrieved %lu jokes from Parse server", objects.count);
             // Do something with the found objects
             
@@ -24,7 +23,7 @@
             
             for (JokeParse *jokeParse in objects) {
                 if ([self parseObjectAlreadyExistsInCoreData:jokeParse]) {
-                    NSLog(@"the parse object you just queried was already found in CD - NO ACTION");
+//                    NSLog(@"the parse object you just queried was already found in CD - NO ACTION");
                 }
                 else {
                     [self convertParseJokeToCoreData:jokeParse];

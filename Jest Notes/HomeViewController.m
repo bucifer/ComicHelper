@@ -19,6 +19,10 @@
 
 @interface HomeViewController ()
 
+{
+    UIRefreshControl *refreshControl;
+}
+
 @end
 
 
@@ -47,7 +51,23 @@
     self.navigationItem.rightBarButtonItems = buttonArray;
     
 
+    //Refresh on pull-down
+    UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 20, 20)];
+    [self.tableView insertSubview:refreshView atIndex:0];
+    refreshControl = [[UIRefreshControl alloc] init];
+//    refreshControl.tintColor = [UIColor blueColor];
+    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [refreshView addSubview:refreshControl];
+
     
+}
+
+-(void)refreshData
+{
+    //update here...
+    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.tableView reloadData];
+    [refreshControl endRefreshing];
 }
 
 
@@ -57,7 +77,6 @@
     //we need a way to sort the jokes when you created a new joke or edited a joke
     
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
-//    [self.jokeDataManager sortArrayWithOneDescriptorString:self.jokeDataManager.jokes descriptor:@"uniqueID" ascending:YES];
     [self.tableView reloadData];
     
     if (self.jokeDataManager.jokes.count == 0)

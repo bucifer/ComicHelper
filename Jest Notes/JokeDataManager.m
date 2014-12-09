@@ -229,23 +229,27 @@
     [self saveChangesInContextCoreData];
     [self.jokes removeObjectAtIndex:indexPath.row];
     
-    JokeParse *correspondingParseJoke = [JokeParse objectWithoutDataWithClassName:@"Joke" objectId:tempObjectIdStore];
-    [correspondingParseJoke deleteEventually];
+//    JokeParse *correspondingParseJoke = [JokeParse objectWithoutDataWithClassName:@"Joke" objectId:tempObjectIdStore];
+//    [correspondingParseJoke deleteInBackground];
     
     
-//    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
-//    [query whereKey:@"objectId" equalTo:tempObjectIdStore];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (!error) {
-//            // The find succeeded.
-//            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
-//            // Do something with the found objects
-//            [JokeParse deleteAllInBackground:objects];
-//        } else {
-//            // Log details of the failure
-//            NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        }
-//    }];
+    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+    [query getObjectInBackgroundWithId:tempObjectIdStore block:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getObject request failed. Coulnd't find object?");
+        }
+        else {
+            NSLog(@"Successfully retrieved the object.");
+            [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded && !error) {
+                        NSLog(@"successfully deleted from Parse");
+                }
+                else {
+                    NSLog(@"error: %@", error);
+                }
+            }];
+        }
+    }];
 }
 
 
