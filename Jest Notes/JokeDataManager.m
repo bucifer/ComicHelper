@@ -197,7 +197,6 @@
     joke.bodyText = newJoke.bodyText;
     
     [self saveChangesInContextCoreData];
-//    [self returnUniqueIDmaxValue];
 }
 
 
@@ -228,10 +227,6 @@
     [self.managedObjectContext deleteObject:correspondingCDJoke];
     [self saveChangesInContextCoreData];
     [self.jokes removeObjectAtIndex:indexPath.row];
-    
-//    JokeParse *correspondingParseJoke = [JokeParse objectWithoutDataWithClassName:@"Joke" objectId:tempObjectIdStore];
-//    [correspondingParseJoke deleteInBackground];
-    
     
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
     [query getObjectInBackgroundWithId:tempObjectIdStore block:^(PFObject *object, NSError *error) {

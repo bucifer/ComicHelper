@@ -65,6 +65,7 @@
 -(void)refreshData
 {
     //update here...
+    [self.parseDataManager getAllParseJokesAsynchronously];
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
     [refreshControl endRefreshing];
