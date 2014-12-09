@@ -42,7 +42,7 @@
     
     
     //Parse Related
-    ParseDataManager *myParseDataManager = [[ParseDataManager alloc]init];
+    ParseDataManager *myParseDataManager = [ParseDataManager sharedParseDataManager];
     myParseDataManager.managedObjectContext = self.managedObjectContext;
     hvc.parseDataManager = myParseDataManager;
     

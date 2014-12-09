@@ -11,6 +11,27 @@
 
 @implementation ParseDataManager
 
+
+#pragma mark Singleton Methods
+
++ (ParseDataManager*)sharedParseDataManager
+{
+    // 1
+    static ParseDataManager *_sharedInstance = nil;
+    
+    // 2
+    static dispatch_once_t oncePredicate;
+    
+    // 3
+    dispatch_once(&oncePredicate, ^{
+        _sharedInstance = [[ParseDataManager alloc] init];
+    });
+    return _sharedInstance;
+}
+
+
+
+
 - (void) getAllParseJokesAsynchronously {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
@@ -53,16 +74,18 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity: entity];
     [fetchRequest setPredicate:predicate];
+    
     NSError *error = nil;
-    if (error != nil)
-        NSLog(@"Any error from parseObjectAlreadyExistsinCD method: %@", error);
-    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if ([fetchedObjects count] == 0) {
-        return NO;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest
+                                                                 error:&error];
+    if (count == NSNotFound) {
+        NSLog(@"Error: %@", error);
     }
-    else {
+    else if (count >= 1) {
         return YES;
     }
+    
+    return NO;
 }
 
 - (void) convertParseJokeToCoreData: (JokeParse *) jokeParse {
@@ -85,6 +108,20 @@
         NSLog(@"Core Data Saved without errors");
     }
 }
+
+
+
+
+- (void) createNewJokeInParse: (Joke *) newJoke {
+    JokeParse *newJokeParse = [JokeParse object];
+    newJokeParse.name = newJoke.name;
+    newJokeParse.score = [NSNumber numberWithInt:newJoke.score];
+    newJokeParse.length = [NSNumber numberWithInt:newJoke.length];
+    newJokeParse.writeDate = newJoke.writeDate;
+    newJokeParse.bodyText = newJoke.bodyText;
+    [newJokeParse saveInBackground];
+}
+
 
 
 @end

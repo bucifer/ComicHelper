@@ -195,9 +195,9 @@
     joke.score = [NSNumber numberWithInt:newJoke.score];
     joke.writeDate = newJoke.writeDate;
     joke.bodyText = newJoke.bodyText;
-    
     [self saveChangesInContextCoreData];
 }
+
 
 - (BOOL) foundDuplicateJokeNameInCoreData: (NSString *) jokeName {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

@@ -81,6 +81,10 @@
     //Then you create one in the actual Core Data
     [self.jokeDataManager createNewJokeInCoreData:newJoke];
     
+    //Create one in Parse
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+    [pdm createNewJokeInParse:newJoke];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

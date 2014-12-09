@@ -11,11 +11,17 @@
 #import <Parse/Parse.h>
 #import "JokeParse.h"
 #import "JokeCD.h"
+#import "Joke.h"
 
 
 @protocol ParseDataManagerDelegate;
 
 @interface ParseDataManager : NSObject
+
+
++ (ParseDataManager*) sharedParseDataManager;
+
+
 
 @property (nonatomic, strong) NSMutableArray *jokesParse;
 @property (nonatomic, strong) NSMutableArray *setsParse;
@@ -25,6 +31,7 @@
 
 - (void) getAllParseJokesAsynchronously;
 
+- (void) createNewJokeInParse: (Joke *) newJoke;
 
 
 
