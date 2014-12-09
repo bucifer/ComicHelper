@@ -165,6 +165,19 @@
     correspondingCDJoke.writeDate = joke.writeDate;
     correspondingCDJoke.bodyText = joke.bodyText;
     [self saveChangesInContextCoreData];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+    [query whereKey:@"name" equalTo:joke.name];
+    [query getObjectInBackgroundWithId:correspondingCDJoke.parseObjectID block:^(PFObject *object, NSError *error) {
+        object[@"name"] = joke.name;
+        object[@"length"] = [NSNumber numberWithInt:joke.length];
+        object[@"score"] = [NSNumber numberWithInt:joke.score];
+        object[@"writeDate"] = joke.writeDate;
+        object[@"bodyText"] = joke.bodyText;
+        [object saveInBackground];
+        NSLog(@"attempting to save edited parse joke");
+    }];
+    
 }
 
 
