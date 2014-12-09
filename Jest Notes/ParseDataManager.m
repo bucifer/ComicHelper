@@ -38,22 +38,21 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu jokes from Parse server", objects.count);
-            // Do something with the found objects
             
             BOOL someNewDataNeedsToBeSavedToCache = NO;
-            
             for (JokeParse *jokeParse in objects) {
-                if ([self parseObjectAlreadyExistsInCoreData:jokeParse]) {
-//                    NSLog(@"the parse object you just queried was already found in CD - NO ACTION");
+                if ([self parseJokeAlreadyExistsInCoreDataByJokeName:jokeParse]) {
+                    NSLog(@"A Core Data object with name: %@ was synced for objectId", jokeParse.name);
                 }
-                else {
+                else if ([self thisJokeIsNewParseJokeDataNotFoundInCoreData:jokeParse.objectId]) {
                     [self convertParseJokeToCoreData:jokeParse];
                     someNewDataNeedsToBeSavedToCache = YES;
                 }
             }
             
-            if (someNewDataNeedsToBeSavedToCache)
+            if (someNewDataNeedsToBeSavedToCache) {
                 [self saveChangesInContextCoreData];
+            }
             
             [self.delegate parseDataManagerDidFinishGettingAllParseJokes];
             
@@ -68,11 +67,12 @@
 }
 
 
-- (BOOL) parseObjectAlreadyExistsInCoreData: (JokeParse *) jokeParse {
+- (BOOL) thisJokeIsNewParseJokeDataNotFoundInCoreData: (NSString *) parseObjectID {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectID = %@", jokeParse.objectId];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity: entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectID = %@", parseObjectID];
     [fetchRequest setPredicate:predicate];
     
     NSError *error = nil;
@@ -82,10 +82,43 @@
         NSLog(@"Error: %@", error);
     }
     else if (count >= 1) {
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL) parseJokeAlreadyExistsInCoreDataByJokeName: (JokeParse *) jokeParse {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity: entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@ AND parseObjectID = nil", jokeParse.name];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest
+                                                                 error:&error];
+    if (count == NSNotFound) {
+        NSLog(@"Error: %@", error);
+    }
+    else if (count >= 1) {
+        
+        NSLog(@"we found a joke in Core Data that has the same name as the one on Parse but WITHOUT any objectId");
+        //we found a joke in Core Data that has the same name as the one on Parse but WITHOUT any objectId
+        NSArray *myCoreDataObjectArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        JokeCD *myCoreDataObject = myCoreDataObjectArray[0];
+        myCoreDataObject.parseObjectID = jokeParse.objectId;
+        [self saveChangesInContextCoreData];
+        
+        NSLog(@"Core Data Joke: %@, should now have an objectId with %@", myCoreDataObject.name, myCoreDataObject.parseObjectID);
+        
         return YES;
     }
     
     return NO;
+    
 }
 
 - (void) convertParseJokeToCoreData: (JokeParse *) jokeParse {
@@ -119,7 +152,11 @@
     newJokeParse.length = [NSNumber numberWithInt:newJoke.length];
     newJokeParse.writeDate = newJoke.writeDate;
     newJokeParse.bodyText = newJoke.bodyText;
-    [newJokeParse saveInBackground];
+    NSLog(@"Joke name: %@ sent to Parse as new object", newJoke.name);
+
+    [newJokeParse saveEventually:^(BOOL succeeded, NSError *error) {
+        NSLog(@"Joke name: %@ that was sent to Parse finally got saved", newJoke.name);
+    }];
 }
 
 

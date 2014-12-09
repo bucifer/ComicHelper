@@ -242,22 +242,37 @@
     Joke *selectedJoke = [self.jokes objectAtIndex:indexPath.row];
     JokeCD *correspondingCDJoke = (JokeCD*) [self.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:nil];
     
-    NSString *tempObjectIdStore = [correspondingCDJoke.parseObjectID copy];
+    NSString *tempObjectId = [correspondingCDJoke.parseObjectID copy];
     
     [self.managedObjectContext deleteObject:correspondingCDJoke];
     [self saveChangesInContextCoreData];
     [self.jokes removeObjectAtIndex:indexPath.row];
     
+    if (correspondingCDJoke.parseObjectID == nil) {
+        //this is used for the case where
+        //1) somebody created a joke in core data
+        //2) they want to immediately delete it
+        //in this case, if they try to delete it based on ID, it won't work becasue the core data joke they are seeing on the UI won't have a parseID associated with it for obvious reasons - because it never got synced
+        //3) So thus, in that case, we delete it based on "Name" because names are unique too.
+        //this differentiation allows for deleting a joke IMMEDIATE after you created it and that change to be reflected in CD + Parse
+        
+        [self deleteJokeFromParseBasedOnName:selectedJoke.name];
+    }
+    else {
+        [self deleteJokeFromParseBasedOnId:tempObjectId];
+    }
+}
+
+- (void) deleteJokeFromParseBasedOnId: (NSString *) objectId {
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
-    [query getObjectInBackgroundWithId:tempObjectIdStore block:^(PFObject *object, NSError *error) {
+    [query getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
         if (!object) {
-            NSLog(@"The getObject request failed. Coulnd't find object?");
+            NSLog(@"From deletion: Couldn't find PFOjbect based on objectId");
         }
         else {
-            NSLog(@"Successfully retrieved the object.");
             [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded && !error) {
-                        NSLog(@"successfully deleted from Parse");
+                    NSLog(@"successfully deleted from Parse by objectId");
                 }
                 else {
                     NSLog(@"error: %@", error);
@@ -267,6 +282,16 @@
     }];
 }
 
+- (void) deleteJokeFromParseBasedOnName: (NSString *) jokeName {
+    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+    [query whereKey:@"name" equalTo:jokeName];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        NSLog(@"Deleting joke %@ by name from Parse", jokeName);
+        PFObject *object = objects[0];
+        [object deleteEventually];
+    }];
+}
 
 
 #pragma mark SetCDs-related

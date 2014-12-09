@@ -780,10 +780,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
                                 <rect key="frame" x="14" y="15" width="573" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
+                                <string key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
 
 You can create a set on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
 
@@ -796,7 +796,7 @@ Jokes
 Sets
 - The Sets icon will take you to the listing of your created sets. Once you click on a set, you will be able to see all the jokes associated with that set 
 
-Enjoy!</mutableString>
+Enjoy!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>

@@ -63,8 +63,6 @@
         //cuts off the entire IBAction if the alert ever goes up
     }
     
-    
-    
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.writeDatePicker.date;
