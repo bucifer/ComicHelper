@@ -11,7 +11,7 @@
 @interface SetParse : PFObject <PFSubclassing>
 
 @property (retain) NSString *name;
-@property (retain) NSString *createDate;
+@property (retain) NSDate *createDate;
 @property (retain) NSArray *jokes;
 
 + (NSString *)parseClassName;

@@ -13,9 +13,9 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic, strong) NSDate *createDate;
-@property int totalLength;
-@property (nonatomic, strong) NSNumber *uniqueID;
 @property (strong, nonatomic) NSMutableArray *jokes;
+
+@property int totalLength;
 
 //this ID is used for matching up presentation and core data layer objects
 @property (nonatomic, strong) NSManagedObjectID *managedObjectID;

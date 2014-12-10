@@ -104,9 +104,8 @@
         NSLog(@"Error: %@", error);
     }
     else if (count >= 1) {
-        
-        NSLog(@"we found a joke in Core Data that has the same name as the one on Parse but WITHOUT any objectId");
         //we found a joke in Core Data that has the same name as the one on Parse but WITHOUT any objectId
+        NSLog(@"we are going to sync a CD Joke without objectId with Parse");
         NSArray *myCoreDataObjectArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         JokeCD *myCoreDataObject = myCoreDataObjectArray[0];
         myCoreDataObject.parseObjectID = jokeParse.objectId;
@@ -151,16 +150,30 @@
     newJokeParse.length = [NSNumber numberWithInt:newJoke.length];
     newJokeParse.writeDate = newJoke.writeDate;
     newJokeParse.bodyText = newJoke.bodyText;
-    NSLog(@"Joke name: %@ sent to Parse as new object", newJoke.name);
 
     [newJokeParse saveEventually:^(BOOL succeeded, NSError *error) {
-        NSLog(@"Joke name: %@ that was sent to Parse finally got saved", newJoke.name);
+        NSLog(@"Joke name: %@  was sent to Parse - finally got saved", newJoke.name);
     }];
 }
 
 
-- (void) createNewSetInParse: (Joke *) newSet {
-
+- (void) createNewSetInParse: (Set *) newSet {
+    SetParse *newSetParse = [SetParse object];
+    newSetParse.name = newSet.name;
+    newSetParse.createDate = newSet.createDate;
+    
+//    NSMutableArray *namesOfJokes = [[NSMutableArray alloc]init];
+//    
+//    for (int i=0; i < newSet.jokes.count; i++) {
+//        NSString *name = newSet.jokes[0];
+//        [namesOfJokes addObject:name];
+//    }
+//    
+//    newSetParse.jokes = [namesOfJokes copy];
+    
+    [newSetParse saveEventually:^(BOOL succeeded, NSError *error) {
+        NSLog(@"Set name: %@  was sent to Parse - finally got saved", newSet.name);
+    }];
 }
 
 

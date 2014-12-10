@@ -315,8 +315,6 @@
     setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
     [self saveChangesInContextCoreData];
     
-    
-    
 }
 
 

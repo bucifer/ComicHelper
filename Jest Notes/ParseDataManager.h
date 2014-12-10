@@ -12,6 +12,8 @@
 #import "JokeParse.h"
 #import "JokeCD.h"
 #import "Joke.h"
+#import "SetParse.h"
+#import "Set.h"
 
 
 @protocol ParseDataManagerDelegate;
@@ -35,7 +37,7 @@
 - (void) fetchAllParseJokesAsynchronously;
 
 - (void) createNewJokeInParse: (Joke *) newJoke;
-
+- (void) createNewSetInParse: (Set *) newSet;
 
 
 @end

@@ -58,7 +58,7 @@
     }
     
     Joke *selectedJoke = [self.selectedJokes objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%i. %@", indexPath.row+1, selectedJoke.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"%li. %@", indexPath.row+1, selectedJoke.name];
     
     return cell;
 }
@@ -85,16 +85,19 @@
     }
     else {
         
+        //First we add it to Presentation Layer
         Set *newSet = [[Set alloc]init];
         newSet.name = self.setNameField.text;
         newSet.jokes = self.selectedJokes;
         newSet.createDate = [NSDate date];
-        
-        //First we add it to Presentation Layer
         [self.jokeDataManager.sets addObject:newSet];
+        
         //Then we add to Core Data
         [self.jokeDataManager createNewSetInCoreData: newSet];
         
+        //Then Create one in Parse
+        ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+        [pdm createNewSetInParse:newSet];
         
         [self.tabBarController setSelectedIndex:1]; //we are going to sets view right when we are done creating one from the tabbar view
         [self.navigationController popToRootViewControllerAnimated:YES];
