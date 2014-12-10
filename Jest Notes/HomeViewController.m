@@ -33,7 +33,7 @@
     [super viewDidLoad];
     
     self.parseDataManager.delegate = self;
-    [self.parseDataManager getAllParseJokesAsynchronously];
+    [self.parseDataManager fetchAllParseJokesAsynchronously];
     
     [self.jokeDataManager appInitializationLogic];
     
@@ -65,7 +65,7 @@
 -(void)refreshData
 {
     //update here...
-    [self.parseDataManager getAllParseJokesAsynchronously];
+    [self.parseDataManager fetchAllParseJokesAsynchronously];
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
     [refreshControl endRefreshing];
@@ -171,7 +171,6 @@
     if (self.jokeDataManager.jokes.count == 0) {
         //Just an aesthetic gimmick. I didn't want the delete button to show up when a user has no jokes
         self.deleteBarButton.title = nil;
-        [self.tableView setEditing:![self.tableView isEditing]];
     }
 }
 

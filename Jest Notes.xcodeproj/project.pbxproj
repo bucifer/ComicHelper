@@ -40,8 +40,9 @@
 		AAD2776D1A07DCED002AA22B /* Jest_Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */; };
 		AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277671A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m */; };
 		AAD277701A07DDB8002AA22B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2776F1A07DDB8002AA22B /* CoreData.framework */; };
-		AAD39E681A22A58500AB60FA /* SetCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39E671A22A58500AB60FA /* SetCD.m */; };
 		AAD44F781A0D64AB00FDB656 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD44F771A0D64AB00FDB656 /* Set.m */; };
+		AAD4B7BD1A3906A500CD3ACE /* SetParse.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC1A3906A500CD3ACE /* SetParse.m */; };
+		AAD4B7C01A3906CD00CD3ACE /* SetCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BF1A3906CD00CD3ACE /* SetCD.m */; };
 		AAD59B8F1A2107BC006B145C /* SetCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B8E1A2107BC006B145C /* SetCreateViewController.m */; };
 		AAD59B921A210BC8006B145C /* PushNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B911A210BC8006B145C /* PushNoAnimationSegue.m */; };
 		AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */; };
@@ -115,10 +116,12 @@
 		AAD277661A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSObject___TerryConvenience.h"; sourceTree = "<group>"; };
 		AAD277671A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSObject___TerryConvenience.m"; sourceTree = "<group>"; };
 		AAD2776F1A07DDB8002AA22B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		AAD39E661A22A58500AB60FA /* SetCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCD.h; sourceTree = SOURCE_ROOT; };
-		AAD39E671A22A58500AB60FA /* SetCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCD.m; sourceTree = SOURCE_ROOT; };
 		AAD44F761A0D64AB00FDB656 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		AAD44F771A0D64AB00FDB656 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
+		AAD4B7BB1A3906A500CD3ACE /* SetParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetParse.h; sourceTree = "<group>"; };
+		AAD4B7BC1A3906A500CD3ACE /* SetParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetParse.m; sourceTree = "<group>"; };
+		AAD4B7BE1A3906CD00CD3ACE /* SetCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCD.h; sourceTree = "<group>"; };
+		AAD4B7BF1A3906CD00CD3ACE /* SetCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCD.m; sourceTree = "<group>"; };
 		AAD59B8D1A2107BC006B145C /* SetCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCreateViewController.h; sourceTree = "<group>"; };
 		AAD59B8E1A2107BC006B145C /* SetCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCreateViewController.m; sourceTree = "<group>"; };
 		AAD59B901A210BC8006B145C /* PushNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoAnimationSegue.h; sourceTree = "<group>"; };
@@ -262,15 +265,17 @@
 				AAC7C6091A32573F00BF73DC /* ParseDataManager.m */,
 				AAD277621A07DCED002AA22B /* Joke.h */,
 				AAD277631A07DCED002AA22B /* Joke.m */,
-				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
 				AAE50A171A36298E00A380A1 /* JokeCD.h */,
 				AAE50A181A36298E00A380A1 /* JokeCD.m */,
 				AAC7C6051A3253FA00BF73DC /* JokeParse.h */,
 				AAC7C6061A3253FA00BF73DC /* JokeParse.m */,
 				AAD44F761A0D64AB00FDB656 /* Set.h */,
 				AAD44F771A0D64AB00FDB656 /* Set.m */,
-				AAD39E661A22A58500AB60FA /* SetCD.h */,
-				AAD39E671A22A58500AB60FA /* SetCD.m */,
+				AAD4B7BE1A3906CD00CD3ACE /* SetCD.h */,
+				AAD4B7BF1A3906CD00CD3ACE /* SetCD.m */,
+				AAD4B7BB1A3906A500CD3ACE /* SetParse.h */,
+				AAD4B7BC1A3906A500CD3ACE /* SetParse.m */,
+				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -422,8 +427,8 @@
 			files = (
 				AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */,
 				AAE50A221A363F0A00A380A1 /* HomeTabBarController.m in Sources */,
-				AAD39E681A22A58500AB60FA /* SetCD.m in Sources */,
 				AAE50A191A36298E00A380A1 /* JokeCD.m in Sources */,
+				AAD4B7BD1A3906A500CD3ACE /* SetParse.m in Sources */,
 				AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */,
 				AAD277681A07DCED002AA22B /* CreateJokeViewController.m in Sources */,
 				AAD277691A07DCED002AA22B /* EditJokeViewController.m in Sources */,
@@ -440,6 +445,7 @@
 				AAD44F781A0D64AB00FDB656 /* Set.m in Sources */,
 				AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */,
 				AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */,
+				AAD4B7C01A3906CD00CD3ACE /* SetCD.m in Sources */,
 				AAD59B8F1A2107BC006B145C /* SetCreateViewController.m in Sources */,
 				AACDCD041A31073600FEF4F2 /* SetToJokeDetailViewController.m in Sources */,
 				AAD2776D1A07DCED002AA22B /* Jest_Notes.xcdatamodeld in Sources */,

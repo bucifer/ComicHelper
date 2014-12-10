@@ -32,12 +32,12 @@
 
 
 
-- (void) getAllParseJokesAsynchronously {
+- (void) fetchAllParseJokesAsynchronously {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Successfully retrieved %lu jokes from Parse server", objects.count);
+            NSLog(@"Successfully retrieved %lu jokes from Parse server", (unsigned long)objects.count);
             
             BOOL someNewDataNeedsToBeSavedToCache = NO;
             for (JokeParse *jokeParse in objects) {
@@ -144,8 +144,6 @@
 }
 
 
-
-
 - (void) createNewJokeInParse: (Joke *) newJoke {
     JokeParse *newJokeParse = [JokeParse object];
     newJokeParse.name = newJoke.name;
@@ -159,6 +157,29 @@
         NSLog(@"Joke name: %@ that was sent to Parse finally got saved", newJoke.name);
     }];
 }
+
+
+- (void) createNewSetInParse: (Joke *) newSet {
+
+}
+
+
+
+
+
+//might not need below since Parse's saveEventually and deleteEventually might take care of this
+
+//- (void) pushAnyUnsynchedCoreDataJokesToParse {
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    [fetchRequest setEntity: entity];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectID = nil"];
+//    [fetchRequest setPredicate:predicate];
+//    NSError *error = nil;
+//    
+//    NSArray *fetchedArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//    NSLog(fetchedArray.description);
+//}
 
 
 

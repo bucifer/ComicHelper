@@ -277,17 +277,10 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
     [query getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
         if (!object) {
-            NSLog(@"From deletion: Couldn't find PFOjbect based on objectId");
+            NSLog(@"From deletion: Couldn't find corresponding PFObject based on objectId");
         }
         else {
-            [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded && !error) {
-                    NSLog(@"successfully deleted from Parse by objectId");
-                }
-                else {
-                    NSLog(@"error: %@", error);
-                }
-            }];
+            [object deleteEventually];
         }
     }];
 }
@@ -321,7 +314,12 @@
     
     setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
     [self saveChangesInContextCoreData];
+    
+    
+    
 }
+
+
 
 - (void) deleteSet: (NSIndexPath *) indexPath {
     Set *set = [self.sets objectAtIndex:indexPath.row];

@@ -58,7 +58,7 @@
     }
     
     Joke *selectedJoke = [self.selectedJokes objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%li. %@", indexPath.row+1, selectedJoke.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"%i. %@", indexPath.row+1, selectedJoke.name];
     
     return cell;
 }

@@ -29,7 +29,10 @@
 @property (nonatomic, weak) id <ParseDataManagerDelegate> delegate;
 
 
-- (void) getAllParseJokesAsynchronously;
+
+- (void) pushAnyUnsynchedCoreDataJokesToParse;
+
+- (void) fetchAllParseJokesAsynchronously;
 
 - (void) createNewJokeInParse: (Joke *) newJoke;
 
