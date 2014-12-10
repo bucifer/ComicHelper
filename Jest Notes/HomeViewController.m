@@ -87,12 +87,17 @@
 }
 
 
-- (void) parseDataManagerDidFinishGettingAllParseJokes {
+- (void) parseDataManagerDidFinishFetchingAllParseJokes {
     NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
 }
 
+- (void)parseDataManagerDidFinishSyncingCoreDataWithParse {
+    NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
+    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.tableView reloadData];
+}
 
 
 

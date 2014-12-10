@@ -73,7 +73,14 @@
     newJoke.score = [jokeScore intValue];
     newJoke.length = [jokeMinuteLength intValue] * 60 + [jokeSecondsLength intValue];
     newJoke.writeDate = myDate;
-    newJoke.bodyText = self.jokeBodyTextView.text;
+    
+    if ([self.jokeBodyTextView.text isEqualToString:@"Tap here to write your joke. Consider using our web application for better joke writing experience!"]) {
+        newJoke.bodyText = nil;
+    }
+    else
+        newJoke.bodyText = self.jokeBodyTextView.text;
+    
+    
     [self.jokeDataManager.jokes addObject: newJoke];
     
     //Then you create one in the actual Core Data

@@ -166,17 +166,8 @@
     correspondingCDJoke.bodyText = joke.bodyText;
     [self saveChangesInContextCoreData];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
-    [query whereKey:@"name" equalTo:joke.name];
-    [query getObjectInBackgroundWithId:correspondingCDJoke.parseObjectID block:^(PFObject *object, NSError *error) {
-        object[@"name"] = joke.name;
-        object[@"length"] = [NSNumber numberWithInt:joke.length];
-        object[@"score"] = [NSNumber numberWithInt:joke.score];
-        object[@"writeDate"] = joke.writeDate;
-        object[@"bodyText"] = joke.bodyText;
-        [object saveInBackground];
-        NSLog(@"attempting to save edited parse joke");
-    }];
+    
+
     
 }
 
@@ -255,25 +246,31 @@
     Joke *selectedJoke = [self.jokes objectAtIndex:indexPath.row];
     JokeCD *correspondingCDJoke = (JokeCD*) [self.managedObjectContext existingObjectWithID:selectedJoke.managedObjectID error:nil];
     
-    NSString *tempObjectId = [correspondingCDJoke.parseObjectID copy];
+    //12.10.2014 - this ordering is implemented to ensure that CD cache doesnt' get deleted before its checking mechanism with Parse runs first
     
-    [self.managedObjectContext deleteObject:correspondingCDJoke];
-    [self saveChangesInContextCoreData];
+    //#1 delete from presentation layer
     [self.jokes removeObjectAtIndex:indexPath.row];
     
-    if (correspondingCDJoke.parseObjectID == nil) {
+    //#2 delete from parse
+    if (correspondingCDJoke.parseObjectID) {
+        [self deleteJokeFromParseBasedOnId:correspondingCDJoke.parseObjectID];
+    }
+    else {
         //this is used for the case where
         //1) somebody created a joke in core data
         //2) they want to immediately delete it
-        //in this case, if they try to delete it based on ID, it won't work becasue the core data joke they are seeing on the UI won't have a parseID associated with it for obvious reasons - because it never got synced
-        //3) So thus, in that case, we delete it based on "Name" because names are unique too.
-        //this differentiation allows for deleting a joke IMMEDIATE after you created it and that change to be reflected in CD + Parse
-        
+        //in this case, if they try to delete it based on ID from parse, it won't work becasue the core data joke they are seeing on the UI won't have a parseID associated with it. It never got synced!
+        //3) So thus, in that case, we delete it based on "Name" from Parse because names are unique too.
+        //this differentiation allows for deleting a joke IMMEDIATELY after you created it, without waiting for parse-cd sync,
+        //and that change to be reflected properly in CD + Parse
         [self deleteJokeFromParseBasedOnName:selectedJoke.name];
     }
-    else {
-        [self deleteJokeFromParseBasedOnId:tempObjectId];
-    }
+    
+    
+    //#3 and then delete from Core Data
+    [self.managedObjectContext deleteObject:correspondingCDJoke];
+    [self saveChangesInContextCoreData];
+    
 }
 
 - (void) deleteJokeFromParseBasedOnId: (NSString *) objectId {
@@ -347,36 +344,6 @@
 
 
 #pragma mark Other Custom Logic-Related
-//- (NSNumber *) returnUniqueIDmaxValue {
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-//    [fetchRequest setEntity:entity];
-//    
-//    fetchRequest.fetchLimit = 1;
-//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueID==max(uniqueID)"];
-//
-//    NSError *error = nil;
-//    NSArray *arrayOfOneJokeWithHighestUniqueID = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//    if (arrayOfOneJokeWithHighestUniqueID == nil) {
-//        NSLog(@"error in fetching CD: %@", error);
-//    }
-//    
-//    NSNumber *maxValue = nil;
-//    if (arrayOfOneJokeWithHighestUniqueID)
-//        if ([arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"] != nil)
-//            maxValue = [arrayOfOneJokeWithHighestUniqueID valueForKeyPath:@"@max.uniqueID.unsignedIntegerValue"];
-//        else
-//            maxValue = [NSNumber numberWithUnsignedInteger:0];
-//    else
-//        maxValue = [NSNumber numberWithUnsignedInteger:0];
-//    
-//    self.uniqueIDmaxValue = maxValue;
-//    NSLog(@"Max ID value is %@ for your jokes: From JDM",self.uniqueIDmaxValue);
-//
-//    return maxValue;
-//}
-
-
 
 
 - (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending{

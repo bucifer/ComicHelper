@@ -54,7 +54,7 @@
                 [self saveChangesInContextCoreData];
             }
             
-            [self.delegate parseDataManagerDidFinishGettingAllParseJokes];
+            [self.delegate parseDataManagerDidFinishFetchingAllParseJokes];
             
             self.jokesParse = [objects mutableCopy];
             
@@ -113,6 +113,7 @@
         [self saveChangesInContextCoreData];
         
         NSLog(@"Core Data Joke: %@, should now have an objectId with %@", myCoreDataObject.name, myCoreDataObject.parseObjectID);
+        [self.delegate parseDataManagerDidFinishSyncingCoreDataWithParse];
         
         return YES;
     }

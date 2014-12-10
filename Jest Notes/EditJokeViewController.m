@@ -49,6 +49,9 @@
 
 
 - (IBAction)saveButtonAction:(id)sender {
+    
+    NSString *tempString = self.joke.name;
+    
     NSString *changedName = self.nameField.text;
     NSString *changedScore = self.scoreField.text;
     NSString *changedMinuteLength = self.lengthMinField.text;
@@ -66,7 +69,24 @@
     
     [self.jokeDataManager saveEditedJokeInCoreData:selectedJoke];
 
-    [self.navigationController popToRootViewControllerAnimated:YES];
+            PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+            [query whereKey:@"name" equalTo:tempString];
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                JokeParse *myParseJoke = (JokeParse *) object;
+                NSLog(@"From Parse query from editing: Name = %@ ... I was able to find your corresponding joke even when you changed the name using edit form!!", myParseJoke.name);
+                
+                NSLog(@"We are bout to update your parse object yo, let the magic begin");
+                myParseJoke.name = selectedJoke.name;
+                myParseJoke.length = [NSNumber numberWithInt:selectedJoke.length];
+                myParseJoke.score = [NSNumber numberWithInt:selectedJoke.score];
+                myParseJoke.writeDate = selectedJoke.writeDate;
+                myParseJoke.bodyText = selectedJoke.bodyText;
+                [myParseJoke saveEventually:^(BOOL succeeded, NSError *error) {
+                    NSLog(@"Parse Joke with name %@ should have gotten updated on Parse by now", myParseJoke.name);
+                }];
+            }];
+
+        [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

@@ -40,6 +40,8 @@
 
 @protocol ParseDataManagerDelegate
 
-- (void) parseDataManagerDidFinishGettingAllParseJokes;
+- (void) parseDataManagerDidFinishFetchingAllParseJokes;
+
+- (void) parseDataManagerDidFinishSyncingCoreDataWithParse;
 
 @end
