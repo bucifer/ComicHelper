@@ -157,14 +157,23 @@
 }
 
 
-- (void) createNewSetInParse: (SetCD *) newSet {
+- (void) createNewSetInParse: (SetCD *) newSet jokesArray: (NSMutableArray *) jokesArray{
     SetParse *newSetParse = [SetParse object];
     newSetParse.name = newSet.name;
     newSetParse.createDate = newSet.createDate;
     
+    //I thought we could make this parse array an array of objectIDs
+    //but how about the case where it just got created offline, so it doesn't have an objectID?
+    //so it'd be better if we create this array out of Names instead. They are unique and it doesn't need an initial communication with Parse, like objectId does.
     
+    NSMutableArray *namesArray = [[NSMutableArray alloc]init];
+    for (int i=0; i < jokesArray.count; i++) {
+        JokeCD *jokeCD = jokesArray[i];
+        NSString *jokeName = jokeCD.name;
+        [namesArray addObject: jokeName];
+    }
     
-    newSetParse.jokes = @[@"hi", @"mom"];
+    newSetParse.jokes = [namesArray copy];
     
     [newSetParse saveEventually:^(BOOL succeeded, NSError *error) {
         NSLog(@"Set name: %@  was sent to Parse - finally got saved", newSet.name);

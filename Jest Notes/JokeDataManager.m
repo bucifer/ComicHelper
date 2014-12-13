@@ -202,65 +202,8 @@
     
     //Then Create one in Parse
     ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
-    [pdm createNewSetInParse:setCD];
+    [pdm createNewSetInParse:setCD jokesArray:jokeCDArray];
 }
-
-
-#pragma mark Saving-related
-
-- (void) saveEditedJokeInCoreData: (Joke *) joke {
-    NSError *error;
-    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:joke.managedObjectID error:&error];
-    correspondingCDJoke.name = joke.name;
-    correspondingCDJoke.length = [NSNumber numberWithInt:joke.length];
-    correspondingCDJoke.score = [NSNumber numberWithInt:joke.score];
-    correspondingCDJoke.writeDate = joke.writeDate;
-    correspondingCDJoke.bodyText = joke.bodyText;
-    [self saveChangesInContextCoreData];
-}
-
-- (void) saveChangesInContextCoreData {
-    NSError *err = nil;
-    BOOL successful = [self.managedObjectContext save:&err];
-    if(!successful){
-        NSLog(@"Error saving: %@", [err localizedDescription]);
-    } else {
-        NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
-    }
-}
-
-
-
-#pragma mark Fetching Data
-
-- (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL {
-    NSError *error;
-    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
-    return correspondingCDJoke;
-}
-
-
-- (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL {
-    NSError *error;
-    SetCD *correspondingCDSet = (SetCD *) [self.managedObjectContext existingObjectWithID:setPL.managedObjectID error:&error];
-    return correspondingCDSet;
-}
-
-
-- (void) sortJokesArrayWithTwoDescriptors:(NSString *)firstDescriptorString secondDescriptor:(NSString *)secondDescriptorString {
-    NSSortDescriptor *scoreSorter = [[NSSortDescriptor alloc]initWithKey:firstDescriptorString ascending:NO];
-    NSSortDescriptor *dateSorter = [[NSSortDescriptor alloc]initWithKey:secondDescriptorString ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:scoreSorter, dateSorter, nil];
-    self.jokes = [[self.jokes sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
-}
-
-
-- (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending{
-    NSSortDescriptor *sorter = [[NSSortDescriptor alloc]initWithKey:descriptorString ascending:ascending];
-    myArray = [[NSArray arrayWithObjects:sorter, nil]mutableCopy];
-}
-
-
 
 
 
@@ -333,6 +276,68 @@
     [self.managedObjectContext deleteObject:correspondingCDSet];
     [self saveChangesInContextCoreData];
 }
+
+
+
+
+
+#pragma mark Saving-related
+
+- (void) saveEditedJokeInCoreData: (Joke *) joke {
+    NSError *error;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:joke.managedObjectID error:&error];
+    correspondingCDJoke.name = joke.name;
+    correspondingCDJoke.length = [NSNumber numberWithInt:joke.length];
+    correspondingCDJoke.score = [NSNumber numberWithInt:joke.score];
+    correspondingCDJoke.writeDate = joke.writeDate;
+    correspondingCDJoke.bodyText = joke.bodyText;
+    [self saveChangesInContextCoreData];
+}
+
+- (void) saveChangesInContextCoreData {
+    NSError *err = nil;
+    BOOL successful = [self.managedObjectContext save:&err];
+    if(!successful){
+        NSLog(@"Error saving: %@", [err localizedDescription]);
+    } else {
+        NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
+    }
+}
+
+
+
+#pragma mark Fetching Data
+
+- (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL {
+    NSError *error;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
+    return correspondingCDJoke;
+}
+
+
+- (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL {
+    NSError *error;
+    SetCD *correspondingCDSet = (SetCD *) [self.managedObjectContext existingObjectWithID:setPL.managedObjectID error:&error];
+    return correspondingCDSet;
+}
+
+
+- (void) sortJokesArrayWithTwoDescriptors:(NSString *)firstDescriptorString secondDescriptor:(NSString *)secondDescriptorString {
+    NSSortDescriptor *scoreSorter = [[NSSortDescriptor alloc]initWithKey:firstDescriptorString ascending:NO];
+    NSSortDescriptor *dateSorter = [[NSSortDescriptor alloc]initWithKey:secondDescriptorString ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:scoreSorter, dateSorter, nil];
+    self.jokes = [[self.jokes sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+}
+
+
+- (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending{
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc]initWithKey:descriptorString ascending:ascending];
+    myArray = [[NSArray arrayWithObjects:sorter, nil]mutableCopy];
+}
+
+
+
+
 
 
 

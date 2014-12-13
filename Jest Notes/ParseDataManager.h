@@ -34,10 +34,14 @@
 - (void) fetchAllParseJokesAsynchronously;
 
 - (void) createNewJokeInParse: (JokeCD *) newJoke;
-- (void) createNewSetInParse: (SetCD*) newSet;
+- (void) createNewSetInParse: (SetCD *) newSet jokesArray: (NSMutableArray *) jokesArray;
 
 
 @end
+
+
+
+
 
 
 @protocol ParseDataManagerDelegate
