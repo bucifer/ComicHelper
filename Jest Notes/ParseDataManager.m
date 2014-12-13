@@ -184,6 +184,33 @@
 
 
 
+- (void) editJokeInParse:(JokeCD *)joke matchString:(NSString *)matchNameString{
+    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+    [query whereKey:@"name" equalTo:matchNameString];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        JokeParse *myParseJoke = (JokeParse *) object;
+        myParseJoke.name = joke.name;
+        myParseJoke.length = joke.length;
+        myParseJoke.score = joke.score;
+        myParseJoke.writeDate = joke.writeDate;
+        myParseJoke.bodyText = joke.bodyText;
+        [myParseJoke saveEventually:^(BOOL succeeded, NSError *error) {
+            NSLog(@"Parse Joke with name %@ should have gotten updated on Parse by now", myParseJoke.name);
+        }];
+    }];
+
+}
+
+- (void) reorderJokesInSetForParse:(SetCD *)reorderedSet newOrderedArrayOfJokes:(NSMutableArray *)newOrderedArrayOfJokes {
+    
+    
+    
+}
+
+
+
+
+
 //might not need below since Parse's saveEventually and deleteEventually take care of this
 
 //- (void) pushAnyUnsynchedCoreDataJokesToParse {

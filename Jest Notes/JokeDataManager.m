@@ -320,14 +320,20 @@
     
     setCDwithOldOrdering.jokes = [NSOrderedSet orderedSetWithArray:newOrderedArray];
     [self saveChangesInContextCoreData];
+    
+    //Reorder the jokes in Parse now
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+
+
+
 }
 
 
 
 
-#pragma mark Saving-related
+#pragma mark Editing & Saving related
 
-- (void) saveEditedJokeInCoreData: (Joke *) joke {
+- (void) saveEditedJokeInCoreDataAndParse: (Joke *) joke tempOldNameStringForParseMatching:(NSString *)oldMatchString{
     NSError *error;
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:joke.managedObjectID error:&error];
     correspondingCDJoke.name = joke.name;
@@ -336,7 +342,13 @@
     correspondingCDJoke.writeDate = joke.writeDate;
     correspondingCDJoke.bodyText = joke.bodyText;
     [self saveChangesInContextCoreData];
+    
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+    [pdm editJokeInParse: correspondingCDJoke matchString:oldMatchString];
+    
 }
+
+
 
 - (void) saveChangesInContextCoreData {
     NSError *err = nil;

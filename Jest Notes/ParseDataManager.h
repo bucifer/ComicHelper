@@ -30,11 +30,18 @@
 @property (nonatomic, weak) id <ParseDataManagerDelegate> delegate;
 
 
-
+//Fetch Related
 - (void) fetchAllParseJokesAsynchronously;
 
+//Create Related
 - (void) createNewJokeInParse: (JokeCD *) newJoke;
 - (void) createNewSetInParse: (SetCD *) newSet jokesArray: (NSMutableArray *) jokesArray;
+
+//Edit & Reorder Related
+
+- (void) editJokeInParse: (JokeCD *) joke matchString:(NSString *)matchNameString;
+- (void) reorderJokesInSetForParse: (SetCD*) reorderedSet newOrderedArrayOfJokes:(NSMutableArray *) newOrderedArrayOfJokes;
+
 
 
 @end
