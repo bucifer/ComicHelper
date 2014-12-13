@@ -92,12 +92,8 @@
         newSet.createDate = [NSDate date];
         [self.jokeDataManager.sets addObject:newSet];
         
-        //Then we add to Core Data
-        [self.jokeDataManager createNewSetInCoreData: newSet];
-        
-        //Then Create one in Parse
-        ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
-        [pdm createNewSetInParse:newSet];
+        //Then we add to Core Data and Parse at the SAME TIME 
+        [self.jokeDataManager createNewSetInCoreDataAndParse: newSet];
         
         [self.tabBarController setSelectedIndex:1]; //we are going to sets view right when we are done creating one from the tabbar view
         [self.navigationController popToRootViewControllerAnimated:YES];

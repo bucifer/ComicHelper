@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <Parse/Parse.h>
-#import "JokeParse.h"
 #import "JokeCD.h"
-#import "Joke.h"
+#import "SetCD.h"
+#import "JokeParse.h"
 #import "SetParse.h"
-#import "Set.h"
 
 
 @protocol ParseDataManagerDelegate;
@@ -32,12 +31,10 @@
 
 
 
-- (void) pushAnyUnsynchedCoreDataJokesToParse;
-
 - (void) fetchAllParseJokesAsynchronously;
 
-- (void) createNewJokeInParse: (Joke *) newJoke;
-- (void) createNewSetInParse: (Set *) newSet;
+- (void) createNewJokeInParse: (JokeCD *) newJoke;
+- (void) createNewSetInParse: (SetCD*) newSet;
 
 
 @end

@@ -81,14 +81,19 @@
         newJoke.bodyText = self.jokeBodyTextView.text;
     
     
+    //You create one in presentation layer
     [self.jokeDataManager.jokes addObject: newJoke];
     
-    //Then you create one in the actual Core Data
-    [self.jokeDataManager createNewJokeInCoreData:newJoke];
+    //Then you create one in Core Data and Parse AT THE SAME TIME
+    //***Why you might ask? Well, I was worried about the case where the user makes a bunch of jokes and a set OFFLINE in a basement somewhere.
+    //If we just saved to Parse, we might lose those jokes, because I couldn't really trust the "saveEventually" functionality of Parse
+    //if "saveEventually" works 100%, then I wouldn't have to worry about making my own local cache for Creation logic.
+    //But since I'm not so sure, (saveEventually apparently kicks into play automatically next time the user has any internet connection)
+    //I'm going to rely on my own custom logic. We are going to add to Local cache anyways, and then next time Parse fetches a whole bunch of stuff, we are going to block it from being converted into Core Data if we find duplicates.
+    //This will ABSOLUTELY make sure that no joke or set data gets lost because you didn't have internet connection when you were writing down something
     
-    //Create one in Parse
-    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
-    [pdm createNewJokeInParse:newJoke];
+    [self.jokeDataManager createNewJokeInCoreDataAndParse:newJoke];
+
     
     [self.navigationController popViewControllerAnimated:YES];
 }

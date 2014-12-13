@@ -72,6 +72,9 @@
 
 
 
+
+
+
 #pragma mark Refresh-Logic Core Data-Related
 
 - (void) refreshJokesCDDataWithNewFetch {
@@ -153,8 +156,57 @@
 }
 
 
+#pragma mark Creation Logic for Both Jokes and Sets
 
-#pragma mark Joke Object-related
+- (void) createNewJokeInCoreDataAndParse: (Joke *) newJoke{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    JokeCD *jokeCD = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    jokeCD.name = newJoke.name;
+    jokeCD.length = [NSNumber numberWithInt:newJoke.length];
+    jokeCD.score = [NSNumber numberWithInt:newJoke.score];
+    jokeCD.writeDate = newJoke.writeDate;
+    jokeCD.bodyText = newJoke.bodyText;
+    [self saveChangesInContextCoreData];
+    
+    //Create one in Parse
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+    [pdm createNewJokeInParse:jokeCD];
+}
+
+- (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText:(NSString *)bodyText{
+    Joke *joke = [[Joke alloc]init];
+    
+    
+    [self.jokes addObject:joke];
+    
+    return joke;
+}
+
+- (void) createNewSetInCoreDataAndParse: (Set *) newSet {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+    SetCD *setCD = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    setCD.name = newSet.name;
+    setCD.createDate = [NSDate date];
+    
+    //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
+    NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < newSet.jokes.count; i++) {
+        Joke *joke = newSet.jokes[i];
+        JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokePL:joke];
+        [jokeCDArray addObject:jokeCD];
+    }
+    
+    setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
+    [self saveChangesInContextCoreData];
+    
+    
+    //Then Create one in Parse
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+    [pdm createNewSetInParse:setCD];
+}
+
+
+#pragma mark Saving-related
 
 - (void) saveEditedJokeInCoreData: (Joke *) joke {
     NSError *error;
@@ -165,12 +217,7 @@
     correspondingCDJoke.writeDate = joke.writeDate;
     correspondingCDJoke.bodyText = joke.bodyText;
     [self saveChangesInContextCoreData];
-    
-    
-
-    
 }
-
 
 - (void) saveChangesInContextCoreData {
     NSError *err = nil;
@@ -184,6 +231,8 @@
 
 
 
+#pragma mark Fetching Data
+
 - (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL {
     NSError *error;
     JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:jokePL.managedObjectID error:&error];
@@ -191,48 +240,12 @@
 }
 
 
-- (void) createNewJokeInCoreData: (Joke *) newJoke{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-    JokeCD *joke = [[JokeCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    joke.name = newJoke.name;
-    joke.length = [NSNumber numberWithInt:newJoke.length];
-    joke.score = [NSNumber numberWithInt:newJoke.score];
-    joke.writeDate = newJoke.writeDate;
-    joke.bodyText = newJoke.bodyText;
-    [self saveChangesInContextCoreData];
+- (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL {
+    NSError *error;
+    SetCD *correspondingCDSet = (SetCD *) [self.managedObjectContext existingObjectWithID:setPL.managedObjectID error:&error];
+    return correspondingCDSet;
 }
 
-
-- (BOOL) foundDuplicateJokeNameInCoreData: (NSString *) jokeName {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", jokeName];
-    [fetchRequest setPredicate:predicate];
-    
-    NSError *error = nil;
-    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest
-                                                                 error:&error];
-    if (count == NSNotFound) {
-        NSLog(@"Error: %@", error);
-    }
-    else if (count >= 1) {
-        return YES;
-    }
-    return NO;
-}
-
-
-
-- (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText:(NSString *)bodyText{
-    Joke *joke = [[Joke alloc]init];
-
-    
-    [self.jokes addObject:joke];
-    
-    return joke;
-}
 
 - (void) sortJokesArrayWithTwoDescriptors:(NSString *)firstDescriptorString secondDescriptor:(NSString *)secondDescriptorString {
     NSSortDescriptor *scoreSorter = [[NSSortDescriptor alloc]initWithKey:firstDescriptorString ascending:NO];
@@ -241,6 +254,18 @@
     self.jokes = [[self.jokes sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
 }
 
+
+- (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending{
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc]initWithKey:descriptorString ascending:ascending];
+    myArray = [[NSArray arrayWithObjects:sorter, nil]mutableCopy];
+}
+
+
+
+
+
+
+#pragma mark Deletion Logic for JOkes and Sets
 
 - (void) deleteJoke: (NSIndexPath *) indexPath {
     Joke *selectedJoke = [self.jokes objectAtIndex:indexPath.row];
@@ -297,28 +322,6 @@
 }
 
 
-#pragma mark SetCDs-related
-- (void) createNewSetInCoreData: (Set *) newSet {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
-    SetCD *setCD = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    setCD.name = newSet.name;
-    setCD.createDate = [NSDate date];
-    
-    //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
-    NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < newSet.jokes.count; i++) {
-        Joke *joke = newSet.jokes[i];
-        JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokePL:joke];
-        [jokeCDArray addObject:jokeCD];
-    }
-    
-    setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
-    [self saveChangesInContextCoreData];
-    
-}
-
-
-
 - (void) deleteSet: (NSIndexPath *) indexPath {
     Set *set = [self.sets objectAtIndex:indexPath.row];
     SetCD *correspondingCDSet = (SetCD *) [self.managedObjectContext existingObjectWithID:set.managedObjectID error:nil];
@@ -332,20 +335,31 @@
 }
 
 
-- (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL {
-    NSError *error;
-    SetCD *correspondingCDSet = (SetCD *) [self.managedObjectContext existingObjectWithID:setPL.managedObjectID error:&error];
-    return correspondingCDSet;
-}
+
 
 
 #pragma mark Other Custom Logic-Related
 
-
-- (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending{
-    NSSortDescriptor *sorter = [[NSSortDescriptor alloc]initWithKey:descriptorString ascending:ascending];
-    myArray = [[NSArray arrayWithObjects:sorter, nil]mutableCopy];
+- (BOOL) foundDuplicateJokeNameInCoreData: (NSString *) jokeName {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", jokeName];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest
+                                                                 error:&error];
+    if (count == NSNotFound) {
+        NSLog(@"Error: %@", error);
+    }
+    else if (count >= 1) {
+        return YES;
+    }
+    return NO;
 }
+
 
 
 
@@ -355,6 +369,8 @@
     }
     return TRUE;
 }
+
+
 
 
 

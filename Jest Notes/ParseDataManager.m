@@ -143,11 +143,11 @@
 }
 
 
-- (void) createNewJokeInParse: (Joke *) newJoke {
+- (void) createNewJokeInParse: (JokeCD *) newJoke {
     JokeParse *newJokeParse = [JokeParse object];
     newJokeParse.name = newJoke.name;
-    newJokeParse.score = [NSNumber numberWithInt:newJoke.score];
-    newJokeParse.length = [NSNumber numberWithInt:newJoke.length];
+    newJokeParse.score = newJoke.score;
+    newJokeParse.length = newJoke.length;
     newJokeParse.writeDate = newJoke.writeDate;
     newJokeParse.bodyText = newJoke.bodyText;
 
@@ -157,19 +157,14 @@
 }
 
 
-- (void) createNewSetInParse: (Set *) newSet {
+- (void) createNewSetInParse: (SetCD *) newSet {
     SetParse *newSetParse = [SetParse object];
     newSetParse.name = newSet.name;
     newSetParse.createDate = newSet.createDate;
     
-//    NSMutableArray *namesOfJokes = [[NSMutableArray alloc]init];
-//    
-//    for (int i=0; i < newSet.jokes.count; i++) {
-//        NSString *name = newSet.jokes[0];
-//        [namesOfJokes addObject:name];
-//    }
-//    
-//    newSetParse.jokes = [namesOfJokes copy];
+    
+    
+    newSetParse.jokes = @[@"hi", @"mom"];
     
     [newSetParse saveEventually:^(BOOL succeeded, NSError *error) {
         NSLog(@"Set name: %@  was sent to Parse - finally got saved", newSet.name);
@@ -180,7 +175,7 @@
 
 
 
-//might not need below since Parse's saveEventually and deleteEventually might take care of this
+//might not need below since Parse's saveEventually and deleteEventually take care of this
 
 //- (void) pushAnyUnsynchedCoreDataJokesToParse {
 //    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];

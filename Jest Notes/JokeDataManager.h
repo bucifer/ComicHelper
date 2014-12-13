@@ -35,27 +35,26 @@
 - (void) refreshJokesCDDataWithNewFetch;
 - (void) refreshSetsCDDataWithNewFetch;
 
-- (void) saveEditedJokeInCoreData: (Joke *) joke;
-- (void) saveChangesInContextCoreData;
-
-
-
-//For JokeCDs
+//Conversion Related
 - (NSMutableArray *) convertCoreDataJokesArrayIntoPresentationLayer: (NSArray *) fetchedObjectsArrayOfCDJokes;
 - (Joke *) convertCoreDataJokeIntoPresentationLayerJoke: (JokeCD *) oneCoreDataJoke;
-
-- (void) createNewJokeInCoreData: (Joke *) newJoke;
-- (void) deleteJoke: (NSIndexPath *) indexPath;
-
-- (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL;
-
-
-//For SetCDs
 - (NSMutableArray *) convertCoreDataSetsIntoPresentationLayer: (NSArray *) fetchedCDSetsArray;
-- (void) createNewSetInCoreData: (Set *) newSet;
+
+//Creation Related
+- (void) createNewJokeInCoreDataAndParse: (Joke *) newJoke;
+- (void) createNewSetInCoreDataAndParse: (Set *) newSet;
+
+//Deletion Related
+- (void) deleteJoke: (NSIndexPath *) indexPath;
 - (void) deleteSet: (NSIndexPath *) indexPath;
+
+//Fetching Related
+- (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL;
 - (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL;
 
+//Saving Related
+- (void) saveEditedJokeInCoreData: (Joke *) joke;
+- (void) saveChangesInContextCoreData;
 
 
 //Logic & Validation Related
@@ -64,9 +63,11 @@
 - (BOOL) isScoreInputValid: (int) score;
 - (BOOL) foundDuplicateJokeNameInCoreData: (NSString *) jokeName;
 
-
 @end
 
+
+
+//in case you want to implement this later for some functionality
 
 @protocol JokeDataManagerDelegate
 
