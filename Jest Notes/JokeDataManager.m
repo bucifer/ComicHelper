@@ -159,7 +159,7 @@
             
             //then we loop over the already converted JokePLs in this joke manager
             //once we find the jokePL with the same name as a JokeCD in this set,
-            //we assign that jokePL to the SetPL's jokes array
+            //we assign that jokePL pointer to the SetPL's jokes array
             
             for (int i = 0; i < self.jokes.count; i++) {
                 Joke *oneJokePL = self.jokes[i];
@@ -299,10 +299,26 @@
 
 
 
-//Reordering Related
+
+#pragma mark Reordering Related
 - (void) reorderJokesOfMySetInCoreDataAndParse: (Set *) reorderedSet {
-    SetCD* setCD = [self getCorrespondingSetCDFromSetPL:reorderedSet];
-    setCD.jokes = [NSOrderedSet orderedSetWithArray:reorderedSet.jokes];
+    SetCD* setCDwithOldOrdering = [self getCorrespondingSetCDFromSetPL:reorderedSet];
+    
+    NSMutableArray *newOrderedArray = [[NSMutableArray alloc]init];
+    NSMutableArray *oldOrderedArray = [[setCDwithOldOrdering.jokes array]mutableCopy];
+    
+    //I'm first going to loop order the NEW ordered array of jokes
+    for (int i=0; i < reorderedSet.jokes.count; i++) {
+        Joke* oneJokePLFromReorderedSet = reorderedSet.jokes[i]; //this is the FIRST joke in the NEW order
+        for (int i=0; i < oldOrderedArray.count; i++) { //at this point, we loop every old jokeCD in the OLD order
+            JokeCD* oneJokeCDFromOldOrderSet = oldOrderedArray[i];
+            if ([oneJokePLFromReorderedSet.name isEqualToString:oneJokeCDFromOldOrderSet.name]) {
+                [newOrderedArray addObject:oneJokeCDFromOldOrderSet];
+            }
+        }
+    }
+    
+    setCDwithOldOrdering.jokes = [NSOrderedSet orderedSetWithArray:newOrderedArray];
     [self saveChangesInContextCoreData];
 }
 
