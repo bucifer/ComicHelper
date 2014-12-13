@@ -44,7 +44,6 @@
         //this is NOT the first launch ... Fetch Jokesfrom Core Data
         NSArray *fetchedJokesFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"JokeCD"];
         self.jokes = [self convertCoreDataJokesArrayIntoPresentationLayer:fetchedJokesFromCD];
-//        self.uniqueIDmaxValue = [self returnUniqueIDmaxValue];
         [self.hvc.tableView reloadData];
         
         //taking care of fetching SETS now
@@ -61,13 +60,13 @@
     [fetchRequest setEntity:entity];
     
     NSError *error = nil;
-    NSArray *fetchedStuff = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (fetchedStuff == nil) {
+    NSArray *fetchedArrayOfCDObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedArrayOfCDObjects == nil) {
         NSLog(@"some horrible error in fetching CD: %@", error);
         return nil;
     }
     
-    return fetchedStuff;
+    return fetchedArrayOfCDObjects;
 }
 
 
@@ -105,12 +104,12 @@
 
 }
 
-#pragma mark Converting Core Data/Presentation Layer logic
 
+
+#pragma mark Converting Core Data/Presentation Layer logic
 - (NSMutableArray *) convertCoreDataJokesArrayIntoPresentationLayer: (NSArray *) fetchedObjectsArrayOfCDJokes {
     
     NSMutableArray *resultArrayOfJokePLs = [[NSMutableArray alloc]init];
-    
     for (int i=0; i < fetchedObjectsArrayOfCDJokes.count; i++) {
         JokeCD *oneCDJoke = fetchedObjectsArrayOfCDJokes[i];
         Joke *newPLJoke = [[Joke alloc]init];
@@ -148,7 +147,28 @@
         newSet.name = oneCDSet.name;
         newSet.createDate = oneCDSet.createDate;
         newSet.managedObjectID = oneCDSet.objectID;
-        newSet.jokes = [[oneCDSet.jokes array] mutableCopy];
+        
+        //jokes allocation logic
+        //we get all the JokeCDs in this Set
+        newSet.jokes = [[NSMutableArray alloc]init];
+        NSMutableArray *jokeCDsInThisSet = [[oneCDSet.jokes array] mutableCopy];
+        
+        //we loop over every jokeCD in this set
+        for (int i = 0; i < jokeCDsInThisSet.count; i++) {
+            JokeCD *oneJokeCD = jokeCDsInThisSet[i];
+            
+            //then we loop over the already converted JokePLs in this joke manager
+            //once we find the jokePL with the same name as a JokeCD in this set,
+            //we assign that jokePL to the SetPL's jokes array
+            
+            for (int i = 0; i < self.jokes.count; i++) {
+                Joke *oneJokePL = self.jokes[i];
+                if ([oneJokePL.name isEqualToString:oneJokeCD.name]) {
+                    [newSet.jokes addObject:oneJokePL];
+                }
+            }
+        }
+        
         [resultArraySetPLs addObject:newSet];
     }
     
