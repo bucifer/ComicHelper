@@ -48,6 +48,9 @@
 - (void) deleteJoke: (NSIndexPath *) indexPath;
 - (void) deleteSet: (NSIndexPath *) indexPath;
 
+//Reordering Related
+- (void) reorderJokesOfMySetInCoreDataAndParse: (Set *) reorderedSet;
+
 //Fetching Related
 - (JokeCD *) getCorrespondingJokeCDFromJokePL: (Joke *) jokePL;
 - (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL;
@@ -55,6 +58,7 @@
 //Saving Related
 - (void) saveEditedJokeInCoreData: (Joke *) joke;
 - (void) saveChangesInContextCoreData;
+
 
 
 //Logic & Validation Related

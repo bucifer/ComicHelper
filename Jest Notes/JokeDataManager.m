@@ -279,6 +279,14 @@
 
 
 
+//Reordering Related
+- (void) reorderJokesOfMySetInCoreDataAndParse: (Set *) reorderedSet {
+    SetCD* setCD = [self getCorrespondingSetCDFromSetPL:reorderedSet];
+    setCD.jokes = [NSOrderedSet orderedSetWithArray:reorderedSet.jokes];
+    [self saveChangesInContextCoreData];
+}
+
+
 
 
 #pragma mark Saving-related

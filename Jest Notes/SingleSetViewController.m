@@ -48,6 +48,9 @@
     }
     
     Joke *selectedJoke = [self.selectedSet.jokes objectAtIndex:indexPath.row];
+    
+    NSLog(@"%@", selectedJoke.class);
+    
     cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", indexPath.row + 1, selectedJoke.name];
 
     UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 30.0 ];
@@ -130,14 +133,15 @@
         [sender setTitle:@"Reorder"];
         
         //I want to take a snapshot of the ordering at this state, and create a NSOrderedSet to save into core data right now
-        SetCD* setCD = [self.jokeDataManager getCorrespondingSetCDFromSetPL:self.selectedSet];
-        setCD.jokes = [NSOrderedSet orderedSetWithArray:self.selectedSet.jokes];
-        [self.jokeDataManager saveChangesInContextCoreData];
+        [self.jokeDataManager reorderJokesOfMySetInCoreDataAndParse:self.selectedSet];
+    
         [self.tableView reloadData];
     }
     
     [self.tableView setEditing:![self.tableView isEditing]];
 }
+
+
 
 
 @end
