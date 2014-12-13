@@ -12,7 +12,7 @@
 @implementation ParseDataManager
 
 
-#pragma mark Singleton Methods
+#pragma mark Singleton
 
 + (ParseDataManager*)sharedParseDataManager
 {
@@ -31,6 +31,7 @@
 
 
 
+#pragma mark Fetch Related
 
 - (void) fetchAllParseJokesAsynchronously {
     
@@ -118,8 +119,11 @@
     }
     
     return NO;
-    
 }
+
+
+
+#pragma mark Conversion Related
 
 - (void) convertParseJokeToCoreData: (JokeParse *) jokeParse {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
@@ -132,16 +136,10 @@
     joke.parseObjectID = jokeParse.objectId;
 }
 
-- (void) saveChangesInContextCoreData {
-    NSError *err = nil;
-    BOOL successful = [self.managedObjectContext save:&err];
-    if(!successful){
-        NSLog(@"Error saving: %@", [err localizedDescription]);
-    } else {
-        NSLog(@"Core Data Saved without errors");
-    }
-}
 
+
+
+#pragma mark Creation Related
 
 - (void) createNewJokeInParse: (JokeCD *) newJoke {
     JokeParse *newJokeParse = [JokeParse object];
@@ -182,7 +180,7 @@
 
 
 
-
+#pragma mark Editing and Reordering related 
 
 - (void) editJokeInParse:(JokeCD *)joke matchString:(NSString *)matchNameString{
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
@@ -203,13 +201,41 @@
 
 - (void) reorderJokesInSetForParse:(SetCD *)reorderedSet newOrderedArrayOfJokes:(NSMutableArray *)newOrderedArrayOfJokes {
     
-    
+    PFQuery *query = [PFQuery queryWithClassName:@"Set"];
+    [query whereKey:@"name" equalTo:reorderedSet.name];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        SetParse *myParseSet = (SetParse *) object;
+        
+        NSMutableArray *namesArray = [[NSMutableArray alloc]init];
+        for (int i=0; i < newOrderedArrayOfJokes.count; i++) {
+            JokeCD *jokeCD = newOrderedArrayOfJokes[i];
+            NSString *jokeName = jokeCD.name;
+            [namesArray addObject: jokeName];
+        }
+        myParseSet.jokes = [namesArray copy];
+        
+        [myParseSet saveEventually:^(BOOL succeeded, NSError *error) {
+            NSLog(@"newly ordered Parse set got saved on Parse eventually");
+        }];
+    }];
+
     
 }
 
 
 
 
+#pragma mark MISCELLANEOUS
+
+- (void) saveChangesInContextCoreData {
+    NSError *err = nil;
+    BOOL successful = [self.managedObjectContext save:&err];
+    if(!successful){
+        NSLog(@"Error saving: %@", [err localizedDescription]);
+    } else {
+        NSLog(@"Core Data Saved without errors");
+    }
+}
 
 //might not need below since Parse's saveEventually and deleteEventually take care of this
 

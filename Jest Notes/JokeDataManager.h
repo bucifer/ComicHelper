@@ -56,7 +56,7 @@
 - (SetCD *) getCorrespondingSetCDFromSetPL: (Set *) setPL;
 
 //Saving Related
-- (void) saveEditedJokeInCoreDataAndParse: (Joke *) joke tempOldNameStringForParseMatching: (NSString *) oldMatchString;
+- (void) editJokeInCoreDataAndParse: (Joke *) joke tempOldNameStringForParseMatching: (NSString *) oldMatchString;
 - (void) saveChangesInContextCoreData;
 
 

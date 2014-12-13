@@ -66,7 +66,7 @@
     selectedJoke.writeDate = self.writeDatePicker.date;
     selectedJoke.bodyText = self.bodyTextView.text;
     
-    [self.jokeDataManager saveEditedJokeInCoreDataAndParse:selectedJoke tempOldNameStringForParseMatching:tempOldNameStringForParseMatching];
+    [self.jokeDataManager editJokeInCoreDataAndParse:selectedJoke tempOldNameStringForParseMatching:tempOldNameStringForParseMatching];
 
 
     [self.navigationController popToRootViewControllerAnimated:YES];

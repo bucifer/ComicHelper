@@ -298,9 +298,23 @@
 }
 
 
+#pragma mark Editing & Reordering related
+
+- (void) editJokeInCoreDataAndParse: (Joke *) joke tempOldNameStringForParseMatching:(NSString *)oldMatchString{
+    NSError *error;
+    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:joke.managedObjectID error:&error];
+    correspondingCDJoke.name = joke.name;
+    correspondingCDJoke.length = [NSNumber numberWithInt:joke.length];
+    correspondingCDJoke.score = [NSNumber numberWithInt:joke.score];
+    correspondingCDJoke.writeDate = joke.writeDate;
+    correspondingCDJoke.bodyText = joke.bodyText;
+    [self saveChangesInContextCoreData];
+    
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+    [pdm editJokeInParse: correspondingCDJoke matchString:oldMatchString];
+}
 
 
-#pragma mark Reordering Related
 - (void) reorderJokesOfMySetInCoreDataAndParse: (Set *) reorderedSet {
     SetCD* setCDwithOldOrdering = [self getCorrespondingSetCDFromSetPL:reorderedSet];
     
@@ -323,42 +337,11 @@
     
     //Reorder the jokes in Parse now
     ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
-
-
-
+    [pdm reorderJokesInSetForParse:setCDwithOldOrdering newOrderedArrayOfJokes:newOrderedArray];
 }
 
 
 
-
-#pragma mark Editing & Saving related
-
-- (void) saveEditedJokeInCoreDataAndParse: (Joke *) joke tempOldNameStringForParseMatching:(NSString *)oldMatchString{
-    NSError *error;
-    JokeCD *correspondingCDJoke = (JokeCD *) [self.managedObjectContext existingObjectWithID:joke.managedObjectID error:&error];
-    correspondingCDJoke.name = joke.name;
-    correspondingCDJoke.length = [NSNumber numberWithInt:joke.length];
-    correspondingCDJoke.score = [NSNumber numberWithInt:joke.score];
-    correspondingCDJoke.writeDate = joke.writeDate;
-    correspondingCDJoke.bodyText = joke.bodyText;
-    [self saveChangesInContextCoreData];
-    
-    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
-    [pdm editJokeInParse: correspondingCDJoke matchString:oldMatchString];
-    
-}
-
-
-
-- (void) saveChangesInContextCoreData {
-    NSError *err = nil;
-    BOOL successful = [self.managedObjectContext save:&err];
-    if(!successful){
-        NSLog(@"Error saving: %@", [err localizedDescription]);
-    } else {
-        NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
-    }
-}
 
 
 
@@ -432,6 +415,18 @@
 }
 
 
+
+
+#pragma mark MISC
+- (void) saveChangesInContextCoreData {
+    NSError *err = nil;
+    BOOL successful = [self.managedObjectContext save:&err];
+    if(!successful){
+        NSLog(@"Error saving: %@", [err localizedDescription]);
+    } else {
+        NSLog(@"Core Data Saved without errors - reporting from JokeDataManager");
+    }
+}
 
 
 
