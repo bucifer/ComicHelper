@@ -32,6 +32,7 @@
 
 //Fetch Related
 - (void) fetchAllParseJokesAsynchronously;
+- (void) fetchAllParseSets;
 
 //Create Related
 - (void) createNewJokeInParse: (JokeCD *) newJoke;
@@ -54,7 +55,7 @@
 @protocol ParseDataManagerDelegate
 
 - (void) parseDataManagerDidFinishFetchingAllParseJokes;
-
-- (void) parseDataManagerDidFinishSyncingCoreDataWithParse;
+- (void) parseDataManagerDidFinishSynchingCoreDataWithParse;
+- (void) parseDataManagerDidFinishFetchingAllParseSets;
 
 @end

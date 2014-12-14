@@ -40,25 +40,9 @@
         if (!error) {
             NSLog(@"Successfully retrieved %lu jokes from Parse server", (unsigned long)objects.count);
             
-            BOOL someNewDataNeedsToBeSavedToCache = NO;
-            for (JokeParse *jokeParse in objects) {
-                if ([self parseJokeAlreadyExistsInCoreDataByJokeName:jokeParse]) {
-                    NSLog(@"A Core Data object with name: %@ was synced for objectId", jokeParse.name);
-                }
-                else if ([self thisJokeIsNewParseJokeDataNotFoundInCoreData:jokeParse.objectId]) {
-                    [self convertParseJokeToCoreData:jokeParse];
-                    someNewDataNeedsToBeSavedToCache = YES;
-                }
-            }
-            
-            if (someNewDataNeedsToBeSavedToCache) {
-                [self saveChangesInContextCoreData];
-            }
-            
+            [self updateCoreDataWithNewJokesAfterDuplicatesChecking:objects];
             [self.delegate parseDataManagerDidFinishFetchingAllParseJokes];
-            
-            self.jokesParse = [objects mutableCopy];
-            
+    
         }
         else {
             // Log details of the failure
@@ -67,8 +51,61 @@
     }];
 }
 
+- (void) fetchAllParseSets {
+    PFQuery *query = [PFQuery queryWithClassName:@"Set"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"Successfully retrieved %lu Sets from Parse server", (unsigned long)objects.count);
+            
+            [self updateCoreDataWithNewSets:objects];
+            [self.delegate parseDataManagerDidFinishFetchingAllParseSets];
 
-- (BOOL) thisJokeIsNewParseJokeDataNotFoundInCoreData: (NSString *) parseObjectID {
+        }
+        else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+}
+
+- (void) updateCoreDataWithNewJokesAfterDuplicatesChecking: (NSArray*) objects{
+    BOOL someNewDataNeedsToBeSavedToCache = NO;
+    for (JokeParse *jokeParse in objects) {
+        if ([self parseJokeAlreadyExistsInCoreDataByJokeName:jokeParse]) {
+            NSLog(@"A Core Data object with name: %@ was synced for objectId", jokeParse.name);
+        }
+        else if ([self thisParseJokeIsNewData:jokeParse.objectId]) {
+            [self convertParseJokeToCoreData:jokeParse];
+            someNewDataNeedsToBeSavedToCache = YES;
+        }
+    }
+    
+    if (someNewDataNeedsToBeSavedToCache) {
+        [self saveChangesInContextCoreData];
+    }
+}
+
+
+- (void) updateCoreDataWithNewSets: (NSArray *) objects {
+    BOOL someNewDataNeedsToBeSavedToCache = NO;
+    for (SetParse *setParse in objects) {
+        if ([self thisParseSetIsNewData:setParse.name]) {
+            [self convertParseSetToCoreData:setParse];
+            someNewDataNeedsToBeSavedToCache = YES;
+        }
+    }
+    
+    if (someNewDataNeedsToBeSavedToCache) {
+        [self saveChangesInContextCoreData];
+    }
+
+}
+
+
+#pragma mark Checking Logic for Duplicates of Parse objects vs Core Data
+
+- (BOOL) thisParseJokeIsNewData: (NSString *) parseObjectID {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity: entity];
@@ -89,6 +126,29 @@
     
     return YES;
 }
+
+- (BOOL) thisParseSetIsNewData: (NSString *) setParseName {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity: entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", setParseName];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest
+                                                                 error:&error];
+    if (count == NSNotFound) {
+        NSLog(@"Error: %@", error);
+    }
+    else if (count >= 1) {
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 - (BOOL) parseJokeAlreadyExistsInCoreDataByJokeName: (JokeParse *) jokeParse {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
@@ -113,7 +173,7 @@
         [self saveChangesInContextCoreData];
         
         NSLog(@"Core Data Joke: %@, should now have an objectId with %@", myCoreDataObject.name, myCoreDataObject.parseObjectID);
-        [self.delegate parseDataManagerDidFinishSyncingCoreDataWithParse];
+        [self.delegate parseDataManagerDidFinishSynchingCoreDataWithParse];
         
         return YES;
     }
@@ -136,7 +196,40 @@
     joke.parseObjectID = jokeParse.objectId;
 }
 
+- (void) convertParseSetToCoreData: (SetParse *) setParse {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+    SetCD *setCD = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    setCD.name = setParse.name;
+    setCD.createDate = setParse.createDate;
+    
+    //we have to make a fetch request to all the jokeCDs, and make a nsorderedset by following the ordering of the setParse.jokes
+    //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
+    NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < setParse.jokes.count; i++) {
+        NSString *jokeNameString = setParse.jokes[i];
+        JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokeNameString: jokeNameString];
+        [jokeCDArray addObject:jokeCD];
+    }
+    
+    setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
+}
 
+- (JokeCD*) getCorrespondingJokeCDFromJokeNameString: (NSString *) jokeNameString {
+   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+   // Specify criteria for filtering which objects to fetch
+   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", jokeNameString];
+    [fetchRequest setPredicate:predicate];
+
+   NSError *error = nil;
+   NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (fetchedObjects == nil) {
+       NSLog(@"Error: %@", error);
+   }
+    
+   return fetchedObjects[0];
+}
 
 
 #pragma mark Creation Related

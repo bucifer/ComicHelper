@@ -18,12 +18,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
      self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+
 }
+
+
+- (void) receiveParseSetsFetchDoneNotification:(NSNotification *) notification
+{
+    NSLog (@"Reload your tableview because parse sets just got delivered");
+    [self.tableView reloadData];
+}
+
+
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -37,6 +53,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 #pragma mark - Table view data source
 
@@ -60,7 +79,7 @@
     }
     
     Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"#%i. %@", indexPath.row + 1,set.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", indexPath.row + 1,set.name];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/dd/yy"];

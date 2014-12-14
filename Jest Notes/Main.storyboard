@@ -818,16 +818,6 @@ Enjoy!</string>
             </objects>
             <point key="canvasLocation" x="-1001" y="1052"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="V17-Pa-lpY">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sYH-91-p4f" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="GOx-gZ-auf"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1UR-py-4h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2078" y="-646"/>
-        </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="Ttk-4D-hLq">
             <objects>
@@ -1388,31 +1378,6 @@ Enjoy!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldt-EN-MDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2072" y="532"/>
-        </scene>
-        <!--Swipe Between View Controllers-->
-        <scene sceneID="TXq-JH-Jhy">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JTp-0w-DjJ" customClass="RKSwipeBetweenViewControllers" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hAS-pt-ZR7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="sYH-91-p4f" kind="relationship" relationship="rootViewController" id="ycy-Ou-CzK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2YK-Pu-mYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2988" y="-646"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="yOZ-pw-aIX">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Uxe-x7-52C" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qdt-lr-plS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

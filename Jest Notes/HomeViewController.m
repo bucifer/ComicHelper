@@ -32,9 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.parseDataManager.delegate = self;
-    [self.parseDataManager fetchAllParseJokesAsynchronously];
-    
     [self.jokeDataManager appInitializationLogic];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
@@ -87,18 +84,27 @@
 }
 
 
+
+#pragma mark Parse Data Manager delegate methods
+
 - (void) parseDataManagerDidFinishFetchingAllParseJokes {
     NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
 }
 
-- (void)parseDataManagerDidFinishSyncingCoreDataWithParse {
-    NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
+- (void)parseDataManagerDidFinishSynchingCoreDataWithParse {
+    NSLog(@"Parse Data Manager finished synching all parse jokes ... reporting from homeview");
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
 }
 
+- (void) parseDataManagerDidFinishFetchingAllParseSets {
+    NSLog(@"PDM did finish fetching all parse sets from server - sending notification to setsviewcontroller for sets reloading");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ParseSetsFetchDone" object:self];
+    [self.jokeDataManager refreshSetsCDDataWithNewFetch];
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
