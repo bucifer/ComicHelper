@@ -228,7 +228,7 @@
 
 
 
-#pragma mark Deletion Logic for JOkes and Sets
+#pragma mark Deletion Logic for Jokes and Sets
 
 - (void) deleteJoke: (NSIndexPath *) indexPath {
     Joke *selectedJoke = [self.jokes objectAtIndex:indexPath.row];
@@ -240,8 +240,18 @@
     [self.jokes removeObjectAtIndex:indexPath.row];
     
     //#2 delete from parse
-    if (correspondingCDJoke.parseObjectID) {
-        [self deleteJokeFromParseBasedOnId:correspondingCDJoke.parseObjectID];
+    [self deleteFromParse: correspondingCDJoke];
+    
+    //#3 and then delete from Core Data
+    [self.managedObjectContext deleteObject:correspondingCDJoke];
+    [self saveChangesInContextCoreData];
+    
+}
+
+- (void) deleteFromParse: (JokeCD*) JokeCD {
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+    if (JokeCD.parseObjectID) {
+        [pdm deleteJokeFromParseBasedOnId:JokeCD.parseObjectID];
     }
     else {
         //this is used for the case where
@@ -251,37 +261,8 @@
         //3) So thus, in that case, we delete it based on "Name" from Parse because names are unique too.
         //this differentiation allows for deleting a joke IMMEDIATELY after you created it, without waiting for parse-cd sync,
         //and that change to be reflected properly in CD + Parse
-        [self deleteJokeFromParseBasedOnName:selectedJoke.name];
+        [pdm deleteJokeFromParseBasedOnName:JokeCD.name];
     }
-    
-    
-    //#3 and then delete from Core Data
-    [self.managedObjectContext deleteObject:correspondingCDJoke];
-    [self saveChangesInContextCoreData];
-    
-}
-
-- (void) deleteJokeFromParseBasedOnId: (NSString *) objectId {
-    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
-    [query getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
-        if (!object) {
-            NSLog(@"From deletion: Couldn't find corresponding PFObject based on objectId");
-        }
-        else {
-            [object deleteEventually];
-        }
-    }];
-}
-
-- (void) deleteJokeFromParseBasedOnName: (NSString *) jokeName {
-    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
-    [query whereKey:@"name" equalTo:jokeName];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        NSLog(@"Deleting joke %@ by name from Parse", jokeName);
-        PFObject *object = objects[0];
-        [object deleteEventually];
-    }];
 }
 
 
@@ -292,7 +273,11 @@
     //First we remove from our presentation layer
     [self.sets removeObjectAtIndex:indexPath.row];
     
-    //Then we remove from core Data layer
+    //Second, we remove from Parse layer
+    ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];
+    [pdm deleteSet: correspondingCDSet];
+    
+    //Third we remove from core Data layer
     [self.managedObjectContext deleteObject:correspondingCDSet];
     [self saveChangesInContextCoreData];
 }

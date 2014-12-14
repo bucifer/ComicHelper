@@ -43,7 +43,10 @@
 - (void) editJokeInParse: (JokeCD *) joke matchString:(NSString *)matchNameString;
 - (void) reorderJokesInSetForParse: (SetCD*) reorderedSet newOrderedArrayOfJokes:(NSMutableArray *) newOrderedArrayOfJokes;
 
-
+//Deletion Related
+- (void) deleteJokeFromParseBasedOnId: (NSString *) objectId;
+- (void) deleteJokeFromParseBasedOnName: (NSString *) jokeName;
+- (void) deleteSet: (SetCD *) setCD;
 
 @end
 

@@ -316,6 +316,40 @@
 }
 
 
+#pragma mark Deletion Related
+
+- (void) deleteJokeFromParseBasedOnId: (NSString *) objectId {
+    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+    [query getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"From deletion: Couldn't find corresponding PFObject based on objectId");
+        }
+        else {
+            [object deleteEventually];
+        }
+    }];
+}
+
+- (void) deleteJokeFromParseBasedOnName: (NSString *) jokeName {
+    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+    [query whereKey:@"name" equalTo:jokeName];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        NSLog(@"Deleting joke %@ by name from Parse", jokeName);
+        PFObject *object = objects[0];
+        [object deleteEventually];
+    }];
+}
+
+- (void) deleteSet:(SetCD *)setCD {
+    PFQuery *query = [PFQuery queryWithClassName:@"Set"];
+    [query whereKey:@"name" equalTo:setCD.name];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        PFObject *object = objects[0];
+        [object deleteEventually];
+    }];
+}
+
 
 
 #pragma mark MISCELLANEOUS

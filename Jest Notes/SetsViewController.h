@@ -13,4 +13,10 @@
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
+
+
+- (void) receiveParseSetsFetchDoneNotification:(NSNotification *) notification;
+
+
+
 @end
