@@ -9,10 +9,9 @@
 #import "CreateJokeViewController.h"
 #import "Joke.h"
 #import "JokeCD.h"
+#import <TPKeyboardAvoidingScrollView.h>
 
-@interface CreateJokeViewController () {
-    UITextField *activeField;
-}
+@interface CreateJokeViewController ()
 
 @end
 
@@ -169,6 +168,8 @@
     [textField resignFirstResponder];
     return NO;
 }
+
+
 
 
 

@@ -167,10 +167,10 @@
             </objects>
             <point key="canvasLocation" x="1182" y="-1278"/>
         </scene>
-        <!--Create New Joke-->
+        <!--CreateJokeViewController-->
         <scene sceneID="8ae-Ql-Nzv">
             <objects>
-                <viewController storyboardIdentifier="CreateViewController" title="Create New Joke" id="D7d-fq-uW8" customClass="CreateJokeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateViewController" title="CreateJokeViewController" id="D7d-fq-uW8" customClass="CreateJokeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pdN-MC-MBs"/>
                         <viewControllerLayoutGuide type="bottom" id="ems-Yy-lNg"/>
@@ -179,7 +179,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3J-Xy-RQ8">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3J-Xy-RQ8" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="026-p6-Q9y">
