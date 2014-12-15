@@ -29,10 +29,23 @@
 }
 
 - (void) displayMostRecentJokeForUI {
+    
     self.nameField.text = self.joke.name;
-    self.lengthMinField.text = [NSString stringWithFormat:@"%d", (self.joke.length / 60)];
+    
+    self.lengthMinField.delegate = self;
+    self.lengthSecondsField.delegate = self;
+    
+    if (self.joke.length / 60 == 0) {
+        self.lengthMinField.text = nil;
+    }
+    else {
+        self.lengthMinField.text = [NSString stringWithFormat:@"%d", (self.joke.length / 60)];
+    }
+    
     self.lengthSecondsField.text = [NSString stringWithFormat:@"%d", (self.joke.length % 60)];
-    self.scoreField.text = [self quickStringFromInt:self.joke.score];
+    
+    self.scoreOutOfTenLabel.text = [NSString stringWithFormat:@"Joke Score (%d out of 10)", self.joke.score];
+    self.scoreSlider.value = (float) self.joke.score;
     
     self.bodyTextView.text = self.joke.bodyText;
     self.bodyTextView.layer.borderWidth = 2;
@@ -42,17 +55,26 @@
     self.writeDatePicker.date = self.joke.writeDate;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    textField.text = nil;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
+- (IBAction)sliderValueChanged:(id)sender {
+    self.scoreOutOfTenLabel.text = [NSString stringWithFormat:@"Joke Score (%d out of 10)", (int) self.scoreSlider.value];
+}
+
 - (IBAction)saveButtonAction:(id)sender {
     NSString *tempOldNameStringForParseMatching = self.joke.name;
     
     NSString *changedName = self.nameField.text;
-    NSString *changedScore = self.scoreField.text;
+    NSString *changedScore = [[NSNumber numberWithFloat:self.scoreSlider.value] stringValue];
     NSString *changedMinuteLength = self.lengthMinField.text;
     NSString *changedSecondsLength = self.lengthSecondsField.text;
     
@@ -89,7 +111,6 @@
     [self.nameField resignFirstResponder];
     [self.lengthMinField resignFirstResponder];
     [self.lengthSecondsField resignFirstResponder];
-    [self.scoreField resignFirstResponder];
     [self.bodyTextView resignFirstResponder];
 }
 

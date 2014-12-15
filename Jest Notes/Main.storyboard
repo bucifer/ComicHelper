@@ -196,8 +196,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Body Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjx-OW-BSW" userLabel="jokeBodyTextLabel">
-                                        <rect key="frame" x="20" y="87" width="119" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write your Joke here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjx-OW-BSW" userLabel="jokeBodyTextLabel">
+                                        <rect key="frame" x="20" y="87" width="158" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -581,19 +581,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Score (out of 10)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWU-gs-xyT">
-                                        <rect key="frame" x="20" y="148" width="181" height="21"/>
+                                        <rect key="frame" x="20" y="148" width="250" height="21"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="bqs-Ln-mdL"/>
                                             <constraint firstAttribute="width" constant="181" id="cEh-7z-rdn"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="cEh-7z-rdn"/>
+                                            </mask>
+                                        </variation>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kIw-xU-7Uy" userLabel="ScoreTextField">
-                                        <rect key="frame" x="20" y="177" width="64" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Body Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVt-TM-XzP">
                                         <rect key="frame" x="20" y="215" width="128" height="21"/>
                                         <constraints>
@@ -643,6 +644,12 @@
                                             </mask>
                                         </variation>
                                     </textView>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="eMd-YZ-Fz0">
+                                        <rect key="frame" x="18" y="177" width="390" height="31"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="Cna-bj-bpX" eventType="valueChanged" id="S1X-Sd-9ox"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="tXW-rB-yKn" firstAttribute="leading" secondItem="NzH-Ix-onF" secondAttribute="leading" constant="20" id="1CG-rg-V7u"/>
@@ -650,29 +657,28 @@
                                     <constraint firstItem="vyE-IP-8do" firstAttribute="leading" secondItem="kPC-7X-C8s" secondAttribute="leading" id="1Zs-U2-Rxd"/>
                                     <constraint firstItem="tXW-rB-yKn" firstAttribute="top" secondItem="NzH-Ix-onF" secondAttribute="top" constant="10" id="6ed-Ya-ubc"/>
                                     <constraint firstItem="PPm-7c-gDC" firstAttribute="top" secondItem="kPC-7X-C8s" secondAttribute="bottom" constant="90" id="7L0-fe-hau"/>
+                                    <constraint firstItem="rVt-TM-XzP" firstAttribute="top" secondItem="eMd-YZ-Fz0" secondAttribute="bottom" constant="8" symbolic="YES" id="8H3-Vr-Z2Z"/>
                                     <constraint firstAttribute="trailing" secondItem="vyE-IP-8do" secondAttribute="trailing" constant="30" id="8r6-C3-FxX"/>
                                     <constraint firstAttribute="bottom" secondItem="PPm-7c-gDC" secondAttribute="bottom" constant="639" id="9hU-2B-qW6"/>
-                                    <constraint firstItem="kIw-xU-7Uy" firstAttribute="top" secondItem="WWU-gs-xyT" secondAttribute="bottom" constant="8" symbolic="YES" id="Bvp-C3-2lJ"/>
                                     <constraint firstItem="vyE-IP-8do" firstAttribute="top" secondItem="rVt-TM-XzP" secondAttribute="bottom" constant="8" symbolic="YES" id="H2O-kw-W62"/>
                                     <constraint firstItem="kPC-7X-C8s" firstAttribute="leading" secondItem="NzH-Ix-onF" secondAttribute="leading" constant="23" id="H6k-Qh-qcw"/>
                                     <constraint firstItem="PPm-7c-gDC" firstAttribute="leading" secondItem="NzH-Ix-onF" secondAttribute="leading" id="Jeb-GP-dx2"/>
                                     <constraint firstItem="hh9-DN-gkF" firstAttribute="top" secondItem="a5a-pk-xcL" secondAttribute="bottom" constant="12" id="Kkp-yg-0qe"/>
-                                    <constraint firstItem="WWU-gs-xyT" firstAttribute="leading" secondItem="kIw-xU-7Uy" secondAttribute="leading" id="KlM-J0-Ply"/>
                                     <constraint firstAttribute="trailing" secondItem="vyE-IP-8do" secondAttribute="trailing" constant="180" id="LA0-No-63U"/>
                                     <constraint firstItem="PPm-7c-gDC" firstAttribute="top" secondItem="kPC-7X-C8s" secondAttribute="bottom" constant="13" id="Lff-wY-PfY"/>
+                                    <constraint firstItem="eMd-YZ-Fz0" firstAttribute="trailing" secondItem="NzH-Ix-onF" secondAttribute="trailingMargin" id="MCA-BK-tmP"/>
                                     <constraint firstAttribute="bottom" secondItem="vyE-IP-8do" secondAttribute="bottom" constant="838" id="MEI-mY-PGe"/>
+                                    <constraint firstItem="rVt-TM-XzP" firstAttribute="leading" secondItem="eMd-YZ-Fz0" secondAttribute="leading" id="Na9-Fd-yL8"/>
                                     <constraint firstAttribute="trailing" secondItem="vyE-IP-8do" secondAttribute="trailing" constant="7" id="NuQ-cx-Wgt"/>
                                     <constraint firstItem="5Xr-Zk-akK" firstAttribute="leading" secondItem="rtz-za-ekv" secondAttribute="trailing" constant="8" symbolic="YES" id="QW1-Id-anL"/>
                                     <constraint firstItem="InT-6R-Ang" firstAttribute="top" secondItem="a5a-pk-xcL" secondAttribute="bottom" constant="8" symbolic="YES" id="RV3-7B-wxe"/>
-                                    <constraint firstItem="rVt-TM-XzP" firstAttribute="top" secondItem="kIw-xU-7Uy" secondAttribute="bottom" constant="8" symbolic="YES" id="T3D-hP-kL8"/>
                                     <constraint firstItem="hh9-DN-gkF" firstAttribute="leading" secondItem="InT-6R-Ang" secondAttribute="trailing" constant="8" symbolic="YES" id="TyM-ny-106"/>
                                     <constraint firstItem="PPm-7c-gDC" firstAttribute="top" secondItem="kPC-7X-C8s" secondAttribute="bottom" constant="8" symbolic="YES" id="UMr-nc-lk8"/>
-                                    <constraint firstItem="rVt-TM-XzP" firstAttribute="leading" secondItem="kIw-xU-7Uy" secondAttribute="leading" id="Ubz-E6-m54"/>
                                     <constraint firstItem="WWU-gs-xyT" firstAttribute="top" secondItem="InT-6R-Ang" secondAttribute="bottom" constant="8" symbolic="YES" id="Ujk-kJ-eGh"/>
                                     <constraint firstItem="kPC-7X-C8s" firstAttribute="top" secondItem="vyE-IP-8do" secondAttribute="bottom" constant="8" symbolic="YES" id="W8L-1e-o9E"/>
                                     <constraint firstItem="vyE-IP-8do" firstAttribute="leading" secondItem="rVt-TM-XzP" secondAttribute="leading" id="XwJ-G1-3x5"/>
+                                    <constraint firstItem="rVt-TM-XzP" firstAttribute="leading" secondItem="WWU-gs-xyT" secondAttribute="leading" id="Yhr-Mp-XHr"/>
                                     <constraint firstAttribute="trailing" secondItem="vyE-IP-8do" secondAttribute="trailing" constant="30" id="Z7V-S2-r7o"/>
-                                    <constraint firstItem="kIw-xU-7Uy" firstAttribute="trailing" secondItem="InT-6R-Ang" secondAttribute="trailing" id="Zuh-La-ElY"/>
                                     <constraint firstItem="PPm-7c-gDC" firstAttribute="leading" secondItem="vyE-IP-8do" secondAttribute="leading" id="a4n-M0-zap"/>
                                     <constraint firstItem="hh9-DN-gkF" firstAttribute="baseline" secondItem="5Xr-Zk-akK" secondAttribute="baseline" id="bIv-QH-8jy"/>
                                     <constraint firstItem="tXW-rB-yKn" firstAttribute="leading" secondItem="2Wg-Fp-uta" secondAttribute="leading" id="bd7-ew-kd4"/>
@@ -681,6 +687,7 @@
                                     <constraint firstItem="a5a-pk-xcL" firstAttribute="leading" secondItem="2Wg-Fp-uta" secondAttribute="leading" id="eKX-yY-pg3"/>
                                     <constraint firstItem="vyE-IP-8do" firstAttribute="centerX" secondItem="NzH-Ix-onF" secondAttribute="centerX" id="eW2-cf-i6q"/>
                                     <constraint firstItem="a5a-pk-xcL" firstAttribute="leading" secondItem="InT-6R-Ang" secondAttribute="leading" id="gZ3-hO-pOZ"/>
+                                    <constraint firstItem="rVt-TM-XzP" firstAttribute="top" secondItem="NzH-Ix-onF" secondAttribute="top" constant="215" id="gw0-fE-wZM"/>
                                     <constraint firstAttribute="trailing" secondItem="vyE-IP-8do" secondAttribute="trailing" constant="219" id="r3k-mT-eNY"/>
                                     <constraint firstItem="InT-6R-Ang" firstAttribute="leading" secondItem="WWU-gs-xyT" secondAttribute="leading" id="sBv-vT-xHd"/>
                                     <constraint firstItem="vyE-IP-8do" firstAttribute="leading" secondItem="NzH-Ix-onF" secondAttribute="leading" constant="7" id="sYT-ag-aTe"/>
@@ -741,7 +748,8 @@
                         <outlet property="lengthMinField" destination="InT-6R-Ang" id="K0g-5p-sSV"/>
                         <outlet property="lengthSecondsField" destination="rtz-za-ekv" id="h6C-4u-lIO"/>
                         <outlet property="nameField" destination="2Wg-Fp-uta" id="qxx-Kn-AD7"/>
-                        <outlet property="scoreField" destination="kIw-xU-7Uy" id="y1x-DM-biP"/>
+                        <outlet property="scoreOutOfTenLabel" destination="WWU-gs-xyT" id="2EN-jq-3IV"/>
+                        <outlet property="scoreSlider" destination="eMd-YZ-Fz0" id="59c-fF-NK9"/>
                         <outlet property="writeDatePicker" destination="PPm-7c-gDC" id="PnF-QU-S6a"/>
                     </connections>
                 </viewController>

@@ -364,19 +364,6 @@
     }
 }
 
-//might not need below since Parse's saveEventually and deleteEventually take care of this
-
-//- (void) pushAnyUnsynchedCoreDataJokesToParse {
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    [fetchRequest setEntity: entity];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectID = nil"];
-//    [fetchRequest setPredicate:predicate];
-//    NSError *error = nil;
-//    
-//    NSArray *fetchedArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//    NSLog(fetchedArray.description);
-//}
 
 
 

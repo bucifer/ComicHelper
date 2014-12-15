@@ -18,11 +18,15 @@
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UITextField *lengthMinField;
 @property (strong, nonatomic) IBOutlet UITextField *lengthSecondsField;
-@property (strong, nonatomic) IBOutlet UITextField *scoreField;
 @property (strong, nonatomic) IBOutlet UIDatePicker *writeDatePicker;
+@property (strong, nonatomic) IBOutlet UISlider *scoreSlider;
+@property (strong, nonatomic) IBOutlet UITextView *bodyTextView;
+
+
+@property (strong, nonatomic) IBOutlet UILabel *scoreOutOfTenLabel;
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 
-@property (strong, nonatomic) IBOutlet UITextView *bodyTextView;
+- (IBAction)sliderValueChanged:(id)sender;
 
 - (IBAction)saveButtonAction:(id)sender;
 
