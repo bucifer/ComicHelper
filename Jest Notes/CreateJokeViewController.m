@@ -10,7 +10,9 @@
 #import "Joke.h"
 #import "JokeCD.h"
 
-@interface CreateJokeViewController ()
+@interface CreateJokeViewController () {
+    UITextField *activeField;
+}
 
 @end
 
@@ -20,8 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
-    // Do any additional setup after loading the view.
+    
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -29,6 +31,7 @@
     
     self.jokeBodyTextView.layer.borderWidth = 2;
     self.jokeBodyTextView.layer.borderColor = [[UIColor blackColor] CGColor];
+    
     
     self.nameField.delegate = self;
     self.lengthMinField.delegate = self;
@@ -42,6 +45,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+
+
+
 
 
 - (IBAction)createNewJokeAction:(id)sender {
@@ -139,11 +148,11 @@
 }
 
 
+#pragma mark Keyboard Delegate Methods
 
-
-#pragma mark Keyboard and TextView Delegate methods
 
 -(void)dismissKeyboard {
+    //dismiss On Tap Somewhere Else
     [self.nameField resignFirstResponder];
     [self.lengthMinField resignFirstResponder];
     [self.lengthSecondsField resignFirstResponder];
@@ -153,15 +162,13 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     textField.placeholder = nil;
-    CGPoint scrollPoint = CGPointMake(0, self.scoreField.frame.origin.y-220);
-    [self.myScrollView setContentOffset:scrollPoint animated:YES];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    textField.placeholder = @"tap";
-    [self.myScrollView setContentOffset:CGPointZero animated:YES];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return NO;
 }
-
 
 
 

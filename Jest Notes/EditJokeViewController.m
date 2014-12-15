@@ -25,15 +25,16 @@
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
+    self.nameField.delegate = self;
+    self.lengthMinField.delegate = self;
+    self.lengthSecondsField.delegate = self;
+    
     [self displayMostRecentJokeForUI];
 }
 
 - (void) displayMostRecentJokeForUI {
     
     self.nameField.text = self.joke.name;
-    
-    self.lengthMinField.delegate = self;
-    self.lengthSecondsField.delegate = self;
     
     if (self.joke.length / 60 == 0) {
         self.lengthMinField.text = nil;
@@ -55,9 +56,7 @@
     self.writeDatePicker.date = self.joke.writeDate;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    textField.text = nil;
-}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -95,15 +94,6 @@
 }
 
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 #pragma mark Keyboard and TextView Delegate methods
 
@@ -112,6 +102,17 @@
     [self.lengthMinField resignFirstResponder];
     [self.lengthSecondsField resignFirstResponder];
     [self.bodyTextView resignFirstResponder];
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    textField.placeholder = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return NO;
 }
 
 @end
