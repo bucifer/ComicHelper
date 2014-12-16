@@ -31,7 +31,9 @@
         loginViewController.fields = (PFLogInFieldsUsernameAndPassword
                        | PFLogInFieldsLogInButton
                        | PFLogInFieldsSignUpButton
+                       |  PFLogInFieldsFacebook
                        | PFLogInFieldsPasswordForgotten);
+        [loginViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
         
         // Create the sign up view controller
         PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];

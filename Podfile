@@ -4,6 +4,9 @@
 target 'Jest Notes' do
 
 pod 'TPKeyboardAvoiding'
+pod 'Parse', '~> 1.4'
+pod 'ParseFacebookUtils', '~> 1.4'
+pod 'Facebook-iOS-SDK', '~> 3.19'
 
 end
 
