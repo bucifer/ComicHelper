@@ -10,6 +10,7 @@
 #import "HomeTabBarController.h"
 #import "LoginViewController.h"
 
+
 @interface DefaultSettingsViewController ()
 
 @end
@@ -25,13 +26,14 @@
     [super viewDidAppear:animated];
     
     if (![PFUser currentUser]) { // No user logged in
+        
         // Create the log in view controller
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         [loginViewController setDelegate:self]; // Set ourselves as the delegate
         loginViewController.fields = (PFLogInFieldsUsernameAndPassword
                        | PFLogInFieldsLogInButton
                        | PFLogInFieldsSignUpButton
-                       |  PFLogInFieldsFacebook
+//                       | PFLogInFieldsFacebook
                        | PFLogInFieldsPasswordForgotten);
         [loginViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
         
@@ -43,10 +45,12 @@
         [loginViewController setSignUpController:signUpViewController];
         
         // Present the log in view controller
-        [self presentViewController:loginViewController animated:YES completion:NULL];
+        [self presentViewController:loginViewController animated:NO completion:NULL];
     }
+    
     else {
-        NSLog(@"User Login Credentials already Authorized - logging in user now automatically at viewDidAppear");
+
+        //if a user IS already logged in
         [self performSegueWithIdentifier:@"successLoginSegue" sender:nil];
    
     }
@@ -72,10 +76,11 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    
     NSLog(@"successful log in through parse");
-    HomeTabBarController *htbc = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeTabBarController"];
-    [self presentViewController:htbc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:NULL];
+    [self performSegueWithIdentifier:@"successLoginSegue" sender:self];
+    
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -118,10 +123,9 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    HomeTabBarController *htbc = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeTabBarController"];
-    [self presentViewController:htbc animated:YES completion:nil];
     
+    [self dismissViewControllerAnimated:NO completion:NULL];
+    [self performSegueWithIdentifier:@"successLoginSegue" sender:self];
 }
 
 // Sent to the delegate when the sign up attempt fails.

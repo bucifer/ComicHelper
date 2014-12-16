@@ -50,8 +50,9 @@
     //Parse Related
     ParseDataManager *myParseDataManager = [ParseDataManager sharedParseDataManager];
     myParseDataManager.managedObjectContext = self.managedObjectContext;
+    myParseDataManager.delegate = hvc;
     hvc.parseDataManager = myParseDataManager;
-    
+
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"]];
     NSString *applicationId = [dictionary objectForKey:@"parseAppID"];
     NSString *clientKey = [dictionary objectForKey:@"parseClientKey"];
@@ -61,9 +62,7 @@
     [PFFacebookUtils initializeFacebook];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    myParseDataManager.delegate = hvc;
-    [myParseDataManager fetchAllParseJokesAsynchronously];
-    [myParseDataManager fetchAllParseSets];
+
 
     
     return YES;

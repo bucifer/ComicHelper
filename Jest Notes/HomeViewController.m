@@ -31,7 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.parseDataManager fetchAllParseJokesAsynchronously];
+    [self.parseDataManager fetchAllParseSets];
     [self.jokeDataManager appInitializationLogic];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;

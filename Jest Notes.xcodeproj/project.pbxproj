@@ -25,6 +25,7 @@
 		AACDCD1B1A312C2300FEF4F2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACDCD1A1A312C2300FEF4F2 /* StoreKit.framework */; };
 		AACDCD1D1A312C2A00FEF4F2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACDCD1C1A312C2A00FEF4F2 /* SystemConfiguration.framework */; };
 		AACDCD1F1A312D0B00FEF4F2 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */; };
+		AAD05C4F1A40B50800BACD7C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C4E1A40B50800BACD7C /* SettingsViewController.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
@@ -92,6 +93,8 @@
 		AACDCD1A1A312C2300FEF4F2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AACDCD1C1A312C2A00FEF4F2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		AAD05C4D1A40B50800BACD7C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AAD05C4E1A40B50800BACD7C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2772A1A07DC81002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2772B1A07DC81002AA22B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -233,7 +236,7 @@
 		AAD277281A07DC81002AA22B /* Jest Notes */ = {
 			isa = PBXGroup;
 			children = (
-				AADCA55F1A3FA0CD00948AD9 /* Authentication */,
+				AADCA55F1A3FA0CD00948AD9 /* Authentication & Settings */,
 				AAD2772D1A07DC81002AA22B /* AppDelegate.h */,
 				AAD2772E1A07DC82002AA22B /* AppDelegate.m */,
 				AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */,
@@ -342,15 +345,17 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		AADCA55F1A3FA0CD00948AD9 /* Authentication */ = {
+		AADCA55F1A3FA0CD00948AD9 /* Authentication & Settings */ = {
 			isa = PBXGroup;
 			children = (
 				AADCA55C1A3FA0C700948AD9 /* DefaultSettingsViewController.h */,
 				AADCA55D1A3FA0C700948AD9 /* DefaultSettingsViewController.m */,
 				AADCA5641A3FA8AB00948AD9 /* LoginViewController.h */,
 				AADCA5651A3FA8AB00948AD9 /* LoginViewController.m */,
+				AAD05C4D1A40B50800BACD7C /* SettingsViewController.h */,
+				AAD05C4E1A40B50800BACD7C /* SettingsViewController.m */,
 			);
-			name = Authentication;
+			name = "Authentication & Settings";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -499,6 +504,7 @@
 				AAD277681A07DCED002AA22B /* CreateJokeViewController.m in Sources */,
 				AAD277691A07DCED002AA22B /* EditJokeViewController.m in Sources */,
 				AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */,
+				AAD05C4F1A40B50800BACD7C /* SettingsViewController.m in Sources */,
 				AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
 				AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */,
 				AAD2776C1A07DCED002AA22B /* Joke.m in Sources */,
