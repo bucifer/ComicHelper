@@ -61,16 +61,16 @@
     }
     
     NSString *jokeScore = self.scoreField.text;
-    if ([self scoreInputInvalid:jokeScore]) {
-        return;
-        //cuts off the entire IBAction if the alert ever goes up
-    }
+//    if ([self scoreInputInvalid:jokeScore]) {
+//        return;
+//        //cuts off the entire IBAction if the alert ever goes up
+//    }
     
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.writeDatePicker.date;
     
-    //When you create a new joke, first you add one to the Presentation Laye by adding it to the  DAO
+    //When you create a new joke, first you add one to the Presentation Layer by adding it to the  DAO
     Joke *newJoke = [[Joke alloc]init];
     newJoke.name = jokeName;
     newJoke.score = [jokeScore intValue];

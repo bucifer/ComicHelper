@@ -34,6 +34,7 @@
                        | PFLogInFieldsLogInButton
                        | PFLogInFieldsSignUpButton
 //                       | PFLogInFieldsFacebook
+                                      //will hold on Facebook login until I can get the web application working with regular PFUsers
                        | PFLogInFieldsPasswordForgotten);
         [loginViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
         
