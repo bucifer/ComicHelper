@@ -6,10 +6,9 @@
 *.gif
 *.mp3
 *.wav
-*.json
+*.json	
 
-I	
-
+Jest Notes/Images.xcassets/
 Jest Notes/Keys.plist
 
 # Xcode

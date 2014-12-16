@@ -14,6 +14,7 @@
 #import <Parse/Parse.h>
 #import "ParseDataManager.h"
 #import "HomeTabBarController.h"
+#import "DefaultSettingsViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    HomeTabBarController *myTabBarController = (HomeTabBarController *) self.window.rootViewController;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    HomeTabBarController *myTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabBarController"];
     
     JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
     myJokeDatamanager.managedObjectContext = self.managedObjectContext;
@@ -57,11 +59,10 @@
                   clientKey:clientKey];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-
-    
     myParseDataManager.delegate = hvc;
     [myParseDataManager fetchAllParseJokesAsynchronously];
     [myParseDataManager fetchAllParseSets];
+
     
     return YES;
 }

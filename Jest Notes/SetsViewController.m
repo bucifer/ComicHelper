@@ -79,7 +79,7 @@
     }
     
     Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", indexPath.row + 1,set.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"#%i. %@", indexPath.row + 1,set.name];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/dd/yy"];
