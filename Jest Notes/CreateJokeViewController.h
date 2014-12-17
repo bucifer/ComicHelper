@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
 
-@interface CreateJokeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
+@class JokeDataManager;
+
+
+@interface CreateJokeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UITextField *lengthMinField;

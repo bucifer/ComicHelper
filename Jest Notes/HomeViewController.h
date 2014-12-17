@@ -11,6 +11,17 @@
 #import "JokeDataManager.h"
 #import "ParseDataManager.h"
 #import <Parse/Parse.h>
+#import "CreateJokeViewController.h"
+#import "SingleJokeViewController.h"
+#import "MultiJokesSelectionController.h"
+#import "Joke.h"
+#import "JokeCD.h"
+#import "JokeParse.h"
+#import "JokeCustomCell.h"
+#import "Set.h"
+#import "SetsViewController.h"
+#import "HomeTabBarController.h"
+#import "NSObject+NSObject___TerryConvenience.h"
 
 
 @class JokeDataManager;
@@ -19,7 +30,6 @@
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 @property (strong, nonatomic) ParseDataManager *parseDataManager;
-
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteBarButton;

@@ -7,15 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import <CoreData/CoreData.h>
-#import "HomeViewController.h"
-#import "JokeDataManager.h"
-#import "SetsViewController.h"
 #import <Parse/Parse.h>
 #import "ParseDataManager.h"
-#import "HomeTabBarController.h"
-#import "DefaultSettingsViewController.h"
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+//#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface AppDelegate ()
 
@@ -26,32 +20,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    HomeTabBarController *myTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabBarController"];
-    
-    JokeDataManager *myJokeDatamanager = [[JokeDataManager alloc]init];
-    myJokeDatamanager.managedObjectContext = self.managedObjectContext;
-    
-    UINavigationController *firstNavController = myTabBarController.viewControllers[0];
-    HomeViewController *hvc = (HomeViewController *) firstNavController.topViewController;
-    
-    hvc.jokeDataManager = myJokeDatamanager;
-    myJokeDatamanager.hvc = hvc;
-    
-    UINavigationController *secondNavController = myTabBarController.viewControllers[1];
-    SetsViewController *svc = (SetsViewController *) secondNavController.topViewController;
-    svc.jokeDataManager = myJokeDatamanager;
-    [[NSNotificationCenter defaultCenter] addObserver:svc
-                                             selector:@selector(receiveParseSetsFetchDoneNotification:)
-                                                 name:@"ParseSetsFetchDone"
-                                               object:nil];
-    
-    //Parse Related
-    ParseDataManager *myParseDataManager = [ParseDataManager sharedParseDataManager];
-    myParseDataManager.managedObjectContext = self.managedObjectContext;
-    myParseDataManager.delegate = hvc;
-    hvc.parseDataManager = myParseDataManager;
 
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"]];
     NSString *applicationId = [dictionary objectForKey:@"parseAppID"];
@@ -59,29 +27,33 @@
     
     [Parse setApplicationId:applicationId
                   clientKey:clientKey];
-    [PFFacebookUtils initializeFacebook];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
 
-
+    //    [PFFacebookUtils initializeFacebook];
     
+    //Set up Roles
+    PFACL *defaultACL = [PFACL ACL];
+    [defaultACL setPublicReadAccess:NO];
+    [defaultACL setPublicWriteAccess:NO];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+
     return YES;
 }
 
 
 //Facebook Login/Signup specific handlers
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    return [FBAppCall handleOpenURL:url
-                  sourceApplication:sourceApplication
-                        withSession:[PFFacebookUtils session]];
-}
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication
+//         annotation:(id)annotation {
+//    return [FBAppCall handleOpenURL:url
+//                  sourceApplication:sourceApplication
+//                        withSession:[PFFacebookUtils session]];
+//}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+//    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

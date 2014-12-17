@@ -12,6 +12,9 @@
 #import "JokeCD.h"
 
 
+@class JokeDataManager;
+
+
 @interface SingleJokeViewController : UIViewController
 
 

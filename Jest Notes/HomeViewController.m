@@ -7,15 +7,7 @@
 //
 
 #import "HomeViewController.h"
-#import "CreateJokeViewController.h"
-#import "SingleJokeViewController.h"
-#import "Joke.h"
-#import "JokeCD.h"
-#import "Set.h"
-#import "JokeCustomCell.h"
-#import "NSObject+NSObject___TerryConvenience.h"
-#import "MultiJokesSelectionController.h"
-#import "JokeParse.h"
+
 
 @interface HomeViewController ()
 
@@ -32,42 +24,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-    
-    
-    
-    
-    
-    [self.parseDataManager fetchAllParseJokesAsynchronously];
-    [self.parseDataManager fetchAllParseSets];
+    [self initializeParseMagicAndFetchAll];
     [self.jokeDataManager appInitializationLogic];
     
+    [self setUpInterfaceAndNavButtons];
+    [self setUpRefreshControlOnPullDown];
+
+}
+
+- (void) setUpInterfaceAndNavButtons {
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
-
     UIBarButtonItem *addJokeButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"pen"] style:UIBarButtonItemStyleDone target:self action:@selector(addJokeButtonAction)];
     
     UIBarButtonItem *addSetButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"set"] style:UIBarButtonItemStyleDone  target:self action:@selector(addSetButtonAction)];
-
+    
     addJokeButton.imageInsets = UIEdgeInsetsMake(0, 3, 1.5, 0);
     addSetButton.imageInsets = UIEdgeInsetsMake(0.75, 0, 0, 3);
-
+    
     NSArray *buttonArray = [NSArray arrayWithObjects:addSetButton, addJokeButton, nil];
     self.navigationItem.rightBarButtonItems = buttonArray;
-    
+}
 
+- (void) setUpRefreshControlOnPullDown {
     //Refresh on pull-down
     UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 20, 20)];
     [self.tableView insertSubview:refreshView atIndex:0];
     refreshControl = [[UIRefreshControl alloc] init];
-//    refreshControl.tintColor = [UIColor blueColor];
+    //    refreshControl.tintColor = [UIColor blueColor];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [refreshView addSubview:refreshControl];
-
-    
 }
 
+
+- (void) initializeParseMagicAndFetchAll {
+    //Parse Related
+    ParseDataManager *myParseDataManager = [ParseDataManager sharedParseDataManager];
+    myParseDataManager.managedObjectContext = self.jokeDataManager.managedObjectContext;
+    myParseDataManager.delegate = self;
+    self.parseDataManager = myParseDataManager;
+    [self.parseDataManager fetchAllParseJokesAsynchronously];
+    [self.parseDataManager fetchAllParseSets];
+}
+
+//For the UIFReshControl's action on pull-down
 -(void)refreshData
 {
     //update here...
@@ -103,7 +103,7 @@
 }
 
 - (void)parseDataManagerDidFinishSynchingCoreDataWithParse {
-    NSLog(@"Parse Data Manager finished synching all parse jokes ... reporting from homeview");
+    NSLog(@"Parse Data Manager finished syncing all parse jokes ... reporting from homeview");
     [self.jokeDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
 }

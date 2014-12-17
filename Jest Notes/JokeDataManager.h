@@ -10,9 +10,13 @@
 #import <CoreData/CoreData.h>
 #import "Joke.h"
 #import "JokeCD.h"
-#import "HomeViewController.h"
+#import "JokeParse.h"
 #import "SetCD.h"
 #import "Set.h"
+#import "ParseDataManager.h"
+#import <Parse/Parse.h>
+#import "HomeViewController.h"
+
 
 @class HomeViewController;
 
@@ -23,7 +27,6 @@
 
 @property (nonatomic, strong) NSMutableArray *jokes;
 @property (nonatomic, strong) NSMutableArray *sets;
-@property (nonatomic, strong) HomeViewController *hvc;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (weak, nonatomic) id <JokeDataManagerDelegate> delegate;

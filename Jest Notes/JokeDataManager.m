@@ -7,9 +7,7 @@
 //
 
 #import "JokeDataManager.h"
-#import "ParseDataManager.h"
-#import "JokeParse.h"
-#import <Parse/Parse.h>
+
 
 @implementation JokeDataManager
 
@@ -27,7 +25,6 @@
 
 #pragma mark Initialization Logic
 - (void) appInitializationLogic {
-    //Let's do initialization logic
     //If it's the first time you are running the app, we don't do anything
     //If it's not the first time you are running the app, we get everything from Core Data and turn them into presentation layer jokes
     
@@ -44,7 +41,6 @@
         //this is NOT the first launch ... Fetch Jokesfrom Core Data
         NSArray *fetchedJokesFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"JokeCD"];
         self.jokes = [self convertCoreDataJokesArrayIntoPresentationLayer:fetchedJokesFromCD];
-        [self.hvc.tableView reloadData];
         
         //taking care of fetching SETS now
         NSArray *fetchedSetsFromCD = [self fetchAndReturnArrayOfCDObjectWithEntityName:@"SetCD"];

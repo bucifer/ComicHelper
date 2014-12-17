@@ -36,6 +36,7 @@
 - (void) fetchAllParseJokesAsynchronously {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu jokes from Parse server", (unsigned long)objects.count);
@@ -53,6 +54,8 @@
 
 - (void) fetchAllParseSets {
     PFQuery *query = [PFQuery queryWithClassName:@"Set"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu Sets from Parse server", (unsigned long)objects.count);
@@ -241,6 +244,9 @@
     newJokeParse.length = newJoke.length;
     newJokeParse.writeDate = newJoke.writeDate;
     newJokeParse.bodyText = newJoke.bodyText;
+    
+    PFUser *user = [PFUser currentUser];
+    newJokeParse[@"user"] = user;
 
     [newJokeParse saveEventually:^(BOOL succeeded, NSError *error) {
         NSLog(@"Joke name: %@  was sent to Parse - finally got saved", newJoke.name);
@@ -265,6 +271,8 @@
     }
     
     newSetParse.jokes = [namesArray copy];
+    
+    newSetParse[@"user"] = [PFUser currentUser];
     
     [newSetParse saveEventually:^(BOOL succeeded, NSError *error) {
         NSLog(@"Set name: %@  was sent to Parse - finally got saved", newSet.name);

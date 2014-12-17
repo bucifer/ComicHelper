@@ -7,6 +7,8 @@
 //
 
 #import "HomeTabBarController.h"
+#import "SetsViewController.h"
+#import "JokeDataManager.h"
 
 @interface HomeTabBarController ()
 
@@ -16,7 +18,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setUpSwipeGestureFunctionalityForMovingAcrossPages];
+    //soon to be removed if you ever implement that pageviewcontrol instead
+    
+    [self initializationLogic];
+
+}
+
+- (void) initializationLogic {
+    JokeDataManager *jokeDataManager = [[JokeDataManager alloc]init];
+    
+    id appDelegate = (id)[[UIApplication sharedApplication] delegate];
+    jokeDataManager.managedObjectContext = [appDelegate managedObjectContext];
+    
+    UINavigationController *firstNavController = self.viewControllers[0];
+    HomeViewController *hvc = (HomeViewController *) firstNavController.topViewController;
+    hvc.jokeDataManager = jokeDataManager;
+    
+    UINavigationController *secondNavController = self.viewControllers[1];
+    SetsViewController *svc = (SetsViewController *) secondNavController.topViewController;
+    svc.jokeDataManager = jokeDataManager;
+    
+    [self addUniqueObserver:svc selector:@selector(receiveParseSetsFetchDoneNotification:) name:@"ParseSetsFetchDone" object:nil];
+   
+}
+
+- (void)addUniqueObserver:(id)observer selector:(SEL)selector name:(NSString *)name object:(id)object {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:observer name:name object:object];
+    [[NSNotificationCenter defaultCenter] addObserver:observer selector:selector name:name object:object];
+    
+}
+
+- (void) setUpSwipeGestureFunctionalityForMovingAcrossPages {
+
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(tappedRightButton:)];
     [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
     [self.view addGestureRecognizer:swipeLeft];
@@ -24,6 +60,7 @@
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(tappedLeftButton:)];
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:swipeRight];
+
 }
 
 - (IBAction)tappedRightButton:(id)sender

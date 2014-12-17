@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import <Parse/Parse.h>
+#import "JokeDataManager.h"
 
 @interface SettingsViewController ()
 
@@ -40,8 +41,12 @@
 - (IBAction)logOutButton:(id)sender {
     
     NSLog(@"%@", [PFUser currentUser]);
-    
     [PFUser logOut]; // Log out
+    
+    
+    //If you don't clear the local cache 
+    
+    
     [self.navigationController popToRootViewControllerAnimated:NO];
     
 }
