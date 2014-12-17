@@ -90,12 +90,9 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     NSMutableArray *jokesArray = self.selectedSet.jokes;
-//    [jokesArray exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
-    
     Joke *changedJoke = jokesArray[fromIndexPath.row];
     [jokesArray removeObjectAtIndex:fromIndexPath.row];
     [jokesArray insertObject:changedJoke atIndex:toIndexPath.row];
-    
 }
 
 
@@ -126,7 +123,7 @@
 
 
 - (IBAction)editButton:(UIBarButtonItem *)sender {
-
+    
     if (![self.tableView isEditing]) {
         //this means that you pressed it for the very first time to enable the reordering feature
         [sender setTitle:@"Confirm"];

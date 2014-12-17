@@ -791,7 +791,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
                                 <rect key="frame" x="14" y="15" width="573" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Thanks for using my app. This app is designed for stand-up comics to organize your jokes, sets and set notes into one convenient tool so that you can use and access them quickly. 
+                                <mutableString key="text">Thanks for downloading this app. This app is designed for stand-up comics to organize your jokes and sets into one convenient tool so that you can read and access them quickly even without an internet connection.
 
 You can create a set on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
 
@@ -799,12 +799,12 @@ This app has a web application component where you can conveniently write out yo
 
 Jokes 
 - Create your joke by pressing on the Pen on the Home Screen 
-- I don't recommend writing out your jokes on the phone because of a mobile phone's intrinsic small screen width. Instead, use our web application at http://jestnotesapp.com
+- I don't recommend writing out your jokes on the phone because of a mobile phone's small screen width. Instead, use our web application at http://jestnotesapp.com
 
 Sets
 - The Sets icon will take you to the listing of your created sets. Once you click on a set, you will be able to see all the jokes associated with that set 
 
-Enjoy!</string>
+Enjoy!</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
