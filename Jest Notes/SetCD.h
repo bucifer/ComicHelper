@@ -2,7 +2,7 @@
 //  SetCD.h
 //  Jest Notes
 //
-//  Created by Aditya Narayan on 11/23/14.
+//  Created by Aditya Narayan on 12/16/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
@@ -13,8 +13,9 @@
 
 @interface SetCD : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * createDate;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSOrderedSet *jokes;
 @end
 

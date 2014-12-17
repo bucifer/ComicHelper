@@ -43,10 +43,6 @@
     NSLog(@"%@", [PFUser currentUser]);
     [PFUser logOut]; // Log out
     
-    
-    //If you don't clear the local cache 
-    
-    
     [self.navigationController popToRootViewControllerAnimated:NO];
     
 }

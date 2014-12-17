@@ -24,6 +24,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
+    self.jokeDataManager.sets = nil;
     [self.jokeDataManager refreshSetsCDDataWithNewFetch];
 }
 
@@ -89,7 +90,12 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     NSMutableArray *jokesArray = self.selectedSet.jokes;
-    [jokesArray exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+//    [jokesArray exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    
+    Joke *changedJoke = jokesArray[fromIndexPath.row];
+    [jokesArray removeObjectAtIndex:fromIndexPath.row];
+    [jokesArray insertObject:changedJoke atIndex:toIndexPath.row];
+    
 }
 
 

@@ -2,7 +2,7 @@
 //  JokeCD.m
 //  Jest Notes
 //
-//  Created by Aditya Narayan on 12/8/14.
+//  Created by Aditya Narayan on 12/16/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
@@ -15,9 +15,10 @@
 @dynamic bodyText;
 @dynamic length;
 @dynamic name;
+@dynamic parseObjectID;
 @dynamic score;
 @dynamic writeDate;
-@dynamic parseObjectID;
+@dynamic username;
 @dynamic set;
 
 @end

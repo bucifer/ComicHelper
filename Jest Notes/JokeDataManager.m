@@ -54,7 +54,9 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityString inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
-    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username = %@", [PFUser currentUser].username];
+    [fetchRequest setPredicate:predicate];
+
     NSError *error = nil;
     NSArray *fetchedArrayOfCDObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (fetchedArrayOfCDObjects == nil) {
@@ -76,19 +78,24 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
+    NSString *parseUserName = [PFUser currentUser].username;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username = %@", parseUserName];
+    [fetchRequest setPredicate:predicate];
+    
     NSError *error = nil;
     NSArray *fetchedJokesFromCD = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (fetchedJokesFromCD == nil) {
         NSLog(@"some horrible error in fetching CD: %@", error);
     }
     self.jokes = [self convertCoreDataJokesArrayIntoPresentationLayer:fetchedJokesFromCD];
-//    NSLog(@"refreshed jokes cd data with new fetch");
 }
 
 - (void) refreshSetsCDDataWithNewFetch {
     NSFetchRequest *setsFetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *setsEntity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
     [setsFetchRequest setEntity:setsEntity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username = %@", [PFUser currentUser].username];
+    [setsFetchRequest setPredicate:predicate];
     NSError *error2 = nil;
     NSArray *fetchedSetsFromCD = [self.managedObjectContext executeFetchRequest:setsFetchRequest error:&error2];
     if (fetchedSetsFromCD == nil) {
@@ -97,7 +104,6 @@
     
     
     self.sets = [self convertCoreDataSetsIntoPresentationLayer:fetchedSetsFromCD];
-
 }
 
 
@@ -182,6 +188,7 @@
     jokeCD.score = [NSNumber numberWithInt:newJoke.score];
     jokeCD.writeDate = newJoke.writeDate;
     jokeCD.bodyText = newJoke.bodyText;
+    jokeCD.username = [PFUser currentUser].username;
     [self saveChangesInContextCoreData];
     
     //Create one in Parse
@@ -189,21 +196,14 @@
     [pdm createNewJokeInParse:jokeCD];
 }
 
-- (Joke *) createNewJokeInPresentationLayer: (NSString *) jokeTitle jokeScore: (NSString *) jokeScore jokeMinLength: (NSString *) jokeMinuteLength jokeSecsLength: (NSString *) jokeSecsLength jokeDate: (NSDate *) jokeDate bodyText:(NSString *)bodyText{
-    Joke *joke = [[Joke alloc]init];
-    
-    
-    [self.jokes addObject:joke];
-    
-    return joke;
-}
 
 - (void) createNewSetInCoreDataAndParse: (Set *) newSet {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
     SetCD *setCD = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     setCD.name = newSet.name;
     setCD.createDate = [NSDate date];
-    
+    setCD.username = [PFUser currentUser].username;
+
     //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
     NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
     for (int i = 0; i < newSet.jokes.count; i++) {
@@ -214,7 +214,6 @@
     
     setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
     [self saveChangesInContextCoreData];
-    
     
     //Then Create one in Parse
     ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];

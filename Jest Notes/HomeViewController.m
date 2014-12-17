@@ -24,13 +24,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"current user's USERNAME: %@", [PFUser currentUser].username);
+    
     [self initializeParseMagicAndFetchAll];
     [self.jokeDataManager appInitializationLogic];
     
     [self setUpInterfaceAndNavButtons];
     [self setUpRefreshControlOnPullDown];
-
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //we need a way to sort the jokes when you created a new joke or edited a joke
+    
+    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.tableView reloadData];
+    
+    if (self.jokeDataManager.jokes.count == 0)
+        self.deleteBarButton.title = nil;
+    else if (self.jokeDataManager.jokes.count > 0)
+        self.deleteBarButton.title = @"Delete";
+}
+
 
 - (void) setUpInterfaceAndNavButtons {
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
@@ -79,18 +94,6 @@
 
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    //we need a way to sort the jokes when you created a new joke or edited a joke
-    
-    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
-    [self.tableView reloadData];
-    
-    if (self.jokeDataManager.jokes.count == 0)
-        self.deleteBarButton.title = nil;
-    else if (self.jokeDataManager.jokes.count > 0)
-        self.deleteBarButton.title = @"Delete";
-}
 
 
 

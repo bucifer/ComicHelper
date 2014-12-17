@@ -2,7 +2,7 @@
 //  SetCD.m
 //  Jest Notes
 //
-//  Created by Aditya Narayan on 11/23/14.
+//  Created by Aditya Narayan on 12/16/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 
 @dynamic createDate;
 @dynamic name;
+@dynamic username;
 @dynamic jokes;
 
 @end

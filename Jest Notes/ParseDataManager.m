@@ -197,6 +197,7 @@
     joke.writeDate = jokeParse.writeDate;
     joke.bodyText = jokeParse.bodyText;
     joke.parseObjectID = jokeParse.objectId;
+    joke.username = [PFUser currentUser].username;
 }
 
 - (void) convertParseSetToCoreData: (SetParse *) setParse {
@@ -204,6 +205,7 @@
     SetCD *setCD = [[SetCD alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     setCD.name = setParse.name;
     setCD.createDate = setParse.createDate;
+    setCD.username = [PFUser currentUser].username;
     
     //we have to make a fetch request to all the jokeCDs, and make a nsorderedset by following the ordering of the setParse.jokes
     //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
