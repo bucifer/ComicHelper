@@ -106,9 +106,30 @@
 
 - (IBAction) tappedJokes:(id)sender {
     [self.pageViewController setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    
+    [UIView animateWithDuration: ANIMATION_SPEED
+                          delay:0.1
+                        options: nil
+                     animations:^{
+                         
+                         selectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
+                     }
+                     completion:^(BOOL finished){
+                     }];
+
 }
 - (IBAction) tappedSets:(id)sender {
     [self.pageViewController setViewControllers:@[self.secondVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    
+    [UIView animateWithDuration: ANIMATION_SPEED
+                          delay:0.1
+                        options: nil
+                     animations:^{
+                         
+                         selectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
+                     }
+                     completion:^(BOOL finished){
+                     }];
 }
 
 
