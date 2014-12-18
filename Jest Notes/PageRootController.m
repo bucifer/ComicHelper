@@ -24,6 +24,7 @@
 @interface PageRootController () {
 
     NSArray *viewControllers;
+    UIView *pageControlCustomView;
     UIView *selectionBar;
     int SELECTOR_WIDTH;
     int SELECTOR_Y;
@@ -40,6 +41,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:NO];
     SELECTOR_WIDTH = self.view.frame.size.width/2;
     SELECTOR_Y = self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR + HEIGHT;
     
@@ -54,28 +60,31 @@
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
-
+    
     viewControllers = @[self.firstVC];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     
     [self.pageViewController didMoveToParentViewController:self];
     
     [self setUpCustomPageControlIndicatorButtons];
-
-    
 }
+
+- (void) viewWillDisappear:(BOOL)animated {
+    pageControlCustomView.hidden = YES;
+}
+
+
 
 - (void) setUpCustomPageControlIndicatorButtons {
 
-        UIView *pageControlIndicatorView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
+        pageControlCustomView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
     
-        UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, pageControlIndicatorView.frame.size.width/2, HEIGHT)];
-        UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(pageControlIndicatorView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
+        UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, pageControlCustomView.frame.size.width/2, HEIGHT)];
+        UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(pageControlCustomView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
         
         selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT)];
         selectionBar.backgroundColor = [UIColor lightGrayColor];
@@ -98,10 +107,10 @@
         [rightButton addTarget:self action:@selector(tappedSets:) forControlEvents:UIControlEventTouchUpInside];
         [rightButton setTitle:@"Sets" forState:UIControlStateNormal];
     
-        [pageControlIndicatorView addSubview:leftButton];
-        [pageControlIndicatorView addSubview:rightButton];
-        [pageControlIndicatorView addSubview:selectionBar];
-        [self.pageViewController.view addSubview: pageControlIndicatorView];
+        [pageControlCustomView addSubview:leftButton];
+        [pageControlCustomView addSubview:rightButton];
+        [pageControlCustomView addSubview:selectionBar];
+        [self.pageViewController.view addSubview: pageControlCustomView];
 }
 
 - (IBAction) tappedJokes:(id)sender {
