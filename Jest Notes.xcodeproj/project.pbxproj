@@ -28,6 +28,7 @@
 		AAD05C4F1A40B50800BACD7C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C4E1A40B50800BACD7C /* SettingsViewController.m */; };
 		AAD05C581A41035700BACD7C /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C571A41035700BACD7C /* JokeCD.m */; };
 		AAD05C5B1A41035E00BACD7C /* SetCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C5A1A41035E00BACD7C /* SetCD.m */; };
+		AAD22E751A4336DF00956B3B /* PageRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD22E741A4336DF00956B3B /* PageRootController.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
@@ -99,6 +100,8 @@
 		AAD05C571A41035700BACD7C /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
 		AAD05C591A41035E00BACD7C /* SetCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCD.h; sourceTree = "<group>"; };
 		AAD05C5A1A41035E00BACD7C /* SetCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCD.m; sourceTree = "<group>"; };
+		AAD22E731A4336DF00956B3B /* PageRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageRootController.h; sourceTree = "<group>"; };
+		AAD22E741A4336DF00956B3B /* PageRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageRootController.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2772A1A07DC81002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2772B1A07DC81002AA22B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 			children = (
 				AAE50A201A363F0A00A380A1 /* HomeTabBarController.h */,
 				AAE50A211A363F0A00A380A1 /* HomeTabBarController.m */,
+				AAD22E731A4336DF00956B3B /* PageRootController.h */,
+				AAD22E741A4336DF00956B3B /* PageRootController.m */,
 				AAD277541A07DCD9002AA22B /* HomeViewController.h */,
 				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
@@ -516,6 +521,7 @@
 				AAD2772C1A07DC81002AA22B /* main.m in Sources */,
 				AAC7C6071A3253FA00BF73DC /* JokeParse.m in Sources */,
 				AAD44F781A0D64AB00FDB656 /* Set.m in Sources */,
+				AAD22E751A4336DF00956B3B /* PageRootController.m in Sources */,
 				AAD2776B1A07DCED002AA22B /* JokeDataManager.m in Sources */,
 				AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */,
 				AAD59B8F1A2107BC006B145C /* SetCreateViewController.m in Sources */,

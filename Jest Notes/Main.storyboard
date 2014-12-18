@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeCustomCell" rowHeight="65" id="TLo-4C-dzl" customClass="JokeCustomCell">
@@ -131,13 +131,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="9T6-T5-Jzy"/>
-                            <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="A5A-RS-MJf"/>
                             <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="AT1-ms-KOK"/>
-                            <constraint firstItem="zrs-iD-EQY" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="GdV-iL-aVk"/>
-                            <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="Tr1-fq-wEm"/>
-                            <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mLw-fP-LSq"/>
+                            <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CZh-uf-EP1"/>
+                            <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="TjB-Ot-RsQ"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="njP-Wv-pbl"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zrs-iD-EQY" secondAttribute="bottom" constant="49" id="qPm-kH-SkE"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="wfy-db-euE" secondAttribute="top" id="vIu-DN-h1w"/>
+                            <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="wFa-DW-93L"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -156,6 +156,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="deleteBarButton" destination="Vd1-pj-oSD" id="GD7-y4-78e"/>
                         <outlet property="tableView" destination="zrs-iD-EQY" id="Mmk-rh-sqk"/>
@@ -165,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1122" y="-1278"/>
+            <point key="canvasLocation" x="1282" y="-1305"/>
         </scene>
         <!--CreateJokeViewController-->
         <scene sceneID="8ae-Ql-Nzv">
@@ -352,7 +353,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-7l-PX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1914" y="-2088"/>
+            <point key="canvasLocation" x="1846" y="-2892"/>
         </scene>
         <!--Single Joke View Controller-->
         <scene sceneID="tPC-WR-RFV">
@@ -500,7 +501,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA5-6P-Gd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1924" y="-1278"/>
+            <point key="canvasLocation" x="2268" y="-2050"/>
         </scene>
         <!--Edit Your Joke-->
         <scene sceneID="3Uo-D1-X8C">
@@ -755,13 +756,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2898" y="-1337"/>
+            <point key="canvasLocation" x="2830" y="-2141"/>
+        </scene>
+        <!--Page Root Controller-->
+        <scene sceneID="tzY-Rt-nSh">
+            <objects>
+                <viewController storyboardIdentifier="PageRootController" id="7RM-OG-stv" customClass="PageRootController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gMt-kz-GDE"/>
+                        <viewControllerLayoutGuide type="bottom" id="2aX-Gz-gN7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p1f-Ij-hLP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="y9K-DP-LIJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zV5-ts-GNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-756" y="-630"/>
         </scene>
         <!--Nav-Jokes-->
         <scene sceneID="7FY-N7-vJt">
             <objects>
                 <navigationController title="Nav-Jokes" automaticallyAdjustsScrollViewInsets="NO" id="E1r-ee-IgC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Jokes" image="joke" id="IeX-J6-GNH"/>
+                    <tabBarItem key="tabBarItem" title="Jokes/Sets" image="joke" id="IeX-J6-GNH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fhN-bf-q2W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -769,12 +789,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Fs9-0R-131"/>
+                        <segue destination="7RM-OG-stv" kind="relationship" relationship="rootViewController" id="qEo-pv-sL0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQ0-b4-00J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="-1278"/>
+            <point key="canvasLocation" x="-1482" y="-630"/>
         </scene>
         <!--Help-->
         <scene sceneID="Pis-wU-7eG">
@@ -824,7 +844,7 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0u-VD-RGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1001" y="1052"/>
+            <point key="canvasLocation" x="-745" y="816"/>
         </scene>
         <!--Default Settings View Controller-->
         <scene sceneID="5AE-zd-wCU">
@@ -847,6 +867,14 @@ Enjoy!</string>
             </objects>
             <point key="canvasLocation" x="-3686" y="192"/>
         </scene>
+        <!--Page View Controller-->
+        <scene sceneID="gvI-1q-x5T">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="DA7-YT-Swj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wiQ-97-7cB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-756" y="-1337"/>
+        </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="Ttk-4D-hLq">
             <objects>
@@ -860,7 +888,6 @@ Enjoy!</string>
                     </tabBar>
                     <connections>
                         <segue destination="E1r-ee-IgC" kind="relationship" relationship="viewControllers" id="b1k-8Q-Cj4"/>
-                        <segue destination="7aL-fj-iKb" kind="relationship" relationship="viewControllers" id="23C-2t-1r8"/>
                         <segue destination="IrR-7d-6Y9" kind="relationship" relationship="viewControllers" id="7OW-j3-Uxj"/>
                         <segue destination="Xfd-TC-Khd" kind="relationship" relationship="viewControllers" id="kug-W1-xWS"/>
                     </connections>
@@ -907,7 +934,7 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZP9-bd-iNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2498" y="1052"/>
+            <point key="canvasLocation" x="-1482" y="1564"/>
         </scene>
         <!--MultiJokesSelection-->
         <scene sceneID="9rK-8M-FXL">
@@ -1085,7 +1112,7 @@ Enjoy!</string>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2152" y="-516"/>
+            <point key="canvasLocation" x="2896" y="-1320"/>
         </scene>
         <!--Confirm Your Set-->
         <scene sceneID="vzN-PS-Vwc">
@@ -1271,7 +1298,7 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssj-mH-Mm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2968" y="-516"/>
+            <point key="canvasLocation" x="3712" y="-1320"/>
         </scene>
         <!--Nav-Help-->
         <scene sceneID="1PN-uw-a1F">
@@ -1290,26 +1317,7 @@ Enjoy!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAz-hD-8E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1746" y="1052"/>
-        </scene>
-        <!--Nav-Set-->
-        <scene sceneID="WiY-zk-2NH">
-            <objects>
-                <navigationController title="Nav-Set" automaticallyAdjustsScrollViewInsets="NO" id="7aL-fj-iKb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sets" image="set" id="kaW-5w-QnV"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cU7-wg-lR7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="D5R-Up-jtI" kind="relationship" relationship="rootViewController" id="GfT-hE-uOf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1yj-uf-nTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-118" y="542"/>
+            <point key="canvasLocation" x="-1482" y="804"/>
         </scene>
         <!--SetsView-->
         <scene sceneID="JAT-is-RoV">
@@ -1352,10 +1360,11 @@ Enjoy!</string>
                     <navigationItem key="navigationItem" title="View Your Sets" id="Mhq-ii-MYj">
                         <barButtonItem key="backBarButtonItem" title="Sets" id="wiT-3p-CTa"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJD-Lf-azJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="616" y="542"/>
+            <point key="canvasLocation" x="1282" y="-577"/>
         </scene>
         <!--Single Set View -->
         <scene sceneID="1qD-7z-0Pt">
@@ -1369,7 +1378,7 @@ Enjoy!</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Wd-LY-XgN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Wd-LY-XgN">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1412,7 +1421,7 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMw-3b-Rqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1360" y="542"/>
+            <point key="canvasLocation" x="2096" y="-572"/>
         </scene>
         <!--Set To Joke Detail View Controller-->
         <scene sceneID="k2I-bS-yZo">
@@ -1426,7 +1435,7 @@ Enjoy!</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZYv-RB-kkB" userLabel="JokeBodyTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZYv-RB-kkB" userLabel="JokeBodyTextView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -1447,13 +1456,12 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldt-EN-MDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2072" y="532"/>
+            <point key="canvasLocation" x="2808" y="-582"/>
         </scene>
     </scenes>
     <resources>
         <image name="joke" width="32" height="32"/>
         <image name="questionMark" width="32" height="32"/>
-        <image name="set" width="32" height="32"/>
         <image name="settings" width="31" height="32"/>
     </resources>
 </document>

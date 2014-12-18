@@ -28,6 +28,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
+    
+    
+    
+    
+    
     
     NSLog(@"current user's USERNAME: %@", [PFUser currentUser].username);
     
