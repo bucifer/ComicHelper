@@ -19,8 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setUpSwipeGestureFunctionalityForMovingAcrossPages];
-    //soon to be removed if you ever implement that pageviewcontrol instead
     
     [self initializationLogic];
 
