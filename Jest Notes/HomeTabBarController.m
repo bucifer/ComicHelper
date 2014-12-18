@@ -35,8 +35,10 @@
     PageRootController *pageRootController = (PageRootController *) firstNavController.topViewController;
     HomeViewController *homeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
     homeViewController.jokeDataManager = jokeDataManager;
+    homeViewController.pageRootController = pageRootController;
     SetsViewController *svc = (SetsViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"SetsViewController"];
     svc.jokeDataManager = jokeDataManager;
+    svc.pageRootController = pageRootController;
     [self addUniqueObserver:svc selector:@selector(receiveParseSetsFetchDoneNotification:) name:@"ParseSetsFetchDone" object:nil];
     
     UINavigationController *firstVCNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"firstVCNavController"];

@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 
-
 @interface HomeViewController ()
 
 {
@@ -29,13 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
-    
-    
-    
-    
-    
-    
     NSLog(@"current user's USERNAME: %@", [PFUser currentUser].username);
     
     [self initializeParseMagicAndFetchAll];
@@ -56,6 +48,13 @@
         self.deleteBarButton.title = nil;
     else if (self.jokeDataManager.jokes.count > 0)
         self.deleteBarButton.title = @"Delete";
+    
+    self.pageRootController.pageControlCustomView.hidden = NO;
+    for (UIScrollView *view in self.pageRootController.pageViewController.view.subviews) {
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            view.scrollEnabled = YES;
+        }
+    }
 }
 
 
@@ -214,6 +213,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    [self hidePageControl];
+    
+    for (UIScrollView *view in self.pageRootController.pageViewController.view.subviews) {
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            view.scrollEnabled = NO;
+        }
+    }
+    
     if ([[segue identifier] isEqualToString:@"jokeCreationViewSegue"])
     {
         // Get reference to the destination view controller
@@ -266,11 +274,12 @@
 
     
 }
-                                                                                                                                              
-                                                                                                                                              
-                                                                                                                                        
-                                                                                                                                              
 
 
+- (void) hidePageControl {
+    self.pageRootController.pageControlCustomView.hidden = YES;
+}
+
+                                                                                                                                              
 
 @end

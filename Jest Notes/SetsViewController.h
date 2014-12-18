@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "JokeDataManager.h"
+#import "PageRootController.h"
+
+@class PageRootController;
 
 @interface SetsViewController : UITableViewController
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
-
+@property (weak, nonatomic) PageRootController *pageRootController;
 
 
 - (void) receiveParseSetsFetchDoneNotification:(NSNotification *) notification;

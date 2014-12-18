@@ -42,8 +42,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self reshowCustomPageControlAndEnableScroling];
     //we need a way to sort the jokes when you created a new joke or edited a joke
-    
     [self.jokeDataManager refreshSetsCDDataWithNewFetch];
     [self.tableView reloadData];
 }
@@ -143,14 +143,38 @@
     // Get the new view controller using [segue destinationViewController].
     if ([[segue identifier] isEqualToString:@"singleSetViewSegue"])
     {
+        
+        [self hideCustomPageControlAndDisableScrolling];
         // Get reference to the destination view controller
         SingleSetViewController *singleSetView = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         singleSetView.selectedSet = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
         singleSetView.title = singleSetView.selectedSet.name;
         singleSetView.jokeDataManager = self.jokeDataManager;
+        singleSetView.pageRootController = self.pageRootController;
     }
 }
+
+
+
+- (void) hideCustomPageControlAndDisableScrolling {
+    self.pageRootController.pageControlCustomView.hidden = YES;
+    for (UIScrollView *view in self.pageRootController.pageViewController.view.subviews) {
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            view.scrollEnabled = NO;
+        }
+    }
+}
+
+- (void) reshowCustomPageControlAndEnableScroling {
+    self.pageRootController.pageControlCustomView.hidden = NO;
+    for (UIScrollView *view in self.pageRootController.pageViewController.view.subviews) {
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            view.scrollEnabled = YES;
+        }
+    }
+}
+
 
 
 @end

@@ -22,14 +22,16 @@
 #import "SetsViewController.h"
 #import "HomeTabBarController.h"
 #import "NSObject+NSObject___TerryConvenience.h"
-
+#import "PageRootController.h"
 
 @class JokeDataManager;
+@class PageRootController;
 
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParseDataManagerDelegate>
 
 @property (strong, nonatomic) JokeDataManager *jokeDataManager;
 @property (strong, nonatomic) ParseDataManager *parseDataManager;
+@property (weak, nonatomic) PageRootController *pageRootController;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteBarButton;
