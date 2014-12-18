@@ -844,7 +844,7 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0u-VD-RGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-745" y="816"/>
+            <point key="canvasLocation" x="-745" y="198"/>
         </scene>
         <!--Default Settings View Controller-->
         <scene sceneID="5AE-zd-wCU">
@@ -889,52 +889,88 @@ Enjoy!</string>
                     <connections>
                         <segue destination="E1r-ee-IgC" kind="relationship" relationship="viewControllers" id="b1k-8Q-Cj4"/>
                         <segue destination="IrR-7d-6Y9" kind="relationship" relationship="viewControllers" id="7OW-j3-Uxj"/>
-                        <segue destination="Xfd-TC-Khd" kind="relationship" relationship="viewControllers" id="kug-W1-xWS"/>
+                        <segue destination="psz-NA-kIg" kind="relationship" relationship="viewControllers" id="ZyL-io-e5i"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aK-Vb-N5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2397" y="192"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="6s1-7P-j1B">
+        <!--AppSettings Logout -->
+        <scene sceneID="jHB-lC-iKG">
             <objects>
-                <viewController id="Xfd-TC-Khd" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="RMb-bx-zt3"/>
-                        <viewControllerLayoutGuide type="bottom" id="ePE-lN-pIV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZYy-OF-Io9">
+                <tableViewController title="AppSettings Logout " id="Lq4-ce-mew" customClass="AppSettingsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="RRD-06-5ps">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1E-3k-5vW">
-                                <rect key="frame" x="242" y="279" width="116" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="116" id="eT6-qk-v4b"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Log Out">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOutButton:" destination="Xfd-TC-Khd" eventType="touchUpInside" id="xjX-7o-sIY"/>
-                                    <segue destination="ErO-tb-I85" kind="show" identifier="logoutSegue" id="14t-sP-40y"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="D1E-3k-5vW" firstAttribute="centerX" secondItem="ZYy-OF-Io9" secondAttribute="centerX" id="Ebz-H2-QST"/>
-                            <constraint firstItem="ePE-lN-pIV" firstAttribute="top" secondItem="D1E-3k-5vW" secondAttribute="bottom" constant="231" id="JzZ-3v-dMT"/>
-                            <constraint firstItem="D1E-3k-5vW" firstAttribute="top" secondItem="RMb-bx-zt3" secondAttribute="bottom" constant="259" id="KRS-jD-b48"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="3p5-G7-iaw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZP9-bd-iNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="User Authentication" footerTitle="Press Log Out to log out" id="zM4-Iq-KhD">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JY0-Pq-13U">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JY0-Pq-13U" id="1fM-Jz-tzI">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcS-Vq-7f3">
+                                                    <rect key="frame" x="254" y="4" width="92" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="92" id="Fab-Ig-TDt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="Log Out ">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="logout:" destination="Lq4-ce-mew" eventType="touchUpInside" id="JrS-nw-W0y"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OcS-Vq-7f3" firstAttribute="centerX" secondItem="1fM-Jz-tzI" secondAttribute="centerX" id="GPi-OT-qzF"/>
+                                                <constraint firstItem="OcS-Vq-7f3" firstAttribute="top" secondItem="1fM-Jz-tzI" secondAttribute="topMargin" constant="-4" id="m2r-v0-Cqh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Contact Developer" footerTitle="If you have a question or need to address a problem, email above" id="B6C-Sz-olb">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nna-eg-WDn">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nna-eg-WDn" id="AZW-sD-qHa">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9B-fW-N5F">
+                                                    <rect key="frame" x="214" y="4" width="172" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="172" id="cXq-gQ-mXF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="Email Support">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Z9B-fW-N5F" firstAttribute="top" secondItem="AZW-sD-qHa" secondAttribute="topMargin" constant="-4" id="9fM-HP-Yg2"/>
+                                                <constraint firstItem="Z9B-fW-N5F" firstAttribute="centerX" secondItem="AZW-sD-qHa" secondAttribute="centerX" id="Nyq-LT-iU7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Lq4-ce-mew" id="BOp-a4-lIF"/>
+                            <outlet property="delegate" destination="Lq4-ce-mew" id="3Fz-sL-Bjz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="m6E-UL-cKh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qnd-y0-wwF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1482" y="1564"/>
+            <point key="canvasLocation" x="-756" y="886"/>
         </scene>
         <!--MultiJokesSelection-->
         <scene sceneID="9rK-8M-FXL">
@@ -1317,7 +1353,7 @@ Enjoy!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAz-hD-8E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1482" y="804"/>
+            <point key="canvasLocation" x="-1482" y="186"/>
         </scene>
         <!--SetsView-->
         <scene sceneID="JAT-is-RoV">
@@ -1493,6 +1529,25 @@ Enjoy!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6xB-vd-z8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="234" y="-609"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="QMb-rN-xCx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="psz-NA-kIg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="qnr-EW-8j6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kXo-rR-azw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Lq4-ce-mew" kind="relationship" relationship="rootViewController" id="1lF-Ur-lRC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdY-bb-5bm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1482" y="887"/>
         </scene>
     </scenes>
     <resources>

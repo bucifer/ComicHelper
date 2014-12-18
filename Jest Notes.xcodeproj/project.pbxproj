@@ -25,10 +25,10 @@
 		AACDCD1B1A312C2300FEF4F2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACDCD1A1A312C2300FEF4F2 /* StoreKit.framework */; };
 		AACDCD1D1A312C2A00FEF4F2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACDCD1C1A312C2A00FEF4F2 /* SystemConfiguration.framework */; };
 		AACDCD1F1A312D0B00FEF4F2 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */; };
-		AAD05C4F1A40B50800BACD7C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C4E1A40B50800BACD7C /* SettingsViewController.m */; };
 		AAD05C581A41035700BACD7C /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C571A41035700BACD7C /* JokeCD.m */; };
 		AAD05C5B1A41035E00BACD7C /* SetCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C5A1A41035E00BACD7C /* SetCD.m */; };
 		AAD22E751A4336DF00956B3B /* PageRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD22E741A4336DF00956B3B /* PageRootController.m */; };
+		AAD22E7B1A436A8C00956B3B /* AppSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD22E7A1A436A8C00956B3B /* AppSettingsTableViewController.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
@@ -94,14 +94,14 @@
 		AACDCD1A1A312C2300FEF4F2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AACDCD1C1A312C2A00FEF4F2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
-		AAD05C4D1A40B50800BACD7C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		AAD05C4E1A40B50800BACD7C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AAD05C561A41035700BACD7C /* JokeCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCD.h; sourceTree = "<group>"; };
 		AAD05C571A41035700BACD7C /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
 		AAD05C591A41035E00BACD7C /* SetCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCD.h; sourceTree = "<group>"; };
 		AAD05C5A1A41035E00BACD7C /* SetCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCD.m; sourceTree = "<group>"; };
 		AAD22E731A4336DF00956B3B /* PageRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageRootController.h; sourceTree = "<group>"; };
 		AAD22E741A4336DF00956B3B /* PageRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageRootController.m; sourceTree = "<group>"; };
+		AAD22E791A436A8C00956B3B /* AppSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSettingsTableViewController.h; path = ../AppSettingsTableViewController.h; sourceTree = "<group>"; };
+		AAD22E7A1A436A8C00956B3B /* AppSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSettingsTableViewController.m; path = ../AppSettingsTableViewController.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2772A1A07DC81002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2772B1A07DC81002AA22B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -357,8 +357,8 @@
 				AADCA55D1A3FA0C700948AD9 /* DefaultSettingsViewController.m */,
 				AADCA5641A3FA8AB00948AD9 /* LoginViewController.h */,
 				AADCA5651A3FA8AB00948AD9 /* LoginViewController.m */,
-				AAD05C4D1A40B50800BACD7C /* SettingsViewController.h */,
-				AAD05C4E1A40B50800BACD7C /* SettingsViewController.m */,
+				AAD22E791A436A8C00956B3B /* AppSettingsTableViewController.h */,
+				AAD22E7A1A436A8C00956B3B /* AppSettingsTableViewController.m */,
 			);
 			name = "Authentication & Settings";
 			sourceTree = "<group>";
@@ -510,12 +510,12 @@
 				AAD05C581A41035700BACD7C /* JokeCD.m in Sources */,
 				AAD277691A07DCED002AA22B /* EditJokeViewController.m in Sources */,
 				AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */,
-				AAD05C4F1A40B50800BACD7C /* SettingsViewController.m in Sources */,
 				AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
 				AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */,
 				AAD2776C1A07DCED002AA22B /* Joke.m in Sources */,
 				AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */,
 				AACA815C1A25320E0014E86F /* HelpMenuController.m in Sources */,
+				AAD22E7B1A436A8C00956B3B /* AppSettingsTableViewController.m in Sources */,
 				AAD7A62E1A1FFE4C00DA8165 /* SetsViewController.m in Sources */,
 				AAC7C60A1A32573F00BF73DC /* ParseDataManager.m in Sources */,
 				AAD2772C1A07DC81002AA22B /* main.m in Sources */,
