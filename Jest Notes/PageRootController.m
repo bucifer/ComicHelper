@@ -11,13 +11,10 @@
 //%%% customizeable button attributes
 #define Y_BUFFER 14 //%%% number of pixels on top of the segment
 #define HEIGHT 30 //%%% height of the segment
-
-//%%% customizeable selector bar attributes (the black bar under the buttons)
 #define ANIMATION_SPEED 0.2 //%%% the number of seconds it takes to complete the animation
 #define SELECTOR_Y_BUFFER 40 //%%% the y-value of the bar that shows what page you are on (0 is the top)
 #define SELECTOR_HEIGHT 4 //%%% thickness of the selector bar
-
-#define X_OFFSET 12 //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
+#define X_OFFSET 12
 #define Y_OFFSET_BELOW_NAVBAR 21.7
 
 

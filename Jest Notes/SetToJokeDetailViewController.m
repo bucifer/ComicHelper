@@ -18,6 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = self.joke.name;
+    
     self.jokeBodyTextView.text = self.joke.bodyText;
     
 }
