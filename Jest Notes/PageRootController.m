@@ -18,7 +18,7 @@
 #define SELECTOR_HEIGHT 4 //%%% thickness of the selector bar
 
 #define X_OFFSET 12 //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
-#define Y_OFFSET_BELOW_NAVBAR 22.5
+#define Y_OFFSET_BELOW_NAVBAR 22
 
 
 @interface PageRootController () {
@@ -72,41 +72,44 @@
 
 - (void) setUpCustomPageControlIndicatorButtons {
 
-        UIView *pageControlIndicatorView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
+        UIView *pageControlIndicatorView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
     
         UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, pageControlIndicatorView.frame.size.width/2, HEIGHT)];
         UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(pageControlIndicatorView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
         
         selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT)];
-        selectionBar.backgroundColor = [UIColor blueColor];
+        selectionBar.backgroundColor = [UIColor lightGrayColor];
         selectionBar.alpha = 0.8;
     
+        leftButton.tag = 0;
+        rightButton.tag = 1;
+        
+        leftButton.backgroundColor = [UIColor whiteColor];
+        [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        leftButton.layer.borderWidth = 0.8;
+        leftButton.layer.borderColor = [UIColor blackColor].CGColor;
+        [leftButton addTarget:self action:@selector(tappedJokes:) forControlEvents:UIControlEventTouchUpInside];
+        [leftButton setTitle:@"Jokes" forState:UIControlStateNormal];
+
+        rightButton.backgroundColor = [UIColor whiteColor];
+        [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        rightButton.layer.borderWidth = 0.8;
+        rightButton.layer.borderColor = [UIColor blackColor].CGColor;
+        [rightButton addTarget:self action:@selector(tappedSets:) forControlEvents:UIControlEventTouchUpInside];
+        [rightButton setTitle:@"Sets" forState:UIControlStateNormal];
     
         [pageControlIndicatorView addSubview:leftButton];
         [pageControlIndicatorView addSubview:rightButton];
         [pageControlIndicatorView addSubview:selectionBar];
         [self.pageViewController.view addSubview: pageControlIndicatorView];
-    
-        leftButton.tag = 0;
-        rightButton.tag = 1;
-    
-        leftButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.02 alpha:0.2];
-        [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        leftButton.layer.borderWidth = 1.0;
-        leftButton.layer.borderColor = [UIColor blackColor].CGColor;
-
-        rightButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.2 alpha:0.2];
-        [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        rightButton.layer.borderWidth = 1.0;
-        rightButton.layer.borderColor = [UIColor blackColor].CGColor;
-    
-        [leftButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [rightButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-
-        [leftButton setTitle:@"Jokes" forState:UIControlStateNormal];
-        [rightButton setTitle:@"Sets" forState:UIControlStateNormal];
 }
 
+- (IBAction) tappedJokes:(id)sender {
+    [self.pageViewController setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+}
+- (IBAction) tappedSets:(id)sender {
+    [self.pageViewController setViewControllers:@[self.secondVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+}
 
 
 

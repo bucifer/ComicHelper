@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="34" width="600" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeCustomCell" rowHeight="65" id="TLo-4C-dzl" customClass="JokeCustomCell">
@@ -133,7 +133,7 @@
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="9T6-T5-Jzy"/>
                             <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="AT1-ms-KOK"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LJF-nw-Goe"/>
-                            <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="aOJ-mK-9Nc"/>
+                            <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="34" id="aOJ-mK-9Nc"/>
                             <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="cRH-3R-srH"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zrs-iD-EQY" secondAttribute="bottom" constant="49" id="mYr-f0-7nu"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="njP-Wv-pbl"/>

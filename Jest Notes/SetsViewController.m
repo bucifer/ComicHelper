@@ -24,7 +24,7 @@
         
     }
     
-//    [self.tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(34,0,0,0)];
 
 
 }
