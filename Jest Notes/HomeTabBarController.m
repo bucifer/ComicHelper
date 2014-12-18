@@ -37,11 +37,16 @@
     homeViewController.jokeDataManager = jokeDataManager;
     SetsViewController *svc = (SetsViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"SetsViewController"];
     svc.jokeDataManager = jokeDataManager;
-    
-    pageRootController.homeViewController = homeViewController;
-    pageRootController.setsViewController = svc;
-
     [self addUniqueObserver:svc selector:@selector(receiveParseSetsFetchDoneNotification:) name:@"ParseSetsFetchDone" object:nil];
+    
+    UINavigationController *firstVCNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"firstVCNavController"];
+    UINavigationController *secondVCNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"secondVCNavController"];
+    
+    firstVCNavController.viewControllers = @[homeViewController];
+    secondVCNavController.viewControllers = @[svc];
+    
+    pageRootController.firstVC = firstVCNavController;
+    pageRootController.secondVC = secondVCNavController;
    
 }
 

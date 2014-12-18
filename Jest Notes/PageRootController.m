@@ -23,18 +23,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationController.navigationBarHidden = YES;
+    
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor blackColor];
     pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     pageControl.backgroundColor = [UIColor clearColor];
-
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
 
-    viewControllers = @[self.homeViewController];
+    viewControllers = @[self.firstVC];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
@@ -44,9 +45,9 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     
-    self.navigationController.title = @"test";
 
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -58,15 +59,15 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    if (self.pageViewController.viewControllers[0] == self.setsViewController)
-        return self.homeViewController;
+    if (self.pageViewController.viewControllers[0] == self.secondVC)
+        return self.firstVC;
     return nil;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    if (self.pageViewController.viewControllers[0] == self.homeViewController)
-        return self.setsViewController;
+    if (self.pageViewController.viewControllers[0] == self.firstVC)
+        return self.secondVC;
     return nil;
 }
 

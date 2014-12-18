@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeCustomCell" rowHeight="65" id="TLo-4C-dzl" customClass="JokeCustomCell">
@@ -132,12 +132,12 @@
                         <constraints>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="9T6-T5-Jzy"/>
                             <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="AT1-ms-KOK"/>
-                            <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CZh-uf-EP1"/>
-                            <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="TjB-Ot-RsQ"/>
+                            <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LJF-nw-Goe"/>
+                            <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="aOJ-mK-9Nc"/>
+                            <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="cRH-3R-srH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zrs-iD-EQY" secondAttribute="bottom" constant="49" id="mYr-f0-7nu"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="njP-Wv-pbl"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zrs-iD-EQY" secondAttribute="bottom" constant="49" id="qPm-kH-SkE"/>
                             <constraint firstItem="zrs-iD-EQY" firstAttribute="top" secondItem="wfy-db-euE" secondAttribute="top" id="vIu-DN-h1w"/>
-                            <constraint firstAttribute="trailing" secondItem="zrs-iD-EQY" secondAttribute="trailing" id="wFa-DW-93L"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282" y="-1305"/>
+            <point key="canvasLocation" x="1102" y="-1329"/>
         </scene>
         <!--CreateJokeViewController-->
         <scene sceneID="8ae-Ql-Nzv">
@@ -501,7 +501,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA5-6P-Gd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2268" y="-2050"/>
+            <point key="canvasLocation" x="1846" y="-2090"/>
         </scene>
         <!--Edit Your Joke-->
         <scene sceneID="3Uo-D1-X8C">
@@ -756,7 +756,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1S5-fz-Z76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2830" y="-2141"/>
+            <point key="canvasLocation" x="2408" y="-2181"/>
         </scene>
         <!--Page Root Controller-->
         <scene sceneID="tzY-Rt-nSh">
@@ -1112,7 +1112,7 @@ Enjoy!</string>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2896" y="-1320"/>
+            <point key="canvasLocation" x="2016" y="-1329"/>
         </scene>
         <!--Confirm Your Set-->
         <scene sceneID="vzN-PS-Vwc">
@@ -1298,7 +1298,7 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssj-mH-Mm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3712" y="-1320"/>
+            <point key="canvasLocation" x="2736" y="-1329"/>
         </scene>
         <!--Nav-Help-->
         <scene sceneID="1PN-uw-a1F">
@@ -1364,7 +1364,7 @@ Enjoy!</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJD-Lf-azJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282" y="-577"/>
+            <point key="canvasLocation" x="1102" y="-601"/>
         </scene>
         <!--Single Set View -->
         <scene sceneID="1qD-7z-0Pt">
@@ -1421,7 +1421,7 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMw-3b-Rqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096" y="-572"/>
+            <point key="canvasLocation" x="1916" y="-596"/>
         </scene>
         <!--Set To Joke Detail View Controller-->
         <scene sceneID="k2I-bS-yZo">
@@ -1456,7 +1456,43 @@ Enjoy!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldt-EN-MDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2808" y="-582"/>
+            <point key="canvasLocation" x="2716" y="-596"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9pj-It-Trh">
+            <objects>
+                <navigationController storyboardIdentifier="firstVCNavController" automaticallyAdjustsScrollViewInsets="NO" id="lJB-aG-nW8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UWJ-ab-RkX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="C7K-iK-znD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X37-4v-bO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="234" y="-1337"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7za-Su-R6z">
+            <objects>
+                <navigationController storyboardIdentifier="secondVCNavController" automaticallyAdjustsScrollViewInsets="NO" id="imv-SQ-OsH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jcF-jE-hUa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="D5R-Up-jtI" kind="relationship" relationship="rootViewController" id="ptA-BI-IWl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6xB-vd-z8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="234" y="-609"/>
         </scene>
     </scenes>
     <resources>

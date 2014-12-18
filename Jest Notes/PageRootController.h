@@ -13,8 +13,8 @@
 @interface PageRootController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 
-@property (strong, nonatomic) HomeViewController *homeViewController;
-@property (strong, nonatomic) SetsViewController *setsViewController;
+@property (strong, nonatomic) UINavigationController *firstVC;
+@property (strong, nonatomic) UINavigationController *secondVC;
 
 
 //for pageview
