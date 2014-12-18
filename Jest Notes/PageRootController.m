@@ -8,20 +8,40 @@
 
 #import "PageRootController.h"
 
+//%%% customizeable button attributes
+#define Y_BUFFER 14 //%%% number of pixels on top of the segment
+#define HEIGHT 30 //%%% height of the segment
+
+//%%% customizeable selector bar attributes (the black bar under the buttons)
+#define ANIMATION_SPEED 0.2 //%%% the number of seconds it takes to complete the animation
+#define SELECTOR_Y_BUFFER 40 //%%% the y-value of the bar that shows what page you are on (0 is the top)
+#define SELECTOR_HEIGHT 4 //%%% thickness of the selector bar
+
+#define X_OFFSET 12 //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
+#define Y_OFFSET_BELOW_NAVBAR 22.5
+
 
 @interface PageRootController () {
 
     NSArray *viewControllers;
-    
+    UIView *selectionBar;
+    int SELECTOR_WIDTH;
+    int SELECTOR_Y;
 }
 
 @end
+
+
+
 
 @implementation PageRootController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    SELECTOR_WIDTH = self.view.frame.size.width/2;
+    SELECTOR_Y = self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR + HEIGHT;
     
     self.navigationController.navigationBarHidden = YES;
     
@@ -42,11 +62,52 @@
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
+    
     [self.pageViewController didMoveToParentViewController:self];
     
-    
+    [self setUpCustomPageControlIndicatorButtons];
 
+    
 }
+
+- (void) setUpCustomPageControlIndicatorButtons {
+
+        UIView *pageControlIndicatorView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
+    
+        UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, pageControlIndicatorView.frame.size.width/2, HEIGHT)];
+        UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(pageControlIndicatorView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
+        
+        selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT)];
+        selectionBar.backgroundColor = [UIColor blueColor];
+        selectionBar.alpha = 0.8;
+    
+    
+        [pageControlIndicatorView addSubview:leftButton];
+        [pageControlIndicatorView addSubview:rightButton];
+        [pageControlIndicatorView addSubview:selectionBar];
+        [self.pageViewController.view addSubview: pageControlIndicatorView];
+    
+        leftButton.tag = 0;
+        rightButton.tag = 1;
+    
+        leftButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.02 alpha:0.2];
+        [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        leftButton.layer.borderWidth = 1.0;
+        leftButton.layer.borderColor = [UIColor blackColor].CGColor;
+
+        rightButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.2 alpha:0.2];
+        [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        rightButton.layer.borderWidth = 1.0;
+        rightButton.layer.borderColor = [UIColor blackColor].CGColor;
+    
+        [leftButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [rightButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+
+        [leftButton setTitle:@"Jokes" forState:UIControlStateNormal];
+        [rightButton setTitle:@"Sets" forState:UIControlStateNormal];
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -71,16 +132,35 @@
     return nil;
 }
 
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
+    
+    
+    if (pendingViewControllers[0] == self.secondVC) {
+        [UIView animateWithDuration: ANIMATION_SPEED
+                              delay:0.1
+                            options: nil
+                         animations:^{
+                             
+                             selectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
+                         }
+                         completion:^(BOOL finished){
+                         }];
+    }
+    else {
+        [UIView animateWithDuration: ANIMATION_SPEED
+                              delay:0.1
+                            options: nil
+                         animations:^{
+                             
+                             selectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
+                         }
+                         completion:^(BOOL finished){
+                         }];
+    }
 
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 2;
 }
 
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 0;
-}
+
 
 
 /*
