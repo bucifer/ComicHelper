@@ -28,21 +28,16 @@
 
 
 - (IBAction)logout:(id)sender {
-    NSLog(@"%@", [PFUser currentUser]);
+    NSLog(@"LOG OUTTTT %@", [PFUser currentUser]);
     [PFUser logOut]; // Log out
-    UINavigationController *navCtrl = self.navigationController;
-    HomeTabBarController *htbc = (HomeTabBarController *) navCtrl.tabBarController;
-    [htbc dismissViewControllerAnimated:NO completion:^{
-        
-        UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        
-        activityView.center=self.view.center;
-        
-        [activityView startAnimating];
-        
-        [self.view addSubview:activityView];
-        
-    }];
+    [self.navigationController.tabBarController dismissViewControllerAnimated:YES completion: nil];
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self logout: nil];
+    
 }
 
 @end

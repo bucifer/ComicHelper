@@ -79,8 +79,9 @@
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     
     NSLog(@"successful log in through parse");
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    [self performSegueWithIdentifier:@"successLoginSegue" sender:self];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self performSegueWithIdentifier:@"successLoginSegue" sender:self];
+    }];
     
 }
 

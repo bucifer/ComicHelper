@@ -12,7 +12,6 @@
 
 {
     UIRefreshControl *refreshControl;
-    IBOutlet UIPageControl *pageControl;
 }
 
 @end
@@ -21,9 +20,6 @@
 
 @implementation HomeViewController
 
-- (IBAction)pageControlChanged:(id)sender {
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

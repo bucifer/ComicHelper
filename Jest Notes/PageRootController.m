@@ -24,6 +24,8 @@
     UIView *selectionBar;
     int SELECTOR_WIDTH;
     int SELECTOR_Y;
+    UIButton *leftButton;
+    UIButton *rightButton;
 }
 
 @end
@@ -66,6 +68,8 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     [self setUpCustomPageControlIndicatorButtons];
+    
+    leftButton.backgroundColor = [UIColor orangeColor];
 }
 
 
@@ -74,11 +78,11 @@
 
         self.pageControlCustomView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
     
-        UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.pageControlCustomView.frame.size.width/2, HEIGHT)];
-        UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.pageControlCustomView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
+        leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.pageControlCustomView.frame.size.width/2, HEIGHT)];
+        rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.pageControlCustomView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
         
         selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT)];
-        selectionBar.backgroundColor = [UIColor lightGrayColor];
+        selectionBar.backgroundColor = [UIColor brownColor];
         selectionBar.alpha = 0.8;
     
         leftButton.tag = 0;
@@ -106,6 +110,8 @@
 
 - (IBAction) tappedJokes:(id)sender {
     [self.pageViewController setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    leftButton.backgroundColor = [UIColor orangeColor];
+    rightButton.backgroundColor = nil;
     
     [UIView animateWithDuration: ANIMATION_SPEED
                           delay:0.1
@@ -120,6 +126,8 @@
 }
 - (IBAction) tappedSets:(id)sender {
     [self.pageViewController setViewControllers:@[self.secondVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    leftButton.backgroundColor = nil;
+    rightButton.backgroundColor = [UIColor orangeColor];
     
     [UIView animateWithDuration: ANIMATION_SPEED
                           delay:0.1
@@ -164,7 +172,8 @@
                               delay:0.1
                             options: nil
                          animations:^{
-                             
+                             leftButton.backgroundColor = nil;
+                             rightButton.backgroundColor = [UIColor orangeColor];
                              selectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
                          }
                          completion:^(BOOL finished){
@@ -175,7 +184,8 @@
                               delay:0.1
                             options: nil
                          animations:^{
-                             
+                             leftButton.backgroundColor = [UIColor orangeColor];
+                             rightButton.backgroundColor = nil;
                              selectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
                          }
                          completion:^(BOOL finished){
