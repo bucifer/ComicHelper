@@ -2,7 +2,7 @@
 //  AppSettingsTableViewController.m
 //  
 //
-//  Created by Aditya Narayan on 12/18/14.
+//  Created by Terry Bu on 12/18/14.
 //
 //
 

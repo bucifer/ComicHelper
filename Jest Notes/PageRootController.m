@@ -2,7 +2,7 @@
 //  PageRootController.m
 //  Jest Notes
 //
-//  Created by Aditya Narayan on 12/18/14.
+//  Created by Terry Bu on 12/18/14.
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
@@ -17,15 +17,19 @@
 #define X_OFFSET 12
 #define Y_OFFSET_BELOW_NAVBAR 21.7
 
+typedef void (^moveSelectorBarToJokesBlockType)(void);
+typedef void (^moveSelectorBarToSetsBlockType)(void);
+
 
 @interface PageRootController () {
-
     NSArray *viewControllers;
     UIView *selectionBar;
     int SELECTOR_WIDTH;
     int SELECTOR_Y;
     UIButton *leftButton;
     UIButton *rightButton;
+    moveSelectorBarToJokesBlockType moveSelectorBarToJokes;
+    moveSelectorBarToSetsBlockType moveSelectorBarToSets;
 }
 
 @end
@@ -39,6 +43,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    moveSelectorBarToJokes = ^{
+        [UIView animateWithDuration: ANIMATION_SPEED
+                              delay: 0
+                            options: nil
+                         animations:^{
+                             leftButton.backgroundColor = [UIColor orangeColor];
+                             rightButton.backgroundColor = nil;
+                             selectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
+                         }
+                         completion:^(BOOL finished){
+                         }];
+    };
+    
+    moveSelectorBarToSets =  ^{
+        [UIView animateWithDuration: ANIMATION_SPEED
+                              delay: 0
+                            options: nil
+                         animations:^{
+                             rightButton.backgroundColor = [UIColor orangeColor];
+                             leftButton.backgroundColor = nil;
+                             selectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
+                         }
+                         completion:^(BOOL finished){
+                         }];
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -113,15 +142,7 @@
     leftButton.backgroundColor = [UIColor orangeColor];
     rightButton.backgroundColor = nil;
     
-    [UIView animateWithDuration: ANIMATION_SPEED
-                          delay:0.1
-                        options: nil
-                     animations:^{
-                         
-                         selectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
-                     }
-                     completion:^(BOOL finished){
-                     }];
+    moveSelectorBarToJokes();
 
 }
 - (IBAction) tappedSets:(id)sender {
@@ -129,15 +150,7 @@
     leftButton.backgroundColor = nil;
     rightButton.backgroundColor = [UIColor orangeColor];
     
-    [UIView animateWithDuration: ANIMATION_SPEED
-                          delay:0.1
-                        options: nil
-                     animations:^{
-                         
-                         selectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
-                     }
-                     completion:^(BOOL finished){
-                     }];
+    moveSelectorBarToSets();
 }
 
 
@@ -164,35 +177,19 @@
     return nil;
 }
 
-- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     
-    
-    if (pendingViewControllers[0] == self.secondVC) {
-        [UIView animateWithDuration: ANIMATION_SPEED
-                              delay:0.1
-                            options: nil
-                         animations:^{
-                             leftButton.backgroundColor = nil;
-                             rightButton.backgroundColor = [UIColor orangeColor];
-                             selectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
-                         }
-                         completion:^(BOOL finished){
-                         }];
+    if (completed) {
+        //if you allowed "finished" up in the condition there, the selector bar would move even if you aborted out of the swipe gesture to left or right, causing some mess.
+        if (previousViewControllers[0] == self.secondVC) {
+            moveSelectorBarToJokes();
+        }
+        else {
+            moveSelectorBarToSets();
+        }
     }
-    else {
-        [UIView animateWithDuration: ANIMATION_SPEED
-                              delay:0.1
-                            options: nil
-                         animations:^{
-                             leftButton.backgroundColor = [UIColor orangeColor];
-                             rightButton.backgroundColor = nil;
-                             selectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
-                         }
-                         completion:^(BOOL finished){
-                         }];
-    }
-
 }
+
 
 
 

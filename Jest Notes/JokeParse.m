@@ -2,7 +2,7 @@
 //  JokeParse.m
 //  ParseStarterProject
 //
-//  Created by Aditya Narayan on 12/5/14.
+//  Created by Terry Bu on 12/5/14.
 //
 //
 
