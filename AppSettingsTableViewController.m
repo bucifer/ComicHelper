@@ -34,6 +34,22 @@
     
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = [NSString stringWithFormat:@"Press to log out of current user: %@", [PFUser currentUser].username];
+            break;
+        case 1:
+            break;
+        default:
+            break;
+    }
+    return sectionName;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self logout: nil];

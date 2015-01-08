@@ -20,7 +20,7 @@
 }
 
 + (NSString *)parseClassName {
-    return @"Set";
+    return @"Setrecord";
 }
 
 @end

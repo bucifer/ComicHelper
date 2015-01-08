@@ -16,6 +16,7 @@
 @property (retain) NSDate *writeDate;
 @property (retain) NSNumber *length;
 @property (retain) NSNumber * score;
+@property (retain) NSString *user_id;
 
 + (NSString *)parseClassName;
 

@@ -56,6 +56,7 @@
 		AAE50A221A363F0A00A380A1 /* HomeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE50A211A363F0A00A380A1 /* HomeTabBarController.m */; };
 		AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */; };
 		AAE5AEE31A098E9100E73566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEE21A098E9100E73566 /* Main.storyboard */; };
+		AAF3EE521A5AFAF500892012 /* TerryCustomLaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		AAE5AEDF1A0976F800E73566 /* JokeCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeCustomCell.h; sourceTree = "<group>"; };
 		AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCustomCell.m; sourceTree = "<group>"; };
 		AAE5AEE21A098E9100E73566 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TerryCustomLaunchScreen.xib; path = ../TerryCustomLaunchScreen.xib; sourceTree = "<group>"; };
 		AE44D4C78645AD7ED7335107 /* libPods-Jest Notes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jest Notes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -244,6 +246,7 @@
 				AAD2772E1A07DC82002AA22B /* AppDelegate.m */,
 				AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */,
 				AAE5AEE21A098E9100E73566 /* Main.storyboard */,
+				AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */,
 				AAD277391A07DC82002AA22B /* Images.xcassets */,
 				AAD59B961A21112F006B145C /* View Controllers */,
 				AAD59B931A210EA5006B145C /* Data Objects */,
@@ -449,6 +452,7 @@
 				AAE5AEE31A098E9100E73566 /* Main.storyboard in Resources */,
 				AAD2773D1A07DC82002AA22B /* LaunchScreen.xib in Resources */,
 				AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */,
+				AAF3EE521A5AFAF500892012 /* TerryCustomLaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

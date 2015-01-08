@@ -12,7 +12,6 @@
 #define Y_BUFFER 14 //%%% number of pixels on top of the segment
 #define HEIGHT 30 //%%% height of the segment
 #define ANIMATION_SPEED 0.2 //%%% the number of seconds it takes to complete the animation
-#define SELECTOR_Y_BUFFER 40 //%%% the y-value of the bar that shows what page you are on (0 is the top)
 #define SELECTOR_HEIGHT 4 //%%% thickness of the selector bar
 #define X_OFFSET 12
 #define Y_OFFSET_BELOW_NAVBAR 21.7
@@ -25,7 +24,6 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
     NSArray *viewControllers;
     UIView *selectionBar;
     int SELECTOR_WIDTH;
-    int SELECTOR_Y;
     UIButton *leftButton;
     UIButton *rightButton;
     moveSelectorBarToJokesBlockType moveSelectorBarToJokes;
@@ -42,40 +40,14 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    moveSelectorBarToJokes = ^{
-        [UIView animateWithDuration: ANIMATION_SPEED
-                              delay: 0
-                            options: nil
-                         animations:^{
-                             leftButton.backgroundColor = [UIColor orangeColor];
-                             rightButton.backgroundColor = nil;
-                             selectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
-                         }
-                         completion:^(BOOL finished){
-                         }];
-    };
-    
-    moveSelectorBarToSets =  ^{
-        [UIView animateWithDuration: ANIMATION_SPEED
-                              delay: 0
-                            options: nil
-                         animations:^{
-                             rightButton.backgroundColor = [UIColor orangeColor];
-                             leftButton.backgroundColor = nil;
-                             selectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
-                         }
-                         completion:^(BOOL finished){
-                         }];
-    };
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:NO];
     SELECTOR_WIDTH = self.view.frame.size.width/2;
-    SELECTOR_Y = self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR + HEIGHT;
-    
+
     self.navigationController.navigationBarHidden = YES;
     
     UIPageControl *pageControl = [UIPageControl appearance];
@@ -99,6 +71,37 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
     [self setUpCustomPageControlIndicatorButtons];
     
     leftButton.backgroundColor = [UIColor orangeColor];
+    
+    __weak typeof(leftButton) weakLeftButton = leftButton;
+    __weak typeof(rightButton) weakRightButton = rightButton;
+    __weak typeof(selectionBar) weakSelectionBar = selectionBar;
+    
+    
+    moveSelectorBarToJokes = ^{
+        [UIView animateWithDuration: ANIMATION_SPEED
+                              delay: 0
+                            options: UIViewAnimationOptionTransitionNone
+                         animations:^{
+                             weakLeftButton.backgroundColor = [UIColor orangeColor];
+                             weakRightButton.backgroundColor = nil;
+                             weakSelectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
+                         }
+                         completion:^(BOOL finished){
+                         }];
+    };
+    
+    moveSelectorBarToSets =  ^{
+        [UIView animateWithDuration: ANIMATION_SPEED
+                              delay: 0
+                            options: UIViewAnimationOptionTransitionNone
+                         animations:^{
+                             weakRightButton.backgroundColor = [UIColor orangeColor];
+                             weakLeftButton.backgroundColor = nil;
+                             weakSelectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
+                         }
+                         completion:^(BOOL finished){
+                         }];
+    };
 }
 
 

@@ -16,6 +16,7 @@
 @dynamic score;
 @dynamic bodyText;
 @dynamic writeDate;
+@dynamic user_id;
 
 + (void)load {
     [self registerSubclass];

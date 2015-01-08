@@ -53,7 +53,7 @@
 }
 
 - (void) fetchAllParseSets {
-    PFQuery *query = [PFQuery queryWithClassName:@"Set"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Setrecord"];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -207,16 +207,17 @@
     setCD.createDate = setParse.createDate;
     setCD.username = [PFUser currentUser].username;
     
-    //we have to make a fetch request to all the jokeCDs, and make a nsorderedset by following the ordering of the setParse.jokes
-    //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
-    NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < setParse.jokes.count; i++) {
-        NSString *jokeNameString = setParse.jokes[i];
-        JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokeNameString: jokeNameString];
-        [jokeCDArray addObject:jokeCD];
+    if (setParse.jokes.count > 0) {
+        //we have to make a fetch request to all the jokeCDs, and make a nsorderedset by following the ordering of the setParse.jokes
+        //when we create a new set, we find the corresponding cd joke from jokepl and add it to the nsorderedset attribute
+        NSMutableArray *jokeCDArray = [[NSMutableArray alloc]init];
+        for (int i = 0; i < setParse.jokes.count; i++) {
+            NSString *jokeNameString = setParse.jokes[i];
+            JokeCD *jokeCD = [self getCorrespondingJokeCDFromJokeNameString: jokeNameString];
+            [jokeCDArray addObject:jokeCD];
+        }
+        setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
     }
-    
-    setCD.jokes = [NSOrderedSet orderedSetWithArray:[jokeCDArray copy]];
 }
 
 - (JokeCD*) getCorrespondingJokeCDFromJokeNameString: (NSString *) jokeNameString {
@@ -249,7 +250,8 @@
     
     PFUser *user = [PFUser currentUser];
     newJokeParse[@"user"] = user;
-
+    newJokeParse.user_id = user.objectId;
+    
     [newJokeParse saveEventually:^(BOOL succeeded, NSError *error) {
         NSLog(@"Joke name: %@  was sent to Parse - finally got saved", newJoke.name);
     }];
@@ -304,7 +306,7 @@
 
 - (void) reorderJokesInSetForParse:(SetCD *)reorderedSet newOrderedArrayOfJokes:(NSMutableArray *)newOrderedArrayOfJokes {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Set"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Setrecord"];
     [query whereKey:@"name" equalTo:reorderedSet.name];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         SetParse *myParseSet = (SetParse *) object;
@@ -352,7 +354,7 @@
 }
 
 - (void) deleteSet:(SetCD *)setCD {
-    PFQuery *query = [PFQuery queryWithClassName:@"Set"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Setrecord"];
     [query whereKey:@"name" equalTo:setCD.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         PFObject *object = objects[0];

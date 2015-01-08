@@ -125,9 +125,9 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    [self performSegueWithIdentifier:@"successLoginSegue" sender:self];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self performSegueWithIdentifier:@"successLoginSegue" sender:self];
+    }];
 }
 
 // Sent to the delegate when the sign up attempt fails.
