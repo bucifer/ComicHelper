@@ -9,6 +9,8 @@
 #import "AppSettingsTableViewController.h"
 #import <Parse/Parse.h>
 #import "HomeTabBarController.h"
+#import <Social/Social.h>
+
 
 @interface AppSettingsTableViewController ()
 
@@ -27,12 +29,89 @@
 }
 
 
-- (IBAction)logout:(id)sender {
+- (IBAction)logout {
     NSLog(@"LOG OUTTTT %@", [PFUser currentUser]);
     [PFUser logOut]; // Log out
     [self.navigationController.tabBarController dismissViewControllerAnimated:YES completion: nil];
+}
+
+- (IBAction)email {
+    /* create mail subject */
+    NSString *subject = [NSString stringWithFormat:@"[Jest Notes Support Email]"];
+    
+    /* define email address */
+    NSString *mail = [NSString stringWithFormat:@"ktbucifer@gmail.com"];
+    
+    /* create the URL */
+    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"mailto:?to=%@&subject=%@",
+                                                [mail stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+                                                [subject stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+    
+    /* load the URL */
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+- (void) alertForSocial: (NSString *) message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unavailable"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (IBAction)facebook {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *fbPreview = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [fbPreview setInitialText:@"Are you a stand-up comic? I'm using Jest Notes iOS app to organize my jokes and sets!"];
+        [fbPreview addURL:[NSURL URLWithString:@"http://www.jestnotesapp.com"]];
+        [fbPreview addImage:[UIImage imageNamed:@"squiggly180x180noTransparent"]];
+        [self presentViewController:fbPreview animated:YES completion:Nil];
+    }
+    else {
+        [self alertForSocial:@"You must be logged into Facebook in social service of your phone's device settings"];
+    }
+
+}
+
+- (IBAction)twitter {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetComposeView = [SLComposeViewController
+                                                     composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweetComposeView setInitialText:@"Are you a stand-up comic? I'm using Jest Notes iOS app to organize my jokes and sets!"];
+        [tweetComposeView addURL:[NSURL URLWithString:@"http://www.jestnotesapp.com"]];
+        [tweetComposeView addImage:[UIImage imageNamed:@"squiggly180x180noTransparent"]];
+        [self presentViewController:tweetComposeView animated:YES completion:nil];
+    }
+    else {
+        [self alertForSocial:@"You must be logged into Twitter in social service of your phone's device settings"];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            [self logout];
+            break;
+        case 1:
+            [self email];
+            break;
+        case 2:
+            [self facebook];
+            break;
+        case 3:
+            [self twitter];
+            break;
+        default:
+            break;
+    }
+    
+
     
 }
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
@@ -43,17 +122,14 @@
             sectionName = [NSString stringWithFormat:@"Press to log out of current user: %@", [PFUser currentUser].username];
             break;
         case 1:
+            sectionName = @"Email if you want to make comments about or suggestions on the app!";
             break;
+        
         default:
             break;
     }
     return sectionName;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self logout: nil];
-    
-}
 
 @end
