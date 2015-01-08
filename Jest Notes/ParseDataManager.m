@@ -35,8 +35,14 @@
 
 - (void) fetchAllParseJokesAsynchronously {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Joke"];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    PFQuery *userPointerQuery = [PFQuery queryWithClassName:@"Joke"];
+    [userPointerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+    
+    PFQuery *userObjectIDStringQuery = [PFQuery queryWithClassName:@"Joke"];
+    [userObjectIDStringQuery whereKey:@"user_id" equalTo:[PFUser currentUser].objectId];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[userPointerQuery,userObjectIDStringQuery]];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu jokes from Parse server", (unsigned long)objects.count);
