@@ -9,13 +9,29 @@
 #import "ParseDataManager.h"
 
 
-@implementation ParseDataManager
+@implementation ParseDataManager {
+    BOOL someNewDataNeedsToBeSavedToCache;
+}
+
+
+
+#pragma mark custom init
+
+- (id) initWithBoolean {
+    self = [super init];
+    if (self) {
+        someNewDataNeedsToBeSavedToCache = NO;
+    }
+    return self;
+}
 
 
 #pragma mark Singleton
 
 + (ParseDataManager*)sharedParseDataManager
 {
+    //thread-safe way of creating a singleton
+    
     // 1
     static ParseDataManager *_sharedInstance = nil;
     
@@ -79,7 +95,6 @@
 }
 
 - (void) updateCoreDataWithNewJokesAfterDuplicatesChecking: (NSArray*) objects{
-    BOOL someNewDataNeedsToBeSavedToCache = NO;
     for (JokeParse *jokeParse in objects) {
         if ([self parseJokeAlreadyExistsInCoreDataByJokeName:jokeParse]) {
             NSLog(@"A Core Data object with name: %@ was synced for objectId", jokeParse.name);
@@ -88,16 +103,46 @@
             [self convertParseJokeToCoreData:jokeParse];
             someNewDataNeedsToBeSavedToCache = YES;
         }
+        else if (![self thisParseJokeIsNewData:jokeParse.objectId] && [self thisParseJokeUpdateTimeMoreRecentThanCoreDataJoke: jokeParse]) {
+            //if this parse joke's objectid is in core data but some values have been changed, we gotta update
+            //1) I create a joke on the web
+            //2) I've downloaded it off the web and converted it to Core Data for local caching
+            //3) Now, if you ever edit the joke on the web, iOS won't sync the changes because you only check for two things
+            //  A) does the joke with the same NAME exist? ---> no, because we changed the jokename on the web
+            //  B) does any core data joke have the same objectid? --> it gets caught here and doesn't get updated on the phone
+            //I should have tracked updatetime from beginning. will make things a lot easier to track and sync
+            
+            
+        }
     }
     
     if (someNewDataNeedsToBeSavedToCache) {
         [self saveChangesInContextCoreData];
     }
 }
+                   
+- (BOOL) thisParseJokeUpdateTimeMoreRecentThanCoreDataJoke: (JokeParse *) jokeParse {
+    
+    JokeCD *jokeCD = [self getCorrespondingJokeCDFromParseObjectID:jokeParse.objectId];
+    
+    if ([jokeParse.updatedAt compare:jokeCD.updateTime] == NSOrderedDescending) {
+        //if we found this, then we have to refresh the core data joke object
+        jokeCD.name = jokeParse.name;
+        jokeCD.length = jokeParse.length;
+        jokeCD.score = jokeParse.score;
+        jokeCD.writeDate = jokeParse.writeDate;
+        jokeCD.bodyText = jokeParse.bodyText;
+        jokeCD.updateTime = jokeParse.updatedAt;
+        someNewDataNeedsToBeSavedToCache = YES;
+        return YES;
+    }
+    return NO;
+}
+
+                   
 
 
 - (void) updateCoreDataWithNewSets: (NSArray *) objects {
-    BOOL someNewDataNeedsToBeSavedToCache = NO;
     for (SetParse *setParse in objects) {
         if ([self thisParseSetIsNewData:setParse.name]) {
             [self convertParseSetToCoreData:setParse];
@@ -129,12 +174,14 @@
         NSLog(@"Error: %@", error);
     }
     else if (count >= 1) {
-        
         return NO;
     }
     
     return YES;
 }
+
+
+
 
 - (BOOL) thisParseSetIsNewData: (NSString *) setParseName {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
@@ -204,6 +251,7 @@
     joke.bodyText = jokeParse.bodyText;
     joke.parseObjectID = jokeParse.objectId;
     joke.username = [PFUser currentUser].username;
+    joke.updateTime = jokeParse.updatedAt;
 }
 
 - (void) convertParseSetToCoreData: (SetParse *) setParse {
@@ -241,6 +289,23 @@
    }
     
    return fetchedObjects[0];
+}
+
+- (JokeCD*) getCorrespondingJokeCDFromParseObjectID: (NSString *) parseObjectID {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectID == %@", parseObjectID];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"Error: %@", error);
+    }
+    
+    return fetchedObjects[0];
 }
 
 

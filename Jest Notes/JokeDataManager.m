@@ -189,6 +189,7 @@
     jokeCD.writeDate = newJoke.writeDate;
     jokeCD.bodyText = newJoke.bodyText;
     jokeCD.username = [PFUser currentUser].username;
+    jokeCD.updateTime = [NSDate date];
     [self saveChangesInContextCoreData];
     
     //Create one in Parse
@@ -288,6 +289,7 @@
     correspondingCDJoke.score = [NSNumber numberWithInt:joke.score];
     correspondingCDJoke.writeDate = joke.writeDate;
     correspondingCDJoke.bodyText = joke.bodyText;
+    correspondingCDJoke.updateTime = [NSDate date];
     [self saveChangesInContextCoreData];
     
     ParseDataManager *pdm = [ParseDataManager sharedParseDataManager];

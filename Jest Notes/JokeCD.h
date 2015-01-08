@@ -21,6 +21,9 @@
 @property (nonatomic, retain) NSDate * writeDate;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSSet *set;
+@property (nonatomic, retain) NSDate *updateTime;
+
+
 @end
 
 @interface JokeCD (CoreDataGeneratedAccessors)

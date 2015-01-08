@@ -20,5 +20,6 @@
 @dynamic writeDate;
 @dynamic username;
 @dynamic set;
+@dynamic updateTime;
 
 @end
