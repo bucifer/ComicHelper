@@ -21,5 +21,4 @@
 - (void) receiveParseSetsFetchDoneNotification:(NSNotification *) notification;
 
 
-
 @end

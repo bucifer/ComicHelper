@@ -18,16 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.jokeDataManager.sets.count > 0) {
-
-        self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        
-    }
     
     [self.tableView setContentInset:UIEdgeInsetsMake(34,0,0,0)];
 
-
 }
+
+
 
 
 - (void) receiveParseSetsFetchDoneNotification:(NSNotification *) notification
@@ -38,13 +34,19 @@
 
 
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
+    //does get called when you pageview scroll between jokes and sets view
     [super viewWillAppear:animated];
     [self reshowCustomPageControlAndEnableScroling];
     //we need a way to sort the jokes when you created a new joke or edited a joke
     [self.jokeDataManager refreshSetsCDDataWithNewFetch];
+    
+    if (self.jokeDataManager.sets.count > 0) {
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
     [self.tableView reloadData];
 }
 
