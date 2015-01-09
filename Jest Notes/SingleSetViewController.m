@@ -55,13 +55,11 @@
     }
     
     Joke *selectedJoke = [self.selectedSet.jokes objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"#%i. %@", indexPath.row + 1, selectedJoke.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", (indexPath.row + 1), selectedJoke.name];
 
     UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 30.0 ];
     cell.textLabel.font = myFont;
     
-    cell.accessoryType = UITableViewCellAccessoryDetailButton;
-
     return cell;
 }
 

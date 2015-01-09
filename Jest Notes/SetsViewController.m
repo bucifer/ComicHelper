@@ -78,20 +78,27 @@
     // Configure the cell...
     if(!cell){
         cell =
-        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
     
     Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"#%i. %@", indexPath.row + 1,set.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", (indexPath.row + 1),set.name];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/dd/yy"];
-    cell.detailTextLabel.text =  [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:set.createDate]];
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    int setLength = 0;
+    for (int i=0; i < set.jokes.count; i++) {
+        Joke *joke = set.jokes[i];
+        setLength += joke.length;
+    }
+    
+    cell.detailTextLabel.text =  [NSString stringWithFormat:@"Length: %@, %@", [self turnSecondsIntegerIntoMinuteAndSecondsFormat:setLength], [dateFormatter stringFromDate:set.createDate]];
     
     UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 20.0 ];
     cell.textLabel.font = myFont;
+    
+    
     
     return cell;
 }
