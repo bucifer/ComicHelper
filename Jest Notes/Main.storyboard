@@ -818,13 +818,13 @@ You can create jokes and  sets on your phone so that later on the night of your 
 This app has a web application component where you can conveniently write out your jokes on your web browser at http://www.jestnotesapp.com. 
 
 Jokes 
-- Create your joke by pressing on the Pen on the Home Screen 
-- I don't recommend writing out your jokes on the phone because of a mobile phone's small screen width. Instead, use our web application at http://jestnotesapp.com
+- Create your joke by pressing on the Pen on the "View Your Jokes" Screen 
+- I don't recommend writing out your jokes on the phone because of a mobile phone's small screen width. Instead, use our web application at http://www.jestnotesapp.com
 
 Sets
-- The Sets icon on the top right of home view will take you to the listing of your created sets. Once you click on a set, you will be able to see all the jokes associated with that set 
-
-Enjoy!</mutableString>
+- Press the Sets icon on the top right of "view your jokes" screen, next to the Pen icon to create new sets.
+- Swipe to left from "view your jokes" screen to see your created sets. Or you can tap on the "Sets" label right below the icons.   *For troubleshooting issues (like data syncing problems between phone and web), refer to http://www.jestnotesapp.com/about  
+Enjoy and break a leg! (not literally ) </mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
