@@ -94,6 +94,24 @@
 
 }
 
+
+- (void) updateCoreDataWithNewSets: (NSArray *) objects {
+    for (SetParse *setParse in objects) {
+        if ([self thisParseSetIsNewData:setParse.name]) {
+            [self convertParseSetToCoreData:setParse];
+            CoreDataSaveIsNeeded = YES;
+        }
+    }
+    
+    //Deletion syncing
+    [self syncDeletedSetsFromParse:objects];
+    
+    if (CoreDataSaveIsNeeded) {
+        [self saveChangesInContextCoreData];
+    }
+}
+
+#pragma mark Syncing helper methods
 - (void) updateCoreDataWithParseData: (NSArray*) objects{
     
     for (JokeParse *jokeParse in objects) {
@@ -172,10 +190,40 @@
             }
         }
     }
-
-    
 }
-                   
+
+- (void) syncDeletedSetsFromParse: (NSArray *) objects {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity: entity];
+    NSError *error = nil;
+    NSUInteger coreDataJokesCount = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    if (coreDataJokesCount == NSNotFound) {
+        NSLog(@"Error: %@", error);
+    }
+    else if (coreDataJokesCount >= 1) {
+        //check if it's GREATER THAN number of parse jokes
+        if (coreDataJokesCount > objects.count) {
+            //then something is wrong. Delete out those extra jokes on device
+            NSArray *coreDataJokesArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+            NSSet *parseJokesIDSet = [NSSet setWithArray:[objects valueForKeyPath:@"objectId"]];
+            for (JokeCD* joke in coreDataJokesArray) {
+                //we need to test objectID inclusion.
+                //make a set of objectids from the parseJokesArray,
+                //and then test inclusion - is this joke's objectID in this set?
+                //if not, delete the core data joke
+                NSString *jokeIdString = joke.parseObjectID;
+                if (![parseJokesIDSet containsObject:jokeIdString]) {
+                    NSLog(@"Deleting %@ with %@ because it was not found in parse", joke.name, jokeIdString);
+                    [self.managedObjectContext deleteObject:joke];
+                    CoreDataSaveIsNeeded = YES;
+                }
+            }
+        }
+    }
+}
+
+
 - (BOOL) thisParseJokeUpdateTimeMoreRecentThanCoreDataJoke: (JokeParse *) jokeParse {
     
     JokeCD *jokeCD = [self getCorrespondingJokeCDFromParseObjectID:jokeParse.objectId];
@@ -186,26 +234,8 @@
     return NO;
 }
 
-                   
 
-
-- (void) updateCoreDataWithNewSets: (NSArray *) objects {
-    for (SetParse *setParse in objects) {
-        if ([self thisParseSetIsNewData:setParse.name]) {
-            [self convertParseSetToCoreData:setParse];
-            CoreDataSaveIsNeeded = YES;
-        }
-    }
-    
-    if (CoreDataSaveIsNeeded) {
-        [self saveChangesInContextCoreData];
-    }
-
-}
-
-
-#pragma mark Checking Logic for Duplicates of Parse objects vs Core Data
-
+#pragma mark Checking Logic for Duplicates
 - (BOOL) thisParseJokeIsNewData: (NSString *) parseObjectID {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -226,8 +256,6 @@
     
     return YES;
 }
-
-
 
 
 - (BOOL) thisParseSetIsNewData: (NSString *) setParseName {
