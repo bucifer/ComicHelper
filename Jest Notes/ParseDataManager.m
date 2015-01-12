@@ -140,7 +140,19 @@
         //check if it's GREATER THAN number of parse jokes
         if (coreDataJokesCount > objects.count) {
             //then something is wrong. Delete out those extra jokes on device
-            
+            NSArray *coreDataJokesArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+            NSSet *parseJokesIDSet = [NSSet setWithArray:[objects valueForKeyPath:@"objectId"]];
+            for (JokeCD* joke in coreDataJokesArray) {
+                //we need to test objectID inclusion.
+                //make a set of objectids from the parseJokesArray,
+                //and then test inclusion - is this joke's objectID in this set?
+                //if not, delete the core data joke
+                NSString *jokeIdString = joke.parseObjectID;
+                if (![parseJokesIDSet containsObject:jokeIdString]) {
+                    NSLog(@"Deleting %@ with %@ because it was not found in parse", joke.name, jokeIdString);
+                    [self.managedObjectContext deleteObject:joke];
+                }
+            }
         }
     }
     
