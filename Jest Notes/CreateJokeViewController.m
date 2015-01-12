@@ -61,11 +61,6 @@
     }
     
     NSString *jokeScore = self.scoreField.text;
-//    if ([self scoreInputInvalid:jokeScore]) {
-//        return;
-//        //cuts off the entire IBAction if the alert ever goes up
-//    }
-    
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.writeDatePicker.date;
@@ -85,7 +80,7 @@
     
     
     //You create one in presentation layer
-    [self.jokeDataManager.jokes addObject: newJoke];
+    [self.coreDataManager.jokes addObject: newJoke];
     
     //Then you create one in Core Data and Parse AT THE SAME TIME
     //***Why you might ask? Well, I was worried about the case where the user makes a bunch of jokes and a set OFFLINE in a basement somewhere.
@@ -95,7 +90,7 @@
     //I'm going to rely on my own custom logic. We are going to add to Local cache anyways, and then next time Parse fetches a whole bunch of stuff, we are going to block it from being converted into Core Data if we find duplicates.
     //This will ABSOLUTELY make sure that no joke or set data gets lost because you didn't have internet connection when you were writing down something
     
-    [self.jokeDataManager createNewJokeInCoreDataAndParse:newJoke];
+    [self.coreDataManager createNewJokeInCoreDataAndParse:newJoke];
 
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -118,7 +113,7 @@
         return YES;
     }
     
-    else if ([self.jokeDataManager foundDuplicateJokeNameInCoreData:jokeName]) {
+    else if ([self.coreDataManager foundDuplicateJokeNameInCoreData:jokeName]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You already have a joke with the same name"
                                                             message:@"Please name it differently before trying to save."
                                                            delegate:nil
@@ -134,7 +129,7 @@
 
 
 - (BOOL) scoreInputInvalid: (NSString *) scoreString {
-    if ([self.jokeDataManager isScoreInputValid:[scoreString intValue]] == NO) {
+    if ([self.coreDataManager isScoreInputValid:[scoreString intValue]] == NO) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score out of range"
                                                         message:@"Your score input is out of range. Please input a number between 0 to 10 (inclusive) under Joke Score"
                                                        delegate:nil

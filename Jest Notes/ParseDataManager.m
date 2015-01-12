@@ -170,9 +170,16 @@
     if (coreDataJokesCount == NSNotFound) {
         NSLog(@"Error: %@", error);
     }
-    else if (coreDataJokesCount >= 1) {
+    else if (objects.count == 0 && coreDataJokesCount > 0) {
+        //in this case, we just delete all device jokes - we need this check because if the below conditional gets run, then index 0 exception will crash the program
+        NSArray *coreDataJokesArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        for (JokeCD* joke in coreDataJokesArray) {
+            [self.managedObjectContext deleteObject:joke];
+        }
+        CoreDataSaveIsNeeded = YES;
+    }
+    else if (coreDataJokesCount > objects.count) {
         //check if it's GREATER THAN number of parse jokes
-        if (coreDataJokesCount > objects.count) {
             //then something is wrong. Delete out those extra jokes on device
             NSArray *coreDataJokesArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
             NSSet *parseJokesIDSet = [NSSet setWithArray:[objects valueForKeyPath:@"objectId"]];
@@ -188,39 +195,45 @@
                     CoreDataSaveIsNeeded = YES;
                 }
             }
-        }
     }
 }
 
 - (void) syncDeletedSetsFromParse: (NSArray *) objects {
+    
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity: entity];
     NSError *error = nil;
-    NSUInteger coreDataJokesCount = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
-    if (coreDataJokesCount == NSNotFound) {
+    NSUInteger coreDataSetsCount = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    if (coreDataSetsCount == NSNotFound) {
         NSLog(@"Error: %@", error);
     }
-    else if (coreDataJokesCount >= 1) {
-        //check if it's GREATER THAN number of parse jokes
-        if (coreDataJokesCount > objects.count) {
-            //then something is wrong. Delete out those extra jokes on device
+    else if (objects.count == 0 && coreDataSetsCount > 0) {
+        //in this case, we just delete all device sets, we need this check because if the below conditional gets run, then index 0 exception will crash the program
+        NSArray *coreDataJokesArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        for (SetCD* set in coreDataJokesArray) {
+            [self.managedObjectContext deleteObject:set];
+        }
+        CoreDataSaveIsNeeded = YES;
+    }
+    else if (coreDataSetsCount > objects.count) {
+        //it's GREATER THAN number of parse jokes
+        //then Delete out those extra jokes on device
             NSArray *coreDataJokesArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-            NSSet *parseJokesIDSet = [NSSet setWithArray:[objects valueForKeyPath:@"objectId"]];
-            for (JokeCD* joke in coreDataJokesArray) {
+            NSSet *parseSetsNameSet = [NSSet setWithArray:[objects valueForKeyPath:@"name"]];
+            for (SetCD* set in coreDataJokesArray) {
                 //we need to test objectID inclusion.
                 //make a set of objectids from the parseJokesArray,
                 //and then test inclusion - is this joke's objectID in this set?
                 //if not, delete the core data joke
-                NSString *jokeIdString = joke.parseObjectID;
-                if (![parseJokesIDSet containsObject:jokeIdString]) {
-                    NSLog(@"Deleting %@ with %@ because it was not found in parse", joke.name, jokeIdString);
-                    [self.managedObjectContext deleteObject:joke];
+                NSString *setName = set.name;
+                if (![parseSetsNameSet containsObject:setName]) {
+                    NSLog(@"Deleting set %@ because it was not found in parse", setName);
+                    [self.managedObjectContext deleteObject:set];
                     CoreDataSaveIsNeeded = YES;
                 }
             }
         }
-    }
 }
 
 
@@ -457,7 +470,6 @@
     [query whereKey:@"name" equalTo:reorderedSet.name];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         SetParse *myParseSet = (SetParse *) object;
-        
         NSMutableArray *namesArray = [[NSMutableArray alloc]init];
         for (int i=0; i < newOrderedArrayOfJokes.count; i++) {
             JokeCD *jokeCD = newOrderedArrayOfJokes[i];

@@ -66,7 +66,7 @@
     {
         // Get reference to the destination view controller
         EditJokeViewController *evc = [segue destinationViewController];
-        evc.jokeDataManager = self.jokeDataManager;
+        evc.coreDataManager = self.coreDataManager;
         evc.joke = self.joke;
     }
 }

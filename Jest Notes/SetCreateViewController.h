@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 
 @interface SetCreateViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *selectedJokes;
-@property (strong, nonatomic) JokeDataManager *jokeDataManager;
+@property (strong, nonatomic) CoreDataManager *coreDataManager;
 
 @property (strong, nonatomic) IBOutlet UITextField *setNameField;
 @property (strong, nonatomic) IBOutlet UILabel *setLengthFillLabel;

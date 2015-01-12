@@ -49,7 +49,7 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope: (NSString *) scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
-    searchResults = [[self.jokeDataManager.jokes filteredArrayUsingPredicate:resultPredicate]mutableCopy];
+    searchResults = [[self.coreDataManager.jokes filteredArrayUsingPredicate:resultPredicate]mutableCopy];
 }
 
 
@@ -78,7 +78,7 @@
         return [searchResults count];
     }
     else {
-        return self.jokeDataManager.jokes.count;
+        return self.coreDataManager.jokes.count;
     }
 }
 
@@ -131,7 +131,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    Joke *selectedJoke = [self.coreDataManager.jokes objectAtIndex:indexPath.row];
     [self jokeWasDeselected:selectedJoke];
     cell.accessoryView = nil;
 }
@@ -147,7 +147,7 @@
 
 #pragma mark Refactored Methods
 - (void) setUpSearchFilterFunctionality {
-    searchResults = [NSMutableArray arrayWithCapacity:[self.jokeDataManager.jokes count]];
+    searchResults = [NSMutableArray arrayWithCapacity:[self.coreDataManager.jokes count]];
     selectedObjects = [[NSMutableArray array]init];
     self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
 }
@@ -178,7 +178,7 @@
 
 - (void) cellStylingLogicForRegTableView: (JokeCustomCell *) cell indexPath:(NSIndexPath *)indexPath {
     
-    Joke *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    Joke *joke = [self.coreDataManager.jokes objectAtIndex:indexPath.row];
     cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
     cell.nameLabel.text = [NSString stringWithFormat: @"%@", joke.name];
     cell.scoreLabel.text = [NSString stringWithFormat: @"Score: %@", [self quickStringFromInt:joke.score]];
@@ -217,7 +217,7 @@
 }
 
 - (void) didSelectCheckmarkLogicForRegularTableView: (NSIndexPath *)indexPath cell: (UITableViewCell*) cell{
-    Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    Joke *selectedJoke = [self.coreDataManager.jokes objectAtIndex:indexPath.row];
     [self jokeWasSelected:selectedJoke];
     cell.accessoryView = [self createJokeOrderButtonForJoke:selectedJoke];
 }
@@ -278,8 +278,8 @@
                                                                            ascending:YES
                                                                             selector:@selector(localizedCaseInsensitiveCompare:)];
             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            NSArray *sortedArray = [self.jokeDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
-            self.jokeDataManager.jokes = [sortedArray mutableCopy];
+            NSArray *sortedArray = [self.coreDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
+            self.coreDataManager.jokes = [sortedArray mutableCopy];
             [self.tableView reloadData];
             break;
         }
@@ -298,8 +298,8 @@
                                                                    ascending:ascending
                                         ];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *sortedArray = [self.jokeDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
-    self.jokeDataManager.jokes = [sortedArray mutableCopy];
+    NSArray *sortedArray = [self.coreDataManager.jokes sortedArrayUsingDescriptors:sortDescriptors];
+    self.coreDataManager.jokes = [sortedArray mutableCopy];
     [self.tableView reloadData];
 }
 
@@ -311,7 +311,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        Joke *selectedJoke = [self.coreDataManager.jokes objectAtIndex:indexPath.row];
         selectedJoke.checkmarkFlag = NO;
         cell.accessoryView = nil;
         [selectedObjects removeObject:selectedJoke];
@@ -350,7 +350,7 @@
         // Get reference to the destination view controller
         SetCreateViewController *scvc = [segue destinationViewController];
         scvc.selectedJokes = selectedObjects;
-        scvc.jokeDataManager = self.jokeDataManager;
+        scvc.coreDataManager = self.coreDataManager;
     }
 }
 

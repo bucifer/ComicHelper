@@ -20,16 +20,11 @@
 
 @class HomeViewController;
 
-@protocol JokeDataManagerDelegate;
-
-
-@interface JokeDataManager : NSObject
+@interface CoreDataManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *jokes;
 @property (nonatomic, strong) NSMutableArray *sets;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
-@property (weak, nonatomic) id <JokeDataManagerDelegate> delegate;
 
 
 
@@ -69,14 +64,6 @@
 - (void) sortArrayWithOneDescriptorString: (NSMutableArray *) myArray descriptor: (NSString *) descriptorString ascending: (BOOL) ascending;
 - (BOOL) isScoreInputValid: (int) score;
 - (BOOL) foundDuplicateJokeNameInCoreData: (NSString *) jokeName;
-
-@end
-
-
-
-//in case you want to implement this later for some functionality
-
-@protocol JokeDataManagerDelegate
-
+- (BOOL) foundDuplicateSetNameInCoreData: (NSString *) setName;
 
 @end

@@ -41,9 +41,9 @@
     [super viewWillAppear:animated];
     [self reshowCustomPageControlAndEnableScroling];
     //we need a way to sort the jokes when you created a new joke or edited a joke
-    [self.jokeDataManager refreshSetsCDDataWithNewFetch];
+    [self.coreDataManager refreshSetsCDDataWithNewFetch];
     
-    if (self.jokeDataManager.sets.count > 0) {
+    if (self.coreDataManager.sets.count > 0) {
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
     } else {
         self.navigationItem.rightBarButtonItem = nil;
@@ -75,8 +75,8 @@
 {
     //update here...
     ParseDataManager *sharedPDM = [ParseDataManager sharedParseDataManager];
-    [sharedPDM  fetchAllParseJokesAsynchronously];
-    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [sharedPDM  fetchAllParseSets];
+    [self.coreDataManager refreshSetsCDDataWithNewFetch];
     [self.tableView reloadData];
     [refreshControl endRefreshing];
 }
@@ -92,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.jokeDataManager.sets.count;
+    return self.coreDataManager.sets.count;
 }
 
 
@@ -104,7 +104,7 @@
         [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
     
-    Set *set = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
+    Set *set = [self.coreDataManager.sets objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", (indexPath.row + 1),set.name];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -144,7 +144,7 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete from data source
-        [self.jokeDataManager deleteSet:indexPath];
+        [self.coreDataManager deleteSet:indexPath];
         
         // Delete the row visually
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -180,9 +180,9 @@
         // Get reference to the destination view controller
         SingleSetViewController *singleSetView = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        singleSetView.selectedSet = [self.jokeDataManager.sets objectAtIndex:indexPath.row];
+        singleSetView.selectedSet = [self.coreDataManager.sets objectAtIndex:indexPath.row];
         singleSetView.title = singleSetView.selectedSet.name;
-        singleSetView.jokeDataManager = self.jokeDataManager;
+        singleSetView.coreDataManager = self.coreDataManager;
         singleSetView.pageRootController = self.pageRootController;
     }
 }

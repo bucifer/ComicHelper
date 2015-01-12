@@ -9,7 +9,7 @@
 #import "HomeTabBarController.h"
 #import "PageRootController.h"
 #import "SetsViewController.h"
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 
 @interface HomeTabBarController ()
 
@@ -25,19 +25,19 @@
 }
 
 - (void) initializationLogic {
-    JokeDataManager *jokeDataManager = [[JokeDataManager alloc]init];
+    CoreDataManager *coreDataManager = [[CoreDataManager alloc]init];
     
     id appDelegate = (id)[[UIApplication sharedApplication] delegate];
-    jokeDataManager.managedObjectContext = [appDelegate managedObjectContext];
+    coreDataManager.managedObjectContext = [appDelegate managedObjectContext];
     
     UINavigationController *firstNavController = self.viewControllers[0];
     
     PageRootController *pageRootController = (PageRootController *) firstNavController.topViewController;
     HomeViewController *homeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
-    homeViewController.jokeDataManager = jokeDataManager;
+    homeViewController.coreDataManager = coreDataManager;
     homeViewController.pageRootController = pageRootController;
     SetsViewController *svc = (SetsViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"SetsViewController"];
-    svc.jokeDataManager = jokeDataManager;
+    svc.coreDataManager = coreDataManager;
     svc.pageRootController = pageRootController;
     [self addUniqueObserver:svc selector:@selector(receiveParseSetsFetchDoneNotification:) name:@"ParseSetsFetchDone" object:nil];
     

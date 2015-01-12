@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Set.h"
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 #import "PageRootController.h"
 
 @interface SingleSetViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Set *selectedSet;
-@property (strong, nonatomic) JokeDataManager *jokeDataManager;
+@property (strong, nonatomic) CoreDataManager *coreDataManager;
 @property (weak, nonatomic) PageRootController *pageRootController;
 
 

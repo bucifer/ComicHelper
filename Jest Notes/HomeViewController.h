@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 #import "ParseDataManager.h"
 #import <Parse/Parse.h>
 #import "CreateJokeViewController.h"
@@ -24,12 +24,12 @@
 #import "NSObject+NSObject___TerryConvenience.h"
 #import "PageRootController.h"
 
-@class JokeDataManager;
+@class CoreDataManager;
 @class PageRootController;
 
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParseDataManagerDelegate>
 
-@property (strong, nonatomic) JokeDataManager *jokeDataManager;
+@property (strong, nonatomic) CoreDataManager *coreDataManager;
 @property (strong, nonatomic) ParseDataManager *parseDataManager;
 @property (weak, nonatomic) PageRootController *pageRootController;
 

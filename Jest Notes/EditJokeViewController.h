@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 #import "NSObject+NSObject___TerryConvenience.h"
 
 @interface EditJokeViewController : UIViewController <UITextFieldDelegate> 
@@ -24,7 +24,7 @@
 
 
 @property (strong, nonatomic) IBOutlet UILabel *scoreOutOfTenLabel;
-@property (strong, nonatomic) JokeDataManager *jokeDataManager;
+@property (strong, nonatomic) CoreDataManager *coreDataManager;
 
 - (IBAction)sliderValueChanged:(id)sender;
 

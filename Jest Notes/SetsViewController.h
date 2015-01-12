@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 #import "PageRootController.h"
 
 @class PageRootController;
 
 @interface SetsViewController : UITableViewController
 
-@property (strong, nonatomic) JokeDataManager *jokeDataManager;
+@property (strong, nonatomic) CoreDataManager *coreDataManager;
 @property (weak, nonatomic) PageRootController *pageRootController;
 
 

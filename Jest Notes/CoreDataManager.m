@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 
 
-@implementation JokeDataManager
+@implementation CoreDataManager
 
 
 -(id)init {
@@ -386,6 +386,25 @@
     return NO;
 }
 
+- (BOOL) foundDuplicateSetNameInCoreData: (NSString *) setName {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetCD" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", setName];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest
+                                                                 error:&error];
+    if (count == NSNotFound) {
+        NSLog(@"Error: %@", error);
+    }
+    else if (count >= 1) {
+        return YES;
+    }
+    return NO;
+}
 
 
 

@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Joke.h"
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 #import "JokeCD.h"
 
 
-@class JokeDataManager;
+@class CoreDataManager;
 
 
 @interface SingleJokeViewController : UIViewController
 
 
 @property (nonatomic, strong) Joke *joke;
-@property (nonatomic, strong) JokeDataManager *jokeDataManager;
+@property (nonatomic, strong) CoreDataManager *coreDataManager;
 
 @property (strong, nonatomic) IBOutlet UILabel *jokeLengthLabel;
 @property (strong, nonatomic) IBOutlet UILabel *jokeScoreLabel;

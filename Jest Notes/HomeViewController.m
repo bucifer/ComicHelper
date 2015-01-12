@@ -27,7 +27,7 @@
     NSLog(@"current user's USERNAME: %@", [PFUser currentUser].username);
     
     [self initializeParseMagicAndFetchAll];
-    [self.jokeDataManager appInitializationLogic];
+    [self.coreDataManager appInitializationLogic];
     
     [self setUpInterfaceAndNavButtons];
     [self setUpRefreshControlOnPullDown];
@@ -37,12 +37,12 @@
     [super viewWillAppear:animated];
     //we need a way to sort the jokes when you created a new joke or edited a joke
     
-    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.coreDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
     
-    if (self.jokeDataManager.jokes.count == 0)
+    if (self.coreDataManager.jokes.count == 0)
         self.deleteBarButton.title = nil;
-    else if (self.jokeDataManager.jokes.count > 0)
+    else if (self.coreDataManager.jokes.count > 0)
         self.deleteBarButton.title = @"Delete";
     
     self.pageRootController.pageControlCustomView.hidden = NO;
@@ -83,7 +83,7 @@
 {
     //update here...
     [self.parseDataManager fetchAllParseJokesAsynchronously];
-    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.coreDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
     [refreshControl endRefreshing];
 }
@@ -92,7 +92,7 @@
 - (void) initializeParseMagicAndFetchAll {
     //Parse Related
     ParseDataManager *myParseDataManager = [ParseDataManager sharedParseDataManager];
-    myParseDataManager.managedObjectContext = self.jokeDataManager.managedObjectContext;
+    myParseDataManager.managedObjectContext = self.coreDataManager.managedObjectContext;
     myParseDataManager.delegate = self;
     self.parseDataManager = myParseDataManager;
     [self.parseDataManager fetchAllParseJokesAsynchronously];
@@ -110,20 +110,20 @@
 
 - (void) parseDataManagerDidFinishFetchingAllParseJokes {
     NSLog(@"Parse Data Manager finished getting all parse jokes ... reporting from homeview");
-    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.coreDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
 }
 
 - (void)parseDataManagerDidFinishSynchingCoreDataWithParse {
     NSLog(@"Parse Data Manager finished syncing all parse jokes ... reporting from homeview");
-    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.coreDataManager refreshJokesCDDataWithNewFetch];
     [self.tableView reloadData];
 }
 
 - (void) parseDataManagerDidFinishFetchingAllParseSets {
     NSLog(@"PDM did finish fetching all parse sets from server - sending notification to setsviewcontroller for sets reloading");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ParseSetsFetchDone" object:self];
-    [self.jokeDataManager refreshSetsCDDataWithNewFetch];
+    [self.coreDataManager refreshSetsCDDataWithNewFetch];
     
 }
 
@@ -142,7 +142,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.jokeDataManager.jokes.count;
+    return self.coreDataManager.jokes.count;
 }
 
 
@@ -152,8 +152,8 @@
     static NSString *simpleCellIdentifier = @"JokeCustomCell";
     JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
     
-    if (self.jokeDataManager.jokes.count > 0 ) {
-        Joke *joke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+    if (self.coreDataManager.jokes.count > 0 ) {
+        Joke *joke = [self.coreDataManager.jokes objectAtIndex:indexPath.row];
         joke.uniqueID = [NSNumber numberWithLong:indexPath.row+1];
         
         cell.uniqueIDLabel.text = [NSString stringWithFormat:@"#%@", joke.uniqueID];
@@ -189,13 +189,13 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //Delete from Data Source
-        [self.jokeDataManager deleteJoke:indexPath];
+        [self.coreDataManager deleteJoke:indexPath];
         
         //Delete from visually
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
-    if (self.jokeDataManager.jokes.count == 0) {
+    if (self.coreDataManager.jokes.count == 0) {
         //Just an aesthetic gimmick. I didn't want the delete button to show up when a user has no jokes
         self.deleteBarButton.title = nil;
     }
@@ -224,22 +224,22 @@
     {
         // Get reference to the destination view controller
         CreateJokeViewController *cvc = (CreateJokeViewController*) [segue destinationViewController];
-        cvc.jokeDataManager = self.jokeDataManager;
+        cvc.coreDataManager = self.coreDataManager;
     }
     else if ([[segue identifier] isEqualToString:@"singleView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         SingleJokeViewController *sjvc = [segue destinationViewController];
-        Joke *selectedJoke = [self.jokeDataManager.jokes objectAtIndex:indexPath.row];
+        Joke *selectedJoke = [self.coreDataManager.jokes objectAtIndex:indexPath.row];
         sjvc.joke  = selectedJoke;
         sjvc.title = selectedJoke.name;
-        sjvc.jokeDataManager = self.jokeDataManager;
+        sjvc.coreDataManager = self.coreDataManager;
     }
     
     else if ([[segue identifier] isEqualToString:@"setCreationViewSegue"])
     {
         // Get reference to the destination view controller
         MultiJokesSelectionController *scvc = (MultiJokesSelectionController*)[segue destinationViewController];
-        scvc.jokeDataManager = self.jokeDataManager;
+        scvc.coreDataManager = self.coreDataManager;
     }
 }
 

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JokeDataManager.h"
+#import "CoreDataManager.h"
 
 
-@class JokeDataManager;
+@class CoreDataManager;
 
 
 @interface CreateJokeViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
@@ -22,7 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *writeDatePicker;
 @property (strong, nonatomic) IBOutlet UITextView *jokeBodyTextView;
 @property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
-@property (strong, nonatomic) JokeDataManager *jokeDataManager;
+@property (strong, nonatomic) CoreDataManager *coreDataManager;
 
 - (IBAction)createNewJokeAction:(id)sender;
 

@@ -80,7 +80,7 @@
 
 - (IBAction)createSetButton:(id)sender {
     
-    if ([self alertIfSetNameFieldInvalid]) {
+    if ([self alertIfSetNameFieldInvalid: self.setNameField.text]) {
         return;
     }
     else {
@@ -90,20 +90,29 @@
         newSet.name = self.setNameField.text;
         newSet.jokes = self.selectedJokes;
         newSet.createDate = [NSDate date];
-        [self.jokeDataManager.sets addObject:newSet];
+        [self.coreDataManager.sets addObject:newSet];
         
         //Then we add to Core Data and Parse at the SAME TIME 
-        [self.jokeDataManager createNewSetInCoreDataAndParse: newSet];
+        [self.coreDataManager createNewSetInCoreDataAndParse: newSet];
         
-        [self.tabBarController setSelectedIndex:1]; //we are going to sets view right when we are done creating one from the tabbar view
+        [self.tabBarController setSelectedIndex:1]; //we are going to sets view when we are done creating a set from the tabbar view
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
-- (BOOL) alertIfSetNameFieldInvalid {
-    if ([self.setNameField.text isEqualToString:@""]) {
+- (BOOL) alertIfSetNameFieldInvalid: (NSString *) setName {
+    if ([setName isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Set Name Invalid"
                                                         message:@"You need a name for your set"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return YES;
+    }
+    else if ([self.coreDataManager foundDuplicateSetNameInCoreData:setName]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You already have a set with the same name"
+                                                        message:@"Please name it differently before trying to save."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

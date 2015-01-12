@@ -24,8 +24,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
-    self.jokeDataManager.sets = nil;
-    [self.jokeDataManager refreshSetsCDDataWithNewFetch];
+    self.coreDataManager.sets = nil;
+    [self.coreDataManager refreshSetsCDDataWithNewFetch];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -137,7 +137,7 @@
         [sender setTitle:@"Reorder"];
         
         //I want to take a snapshot of the ordering at this state, and create a NSOrderedSet to save into core data right now
-        [self.jokeDataManager reorderJokesOfMySetInCoreDataAndParse:self.selectedSet];
+        [self.coreDataManager reorderJokesOfMySetInCoreDataAndParse:self.selectedSet];
     
         [self.tableView reloadData];
     }
