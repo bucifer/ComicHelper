@@ -63,7 +63,7 @@
         if (!error) {
             NSLog(@"Successfully retrieved %lu jokes from Parse server", (unsigned long)objects.count);
             
-            [self updateCoreDataWithNewJokesAfterDuplicatesChecking:objects];
+            [self updateCoreDataWithParseData:objects];
             [self.delegate parseDataManagerDidFinishFetchingAllParseJokes];
     
         }
@@ -94,31 +94,56 @@
 
 }
 
-- (void) updateCoreDataWithNewJokesAfterDuplicatesChecking: (NSArray*) objects{
+- (void) updateCoreDataWithParseData: (NSArray*) objects{
+    
     for (JokeParse *jokeParse in objects) {
         if ([self parseJokeAlreadyExistsInCoreDataByJokeName:jokeParse]) {
+            //syncing from Parse so jokes created on device can prevent future Parse jokes from coming in
             NSLog(@"A Core Data object with name: %@ was synced for objectId", jokeParse.name);
         }
         else if ([self thisParseJokeIsNewData:jokeParse.objectId]) {
+            //Insertion syncing Parse if something was created off web
             [self convertParseJokeToCoreData:jokeParse];
             someNewDataNeedsToBeSavedToCache = YES;
         }
         else if (![self thisParseJokeIsNewData:jokeParse.objectId] && [self thisParseJokeUpdateTimeMoreRecentThanCoreDataJoke: jokeParse]) {
-            //if this parse joke's objectid is in core data but some values have been changed, we gotta update
+            //Update syncing
             //1) I create a joke on the web
             //2) I've downloaded it off the web and converted it to Core Data for local caching
             //3) Now, if you ever edit the joke on the web, iOS won't sync the changes because you only check for two things
-            //  A) does the joke with the same NAME exist? ---> no, because we changed the jokename on the web
-            //  B) does any core data joke have the same objectid? --> it gets caught here and doesn't get updated on the phone
-            //I should have tracked updatetime from beginning. will make things a lot easier to track and sync
-            
-            
+            //  A) does the joke with the same NAME exist? ---> if yes, then sync it for object-id, don't add as whole new joke
+            //  B) does any core data joke have the same objectid? --> if yes, do nothing
+            // now we need a whole new system for updating jokes that have been updated on the web
+            //using update time .. we now check for C) if this joke is not new from Parse, is its update time more recent?
         }
     }
     
     if (someNewDataNeedsToBeSavedToCache) {
         [self saveChangesInContextCoreData];
     }
+    
+    //Deletion syncing
+    //check if Parse has less jokes than on Device.
+    //that's because the web application deleted stuff, but it didn't get reflected properly on device.
+    //in that case, get all your core data jokes.
+    //find the ones not found in this objects array.
+    //delete them from core data
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"JokeCD" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity: entity];
+    NSError *error = nil;
+    NSUInteger coreDataJokesCount = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    if (coreDataJokesCount == NSNotFound) {
+        NSLog(@"Error: %@", error);
+    }
+    else if (coreDataJokesCount >= 1) {
+        //check if it's GREATER THAN number of parse jokes
+        if (coreDataJokesCount > objects.count) {
+            //then something is wrong. Delete out those extra jokes on device
+            
+        }
+    }
+    
 }
                    
 - (BOOL) thisParseJokeUpdateTimeMoreRecentThanCoreDataJoke: (JokeParse *) jokeParse {
