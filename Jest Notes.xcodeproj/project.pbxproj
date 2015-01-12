@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D9A3E7C055A199927D2B5FD /* libPods-Jest Notes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE44D4C78645AD7ED7335107 /* libPods-Jest Notes.a */; };
+		AA682B4D1A646BFB000E6137 /* TerrySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA682B4C1A646BFB000E6137 /* TerrySignUpViewController.m */; };
 		AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */; };
 		AAC7C6071A3253FA00BF73DC /* JokeParse.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7C6061A3253FA00BF73DC /* JokeParse.m */; };
 		AAC7C60A1A32573F00BF73DC /* ParseDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7C6091A32573F00BF73DC /* ParseDataManager.m */; };
@@ -72,6 +73,8 @@
 /* Begin PBXFileReference section */
 		6F8B9F6045D1DB3B37BBDD17 /* Pods-Jest Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jest Notes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jest Notes/Pods-Jest Notes.debug.xcconfig"; sourceTree = "<group>"; };
 		A7DB3D41C14026C940E474D6 /* Pods-Jest Notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jest Notes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jest Notes/Pods-Jest Notes.release.xcconfig"; sourceTree = "<group>"; };
+		AA682B4B1A646BFB000E6137 /* TerrySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrySignUpViewController.h; sourceTree = "<group>"; };
+		AA682B4C1A646BFB000E6137 /* TerrySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrySignUpViewController.m; sourceTree = "<group>"; };
 		AA7562D71A1EAC1E003F5F03 /* MultiJokesSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiJokesSelectionController.h; sourceTree = "<group>"; };
 		AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiJokesSelectionController.m; sourceTree = "<group>"; };
 		AAC7C6051A3253FA00BF73DC /* JokeParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokeParse.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 			children = (
 				AADCA55C1A3FA0C700948AD9 /* DefaultSettingsViewController.h */,
 				AADCA55D1A3FA0C700948AD9 /* DefaultSettingsViewController.m */,
+				AA682B4B1A646BFB000E6137 /* TerrySignUpViewController.h */,
+				AA682B4C1A646BFB000E6137 /* TerrySignUpViewController.m */,
 				AADCA5641A3FA8AB00948AD9 /* LoginViewController.h */,
 				AADCA5651A3FA8AB00948AD9 /* LoginViewController.m */,
 				AAD22E791A436A8C00956B3B /* AppSettingsTableViewController.h */,
@@ -504,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */,
+				AA682B4D1A646BFB000E6137 /* TerrySignUpViewController.m in Sources */,
 				AAE50A221A363F0A00A380A1 /* HomeTabBarController.m in Sources */,
 				AAD4B7BD1A3906A500CD3ACE /* SetParse.m in Sources */,
 				AADCA5661A3FA8AB00948AD9 /* LoginViewController.m in Sources */,

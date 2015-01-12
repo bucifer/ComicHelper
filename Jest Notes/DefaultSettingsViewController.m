@@ -9,7 +9,7 @@
 #import "DefaultSettingsViewController.h"
 #import "HomeTabBarController.h"
 #import "LoginViewController.h"
-
+#import "TerrySignUpViewController.h"
 
 @interface DefaultSettingsViewController ()
 
@@ -39,7 +39,7 @@
         [loginViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
         
         // Create the sign up view controller
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        TerrySignUpViewController *signUpViewController = [[TerrySignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
         
         // Assign our sign up controller to be displayed from the login controller
@@ -137,7 +137,7 @@
 
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
-    NSLog(@"User dismissed the signUpViewController");
+//    NSLog(@"User dismissed the signUpViewController");
 }
 
 

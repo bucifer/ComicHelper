@@ -23,9 +23,9 @@
 //    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed: @"comedy.jpg" ]];
 //    [self.view addSubview:backgroundView];
     
-    UIImage *myLogoImage = [UIImage imageNamed:@"transparentLogoBigger"];
+    UIImage *myLogoImage = [UIImage imageNamed:@"logoBannerWithLogoIconforLoginView"];
     UIImageView *logoView = [[UIImageView alloc] initWithImage:myLogoImage];
-    logoView.contentMode = UIViewContentModeScaleAspectFill;
+    logoView.contentMode = UIViewContentModeScaleToFill;
     logoView.clipsToBounds = YES;
     
     self.logInView.logo = logoView;
@@ -34,18 +34,15 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    
     [self.logInView.logInButton setBackgroundColor:[UIColor orangeColor]];
     
     //apparently Parse put a gray background image on that login button .. you gotta remove it for the background color to show properly
     [self.logInView.logInButton setBackgroundImage:nil forState:UIControlStateNormal];
     [self.logInView.logInButton setBackgroundImage:nil forState:UIControlStateHighlighted];
 
-    
-    
     //this is how you redesign the loginview in terms of style
     //    [self.logInView.dismissButton setFrame:CGRectMake(10.0f, 10.0f, 87.5f, 45.5f)];
-    //    [self.logInView.logo setFrame:CGRectMake(66.5f, 70.0f, 187.0f, 58.5f)];
+        [self.logInView.logo setFrame:CGRectMake(self.view.frame.size.width/2-243/2, 70.0f, 243, 114)];
     //    [self.logInView.facebookButton setFrame:CGRectMake(35.0f, 287.0f, 120.0f, 40.0f)];
     //    [self.logInView.twitterButton setFrame:CGRectMake(35.0f+130.0f, 287.0f, 120.0f, 40.0f)];
     //    [self.logInView.signUpButton setFrame:CGRectMake(35.0f, 385.0f, 250.0f, 40.0f)];
