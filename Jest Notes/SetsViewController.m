@@ -104,23 +104,24 @@
         [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
     
-    Set *set = [self.coreDataManager.sets objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", (indexPath.row + 1),set.name];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"M/dd/yy"];
-    
-    int setLength = 0;
-    for (int i=0; i < set.jokes.count; i++) {
-        Joke *joke = set.jokes[i];
-        setLength += joke.length;
+    if (self.coreDataManager.sets.count > 0 ) {
+        Set *set = [self.coreDataManager.sets objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"#%li. %@", (indexPath.row + 1),set.name];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"M/dd/yy"];
+        
+        int setLength = 0;
+        for (int i=0; i < set.jokes.count; i++) {
+            Joke *joke = set.jokes[i];
+            setLength += joke.length;
+        }
+        
+        cell.detailTextLabel.text =  [NSString stringWithFormat:@"Length: %@, %@", [self turnSecondsIntegerIntoMinuteAndSecondsFormat:setLength], [dateFormatter stringFromDate:set.createDate]];
+        
+        UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 20.0 ];
+        cell.textLabel.font = myFont;
     }
-    
-    cell.detailTextLabel.text =  [NSString stringWithFormat:@"Length: %@, %@", [self turnSecondsIntegerIntoMinuteAndSecondsFormat:setLength], [dateFormatter stringFromDate:set.createDate]];
-    
-    UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 20.0 ];
-    cell.textLabel.font = myFont;
-    
     
     
     return cell;

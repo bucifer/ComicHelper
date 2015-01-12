@@ -122,9 +122,11 @@
 
 - (void) parseDataManagerDidFinishFetchingAllParseSets {
     NSLog(@"PDM did finish fetching all parse sets from server - sending notification to setsviewcontroller for sets reloading");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ParseSetsFetchDone" object:self];
     [self.coreDataManager refreshSetsCDDataWithNewFetch];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ParseSetsFetchDone" object:self];
+    //the reason I do this is because Delegation is a one to one communication.
+    //I made HomeViewController a delegate for Parse Data Manager, but this VC doesn't handle sets
+    //so instead, i send a notification out to sets view controller to handlet this - like we learned in our practice projects
 }
 
 
@@ -164,9 +166,9 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"M/dd/yy"];
         cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.writeDate]];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     
     return cell;

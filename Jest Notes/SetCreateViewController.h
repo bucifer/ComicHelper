@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataManager.h"
 
-@interface SetCreateViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SetCreateViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray *selectedJokes;
 @property (strong, nonatomic) CoreDataManager *coreDataManager;

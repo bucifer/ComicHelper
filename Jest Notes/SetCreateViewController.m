@@ -20,6 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setUpUserInterface];
+}
+
+- (void) setUpUserInterface {
     int setLength = 0;
     
     for (int i=0; i < self.selectedJokes.count; i++) {
@@ -33,6 +37,8 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    
+    self.setNameField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,6 +46,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+#pragma mark tableview methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -139,7 +148,12 @@
 
 -(void)dismissKeyboard {
     [self.setNameField resignFirstResponder]; //or whatever your textfield you want this to apply to
+}
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 
