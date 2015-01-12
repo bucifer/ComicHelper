@@ -78,6 +78,16 @@
     [refreshView addSubview:refreshControl];
 }
 
+//For the UIFReshControl's action on pull-down
+-(void)refreshData
+{
+    //update here...
+    [self.parseDataManager fetchAllParseJokesAsynchronously];
+    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.tableView reloadData];
+    [refreshControl endRefreshing];
+}
+
 
 - (void) initializeParseMagicAndFetchAll {
     //Parse Related
@@ -89,15 +99,7 @@
     [self.parseDataManager fetchAllParseSets];
 }
 
-//For the UIFReshControl's action on pull-down
--(void)refreshData
-{
-    //update here...
-    [self.parseDataManager fetchAllParseJokesAsynchronously];
-    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
-    [self.tableView reloadData];
-    [refreshControl endRefreshing];
-}
+
 
 
 

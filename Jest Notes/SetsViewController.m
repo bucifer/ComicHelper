@@ -9,7 +9,9 @@
 #import "SetsViewController.h"
 #import "SingleSetViewController.h"
 
-@interface SetsViewController ()
+@interface SetsViewController () {
+    UIRefreshControl* refreshControl;
+}
 
 @end
 
@@ -18,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    [self setUpRefreshControlOnPullDown];
     [self.tableView setContentInset:UIEdgeInsetsMake(34,0,0,0)];
 
 }
@@ -57,6 +59,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark refresh on pulldown
+- (void) setUpRefreshControlOnPullDown {
+    //Refresh on pull-down
+    UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 20, 20)];
+    [self.tableView insertSubview:refreshView atIndex:0];
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [refreshView addSubview:refreshControl];
+}
+
+//For the UIFReshControl's action on pull-down
+-(void)refreshData
+{
+    //update here...
+    ParseDataManager *sharedPDM = [ParseDataManager sharedParseDataManager];
+    [sharedPDM  fetchAllParseJokesAsynchronously];
+    [self.jokeDataManager refreshJokesCDDataWithNewFetch];
+    [self.tableView reloadData];
+    [refreshControl endRefreshing];
+}
 
 
 
