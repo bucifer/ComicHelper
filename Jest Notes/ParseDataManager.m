@@ -10,7 +10,7 @@
 
 
 @implementation ParseDataManager {
-    BOOL someNewDataNeedsToBeSavedToCache;
+    BOOL CoreDataSaveIsNeeded;
 }
 
 
@@ -20,7 +20,7 @@
 - (id) initWithBoolean {
     self = [super init];
     if (self) {
-        someNewDataNeedsToBeSavedToCache = NO;
+        CoreDataSaveIsNeeded = NO;
     }
     return self;
 }
@@ -104,24 +104,40 @@
         else if ([self thisParseJokeIsNewData:jokeParse.objectId]) {
             //Insertion syncing Parse if something was created off web
             [self convertParseJokeToCoreData:jokeParse];
-            someNewDataNeedsToBeSavedToCache = YES;
         }
         else if (![self thisParseJokeIsNewData:jokeParse.objectId] && [self thisParseJokeUpdateTimeMoreRecentThanCoreDataJoke: jokeParse]) {
             //Update syncing
-            //1) I create a joke on the web
-            //2) I've downloaded it off the web and converted it to Core Data for local caching
-            //3) Now, if you ever edit the joke on the web, iOS won't sync the changes because you only check for two things
-            //  A) does the joke with the same NAME exist? ---> if yes, then sync it for object-id, don't add as whole new joke
-            //  B) does any core data joke have the same objectid? --> if yes, do nothing
-            // now we need a whole new system for updating jokes that have been updated on the web
-            //using update time .. we now check for C) if this joke is not new from Parse, is its update time more recent?
+            [self syncUpdatedJokeFromParse:jokeParse];
         }
     }
+    //Deletion syncing
+    [self syncDeletedJokesFromParse:objects];
     
-    if (someNewDataNeedsToBeSavedToCache) {
+    if (CoreDataSaveIsNeeded) {
         [self saveChangesInContextCoreData];
     }
-    
+}
+
+- (void) syncUpdatedJokeFromParse: (JokeParse*) jokeParse {
+    //1) I create a joke on the web
+    //2) I've downloaded it off the web and converted it to Core Data for local caching
+    //3) Now, if you ever edit the joke on the web, iOS won't sync the changes because you only check for two things
+    //  A) does the joke with the same NAME exist? ---> if yes, then sync it for object-id, don't add as whole new joke
+    //  B) does any core data joke have the same objectid? --> if yes, do nothing
+    // now we need a whole new system for updating jokes that have been updated on the web
+    //using update time .. we now check for C) if this joke is not new from Parse, is its update time more recent?
+    //if we found this, then we have to refresh the core data joke object
+    JokeCD *jokeCD = [self getCorrespondingJokeCDFromParseObjectID:jokeParse.objectId];
+    jokeCD.name = jokeParse.name;
+    jokeCD.length = jokeParse.length;
+    jokeCD.score = jokeParse.score;
+    jokeCD.writeDate = jokeParse.writeDate;
+    jokeCD.bodyText = jokeParse.bodyText;
+    jokeCD.updateTime = jokeParse.updatedAt;
+    CoreDataSaveIsNeeded = YES;
+}
+
+- (void) syncDeletedJokesFromParse: (NSArray *) objects {
     //Deletion syncing
     //check if Parse has less jokes than on Device.
     //that's because the web application deleted stuff, but it didn't get reflected properly on device.
@@ -151,10 +167,12 @@
                 if (![parseJokesIDSet containsObject:jokeIdString]) {
                     NSLog(@"Deleting %@ with %@ because it was not found in parse", joke.name, jokeIdString);
                     [self.managedObjectContext deleteObject:joke];
+                    CoreDataSaveIsNeeded = YES;
                 }
             }
         }
     }
+
     
 }
                    
@@ -163,14 +181,6 @@
     JokeCD *jokeCD = [self getCorrespondingJokeCDFromParseObjectID:jokeParse.objectId];
     
     if ([jokeParse.updatedAt compare:jokeCD.updateTime] == NSOrderedDescending) {
-        //if we found this, then we have to refresh the core data joke object
-        jokeCD.name = jokeParse.name;
-        jokeCD.length = jokeParse.length;
-        jokeCD.score = jokeParse.score;
-        jokeCD.writeDate = jokeParse.writeDate;
-        jokeCD.bodyText = jokeParse.bodyText;
-        jokeCD.updateTime = jokeParse.updatedAt;
-        someNewDataNeedsToBeSavedToCache = YES;
         return YES;
     }
     return NO;
@@ -183,11 +193,11 @@
     for (SetParse *setParse in objects) {
         if ([self thisParseSetIsNewData:setParse.name]) {
             [self convertParseSetToCoreData:setParse];
-            someNewDataNeedsToBeSavedToCache = YES;
+            CoreDataSaveIsNeeded = YES;
         }
     }
     
-    if (someNewDataNeedsToBeSavedToCache) {
+    if (CoreDataSaveIsNeeded) {
         [self saveChangesInContextCoreData];
     }
 
@@ -289,6 +299,7 @@
     joke.parseObjectID = jokeParse.objectId;
     joke.username = [PFUser currentUser].username;
     joke.updateTime = jokeParse.updatedAt;
+    CoreDataSaveIsNeeded = YES;
 }
 
 - (void) convertParseSetToCoreData: (SetParse *) setParse {
