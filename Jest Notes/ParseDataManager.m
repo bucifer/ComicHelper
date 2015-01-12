@@ -62,8 +62,16 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu jokes from Parse server", (unsigned long)objects.count);
+            if (objects.count > 0)
+                [self updateCoreDataWithParseData:objects];
             
-            [self updateCoreDataWithParseData:objects];
+            //Deletion syncing
+            [self syncDeletedJokesFromParse:objects];
+            
+            if (CoreDataSaveIsNeeded) {
+                [self saveChangesInContextCoreData];
+            }
+            
             [self.delegate parseDataManagerDidFinishFetchingAllParseJokes];
     
         }
@@ -81,10 +89,17 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu Sets from Parse server", (unsigned long)objects.count);
+            if (objects.count > 0)
+                [self updateCoreDataWithNewSets:objects];
+    
+            //Deletion syncing
+            [self syncDeletedSetsFromParse:objects];
             
-            [self updateCoreDataWithNewSets:objects];
+            if (CoreDataSaveIsNeeded) {
+                [self saveChangesInContextCoreData];
+            }
+            
             [self.delegate parseDataManagerDidFinishFetchingAllParseSets];
-
         }
         else {
             // Log details of the failure
@@ -101,13 +116,6 @@
             [self convertParseSetToCoreData:setParse];
             CoreDataSaveIsNeeded = YES;
         }
-    }
-    
-    //Deletion syncing
-    [self syncDeletedSetsFromParse:objects];
-    
-    if (CoreDataSaveIsNeeded) {
-        [self saveChangesInContextCoreData];
     }
 }
 
@@ -127,12 +135,6 @@
             //Update syncing
             [self syncUpdatedJokeFromParse:jokeParse];
         }
-    }
-    //Deletion syncing
-    [self syncDeletedJokesFromParse:objects];
-    
-    if (CoreDataSaveIsNeeded) {
-        [self saveChangesInContextCoreData];
     }
 }
 
