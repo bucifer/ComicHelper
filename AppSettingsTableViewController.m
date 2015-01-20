@@ -29,13 +29,12 @@
 }
 
 
-- (IBAction)logout {
-    NSLog(@"LOG OUTTTT %@", [PFUser currentUser]);
+- (void)logout {
     [PFUser logOut]; // Log out
     [self.navigationController.tabBarController dismissViewControllerAnimated:YES completion: nil];
 }
 
-- (IBAction)email {
+- (void)email {
     /* create mail subject */
     NSString *subject = [NSString stringWithFormat:@"[Jest Notes Support Email]"];
     
@@ -60,7 +59,7 @@
     [alert show];
 }
 
-- (IBAction)facebook {
+- (void)facebook {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewController *fbPreview = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         [fbPreview setInitialText:@"Are you a stand-up comic? I'm using Jest Notes iOS app to organize my jokes and sets!"];
@@ -74,7 +73,7 @@
 
 }
 
-- (IBAction)twitter {
+- (void)twitter {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetComposeView = [SLComposeViewController

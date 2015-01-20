@@ -103,7 +103,7 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 
         self.pageControlCustomView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
     
-        leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.pageControlCustomView.frame.size.width/2, HEIGHT)];
+        leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, HEIGHT)];
         rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.pageControlCustomView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
         
         selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT)];
@@ -132,8 +132,6 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
         [self.pageControlCustomView addSubview:selectionBar];
         [self.pageViewController.view addSubview: self.pageControlCustomView];
 }
-
-
 
 
 - (IBAction) tappedJokes:(id)sender {

@@ -19,6 +19,9 @@
     NSMutableArray *selectedObjects;
 }
 
+- (IBAction)segCtrlAction:(id)sender;
+
+
 @end
 
 @implementation MultiJokesSelectionController
@@ -153,8 +156,8 @@
 }
 
 - (void) initializeBarButtons {
-    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshSetSelectionAction:)];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
+    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshSetSelectionAction)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction)];
     NSArray *buttonArray = [NSArray arrayWithObjects:doneButton, clearButton, nil];
     self.navigationItem.rightBarButtonItems = buttonArray;
 }
@@ -304,7 +307,7 @@
 }
 
 
-- (IBAction)refreshSetSelectionAction:(id)sender {
+- (void) refreshSetSelectionAction {
     
     for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row ++)
     {
@@ -320,7 +323,7 @@
 }
 
 
-- (IBAction)doneAction:(id)sender {
+- (void)doneAction {
     if (selectedObjects.count == 0) {
         NSLog(@"Nothing Selected");
         [self alertIfNothingWasSelected];

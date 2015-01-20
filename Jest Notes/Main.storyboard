@@ -955,7 +955,7 @@ Enjoy and break a leg! (not literally) </string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Share on Facebook" id="IfI-dz-SOh">
+                            <tableViewSection headerTitle="Facebook" id="IfI-dz-SOh">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nJ4-gy-mHJ">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -978,7 +978,7 @@ Enjoy and break a leg! (not literally) </string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Share on Twitter" id="xnm-gH-GYG">
+                            <tableViewSection headerTitle="Twitter" id="xnm-gH-GYG">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="M21-su-HTd">
                                         <autoresizingMask key="autoresizingMask"/>
