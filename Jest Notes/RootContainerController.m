@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "PageRootController.h"
+#import "RootContainerController.h"
 
 //%%% customizeable button attributes
 #define Y_BUFFER 14 //%%% number of pixels on top of the segment
@@ -20,7 +20,7 @@ typedef void (^moveSelectorBarToJokesBlockType)(void);
 typedef void (^moveSelectorBarToSetsBlockType)(void);
 
 
-@interface PageRootController () {
+@interface RootContainerController () {
     NSArray *viewControllers;
     UIView *selectionBar;
     UIButton *leftButton;
@@ -34,7 +34,7 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 
 
 
-@implementation PageRootController
+@implementation RootContainerController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -132,6 +132,8 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
         [self.pageControlCustomView addSubview:selectionBar];
         [self.pageViewController.view addSubview: self.pageControlCustomView];
 }
+
+
 
 
 - (IBAction) tappedJokes:(id)sender {

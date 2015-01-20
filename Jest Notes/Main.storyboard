@@ -8,7 +8,7 @@
         <!--HomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" title="JokesViewController" id="BYZ-38-t0r" userLabel="HomeViewController" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="JokesViewController" id="BYZ-38-t0r" userLabel="HomeViewController" customClass="JokesHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-iD-EQY">
                                 <rect key="frame" x="0.0" y="34" width="600" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -758,10 +758,10 @@
             </objects>
             <point key="canvasLocation" x="2408" y="-2181"/>
         </scene>
-        <!--Page Root Controller-->
+        <!--Root Container Controller-->
         <scene sceneID="tzY-Rt-nSh">
             <objects>
-                <viewController storyboardIdentifier="PageRootController" id="7RM-OG-stv" customClass="PageRootController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageRootController" id="7RM-OG-stv" customClass="RootContainerController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gMt-kz-GDE"/>
                         <viewControllerLayoutGuide type="bottom" id="2aX-Gz-gN7"/>
@@ -809,8 +809,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
-                                <rect key="frame" x="14" y="15" width="573" height="600"/>
+                                <rect key="frame" x="0.0" y="8" width="573" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="uP9-Ru-MLn"/>
+                                </constraints>
                                 <string key="text">Thanks for downloading this app. This app is designed for stand-up comics to organize your jokes and sets into one convenient tool so that you can read and access them quickly even without an internet connection.
 
 You can create jokes and  sets on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
@@ -831,10 +834,9 @@ Enjoy and break a leg! (not literally) </string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="st1-fg-KEH" secondAttribute="bottom" constant="-15" id="G4x-2I-P8Q"/>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="tsr-1B-gKi" secondAttribute="top" constant="15" id="Yrz-E6-CGU"/>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="leading" secondItem="tsr-1B-gKi" secondAttribute="leadingMargin" constant="-2" id="rbj-dr-6Si"/>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="centerX" secondItem="tsr-1B-gKi" secondAttribute="centerX" id="trl-Of-mRk"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="leading" secondItem="tsr-1B-gKi" secondAttribute="leading" id="3Hd-Oh-IUC"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="tsr-1B-gKi" secondAttribute="top" constant="8" id="VBW-Oo-tgs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="st1-fg-KEH" secondAttribute="trailing" constant="11" id="bjA-bT-3X5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Help" id="xaN-gM-lvg"/>
@@ -846,10 +848,10 @@ Enjoy and break a leg! (not literally) </string>
             </objects>
             <point key="canvasLocation" x="-745" y="198"/>
         </scene>
-        <!--Default Settings View Controller-->
+        <!--Authentication Controller-->
         <scene sceneID="5AE-zd-wCU">
             <objects>
-                <viewController id="ErO-tb-I85" customClass="DefaultSettingsViewController" sceneMemberID="viewController">
+                <viewController id="ErO-tb-I85" customClass="AuthenticationController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0q3-RU-Obm"/>
                         <viewControllerLayoutGuide type="bottom" id="5Ub-sM-9HF"/>

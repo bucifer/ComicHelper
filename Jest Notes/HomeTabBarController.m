@@ -7,7 +7,7 @@
 //
 
 #import "HomeTabBarController.h"
-#import "PageRootController.h"
+#import "RootContainerController.h"
 #import "SetsViewController.h"
 #import "CoreDataManager.h"
 
@@ -32,8 +32,8 @@
     
     UINavigationController *firstNavController = self.viewControllers[0];
     
-    PageRootController *pageRootController = (PageRootController *) firstNavController.topViewController;
-    HomeViewController *homeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    RootContainerController *pageRootController = (RootContainerController *) firstNavController.topViewController;
+    JokesHomeViewController *homeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
     homeViewController.coreDataManager = coreDataManager;
     homeViewController.pageRootController = pageRootController;
     SetsViewController *svc = (SetsViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"SetsViewController"];

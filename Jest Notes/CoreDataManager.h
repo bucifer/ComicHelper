@@ -13,12 +13,9 @@
 #import "JokeParse.h"
 #import "SetCD.h"
 #import "Set.h"
-#import "ParseDataManager.h"
-#import <Parse/Parse.h>
-#import "HomeViewController.h"
 
 
-@class HomeViewController;
+
 
 @interface CoreDataManager : NSObject
 

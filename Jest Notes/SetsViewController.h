@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataManager.h"
-#import "PageRootController.h"
+#import "RootContainerController.h"
 
-@class PageRootController;
+@class RootContainerController;
 
 @interface SetsViewController : UITableViewController
 
 @property (strong, nonatomic) CoreDataManager *coreDataManager;
-@property (weak, nonatomic) PageRootController *pageRootController;
+@property (weak, nonatomic) RootContainerController *pageRootController;
 
 
 - (void) receiveParseSetsFetchDoneNotification:(NSNotification *) notification;

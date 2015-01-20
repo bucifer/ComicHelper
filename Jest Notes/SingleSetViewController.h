@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Set.h"
 #import "CoreDataManager.h"
-#import "PageRootController.h"
+#import "RootContainerController.h"
 
 @interface SingleSetViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Set *selectedSet;
 @property (strong, nonatomic) CoreDataManager *coreDataManager;
-@property (weak, nonatomic) PageRootController *pageRootController;
+@property (weak, nonatomic) RootContainerController *pageRootController;
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

@@ -8,6 +8,7 @@
 
 #import "SetsViewController.h"
 #import "SingleSetViewController.h"
+#import "NSObject+NSObject___TerryConvenience.h"
 
 @interface SetsViewController () {
     UIRefreshControl* refreshControl;

@@ -6,9 +6,23 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "JokesHomeViewController.h"
+#import <Parse/Parse.h>
+#import "CreateJokeViewController.h"
+#import "SingleJokeViewController.h"
+#import "MultiJokesSelectionController.h"
+#import "Joke.h"
+#import "JokeCD.h"
+#import "JokeParse.h"
+#import "JokeCustomCell.h"
+#import "Set.h"
+#import "SetsViewController.h"
+#import "HomeTabBarController.h"
+#import "NSObject+NSObject___TerryConvenience.h"
+#import <CoreData/CoreData.h>
 
-@interface HomeViewController ()
+
+@interface JokesHomeViewController ()
 
 {
     UIRefreshControl *refreshControl;
@@ -18,7 +32,7 @@
 
 
 
-@implementation HomeViewController
+@implementation JokesHomeViewController
 
 
 - (void)viewDidLoad {

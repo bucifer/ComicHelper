@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 TerryBuOrganization. All rights reserved.
 //
 
-#import "DefaultSettingsViewController.h"
+#import "AuthenticationController.h"
 #import "HomeTabBarController.h"
 #import "LoginViewController.h"
 #import "TerrySignUpViewController.h"
 
-@interface DefaultSettingsViewController ()
+@interface AuthenticationController ()
 
 @end
 
-@implementation DefaultSettingsViewController
+@implementation AuthenticationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

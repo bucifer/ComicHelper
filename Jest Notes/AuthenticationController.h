@@ -10,6 +10,6 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-@interface DefaultSettingsViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface AuthenticationController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end

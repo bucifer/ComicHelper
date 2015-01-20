@@ -7,7 +7,9 @@
 //
 
 #import "CoreDataManager.h"
-
+#import "ParseDataManager.h"
+#import <Parse/Parse.h>
+#import "JokesHomeViewController.h"
 
 @implementation CoreDataManager
 

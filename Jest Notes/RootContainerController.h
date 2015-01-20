@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HomeViewController.h"
+#import "JokesHomeViewController.h"
 #import "SetsViewController.h"
 
-@interface PageRootController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface RootContainerController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 
 @property (strong, nonatomic) UINavigationController *firstVC;

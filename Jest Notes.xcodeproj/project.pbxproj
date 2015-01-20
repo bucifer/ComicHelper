@@ -28,14 +28,14 @@
 		AACDCD1F1A312D0B00FEF4F2 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */; };
 		AAD05C581A41035700BACD7C /* JokeCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C571A41035700BACD7C /* JokeCD.m */; };
 		AAD05C5B1A41035E00BACD7C /* SetCD.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD05C5A1A41035E00BACD7C /* SetCD.m */; };
-		AAD22E751A4336DF00956B3B /* PageRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD22E741A4336DF00956B3B /* PageRootController.m */; };
+		AAD22E751A4336DF00956B3B /* RootContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD22E741A4336DF00956B3B /* RootContainerController.m */; };
 		AAD22E7B1A436A8C00956B3B /* AppSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD22E7A1A436A8C00956B3B /* AppSettingsTableViewController.m */; };
 		AAD2772C1A07DC81002AA22B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772B1A07DC81002AA22B /* main.m */; };
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
 		AAD2773D1A07DC82002AA22B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */; };
 		AAD277491A07DC82002AA22B /* Jest_NotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277481A07DC82002AA22B /* Jest_NotesTests.m */; };
-		AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277551A07DCD9002AA22B /* HomeViewController.m */; };
+		AAD277581A07DCD9002AA22B /* JokesHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277551A07DCD9002AA22B /* JokesHomeViewController.m */; };
 		AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */; };
 		AAD277681A07DCED002AA22B /* CreateJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775B1A07DCED002AA22B /* CreateJokeViewController.m */; };
 		AAD277691A07DCED002AA22B /* EditJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775D1A07DCED002AA22B /* EditJokeViewController.m */; };
@@ -50,7 +50,7 @@
 		AAD59B921A210BC8006B145C /* PushNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B911A210BC8006B145C /* PushNoAnimationSegue.m */; };
 		AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */; };
 		AAD7A62E1A1FFE4C00DA8165 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD7A62D1A1FFE4C00DA8165 /* SetsViewController.m */; };
-		AADCA55E1A3FA0C700948AD9 /* DefaultSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADCA55D1A3FA0C700948AD9 /* DefaultSettingsViewController.m */; };
+		AADCA55E1A3FA0C700948AD9 /* AuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADCA55D1A3FA0C700948AD9 /* AuthenticationController.m */; };
 		AADCA5631A3FA1B600948AD9 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADCA5611A3FA1B600948AD9 /* ParseUI.framework */; };
 		AADCA5661A3FA8AB00948AD9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADCA5651A3FA8AB00948AD9 /* LoginViewController.m */; };
 		AADCA56C1A3FBD3300948AD9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADCA56B1A3FBD3300948AD9 /* Social.framework */; };
@@ -102,8 +102,8 @@
 		AAD05C571A41035700BACD7C /* JokeCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCD.m; sourceTree = "<group>"; };
 		AAD05C591A41035E00BACD7C /* SetCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCD.h; sourceTree = "<group>"; };
 		AAD05C5A1A41035E00BACD7C /* SetCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCD.m; sourceTree = "<group>"; };
-		AAD22E731A4336DF00956B3B /* PageRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageRootController.h; sourceTree = "<group>"; };
-		AAD22E741A4336DF00956B3B /* PageRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageRootController.m; sourceTree = "<group>"; };
+		AAD22E731A4336DF00956B3B /* RootContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootContainerController.h; sourceTree = "<group>"; };
+		AAD22E741A4336DF00956B3B /* RootContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootContainerController.m; sourceTree = "<group>"; };
 		AAD22E791A436A8C00956B3B /* AppSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSettingsTableViewController.h; path = ../AppSettingsTableViewController.h; sourceTree = "<group>"; };
 		AAD22E7A1A436A8C00956B3B /* AppSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSettingsTableViewController.m; path = ../AppSettingsTableViewController.m; sourceTree = "<group>"; };
 		AAD277261A07DC81002AA22B /* Jest Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jest Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,8 +116,8 @@
 		AAD277421A07DC82002AA22B /* Jest NotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jest NotesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD277471A07DC82002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD277481A07DC82002AA22B /* Jest_NotesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Jest_NotesTests.m; sourceTree = "<group>"; };
-		AAD277541A07DCD9002AA22B /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		AAD277551A07DCD9002AA22B /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		AAD277541A07DCD9002AA22B /* JokesHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokesHomeViewController.h; sourceTree = "<group>"; };
+		AAD277551A07DCD9002AA22B /* JokesHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokesHomeViewController.m; sourceTree = "<group>"; };
 		AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleJokeViewController.h; sourceTree = "<group>"; };
 		AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleJokeViewController.m; sourceTree = "<group>"; };
 		AAD2775A1A07DCED002AA22B /* CreateJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateJokeViewController.h; sourceTree = "<group>"; };
@@ -144,8 +144,8 @@
 		AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleSetViewController.m; sourceTree = "<group>"; };
 		AAD7A62C1A1FFE4C00DA8165 /* SetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetsViewController.h; sourceTree = "<group>"; };
 		AAD7A62D1A1FFE4C00DA8165 /* SetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetsViewController.m; sourceTree = "<group>"; };
-		AADCA55C1A3FA0C700948AD9 /* DefaultSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSettingsViewController.h; sourceTree = "<group>"; };
-		AADCA55D1A3FA0C700948AD9 /* DefaultSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultSettingsViewController.m; sourceTree = "<group>"; };
+		AADCA55C1A3FA0C700948AD9 /* AuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationController.h; sourceTree = "<group>"; };
+		AADCA55D1A3FA0C700948AD9 /* AuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationController.m; sourceTree = "<group>"; };
 		AADCA5611A3FA1B600948AD9 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		AADCA5641A3FA8AB00948AD9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AADCA5651A3FA8AB00948AD9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 				AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */,
 				AAD277391A07DC82002AA22B /* Images.xcassets */,
 				AAD59B961A21112F006B145C /* View Controllers */,
-				AAD59B931A210EA5006B145C /* Data Objects */,
+				AAD59B931A210EA5006B145C /* Model Objects */,
 				AAD59B951A2110EB006B145C /* Categories & Custom Views */,
 				AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */,
 				AAD277291A07DC81002AA22B /* Supporting Files */,
@@ -286,7 +286,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AAD59B931A210EA5006B145C /* Data Objects */ = {
+		AAD59B931A210EA5006B145C /* Model Objects */ = {
 			isa = PBXGroup;
 			children = (
 				AAD277601A07DCED002AA22B /* CoreDataManager.h */,
@@ -307,7 +307,7 @@
 				AAD4B7BC1A3906A500CD3ACE /* SetParse.m */,
 				AAD277641A07DCED002AA22B /* Jest_Notes.xcdatamodeld */,
 			);
-			name = "Data Objects";
+			name = "Model Objects";
 			sourceTree = "<group>";
 		};
 		AAD59B951A2110EB006B145C /* Categories & Custom Views */ = {
@@ -330,10 +330,10 @@
 			children = (
 				AAE50A201A363F0A00A380A1 /* HomeTabBarController.h */,
 				AAE50A211A363F0A00A380A1 /* HomeTabBarController.m */,
-				AAD22E731A4336DF00956B3B /* PageRootController.h */,
-				AAD22E741A4336DF00956B3B /* PageRootController.m */,
-				AAD277541A07DCD9002AA22B /* HomeViewController.h */,
-				AAD277551A07DCD9002AA22B /* HomeViewController.m */,
+				AAD22E731A4336DF00956B3B /* RootContainerController.h */,
+				AAD22E741A4336DF00956B3B /* RootContainerController.m */,
+				AAD277541A07DCD9002AA22B /* JokesHomeViewController.h */,
+				AAD277551A07DCD9002AA22B /* JokesHomeViewController.m */,
 				AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */,
 				AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */,
 				AAD2775A1A07DCED002AA22B /* CreateJokeViewController.h */,
@@ -359,8 +359,8 @@
 		AADCA55F1A3FA0CD00948AD9 /* Authentication & Settings */ = {
 			isa = PBXGroup;
 			children = (
-				AADCA55C1A3FA0C700948AD9 /* DefaultSettingsViewController.h */,
-				AADCA55D1A3FA0C700948AD9 /* DefaultSettingsViewController.m */,
+				AADCA55C1A3FA0C700948AD9 /* AuthenticationController.h */,
+				AADCA55D1A3FA0C700948AD9 /* AuthenticationController.m */,
 				AA682B4B1A646BFB000E6137 /* TerrySignUpViewController.h */,
 				AA682B4C1A646BFB000E6137 /* TerrySignUpViewController.m */,
 				AADCA5641A3FA8AB00948AD9 /* LoginViewController.h */,
@@ -514,14 +514,14 @@
 				AAD4B7BD1A3906A500CD3ACE /* SetParse.m in Sources */,
 				AADCA5661A3FA8AB00948AD9 /* LoginViewController.m in Sources */,
 				AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */,
-				AADCA55E1A3FA0C700948AD9 /* DefaultSettingsViewController.m in Sources */,
+				AADCA55E1A3FA0C700948AD9 /* AuthenticationController.m in Sources */,
 				AAD277681A07DCED002AA22B /* CreateJokeViewController.m in Sources */,
 				AAD05C5B1A41035E00BACD7C /* SetCD.m in Sources */,
 				AAD05C581A41035700BACD7C /* JokeCD.m in Sources */,
 				AAD277691A07DCED002AA22B /* EditJokeViewController.m in Sources */,
 				AAE5AEE11A0976F800E73566 /* JokeCustomCell.m in Sources */,
 				AAD2776E1A07DCED002AA22B /* NSObject+NSObject___TerryConvenience.m in Sources */,
-				AAD277581A07DCD9002AA22B /* HomeViewController.m in Sources */,
+				AAD277581A07DCD9002AA22B /* JokesHomeViewController.m in Sources */,
 				AAD2776C1A07DCED002AA22B /* Joke.m in Sources */,
 				AAD59B9F1A215A7C006B145C /* SingleSetViewController.m in Sources */,
 				AACA815C1A25320E0014E86F /* HelpMenuController.m in Sources */,
@@ -531,7 +531,7 @@
 				AAD2772C1A07DC81002AA22B /* main.m in Sources */,
 				AAC7C6071A3253FA00BF73DC /* JokeParse.m in Sources */,
 				AAD44F781A0D64AB00FDB656 /* Set.m in Sources */,
-				AAD22E751A4336DF00956B3B /* PageRootController.m in Sources */,
+				AAD22E751A4336DF00956B3B /* RootContainerController.m in Sources */,
 				AAD2776B1A07DCED002AA22B /* CoreDataManager.m in Sources */,
 				AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */,
 				AAD59B8F1A2107BC006B145C /* SetCreateViewController.m in Sources */,
