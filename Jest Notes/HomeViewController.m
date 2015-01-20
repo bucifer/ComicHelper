@@ -168,9 +168,6 @@
         cell.dateLabel.text = [NSString stringWithFormat: @"%@", [dateFormatter stringFromDate:joke.writeDate]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
-    
-    
     return cell;
 }
 

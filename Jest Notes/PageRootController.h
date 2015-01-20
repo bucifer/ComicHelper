@@ -16,12 +16,7 @@
 @property (strong, nonatomic) UINavigationController *firstVC;
 @property (strong, nonatomic) UINavigationController *secondVC;
 
-
-//for pageview
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-@property (strong, nonatomic) NSArray *pageTitles;
-@property (strong, nonatomic) NSArray *pageImages;
-
 @property (strong, nonatomic) UIView *pageControlCustomView;
 
 @end

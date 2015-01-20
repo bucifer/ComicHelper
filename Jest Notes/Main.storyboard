@@ -811,7 +811,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
                                 <rect key="frame" x="14" y="15" width="573" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Thanks for downloading this app. This app is designed for stand-up comics to organize your jokes and sets into one convenient tool so that you can read and access them quickly even without an internet connection.
+                                <string key="text">Thanks for downloading this app. This app is designed for stand-up comics to organize your jokes and sets into one convenient tool so that you can read and access them quickly even without an internet connection.
 
 You can create jokes and  sets on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
 
@@ -824,7 +824,7 @@ Jokes
 Sets
 - Press the Sets icon on the top right of "view your jokes" screen, next to the Pen icon to create new sets.
 - Swipe to left from "view your jokes" screen to see your created sets. Or you can tap on the "Sets" label right below the icons.   *If you ever have syncing problems between the web application and the mobile application, try pulling down on your jokes screen and it will refresh and update your data.   *For more issues (like data syncing problems between phone and web), refer to http://www.jestnotesapp.com/about 
-Enjoy and break a leg! (not literally) </mutableString>
+Enjoy and break a leg! (not literally) </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
@@ -866,14 +866,6 @@ Enjoy and break a leg! (not literally) </mutableString>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V9w-fs-FSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3716" y="192"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="gvI-1q-x5T">
-            <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="DA7-YT-Swj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wiQ-97-7cB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-756" y="-1337"/>
         </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="Ttk-4D-hLq">

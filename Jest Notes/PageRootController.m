@@ -23,7 +23,6 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 @interface PageRootController () {
     NSArray *viewControllers;
     UIView *selectionBar;
-    int SELECTOR_WIDTH;
     UIButton *leftButton;
     UIButton *rightButton;
     moveSelectorBarToJokesBlockType moveSelectorBarToJokes;
@@ -40,42 +39,35 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
     
-    [super viewWillAppear:NO];
-    SELECTOR_WIDTH = self.view.frame.size.width/2;
-
     self.navigationController.navigationBarHidden = YES;
-    
-    UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor blackColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor redColor];
-    pageControl.backgroundColor = [UIColor clearColor];
-    
+
     // Create page view controller
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
-    
     viewControllers = @[self.firstVC];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    // Change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    //not sure why, but if I add "addchildviewcontroller" or "willmovetoview", it will cause a white space inset glitch at top
+    //removing it helped make it go away
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
     [self setUpCustomPageControlIndicatorButtons];
     
-    leftButton.backgroundColor = [UIColor orangeColor];
+    [self declareBlocksForConvenience];
+
+}
+
+
+- (void) declareBlocksForConvenience {
     
     __weak typeof(leftButton) weakLeftButton = leftButton;
     __weak typeof(rightButton) weakRightButton = rightButton;
     __weak typeof(selectionBar) weakSelectionBar = selectionBar;
-    
+    __weak typeof(self) weakself = self;
     
     moveSelectorBarToJokes = ^{
         [UIView animateWithDuration: ANIMATION_SPEED
@@ -84,7 +76,7 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
                          animations:^{
                              weakLeftButton.backgroundColor = [UIColor orangeColor];
                              weakRightButton.backgroundColor = nil;
-                             weakSelectionBar.frame = CGRectMake(0, HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT);
+                             weakSelectionBar.frame = CGRectMake(0, HEIGHT, weakself.view.frame.size.width/2, SELECTOR_HEIGHT);
                          }
                          completion:^(BOOL finished){
                          }];
@@ -97,11 +89,12 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
                          animations:^{
                              weakRightButton.backgroundColor = [UIColor orangeColor];
                              weakLeftButton.backgroundColor = nil;
-                             weakSelectionBar.frame = CGRectMake(SELECTOR_WIDTH, HEIGHT, SELECTOR_WIDTH + X_OFFSET, SELECTOR_HEIGHT);
+                             weakSelectionBar.frame = CGRectMake(weakself.view.frame.size.width/2, HEIGHT, weakself.view.frame.size.width/2 + X_OFFSET, SELECTOR_HEIGHT);
                          }
                          completion:^(BOOL finished){
                          }];
     };
+    
 }
 
 
@@ -113,19 +106,19 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
         leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.pageControlCustomView.frame.size.width/2, HEIGHT)];
         rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.pageControlCustomView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
         
-        selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, SELECTOR_WIDTH, SELECTOR_HEIGHT)];
+        selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT)];
         selectionBar.backgroundColor = [UIColor brownColor];
         selectionBar.alpha = 0.8;
     
         leftButton.tag = 0;
         rightButton.tag = 1;
         
-        leftButton.backgroundColor = [UIColor whiteColor];
         [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         leftButton.layer.borderWidth = 0.8;
         leftButton.layer.borderColor = [UIColor blackColor].CGColor;
         [leftButton addTarget:self action:@selector(tappedJokes:) forControlEvents:UIControlEventTouchUpInside];
         [leftButton setTitle:@"Jokes" forState:UIControlStateNormal];
+        leftButton.backgroundColor = [UIColor orangeColor];
 
         rightButton.backgroundColor = [UIColor whiteColor];
         [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -139,6 +132,7 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
         [self.pageControlCustomView addSubview:selectionBar];
         [self.pageViewController.view addSubview: self.pageControlCustomView];
 }
+
 
 - (IBAction) tappedJokes:(id)sender {
     [self.pageViewController setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
@@ -158,14 +152,8 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Page View Controller Data Source
-
-
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     if (self.pageViewController.viewControllers[0] == self.secondVC)
@@ -194,7 +182,10 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 }
 
 
-
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 
 /*

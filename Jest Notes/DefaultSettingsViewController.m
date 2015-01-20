@@ -33,14 +33,13 @@
         loginViewController.fields = (PFLogInFieldsUsernameAndPassword
                        | PFLogInFieldsLogInButton
                        | PFLogInFieldsSignUpButton
-//                       | PFLogInFieldsFacebook
-                                      //will hold on Facebook login until I can get the web application working with regular PFUsers
                        | PFLogInFieldsPasswordForgotten);
         [loginViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
         
         // Create the sign up view controller
         TerrySignUpViewController *signUpViewController = [[TerrySignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        signUpViewController.fields = (PFSignUpFieldsUsernameAndPassword| PFSignUpFieldsSignUpButton | PFSignUpFieldsDismissButton);
         
         // Assign our sign up controller to be displayed from the login controller
         [loginViewController setSignUpController:signUpViewController];

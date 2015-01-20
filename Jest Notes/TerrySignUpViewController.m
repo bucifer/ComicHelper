@@ -20,6 +20,7 @@
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoBannerTransparent"]];
     logoView.contentMode = UIViewContentModeScaleAspectFit;
     self.signUpView.logo = logoView; // logo can be any UIView
+
 }
 
 - (void)didReceiveMemoryWarning {
