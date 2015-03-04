@@ -899,57 +899,45 @@ Enjoy and break a leg! (not literally) </string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="" footerTitle="Log out of current user" id="zM4-Iq-KhD">
+                            <tableViewSection headerTitle="" id="zM4-Iq-KhD">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JY0-Pq-13U">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JY0-Pq-13U" id="1fM-Jz-tzI">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcS-Vq-7f3">
-                                                    <rect key="frame" x="262" y="4" width="77" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="Log Out ">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log Out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-Gy-yac">
+                                                    <rect key="frame" x="269" y="11" width="62" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="OcS-Vq-7f3" secondAttribute="centerY" constant="-0.5" id="CcV-oi-yek"/>
-                                                <constraint firstItem="OcS-Vq-7f3" firstAttribute="top" secondItem="1fM-Jz-tzI" secondAttribute="topMargin" constant="-4" id="GBm-AL-wdf"/>
-                                                <constraint firstAttribute="centerY" secondItem="OcS-Vq-7f3" secondAttribute="centerY" id="JQi-GU-Mbu"/>
-                                                <constraint firstAttribute="centerX" secondItem="OcS-Vq-7f3" secondAttribute="centerX" id="bfe-aV-kWZ"/>
-                                                <constraint firstAttribute="centerX" secondItem="OcS-Vq-7f3" secondAttribute="centerX" id="r2q-xd-weC"/>
+                                                <constraint firstItem="n2B-Gy-yac" firstAttribute="centerY" secondItem="1fM-Jz-tzI" secondAttribute="centerY" id="UTz-KQ-vU7"/>
+                                                <constraint firstItem="n2B-Gy-yac" firstAttribute="centerX" secondItem="1fM-Jz-tzI" secondAttribute="centerX" id="x6E-JP-oV5"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="CcV-oi-yek"/>
-                                                    <exclude reference="JQi-GU-Mbu"/>
-                                                    <exclude reference="r2q-xd-weC"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Contact Developer" footerTitle="If you have a question or need to address a problem, email above" id="B6C-Sz-olb">
+                            <tableViewSection headerTitle="Contact Developer" id="B6C-Sz-olb">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nna-eg-WDn">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nna-eg-WDn" id="AZW-sD-qHa">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9B-fW-N5F">
-                                                    <rect key="frame" x="190" y="4" width="220" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="Email Developer Support">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Developer Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaK-zj-9PP">
+                                                    <rect key="frame" x="204" y="11" width="192" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Z9B-fW-N5F" firstAttribute="centerX" secondItem="AZW-sD-qHa" secondAttribute="centerX" id="2lc-9x-jI8"/>
-                                                <constraint firstItem="Z9B-fW-N5F" firstAttribute="top" secondItem="AZW-sD-qHa" secondAttribute="topMargin" constant="-4" id="knG-L6-ITR"/>
+                                                <constraint firstItem="vaK-zj-9PP" firstAttribute="centerY" secondItem="AZW-sD-qHa" secondAttribute="centerY" id="99R-5X-LTj"/>
+                                                <constraint firstItem="vaK-zj-9PP" firstAttribute="centerX" secondItem="AZW-sD-qHa" secondAttribute="centerX" id="qxA-B8-Qwb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -962,17 +950,16 @@ Enjoy and break a leg! (not literally) </string>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nJ4-gy-mHJ" id="ZiC-tI-hen">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOt-i3-tmi">
-                                                    <rect key="frame" x="127" y="4" width="347" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="Share App With Your Facebook Friends">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share App on Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-l6-WHP">
+                                                    <rect key="frame" x="207" y="14" width="186" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yOt-i3-tmi" firstAttribute="centerX" secondItem="ZiC-tI-hen" secondAttribute="centerX" id="Kue-dA-Jc6"/>
-                                                <constraint firstItem="yOt-i3-tmi" firstAttribute="top" secondItem="ZiC-tI-hen" secondAttribute="topMargin" constant="-4" id="vbh-J8-SUf"/>
+                                                <constraint firstItem="bNb-l6-WHP" firstAttribute="centerX" secondItem="ZiC-tI-hen" secondAttribute="centerX" id="WK9-ET-ddA"/>
+                                                <constraint firstItem="bNb-l6-WHP" firstAttribute="bottom" secondItem="ZiC-tI-hen" secondAttribute="bottomMargin" id="ZL1-9I-mi4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -985,17 +972,16 @@ Enjoy and break a leg! (not literally) </string>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M21-su-HTd" id="js9-vL-MoA">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHW-nG-yfh">
-                                                    <rect key="frame" x="132" y="4" width="336" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="Share App With Your Twitter Followers">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share App on Twitter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtM-Wt-hpf">
+                                                    <rect key="frame" x="220" y="11" width="161" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nHW-nG-yfh" firstAttribute="centerX" secondItem="js9-vL-MoA" secondAttribute="centerX" id="9lQ-mF-xWu"/>
-                                                <constraint firstItem="nHW-nG-yfh" firstAttribute="top" secondItem="js9-vL-MoA" secondAttribute="topMargin" constant="-4" id="OZB-Fw-Npn"/>
+                                                <constraint firstItem="dtM-Wt-hpf" firstAttribute="centerX" secondItem="js9-vL-MoA" secondAttribute="centerX" id="102-W1-3bw"/>
+                                                <constraint firstItem="dtM-Wt-hpf" firstAttribute="centerY" secondItem="js9-vL-MoA" secondAttribute="centerY" id="M6z-Pf-hst"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

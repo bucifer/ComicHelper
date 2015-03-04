@@ -112,18 +112,14 @@
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
     switch (section)
     {
         case 0:
-            sectionName = [NSString stringWithFormat:@"Press to log out of current user: %@", [PFUser currentUser].username];
+            sectionName = [NSString stringWithFormat:@"current user: %@", [PFUser currentUser].username];
             break;
-        case 1:
-            sectionName = @"Email if you want to make comments about or suggestions on the app!";
-            break;
-        
         default:
             break;
     }

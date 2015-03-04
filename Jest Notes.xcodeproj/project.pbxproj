@@ -33,7 +33,6 @@
 		AAD2772F1A07DC82002AA22B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2772E1A07DC82002AA22B /* AppDelegate.m */; };
 		AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD277391A07DC82002AA22B /* Images.xcassets */; };
 		AAD2773D1A07DC82002AA22B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */; };
-		AAD277491A07DC82002AA22B /* Jest_NotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277481A07DC82002AA22B /* Jest_NotesTests.m */; };
 		AAD277581A07DCD9002AA22B /* JokesHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277551A07DCD9002AA22B /* JokesHomeViewController.m */; };
 		AAD277591A07DCD9002AA22B /* SingleJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD277571A07DCD9002AA22B /* SingleJokeViewController.m */; };
 		AAD277681A07DCED002AA22B /* CreateJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD2775B1A07DCED002AA22B /* CreateJokeViewController.m */; };
@@ -58,16 +57,6 @@
 		AAE5AEE31A098E9100E73566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5AEE21A098E9100E73566 /* Main.storyboard */; };
 		AAF3EE521A5AFAF500892012 /* TerryCustomLaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		AAD277431A07DC82002AA22B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AAD2771E1A07DC81002AA22B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AAD277251A07DC81002AA22B;
-			remoteInfo = "Jest Notes";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6F8B9F6045D1DB3B37BBDD17 /* Pods-Jest Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jest Notes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jest Notes/Pods-Jest Notes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,9 +101,6 @@
 		AAD2772E1A07DC82002AA22B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AAD277391A07DC82002AA22B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AAD2773C1A07DC82002AA22B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		AAD277421A07DC82002AA22B /* Jest NotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jest NotesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAD277471A07DC82002AA22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAD277481A07DC82002AA22B /* Jest_NotesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Jest_NotesTests.m; sourceTree = "<group>"; };
 		AAD277541A07DCD9002AA22B /* JokesHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JokesHomeViewController.h; sourceTree = "<group>"; };
 		AAD277551A07DCD9002AA22B /* JokesHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokesHomeViewController.m; sourceTree = "<group>"; };
 		AAD277561A07DCD9002AA22B /* SingleJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleJokeViewController.h; sourceTree = "<group>"; };
@@ -178,13 +164,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAD2773F1A07DC82002AA22B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -220,10 +199,9 @@
 		AAD2771D1A07DC81002AA22B = {
 			isa = PBXGroup;
 			children = (
-				AACDCD051A312BBB00FEF4F2 /* Frameworks */,
 				AAD277281A07DC81002AA22B /* Jest Notes */,
-				AAD277451A07DC82002AA22B /* Jest NotesTests */,
 				AAD277271A07DC81002AA22B /* Products */,
+				AACDCD051A312BBB00FEF4F2 /* Frameworks */,
 				441DB306DF0461F45FF15875 /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -232,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				AAD277261A07DC81002AA22B /* Jest Notes.app */,
-				AAD277421A07DC82002AA22B /* Jest NotesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,17 +217,14 @@
 		AAD277281A07DC81002AA22B /* Jest Notes */ = {
 			isa = PBXGroup;
 			children = (
-				AADCA55F1A3FA0CD00948AD9 /* Authentication & Settings */,
 				AAD2772D1A07DC81002AA22B /* AppDelegate.h */,
 				AAD2772E1A07DC82002AA22B /* AppDelegate.m */,
-				AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */,
 				AAE5AEE21A098E9100E73566 /* Main.storyboard */,
-				AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */,
 				AAD277391A07DC82002AA22B /* Images.xcassets */,
+				AADCA55F1A3FA0CD00948AD9 /* Authentication */,
 				AAD59B961A21112F006B145C /* View Controllers */,
 				AAD59B931A210EA5006B145C /* Model Objects */,
 				AAD59B951A2110EB006B145C /* Categories & Custom Views */,
-				AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */,
 				AAD277291A07DC81002AA22B /* Supporting Files */,
 			);
 			path = "Jest Notes";
@@ -259,25 +233,11 @@
 		AAD277291A07DC81002AA22B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */,
+				AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */,
+				AACDCD1E1A312D0B00FEF4F2 /* Keys.plist */,
 				AAD2772A1A07DC81002AA22B /* Info.plist */,
 				AAD2772B1A07DC81002AA22B /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AAD277451A07DC82002AA22B /* Jest NotesTests */ = {
-			isa = PBXGroup;
-			children = (
-				AAD277481A07DC82002AA22B /* Jest_NotesTests.m */,
-				AAD277461A07DC82002AA22B /* Supporting Files */,
-			);
-			path = "Jest NotesTests";
-			sourceTree = "<group>";
-		};
-		AAD277461A07DC82002AA22B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				AAD277471A07DC82002AA22B /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -346,13 +306,15 @@
 				AAD59B9E1A215A7C006B145C /* SingleSetViewController.m */,
 				AACDCD021A31073600FEF4F2 /* SetToJokeDetailViewController.h */,
 				AACDCD031A31073600FEF4F2 /* SetToJokeDetailViewController.m */,
+				AAD22E791A436A8C00956B3B /* AppSettingsTableViewController.h */,
+				AAD22E7A1A436A8C00956B3B /* AppSettingsTableViewController.m */,
 				AACA815A1A25320E0014E86F /* HelpMenuController.h */,
 				AACA815B1A25320E0014E86F /* HelpMenuController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		AADCA55F1A3FA0CD00948AD9 /* Authentication & Settings */ = {
+		AADCA55F1A3FA0CD00948AD9 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				AADCA55C1A3FA0C700948AD9 /* AuthenticationController.h */,
@@ -361,10 +323,8 @@
 				AA682B4C1A646BFB000E6137 /* TerrySignUpViewController.m */,
 				AADCA5641A3FA8AB00948AD9 /* LoginViewController.h */,
 				AADCA5651A3FA8AB00948AD9 /* LoginViewController.m */,
-				AAD22E791A436A8C00956B3B /* AppSettingsTableViewController.h */,
-				AAD22E7A1A436A8C00956B3B /* AppSettingsTableViewController.m */,
 			);
-			name = "Authentication & Settings";
+			name = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,24 +349,6 @@
 			productReference = AAD277261A07DC81002AA22B /* Jest Notes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AAD277411A07DC82002AA22B /* Jest NotesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AAD2774F1A07DC82002AA22B /* Build configuration list for PBXNativeTarget "Jest NotesTests" */;
-			buildPhases = (
-				AAD2773E1A07DC82002AA22B /* Sources */,
-				AAD2773F1A07DC82002AA22B /* Frameworks */,
-				AAD277401A07DC82002AA22B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AAD277441A07DC82002AA22B /* PBXTargetDependency */,
-			);
-			name = "Jest NotesTests";
-			productName = "Jest NotesTests";
-			productReference = AAD277421A07DC82002AA22B /* Jest NotesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -418,10 +360,6 @@
 				TargetAttributes = {
 					AAD277251A07DC81002AA22B = {
 						CreatedOnToolsVersion = 6.1;
-					};
-					AAD277411A07DC82002AA22B = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = AAD277251A07DC81002AA22B;
 					};
 				};
 			};
@@ -439,7 +377,6 @@
 			projectRoot = "";
 			targets = (
 				AAD277251A07DC81002AA22B /* Jest Notes */,
-				AAD277411A07DC82002AA22B /* Jest NotesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -454,13 +391,6 @@
 				AAD2773D1A07DC82002AA22B /* LaunchScreen.xib in Resources */,
 				AAD2773A1A07DC82002AA22B /* Images.xcassets in Resources */,
 				AAF3EE521A5AFAF500892012 /* TerryCustomLaunchScreen.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAD277401A07DC82002AA22B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,23 +468,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAD2773E1A07DC82002AA22B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AAD277491A07DC82002AA22B /* Jest_NotesTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		AAD277441A07DC82002AA22B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AAD277251A07DC81002AA22B /* Jest Notes */;
-			targetProxy = AAD277431A07DC82002AA22B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AAD2773B1A07DC82002AA22B /* LaunchScreen.xib */ = {
@@ -680,40 +594,6 @@
 			};
 			name = Release;
 		};
-		AAD277501A07DC82002AA22B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Jest NotesTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jest Notes.app/Jest Notes";
-			};
-			name = Debug;
-		};
-		AAD277511A07DC82002AA22B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Jest NotesTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jest Notes.app/Jest Notes";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -731,15 +611,6 @@
 			buildConfigurations = (
 				AAD2774D1A07DC82002AA22B /* Debug */,
 				AAD2774E1A07DC82002AA22B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AAD2774F1A07DC82002AA22B /* Build configuration list for PBXNativeTarget "Jest NotesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AAD277501A07DC82002AA22B /* Debug */,
-				AAD277511A07DC82002AA22B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
