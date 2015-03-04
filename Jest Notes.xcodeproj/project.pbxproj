@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D9A3E7C055A199927D2B5FD /* libPods-Jest Notes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE44D4C78645AD7ED7335107 /* libPods-Jest Notes.a */; };
 		AA682B4D1A646BFB000E6137 /* TerrySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA682B4C1A646BFB000E6137 /* TerrySignUpViewController.m */; };
 		AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */; };
 		AAC7C6071A3253FA00BF73DC /* JokeParse.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7C6061A3253FA00BF73DC /* JokeParse.m */; };
@@ -156,7 +155,6 @@
 		AAE5AEE01A0976F800E73566 /* JokeCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JokeCustomCell.m; sourceTree = "<group>"; };
 		AAE5AEE21A098E9100E73566 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AAF3EE511A5AFAF500892012 /* TerryCustomLaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TerryCustomLaunchScreen.xib; path = ../TerryCustomLaunchScreen.xib; sourceTree = "<group>"; };
-		AE44D4C78645AD7ED7335107 /* libPods-Jest Notes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jest Notes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +175,6 @@
 				AACDCD0B1A312BE800FEF4F2 /* AudioToolbox.framework in Frameworks */,
 				AAD277701A07DDB8002AA22B /* CoreData.framework in Frameworks */,
 				AADCA5631A3FA1B600948AD9 /* ParseUI.framework in Frameworks */,
-				5D9A3E7C055A199927D2B5FD /* libPods-Jest Notes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +213,6 @@
 				AACDCD0C1A312BF300FEF4F2 /* CFNetwork.framework */,
 				AACDCD0A1A312BE800FEF4F2 /* AudioToolbox.framework */,
 				AAD2776F1A07DDB8002AA22B /* CoreData.framework */,
-				AE44D4C78645AD7ED7335107 /* libPods-Jest Notes.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

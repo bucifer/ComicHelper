@@ -23,9 +23,9 @@
 //    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed: @"comedy.jpg" ]];
 //    [self.view addSubview:backgroundView];
     
-    UIImage *myLogoImage = [UIImage imageNamed:@"logoBannerWithLogoIconforLoginView"];
+    UIImage *myLogoImage = [UIImage imageNamed:@"squiggly120x120"];
     UIImageView *logoView = [[UIImageView alloc] initWithImage:myLogoImage];
-    logoView.contentMode = UIViewContentModeScaleToFill;
+    logoView.contentMode = UIViewContentModeScaleAspectFit;
     logoView.clipsToBounds = YES;
     
     self.logInView.logo = logoView;

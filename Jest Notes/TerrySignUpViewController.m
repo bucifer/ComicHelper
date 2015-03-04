@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoBannerTransparent"]];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparentLogo"]];
     logoView.contentMode = UIViewContentModeScaleAspectFit;
     self.signUpView.logo = logoView; // logo can be any UIView
 
