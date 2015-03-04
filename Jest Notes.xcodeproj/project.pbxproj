@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64272A98E1B1D40B42763E5A /* libPods-Jest Notes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57500230A744A87BE7D7B474 /* libPods-Jest Notes.a */; };
 		AA682B4D1A646BFB000E6137 /* TerrySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA682B4C1A646BFB000E6137 /* TerrySignUpViewController.m */; };
 		AA7562D91A1EAC1E003F5F03 /* MultiJokesSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7562D81A1EAC1E003F5F03 /* MultiJokesSelectionController.m */; };
 		AAC7C6071A3253FA00BF73DC /* JokeParse.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7C6061A3253FA00BF73DC /* JokeParse.m */; };
@@ -59,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57500230A744A87BE7D7B474 /* libPods-Jest Notes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jest Notes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8B9F6045D1DB3B37BBDD17 /* Pods-Jest Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jest Notes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jest Notes/Pods-Jest Notes.debug.xcconfig"; sourceTree = "<group>"; };
 		A7DB3D41C14026C940E474D6 /* Pods-Jest Notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jest Notes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jest Notes/Pods-Jest Notes.release.xcconfig"; sourceTree = "<group>"; };
 		AA682B4B1A646BFB000E6137 /* TerrySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrySignUpViewController.h; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				AACDCD0B1A312BE800FEF4F2 /* AudioToolbox.framework in Frameworks */,
 				AAD277701A07DDB8002AA22B /* CoreData.framework in Frameworks */,
 				AADCA5631A3FA1B600948AD9 /* ParseUI.framework in Frameworks */,
+				64272A98E1B1D40B42763E5A /* libPods-Jest Notes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +195,7 @@
 				AACDCD0C1A312BF300FEF4F2 /* CFNetwork.framework */,
 				AACDCD0A1A312BE800FEF4F2 /* AudioToolbox.framework */,
 				AAD2776F1A07DDB8002AA22B /* CoreData.framework */,
+				57500230A744A87BE7D7B474 /* libPods-Jest Notes.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -569,7 +573,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/adityanarayan/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = "Jest Notes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -586,7 +589,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/adityanarayan/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = "Jest Notes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

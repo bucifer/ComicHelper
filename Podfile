@@ -12,7 +12,3 @@ pod 'Facebook-iOS-SDK', '~> 3.19'
 
 end
 
-target 'Jest NotesTests' do
-
-end
-
