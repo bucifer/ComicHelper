@@ -11,7 +11,3 @@ Since the app automatically keeps your data locally on the phone, you don't need
 
 You can reorder your jokes on your set, score your jokes, and do a whole lot more! 
 
-![Jest Notes sample 12.18](https://raw.github.com/terrybu/JestNotes/master/Screenshots/first.png)
-![Jest Notes sample 12.18](https://raw.github.com/terrybu/JestNotes/master/Screenshots/second.png)
-![Jest Notes sample 12.18](https://raw.github.com/terrybu/JestNotes/master/Screenshots/third.png)
-![Jest Notes sample 12.18](https://raw.github.com/terrybu/JestNotes/master/Screenshots/fourth.png)
