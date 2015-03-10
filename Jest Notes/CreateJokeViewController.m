@@ -35,8 +35,11 @@
     self.nameField.delegate = self;
     self.lengthMinField.delegate = self;
     self.lengthSecondsField.delegate = self;
-    self.scoreField.delegate = self;
-    
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Joke Score (%d out of 10)", (int) self.scoreSlider.value];
 }
 
 
@@ -60,7 +63,7 @@
         //cuts off the entire IBAction if the alert ever goes up
     }
     
-    NSString *jokeScore = self.scoreField.text;
+    NSString *jokeScore = [NSString stringWithFormat:@"%f", self.scoreSlider.value];
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
     NSDate *myDate = self.writeDatePicker.date;
@@ -98,10 +101,12 @@
 
 
 
+- (IBAction) scoreSliderChanged:(id)sender {
+    self.scoreLabel.text = [NSString stringWithFormat:@"Joke Score (%d out of 10)", (int) self.scoreSlider.value];
+}
+
+
 #pragma mark Alert view for Input validation checking methods
-
-
-
 - (BOOL) nameInputInvalid: (NSString *) jokeName {
     if (jokeName.length <= 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No joke title"
@@ -128,29 +133,13 @@
 }
 
 
-- (BOOL) scoreInputInvalid: (NSString *) scoreString {
-    if ([self.coreDataManager isScoreInputValid:[scoreString intValue]] == NO) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score out of range"
-                                                        message:@"Your score input is out of range. Please input a number between 0 to 10 (inclusive) under Joke Score"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        return YES;
-    }
-    return FALSE;
-}
-
 
 #pragma mark Keyboard Delegate Methods
-
-
 -(void)dismissKeyboard {
     //dismiss On Tap Somewhere Else
     [self.nameField resignFirstResponder];
     [self.lengthMinField resignFirstResponder];
     [self.lengthSecondsField resignFirstResponder];
-    [self.scoreField resignFirstResponder];
     [self.jokeBodyTextView resignFirstResponder];
 }
 
