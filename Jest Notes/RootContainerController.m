@@ -13,7 +13,7 @@
 #define HEIGHT 30 //%%% height of the segment
 #define ANIMATION_SPEED 0.2 //%%% the number of seconds it takes to complete the animation
 #define SELECTOR_HEIGHT 4 //%%% thickness of the selector bar
-#define X_OFFSET 12
+//#define X_OFFSET 12 unnecessary? don't know why i had it in there in the  first place
 #define Y_OFFSET_BELOW_NAVBAR 21.7
 
 typedef void (^moveSelectorBarToJokesBlockType)(void);
@@ -56,14 +56,39 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
     [self.pageViewController didMoveToParentViewController:self];
     
     [self setUpCustomPageControlIndicatorButtons];
-    
     [self declareBlocksForConvenience];
+}
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+         if (UIInterfaceOrientationIsLandscape(orientation))
+             NSLog(@"landscape width %f", self.view.frame.size.width);
+         else if (UIInterfaceOrientationIsPortrait(orientation))
+             NSLog(@"portrait width %f", self.view.frame.size.width);
+         
+        self.pageControlCustomView.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT);
+         leftButton.frame = CGRectMake(0, 0, self.view.frame.size.width/2, HEIGHT);
+         rightButton.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, HEIGHT);
+         
+         if (self.pageViewController.viewControllers[0] == self.firstVC)
+             selectionBar.frame = CGRectMake(0, HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT);
+         else
+             selectionBar.frame = CGRectMake(self.view.frame.size.width/2, HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT);
+         
+     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+
+     }];
+    
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 
+
 - (void) declareBlocksForConvenience {
-    
     __weak typeof(leftButton) weakLeftButton = leftButton;
     __weak typeof(rightButton) weakRightButton = rightButton;
     __weak typeof(selectionBar) weakSelectionBar = selectionBar;
@@ -89,12 +114,11 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
                          animations:^{
                              weakRightButton.backgroundColor = [UIColor orangeColor];
                              weakLeftButton.backgroundColor = nil;
-                             weakSelectionBar.frame = CGRectMake(weakself.view.frame.size.width/2, HEIGHT, weakself.view.frame.size.width/2 + X_OFFSET, SELECTOR_HEIGHT);
+                             weakSelectionBar.frame = CGRectMake(weakself.view.frame.size.width/2, HEIGHT, weakself.view.frame.size.width/2, SELECTOR_HEIGHT);
                          }
                          completion:^(BOOL finished){
                          }];
     };
-    
 }
 
 
@@ -102,16 +126,14 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
 - (void) setUpCustomPageControlIndicatorButtons {
 
         self.pageControlCustomView = [[UIView alloc] initWithFrame:(CGRectMake(0, self.navigationController.navigationBar.frame.size.height + Y_OFFSET_BELOW_NAVBAR, self.view.frame.size.width, HEIGHT + SELECTOR_HEIGHT))];
+        //it's really weird how we need that Y OFFSet. you would think that navbar.frame.size.height will exactly net you rigth below the navbar but instead, it goes a little over the top
     
         leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, HEIGHT)];
-        rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.pageControlCustomView.frame.size.width/2, 0, self.view.frame.size.width/2+X_OFFSET, HEIGHT)];
+        rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, HEIGHT)];
         
-        selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT)];
+        selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT)];
         selectionBar.backgroundColor = [UIColor brownColor];
         selectionBar.alpha = 0.8;
-    
-        leftButton.tag = 0;
-        rightButton.tag = 1;
         
         [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         leftButton.layer.borderWidth = 0.8;
