@@ -51,7 +51,7 @@
 #pragma mark Search Bar Methods
 - (void)filterContentForSearchText:(NSString*)searchText scope: (NSString *) scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
     searchResults = [[self.coreDataManager.jokes filteredArrayUsingPredicate:resultPredicate]mutableCopy];
 }
 
