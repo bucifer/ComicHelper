@@ -14,7 +14,12 @@
 #define ANIMATION_SPEED 0.2 //%%% the number of seconds it takes to complete the animation
 #define SELECTOR_HEIGHT 4 //%%% thickness of the selector bar
 //#define X_OFFSET 12 unnecessary? don't know why i had it in there in the  first place
-#define Y_OFFSET_BELOW_NAVBAR 21.7
+#define Y_OFFSET_BELOW_NAVBAR 20
+//This OFFSET is just for simulators. XCODE has a weird thing about hiding status bars in landscape orientations so in simulators, it looks like our custom pagecontrol breaks alignment but on real hardware device like iPad, it doesn't.
+
+//Keep in mind that a navigation bar's height is 44 pixels
+//But the status bar (that says ipad, wifi, time, and battery) is 20 pixels
+//So that the complete "header" on top of your viewcontroller is worth 64 pixels in total
 
 typedef void (^moveSelectorBarToJokesBlockType)(void);
 typedef void (^moveSelectorBarToSetsBlockType)(void);

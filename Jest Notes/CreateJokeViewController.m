@@ -52,20 +52,22 @@
 
 
 
-
-
-
 - (IBAction)createNewJokeAction:(id)sender {
     
     NSString *jokeName = self.nameField.text;
     if ([self nameInputInvalid:jokeName]) {
+        //cut off the entire IBAction if the alert ever goes up
         return;
-        //cuts off the entire IBAction if the alert ever goes up
     }
-    
+
     NSString *jokeScore = [NSString stringWithFormat:@"%f", self.scoreSlider.value];
     NSString *jokeMinuteLength = self.lengthMinField.text;
     NSString *jokeSecondsLength = self.lengthSecondsField.text;
+    if ([self lengthInputInvalid:jokeMinuteLength secs: jokeSecondsLength]) {
+        return;
+    }
+    
+    
     NSDate *myDate = self.writeDatePicker.date;
     
     //When you create a new joke, first you add one to the Presentation Layer by adding it to the  DAO
@@ -94,8 +96,6 @@
     //This will ABSOLUTELY make sure that no joke or set data gets lost because you didn't have internet connection when you were writing down something
     
     [self.coreDataManager createNewJokeInCoreDataAndParse:newJoke];
-
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -129,6 +129,29 @@
     }
     
     
+    return FALSE;
+}
+
+- (BOOL) lengthInputInvalid: (NSString *) minutes secs: (NSString *) secs {
+    if ([minutes isEqualToString:@""] && [secs isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Joke Length"
+                                                        message:@"Input joke length in approximate minutes and seconds"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return TRUE;
+    }
+    else if ([minutes rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound || [secs rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound) {
+        NSLog(@"found letters");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Found letters in Joke Length Fields"
+                                                        message:@"Please input numbers, not letters"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return TRUE;
+    }
     return FALSE;
 }
 
