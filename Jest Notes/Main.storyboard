@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ErO-tb-I85">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ErO-tb-I85">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -151,6 +151,7 @@
                     <navigationItem key="navigationItem" title="View Your Jokes" id="6gw-nQ-OVZ">
                         <barButtonItem key="backBarButtonItem" title="Jokes" id="8dA-fG-Ado"/>
                         <barButtonItem key="leftBarButtonItem" title="Delete" id="Vd1-pj-oSD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="deleteBarButtonAction:" destination="BYZ-38-t0r" id="Zsx-Ms-hbl"/>
                             </connections>
@@ -784,6 +785,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fhN-bf-q2W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -807,11 +812,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st1-fg-KEH" userLabel="HelpManualTextView">
-                                <rect key="frame" x="0.0" y="8" width="573" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="uP9-Ru-MLn"/>
-                                </constraints>
                                 <string key="text">Thanks for downloading this app. This app is designed for stand-up comics to organize your jokes and sets into one convenient tool so that you can read and access them quickly even without an internet connection.
 
 You can create jokes and  sets on your phone so that later on the night of your performance, you can look at the order listing of your jokes on stage while holding the phone. 
@@ -832,9 +834,10 @@ Enjoy and break a leg! (not literally) </string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="leading" secondItem="tsr-1B-gKi" secondAttribute="leading" id="3Hd-Oh-IUC"/>
-                            <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="tsr-1B-gKi" secondAttribute="top" constant="8" id="VBW-Oo-tgs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="st1-fg-KEH" secondAttribute="trailing" constant="11" id="bjA-bT-3X5"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="leading" secondItem="tsr-1B-gKi" secondAttribute="leading" id="06D-Zu-Vjg"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="bottom" secondItem="1Ji-x7-ZCN" secondAttribute="top" id="8Zj-BH-awk"/>
+                            <constraint firstItem="st1-fg-KEH" firstAttribute="top" secondItem="tsr-1B-gKi" secondAttribute="top" id="DqL-AA-cgE"/>
+                            <constraint firstAttribute="trailing" secondItem="st1-fg-KEH" secondAttribute="trailing" id="rc2-DG-aod"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Help" id="xaN-gM-lvg"/>
@@ -876,7 +879,9 @@ Enjoy and break a leg! (not literally) </string>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="O3n-Og-TDA">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="E1r-ee-IgC" kind="relationship" relationship="viewControllers" id="b1k-8Q-Cj4"/>
@@ -888,10 +893,10 @@ Enjoy and break a leg! (not literally) </string>
             </objects>
             <point key="canvasLocation" x="-2397" y="192"/>
         </scene>
-        <!--AppSettings Logout -->
+        <!--SettingsViewController-->
         <scene sceneID="jHB-lC-iKG">
             <objects>
-                <tableViewController title="AppSettings Logout " id="Lq4-ce-mew" customClass="AppSettingsTableViewController" sceneMemberID="viewController">
+                <tableViewController title="AppSettings Logout " id="Lq4-ce-mew" userLabel="SettingsViewController" customClass="AppSettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="RRD-06-5ps">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1370,6 +1375,10 @@ Enjoy and break a leg! (not literally) </string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kmS-yJ-0qL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1380,10 +1389,10 @@ Enjoy and break a leg! (not literally) </string>
             </objects>
             <point key="canvasLocation" x="-1482" y="186"/>
         </scene>
-        <!--SetsView-->
+        <!--SetsViewController-->
         <scene sceneID="JAT-is-RoV">
             <objects>
-                <tableViewController storyboardIdentifier="SetsViewController" title="SetsView" id="D5R-Up-jtI" customClass="SetsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SetsViewController" title="SetsView" id="D5R-Up-jtI" userLabel="SetsViewController" customClass="SetsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1th-N8-Fw3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1527,6 +1536,10 @@ Enjoy and break a leg! (not literally) </string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UWJ-ab-RkX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1545,6 +1558,10 @@ Enjoy and break a leg! (not literally) </string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jcF-jE-hUa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1555,15 +1572,19 @@ Enjoy and break a leg! (not literally) </string>
             </objects>
             <point key="canvasLocation" x="234" y="-609"/>
         </scene>
-        <!--Settings-->
+        <!--NavigationController to Settings-->
         <scene sceneID="QMb-rN-xCx">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="psz-NA-kIg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="psz-NA-kIg" userLabel="NavigationController to Settings" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="qnr-EW-8j6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kXo-rR-azw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

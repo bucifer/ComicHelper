@@ -46,6 +46,7 @@
     
     if (self.coreDataManager.sets.count > 0) {
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }

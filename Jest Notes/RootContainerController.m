@@ -137,7 +137,7 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
         rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, HEIGHT)];
         
         selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT)];
-        selectionBar.backgroundColor = [UIColor brownColor];
+        selectionBar.backgroundColor = [UIColor grayColor];
         selectionBar.alpha = 0.8;
         
         [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
