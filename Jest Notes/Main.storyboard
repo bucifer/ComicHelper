@@ -1014,15 +1014,8 @@ Enjoy and break a leg! (not literally) </string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search by Joke Title" translatesAutoresizingMaskIntoConstraints="NO" id="6SF-pk-Jdf">
-                                <rect key="frame" x="0.0" y="94" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="id4-8F-qdT" id="M4k-bs-U0M"/>
-                                </connections>
-                            </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qss-3A-owH">
-                                <rect key="frame" x="0.0" y="138" width="600" height="29"/>
+                                <rect key="frame" x="0.0" y="94" width="600" height="29"/>
                                 <segments>
                                     <segment title="Sort by Joke #"/>
                                     <segment title="A-Z"/>
@@ -1033,7 +1026,7 @@ Enjoy and break a leg! (not literally) </string>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MWA-sW-jqe">
-                                <rect key="frame" x="0.0" y="167" width="600" height="433"/>
+                                <rect key="frame" x="0.0" y="123" width="600" height="477"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeCustomCell" rowHeight="65" id="HG3-Sh-mF9" customClass="JokeCustomCell">
@@ -1129,21 +1122,6 @@ Enjoy and break a leg! (not literally) </string>
                                             <outlet property="uniqueIDLabel" destination="OHg-Eg-uxk" id="0dC-sa-cfj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="SearchResultCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultCell" textLabel="pb5-cV-hHQ" style="IBUITableViewCellStyleDefault" id="OGP-eO-wad">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGP-eO-wad" id="ViR-FY-QEf">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pb5-cV-hHQ">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="id4-8F-qdT" id="5VY-CP-TYl"/>
@@ -1154,21 +1132,20 @@ Enjoy and break a leg! (not literally) </string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MWA-sW-jqe" firstAttribute="bottom" secondItem="3CJ-pu-yKe" secondAttribute="top" id="0gs-C7-IlG"/>
-                            <constraint firstItem="6SF-pk-Jdf" firstAttribute="top" secondItem="RCU-pi-mJa" secondAttribute="bottom" id="7tZ-6j-kcj"/>
-                            <constraint firstItem="6SF-pk-Jdf" firstAttribute="leading" secondItem="qss-3A-owH" secondAttribute="leading" id="Dl7-Mv-7K0"/>
-                            <constraint firstItem="6SF-pk-Jdf" firstAttribute="trailing" secondItem="qss-3A-owH" secondAttribute="trailing" id="I7Z-gN-dM0"/>
+                            <constraint firstItem="qss-3A-owH" firstAttribute="top" secondItem="RCU-pi-mJa" secondAttribute="bottom" id="Hre-vO-9iE"/>
                             <constraint firstItem="qss-3A-owH" firstAttribute="leading" secondItem="j5a-9M-fIe" secondAttribute="leading" id="LbO-tq-DK0"/>
                             <constraint firstAttribute="trailing" secondItem="qss-3A-owH" secondAttribute="trailing" id="OoZ-4K-sOV"/>
+                            <constraint firstItem="MWA-sW-jqe" firstAttribute="leading" secondItem="j5a-9M-fIe" secondAttribute="leading" id="Pem-Pp-xEP"/>
                             <constraint firstItem="qss-3A-owH" firstAttribute="trailing" secondItem="MWA-sW-jqe" secondAttribute="trailing" id="QAZ-xz-CWc"/>
-                            <constraint firstItem="qss-3A-owH" firstAttribute="top" secondItem="6SF-pk-Jdf" secondAttribute="bottom" id="R61-O0-Otc"/>
-                            <constraint firstItem="qss-3A-owH" firstAttribute="top" secondItem="6SF-pk-Jdf" secondAttribute="bottom" id="gt4-Fk-cmV"/>
+                            <constraint firstAttribute="trailing" secondItem="MWA-sW-jqe" secondAttribute="trailing" id="SBW-NS-sil"/>
                             <constraint firstItem="MWA-sW-jqe" firstAttribute="leading" secondItem="qss-3A-owH" secondAttribute="leading" id="lSG-Mc-hbx"/>
                             <constraint firstItem="MWA-sW-jqe" firstAttribute="bottom" secondItem="3CJ-pu-yKe" secondAttribute="top" id="rYm-Jw-wgc"/>
                             <constraint firstItem="MWA-sW-jqe" firstAttribute="top" secondItem="qss-3A-owH" secondAttribute="bottom" constant="1" id="saO-9c-iVi"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="R61-O0-Otc"/>
+                                <exclude reference="QAZ-xz-CWc"/>
+                                <exclude reference="lSG-Mc-hbx"/>
                                 <exclude reference="rYm-Jw-wgc"/>
                             </mask>
                         </variation>
@@ -1177,21 +1154,11 @@ Enjoy and break a leg! (not literally) </string>
                         <barButtonItem key="backBarButtonItem" title="Back" id="2pi-is-71a"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchDisplayController" destination="Ecd-aq-8vR" id="wZJ-kX-WT6"/>
                         <outlet property="tableView" destination="MWA-sW-jqe" id="ihp-07-NsN"/>
                         <segue destination="EVz-pt-y6z" kind="custom" identifier="setFinalizeViewSegue" customClass="PushNoAnimationSegue" id="0ch-r3-Tvj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DF1-K6-32A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Ecd-aq-8vR">
-                    <connections>
-                        <outlet property="delegate" destination="id4-8F-qdT" id="7Yd-pA-oUH"/>
-                        <outlet property="searchBar" destination="6SF-pk-Jdf" id="Z8d-zq-FF0"/>
-                        <outlet property="searchContentsController" destination="id4-8F-qdT" id="pm8-PJ-Myj"/>
-                        <outlet property="searchResultsDataSource" destination="id4-8F-qdT" id="f6v-6m-x93"/>
-                        <outlet property="searchResultsDelegate" destination="id4-8F-qdT" id="R3c-F4-hhx"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2016" y="-1329"/>
         </scene>

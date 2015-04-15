@@ -17,7 +17,6 @@
 @interface MultiJokesSelectionController ()  {
     NSMutableArray *searchResults;
     NSMutableArray *selectedObjects;
-    bool searchResultsTableviewShowing;
 }
 
 - (IBAction)segCtrlAction:(id)sender;
@@ -52,28 +51,6 @@
 }
 
 
-#pragma mark Search Bar Methods
-- (void)filterContentForSearchText:(NSString*)searchText scope: (NSString *) scope
-{
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
-    searchResults = [[self.coreDataManager.jokes filteredArrayUsingPredicate:resultPredicate]mutableCopy];
-}
-
-
-- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    
-    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles]objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
-    return YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
-    [self.tableView reloadData];
-    //these two lines make sure that both Filterview and Tableview data are refreshed - without it, it doesn't work
-}
-
-
-
 
 #pragma mark tableview methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -81,29 +58,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [searchResults count];
-    }
-    else {
-        return self.coreDataManager.jokes.count;
-    }
+    return self.coreDataManager.jokes.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        //we are in filter search results view
-        UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SearchResultCell"];
-        if(!cell){
-            cell =
-            [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchResultCell"];
-        }
-        [self cellStylingLogicForFilterView:cell indexPath:indexPath];
-        return cell;
-    }
-    
-    else {
         //we are in regular table view
         static NSString *jokeCustomCellIdentifier = @"JokeCustomCell";
         JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:jokeCustomCellIdentifier];
@@ -113,28 +73,19 @@
         }
         [self cellStylingLogicForRegTableView:cell indexPath:indexPath];
         return cell;
-    }
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView){
-        [self didSelectCheckmarkLogicForSearchFilterView:indexPath cell:cell];
-    }
-    else {
-        [self didSelectCheckmarkLogicForRegularTableView:indexPath cell:cell];
-    }
-    
+    JokeCustomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self didSelectCheckmarkLogicForRegularTableView:indexPath cell:cell];
     cell.tintColor = [UIColor blackColor];
-//    [self logWhatsBeenSelected];
 }
 
 
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    JokeCustomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     Joke *selectedJoke = [self.coreDataManager.jokes objectAtIndex:indexPath.row];
     [self jokeWasDeselected:selectedJoke];
     cell.accessoryView = nil;
