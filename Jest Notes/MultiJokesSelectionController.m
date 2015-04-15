@@ -17,6 +17,7 @@
 @interface MultiJokesSelectionController ()  {
     NSMutableArray *searchResults;
     NSMutableArray *selectedObjects;
+    bool searchResultsTableviewShowing;
 }
 
 - (IBAction)segCtrlAction:(id)sender;
@@ -29,12 +30,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setUpSearchFilterFunctionality];
+    searchResults = [[NSMutableArray array]init];
+    selectedObjects = [[NSMutableArray array]init];
+    self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
     [self initializeBarButtons];
 
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
     [[self navigationItem] setLeftBarButtonItem:item];
 }
+
 
 - (void)backButtonPressed
 {
@@ -64,10 +68,10 @@
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
-    [tableView reloadData];
     [self.tableView reloadData];
     //these two lines make sure that both Filterview and Tableview data are refreshed - without it, it doesn't work
 }
+
 
 
 
@@ -90,30 +94,27 @@
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         //we are in filter search results view
-        UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SearchResultCell"];
         if(!cell){
             cell =
-            [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"]; //this might crash - watch out
+            [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchResultCell"];
         }
-        
         [self cellStylingLogicForFilterView:cell indexPath:indexPath];
         return cell;
     }
     
     else {
         //we are in regular table view
-        static NSString *simpleCellIdentifier = @"JokeCustomCell";
-        JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
+        static NSString *jokeCustomCellIdentifier = @"JokeCustomCell";
+        JokeCustomCell *cell = (JokeCustomCell*) [tableView dequeueReusableCellWithIdentifier:jokeCustomCellIdentifier];
         if(!cell){
             cell =
-            [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JokeCustomCell"]; //this might crash - watch out
+            [[JokeCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:jokeCustomCellIdentifier];
         }
         [self cellStylingLogicForRegTableView:cell indexPath:indexPath];
         return cell;
     }
 }
-
-
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -149,11 +150,6 @@
 
 
 #pragma mark Refactored Methods
-- (void) setUpSearchFilterFunctionality {
-    searchResults = [NSMutableArray arrayWithCapacity:[self.coreDataManager.jokes count]];
-    selectedObjects = [[NSMutableArray array]init];
-    self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
-}
 
 - (void) initializeBarButtons {
     UIBarButtonItem *clearButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshSetSelectionAction)];

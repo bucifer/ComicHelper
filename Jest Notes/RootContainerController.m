@@ -21,6 +21,8 @@
 //But the status bar (that says ipad, wifi, time, and battery) is 20 pixels
 //So that the complete "header" on top of your viewcontroller is worth 64 pixels in total
 
+#define Rgb2UIColor(r, g, b)  [UIColor colorWithRed:((r) / 255.0) green:((g) / 255.0) blue:((b) / 255.0) alpha:1.0]
+
 typedef void (^moveSelectorBarToJokesBlockType)(void);
 typedef void (^moveSelectorBarToSetsBlockType)(void);
 
@@ -137,7 +139,7 @@ typedef void (^moveSelectorBarToSetsBlockType)(void);
         rightButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, HEIGHT)];
         
         selectionBar = [[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT, self.view.frame.size.width/2, SELECTOR_HEIGHT)];
-        selectionBar.backgroundColor = [UIColor grayColor];
+        selectionBar.backgroundColor = [UIColor brownColor];
         selectionBar.alpha = 0.8;
         
         [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

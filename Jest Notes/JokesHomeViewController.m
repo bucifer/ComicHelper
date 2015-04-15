@@ -87,7 +87,6 @@
     UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 20, 20)];
     [self.tableView insertSubview:refreshView atIndex:0];
     refreshControl = [[UIRefreshControl alloc] init];
-    //    refreshControl.tintColor = [UIColor blueColor];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [refreshView addSubview:refreshControl];
 }
